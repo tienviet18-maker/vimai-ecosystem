@@ -8,25 +8,34 @@ Build command: `npx @cloudflare/next-on-pages`
 Output: `.vercel/output/static`  
 Compatibility flag: `nodejs_compat`
 
-`package-lock.json` is not in Git so Pages uses `npm install` instead of strict `npm ci`.
+Do not create another Pages project. Do not change DNS blindly.
 
-www → apex: middleware 301 from `www.vimai.jp` to `https://vimai.jp`.
+## Production resources
 
-Admin subdomain: point `admin.vimai.jp` at the **same** Pages project when ready. Middleware rewrites `/` to `/admin`. Do not create another Pages project. Do not change DNS blindly.
+- D1: `vimai-cms` (binding `DB`). Database ID is in `wrangler.toml`.
+- R2: `vimai-media` (binding `MEDIA`) — **enable R2 in Cloudflare Dashboard first**, then `npx wrangler r2 bucket create vimai-media`.
+
+Schema: `npx wrangler d1 execute vimai-cms --remote --file=d1/schema.sql`  
+Idempotent product seed: `npx wrangler d1 execute vimai-cms --remote --file=d1/seed.sql`
+
+## Secrets / env vars (Pages Settings)
+
+- `NEXT_PUBLIC_SITE_URL=https://vimai.jp` (also in wrangler `[vars]`)
+- `AUTH_SECRET` (secret, ≥32 characters)
+- `ADMIN_BOOTSTRAP_EMAIL` / `ADMIN_BOOTSTRAP_PASSWORD` (first admin only; delete after first successful login)
+- Optional: `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_CF_BEACON_TOKEN`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`, `PUBLIC_MEDIA_BASE_URL`
+
+www → apex: middleware 301.
 
 Never set canonical to localhost, `*.pages.dev`, or Vercel URLs.
 
-## Required Pages environment variables
+Default language is Vietnamese (`/`) with `localeDetection: false`. English is `/en`. Japanese is `/ja`.
 
-- `NEXT_PUBLIC_SITE_URL=https://vimai.jp`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+## Rollback
 
-Optional: `MEDIA_BUCKET`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_CF_BEACON_TOKEN`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`, R2 placeholders.
+Cloudflare Dashboard → Pages → `vimai-ecosystem` → Deployments → Retry / Rollback to the previous successful production deployment.
 
-## Manual steps after deploy
+## Backup
 
-1. Apply SQL in Supabase.
-2. Create the `media` bucket and an Auth user.
-3. Optionally attach `admin.vimai.jp` to this Pages project.
-4. Optionally enable Cloudflare Web Analytics and paste the beacon token.
+`npx wrangler d1 export vimai-cms --remote --output=backup.sql`  
+R2 objects are not in Git; copy the bucket after R2 is enabled.

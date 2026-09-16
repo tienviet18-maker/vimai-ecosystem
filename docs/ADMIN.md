@@ -1,34 +1,26 @@
 # Admin CMS
 
-URL: `https://vimai.jp/admin` (later `https://admin.vimai.jp`)
+URL: `https://vimai.jp/admin` (later `https://admin.vimai.jp` on the same Pages project)
 
-Admin UI is English-first. Public content is JA / VI / EN.
-
-1. Create a Supabase Auth user (email + password). Do not put credentials in source.
-2. Run `supabase/schema.sql` then `supabase/migrations/002_cms_platform.sql`.
-3. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` on Cloudflare Pages.
-4. Create a public Storage bucket named `media` (or the name in `MEDIA_BUCKET`).
-5. Sign in at `/admin/login`.
+1. In Cloudflare Dashboard → Pages → `vimai-ecosystem` → Settings → Bindings:
+   - D1: binding name `DB`, database `vimai-cms`
+   - R2: binding name `MEDIA`, bucket `vimai-media`
+2. Apply schema: `npx wrangler d1 execute vimai-cms --remote --file=d1/schema.sql`
+3. Pages secrets: `AUTH_SECRET` (at least 32 random characters), plus `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD` for the first login only.
+4. Sign in at `/admin/login` with the bootstrap email/password. That creates the first hashed admin row. **Remove bootstrap secrets after first login.**
 
 ## Phone workflow — product screenshot
 
-1. Open `https://vimai.jp/admin` (or `https://admin.vimai.jp` when DNS is attached).
-2. Login.
-3. Products → select product.
-4. Media / Screenshots → Upload from this device.
-5. Choose an image from the camera roll (JPEG/PNG/WebP/AVIF/SVG, max 8MB).
-6. Add or keep the URL, optionally Set as hero, add alt later in Media.
-7. Save.
-8. The public website reads storage + database. No GitHub commit is required.
+1. Open `https://vimai.jp/admin`
+2. Login
+3. Products → select product
+4. Screenshots / Media → Upload from this device
+5. Choose an image (camera or library)
+6. Add alt text
+7. Optionally Set as hero
+8. Save
+9. Public site reads D1 + R2. No GitHub commit.
 
-## Sections
+## Auth notes
 
-- Dashboard, Products, Articles, Media, Reviews, Analytics, SEO, Settings, Messages
-- Reviews stay pending until approved, rejected, archived, or featured
-- Article drafts and scheduled posts are not public until publish time
-- Preview routes are under `/admin/preview/*` and send `noindex`
-- Logout and session handling use Supabase Auth cookies
-
-## Authentication notes
-
-Supabase Auth provides hashed passwords and session cookies. There is no fake login and no `AUTH_SECRET` in this stack; session security is handled by Supabase plus HTTPS on Cloudflare.
+Passwords are PBKDF2-SHA-256 hashes in D1. Sessions are signed cookies (7 days). Credentials are never in source.

@@ -375,7 +375,7 @@ export const seedFaqs: Array<
 export function localizeProduct(product: Product, locale: Locale) {
   const translation =
     product.translations.find((item) => item.locale === locale) ??
-    product.translations.find((item) => item.locale === "ja") ??
+    product.translations.find((item) => item.locale === "vi") ??
     product.translations[0];
 
   return {

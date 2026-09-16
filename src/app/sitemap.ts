@@ -7,7 +7,7 @@ export const runtime = "edge";
 
 export default async function sitemap() {
   const products = await getProducts();
-  const articles = await getPublishedArticles("ja");
+  const articles = await getPublishedArticles("vi");
   const staticPaths = ["", "/products", "/about", "/support", "/contact", "/articles", "/privacy", "/terms"];
 
   const entries = routing.locales.flatMap((locale) => {

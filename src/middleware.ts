@@ -1,11 +1,10 @@
 import createMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "@/lib/i18n/routing";
-import { updateSession } from "@/lib/supabase/middleware";
 
 const intlMiddleware = createMiddleware(routing);
 
-export default async function middleware(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
   const url = request.nextUrl.clone();
 
@@ -20,7 +19,7 @@ export default async function middleware(request: NextRequest) {
     const rewrite = NextResponse.rewrite(url);
     rewrite.headers.set("x-pathname", url.pathname);
     rewrite.headers.set("x-robots-tag", "noindex, nofollow");
-    return updateSession(request, rewrite);
+    return rewrite;
   }
 
   const response = intlMiddleware(request);
@@ -28,7 +27,7 @@ export default async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.includes("/admin")) {
     response.headers.set("x-robots-tag", "noindex, nofollow");
   }
-  return updateSession(request, response);
+  return response;
 }
 
 export const config = {

@@ -7,43 +7,41 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { createClient } from "@/lib/supabase/client";
 
 export function FaqEditor() {
   const [published, setPublished] = useState(true);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const supabase = createClient();
-    if (!supabase) {
-      toast.error("Supabase is not configured.");
-      return;
-    }
     const form = new FormData(event.currentTarget);
-    const { data, error } = await supabase
-      .from("faqs")
-      .insert({
+    const response = await fetch("/api/admin/faqs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         product_id: emptyToNull(form.get("product_id")),
         sort_order: Number(form.get("sort_order") || 0),
         published,
-      })
-      .select("id")
-      .single();
-
-    if (error || !data) {
-      toast.error(error?.message ?? "Could not create FAQ");
+        translations: {
+          ja: {
+            question: String(form.get("question_ja") ?? ""),
+            answer: String(form.get("answer_ja") ?? ""),
+          },
+          vi: {
+            question: String(form.get("question_vi") ?? ""),
+            answer: String(form.get("answer_vi") ?? ""),
+          },
+          en: {
+            question: String(form.get("question_en") ?? ""),
+            answer: String(form.get("answer_en") ?? ""),
+          },
+        },
+      }),
+    });
+    const json = (await response.json().catch(() => ({}))) as { error?: string };
+    if (!response.ok) {
+      toast.error(json.error ?? "Could not create FAQ");
       return;
     }
-
-    for (const locale of ["ja", "vi", "en"] as const) {
-      await supabase.from("faq_translations").insert({
-        faq_id: data.id,
-        locale,
-        question: String(form.get(`question_${locale}`) ?? ""),
-        answer: String(form.get(`answer_${locale}`) ?? ""),
-      });
-    }
-
     toast.success("FAQ saved");
     event.currentTarget.reset();
   }
@@ -60,12 +58,10 @@ export function FaqEditor() {
           <Input id="sort_order" name="sort_order" type="number" defaultValue="0" />
         </div>
       </div>
-      {(["ja", "vi", "en"] as const).map((locale) => (
+      {(["vi", "en", "ja"] as const).map((locale) => (
         <div key={locale} className="space-y-2">
-          <Label>
-            {locale.toUpperCase()} question
-          </Label>
-          <Input name={`question_${locale}`} required={locale === "ja"} />
+          <Label>{locale.toUpperCase()} question</Label>
+          <Input name={`question_${locale}`} required={locale === "vi"} />
           <Textarea name={`answer_${locale}`} />
         </div>
       ))}

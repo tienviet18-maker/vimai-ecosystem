@@ -1,48 +1,60 @@
-import { createClient } from "@/lib/supabase/server";
 import { seedFaqs } from "@/lib/seed";
-import { isSupabaseConfigured } from "@/lib/utils";
+import { asBool, getDb } from "@/lib/cloudflare";
 import type { Faq, Locale } from "@/types";
+
+type FaqRow = {
+  id: string;
+  product_id: string | null;
+  sort_order: number;
+  published: number;
+};
+
+type TranslationRow = {
+  faq_id: string;
+  locale: Locale;
+  question: string;
+  answer: string;
+};
+
+async function fetchFromD1(locale: Locale, productId?: string | null): Promise<Faq[] | null> {
+  const db = getDb();
+  if (!db) return null;
+
+  const faqs = await db
+    .prepare(
+      `SELECT * FROM faqs WHERE published = 1
+       ${productId ? "AND product_id = ?" : "AND product_id IS NULL"}
+       ORDER BY sort_order ASC`,
+    )
+    .bind(...(productId ? [productId] : []))
+    .all<FaqRow>();
+
+  if (!faqs.results?.length) return [];
+
+  const translations = await db.prepare("SELECT * FROM faq_translations").all<TranslationRow>();
+
+  return faqs.results
+    .map((row) => {
+      const list = (translations.results ?? []).filter((item) => item.faq_id === row.id);
+      const translation =
+        list.find((item) => item.locale === locale) ?? list.find((item) => item.locale === "vi");
+      if (!translation) return null;
+      return {
+        id: row.id,
+        product_id: row.product_id,
+        sort_order: row.sort_order,
+        published: asBool(row.published),
+        question: translation.question,
+        answer: translation.answer,
+      } satisfies Faq;
+    })
+    .filter(Boolean) as Faq[];
+}
 
 export async function getFaqs(locale: Locale, productId?: string | null) {
   try {
-    if (isSupabaseConfigured()) {
-      const supabase = await createClient();
-      if (supabase) {
-        let query = supabase
-          .from("faqs")
-          .select("*, faq_translations(*)")
-          .eq("published", true)
-          .order("sort_order", { ascending: true });
-
-        if (productId) {
-          query = query.eq("product_id", productId);
-        }
-
-        const { data, error } = await query;
-        if (!error && data && data.length > 0) {
-          return data
-            .map((row) => {
-              const translation =
-                row.faq_translations?.find(
-                  (item: { locale: string }) => item.locale === locale,
-                ) ??
-                row.faq_translations?.find(
-                  (item: { locale: string }) => item.locale === "ja",
-                );
-              if (!translation) return null;
-              return {
-                id: row.id,
-                product_id: row.product_id,
-                sort_order: row.sort_order,
-                published: row.published,
-                question: translation.question,
-                answer: translation.answer,
-              } satisfies Faq;
-            })
-            .filter(Boolean) as Faq[];
-        }
-      }
-    }
+    const remote = await fetchFromD1(locale, productId);
+    if (remote && remote.length > 0) return remote;
   } catch {
     /* fall back to seed FAQs */
   }
@@ -57,8 +69,8 @@ export async function getFaqs(locale: Locale, productId?: string | null) {
       product_id: item.product_id,
       sort_order: item.sort_order,
       published: item.published,
-      question: item.translations[locale]?.question ?? item.translations.ja.question,
-      answer: item.translations[locale]?.answer ?? item.translations.ja.answer,
+      question: item.translations[locale]?.question ?? item.translations.vi.question,
+      answer: item.translations[locale]?.answer ?? item.translations.vi.answer,
     }));
 }
 
@@ -73,7 +85,7 @@ export async function getSupportFaqs(locale: Locale) {
       product_id: item.product_id,
       sort_order: item.sort_order,
       published: item.published,
-      question: item.translations[locale]?.question ?? item.translations.ja.question,
-      answer: item.translations[locale]?.answer ?? item.translations.ja.answer,
+      question: item.translations[locale]?.question ?? item.translations.vi.question,
+      answer: item.translations[locale]?.answer ?? item.translations.vi.answer,
     }));
 }

@@ -6,8 +6,6 @@ import { useRouter } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@/lib/supabase/client";
-import { isSupabaseConfigured } from "@/lib/utils";
 
 export function LoginForm() {
   const t = useTranslations("admin");
@@ -15,43 +13,30 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  if (!isSupabaseConfigured()) {
-    return (
-      <p className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-        {t("needSetup")}
-      </p>
-    );
-  }
-
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
     setError(null);
     const form = new FormData(event.currentTarget);
-    const supabase = createClient();
-    if (!supabase) {
-      setError(t("needSetup"));
-      setLoading(false);
-      return;
-    }
-
-    const { error: signError } = await supabase.auth.signInWithPassword({
-      email: String(form.get("email") ?? ""),
-      password: String(form.get("password") ?? ""),
-    });
-
-    if (signError) {
-      setError(signError.message);
-      setLoading(false);
-      return;
-    }
-
-    await fetch("/api/admin/audit", {
+    const response = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "login" }),
-    }).catch(() => undefined);
-
+      body: JSON.stringify({
+        email: form.get("email"),
+        password: form.get("password"),
+      }),
+    });
+    if (!response.ok) {
+      setError(
+        response.status === 503
+          ? t("needSetup")
+          : response.status === 429
+            ? t("tooMany")
+            : t("invalidCredentials"),
+      );
+      setLoading(false);
+      return;
+    }
     router.replace("/admin");
     router.refresh();
   }
@@ -60,7 +45,7 @@ export function LoginForm() {
     <form onSubmit={onSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="email">{t("email")}</Label>
-        <Input id="email" name="email" type="email" required autoComplete="username" />
+        <Input id="email" name="email" type="email" required autoComplete="username" className="min-h-11" />
       </div>
       <div className="space-y-2">
         <Label htmlFor="password">{t("password")}</Label>
@@ -70,11 +55,12 @@ export function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
+          className="min-h-11"
         />
       </div>
-      {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      <Button type="submit" className="w-full" disabled={loading}>
-        {t("signIn")}
+      {error ? <p className="text-sm text-destructive" role="alert">{error}</p> : null}
+      <Button type="submit" className="min-h-11 w-full" disabled={loading}>
+        {loading ? t("signingIn") : t("signIn")}
       </Button>
     </form>
   );

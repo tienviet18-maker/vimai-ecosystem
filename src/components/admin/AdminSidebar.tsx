@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { usePathname, Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import {
   BarChart3,
@@ -35,13 +34,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   async function logout() {
-    const supabase = createClient();
-    await fetch("/api/admin/audit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "logout" }),
-    }).catch(() => undefined);
-    await supabase?.auth.signOut();
+    await fetch("/api/admin/logout", { method: "POST" }).catch(() => undefined);
     window.location.href = "/admin/login";
   }
 

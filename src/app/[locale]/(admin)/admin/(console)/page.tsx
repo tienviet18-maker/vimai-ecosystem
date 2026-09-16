@@ -4,7 +4,8 @@ import { getProducts } from "@/lib/products";
 import { getAllArticles } from "@/lib/articles";
 import { getAllReviews } from "@/lib/reviews";
 import { getAnalyticsSnapshot } from "@/lib/analytics";
-import { requireAdmin } from "@/lib/auth";
+import { getAuditLogs } from "@/lib/auth";
+import { listMedia } from "@/lib/storage";
 
 export const runtime = "edge";
 
@@ -20,14 +21,8 @@ export default async function AdminDashboardPage({
   const articles = await getAllArticles();
   const reviews = await getAllReviews();
   const analytics = await getAnalyticsSnapshot();
-  const { supabase } = await requireAdmin();
-  const { data: logs } = supabase
-    ? await supabase.from("audit_logs").select("*").order("created_at", { ascending: false }).limit(8)
-    : { data: [] };
-
-  const launched = products.filter((item) =>
-    ["launched", "available"].includes(item.status),
-  ).length;
+  const logs = await getAuditLogs(8);
+  const media = await listMedia();
 
   return (
     <div className="space-y-6">
@@ -36,37 +31,29 @@ export default async function AdminDashboardPage({
         <p className="text-sm text-muted-foreground">{t("overview")}</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat title="Products" value={products.length} />
-        <Stat title="Launched" value={launched} />
+        <Stat title={t("products")} value={products.length} />
+        <Stat title={t("mediaCount")} value={media.length} />
         <Stat
-          title="Development"
-          value={products.filter((item) => item.status === "development").length}
-        />
-        <Stat
-          title="Coming soon"
-          value={products.filter((item) => item.status === "coming_soon").length}
-        />
-        <Stat
-          title="Article drafts"
-          value={articles.filter((item) => item.status === "draft").length}
-        />
-        <Stat
-          title="Scheduled"
-          value={articles.filter((item) => item.status === "scheduled").length}
-        />
-        <Stat
-          title="Published articles"
+          title={t("published")}
           value={articles.filter((item) => item.status === "published").length}
         />
         <Stat
-          title="Pending reviews"
+          title={t("draft")}
+          value={articles.filter((item) => item.status === "draft").length}
+        />
+        <Stat
+          title={t("scheduled")}
+          value={articles.filter((item) => item.status === "scheduled").length}
+        />
+        <Stat
+          title={t("reviews")}
           value={reviews.filter((item) => item.status === "pending").length}
         />
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm">Analytics (30d)</CardTitle>
+            <CardTitle className="text-sm">{t("analytics")}</CardTitle>
           </CardHeader>
           <CardContent>
             {analytics ? (
@@ -76,21 +63,19 @@ export default async function AdminDashboardPage({
                 <p className="text-muted-foreground">{analytics.note}</p>
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground">
-                Connect CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID to load zone analytics.
-              </p>
+              <p className="text-sm text-muted-foreground">{t("analyticsUnavailable")}</p>
             )}
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm">Recent activity</CardTitle>
+            <CardTitle className="text-sm">{t("overview")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
-            {(logs ?? []).length === 0 ? (
+            {logs.length === 0 ? (
               <p className="text-muted-foreground">{t("empty")}</p>
             ) : (
-              (logs ?? []).map((log) => (
+              logs.map((log) => (
                 <p key={log.id}>
                   {log.action}
                   {log.entity ? ` · ${log.entity}` : ""}

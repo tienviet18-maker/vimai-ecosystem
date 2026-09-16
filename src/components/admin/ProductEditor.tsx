@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { useRouter } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MediaUploader } from "@/components/admin/MediaUploader";
-import { createClient } from "@/lib/supabase/client";
+import { useUnsavedChanges } from "@/components/admin/useUnsavedChanges";
 import type { Product, ProductStatus } from "@/types";
 import { productStatuses } from "@/types";
 
@@ -32,8 +33,12 @@ type TranslationDraft = {
 };
 
 export function ProductEditor({ product }: { product?: Product }) {
+  const t = useTranslations("admin");
+  const tStatus = useTranslations("products.status");
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [dirty, setDirty] = useState(false);
+  useUnsavedChanges(dirty && !saving);
   const [logoUrl, setLogoUrl] = useState(product?.logo_url ?? "");
   const [iconUrl, setIconUrl] = useState(product?.icon_url ?? "");
   const [heroUrl, setHeroUrl] = useState(product?.hero_image_url ?? "");
@@ -54,14 +59,10 @@ export function ProductEditor({ product }: { product?: Product }) {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const supabase = createClient();
-    if (!supabase) {
-      toast.error("Supabase is not configured.");
-      return;
-    }
     setSaving(true);
     const form = new FormData(event.currentTarget);
     const payload = {
+      id: product?.id,
       slug: String(form.get("slug")),
       status,
       category: emptyToNull(form.get("category")),
@@ -78,77 +79,34 @@ export function ProductEditor({ product }: { product?: Product }) {
       seo_description: emptyToNull(form.get("seo_description")),
       target_audience: emptyToNull(form.get("target_audience")),
       published,
-      updated_at: new Date().toISOString(),
+      translations: Object.fromEntries(
+        (["ja", "vi", "en"] as const).map((locale) => [
+          locale,
+          {
+            ...translations[locale],
+            features: translations[locale].features
+              .split("\n")
+              .map((item) => item.trim())
+              .filter(Boolean),
+          },
+        ]),
+      ),
+      screenshots,
     };
 
-    let productId = product?.id;
-    if (productId) {
-      const { error } = await supabase.from("products").update(payload).eq("id", productId);
-      if (error) {
-        toast.error(error.message);
-        setSaving(false);
-        return;
-      }
-    } else {
-      const { data, error } = await supabase.from("products").insert(payload).select("id").single();
-      if (error || !data) {
-        toast.error(error?.message ?? "Could not create product");
-        setSaving(false);
-        return;
-      }
-      productId = data.id;
-    }
-
-    for (const locale of ["ja", "vi", "en"] as const) {
-      const draft = translations[locale];
-      const translation = {
-        product_id: productId,
-        locale,
-        name: draft.name,
-        tagline: draft.tagline,
-        description: draft.description,
-        long_description: draft.long_description,
-        features: draft.features
-          .split("\n")
-          .map((item) => item.trim())
-          .filter(Boolean),
-      };
-      const { error } = await supabase
-        .from("product_translations")
-        .upsert(translation, { onConflict: "product_id,locale" });
-      if (error) {
-        toast.error(error.message);
-        setSaving(false);
-        return;
-      }
-    }
-
-    await supabase.from("product_images").delete().eq("product_id", productId);
-    if (screenshots.length > 0) {
-      const { error } = await supabase.from("product_images").insert(
-        screenshots.map((url, index) => ({
-          product_id: productId,
-          url,
-          kind: "screenshot",
-          sort_order: index,
-        })),
-      );
-      if (error) {
-        toast.error(error.message);
-        setSaving(false);
-        return;
-      }
-    }
-
-    await supabase.from("audit_logs").insert({
-      actor_id: (await supabase.auth.getUser()).data.user?.id,
-      action: product ? "product updated" : "product created",
-      entity: "product",
-      entity_id: productId,
-      metadata: { status },
+    const response = await fetch("/api/admin/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
+    if (!response.ok) {
+      toast.error(t("couldNotSave"));
+      setSaving(false);
+      return;
+    }
 
-    toast.success("Saved");
+    toast.success(t("saved"));
+    setDirty(false);
     router.push("/admin/products");
     router.refresh();
   }
@@ -159,15 +117,21 @@ export function ProductEditor({ product }: { product?: Product }) {
         <Field label="Slug" name="slug" defaultValue={product?.slug} required />
         <Field label="Category" name="category" defaultValue={product?.category ?? ""} />
         <div className="space-y-2">
-          <Label>Status</Label>
-          <Select value={status} onValueChange={(value) => setStatus(value as ProductStatus)}>
-            <SelectTrigger>
+          <Label>{t("status")}</Label>
+          <Select
+            value={status}
+            onValueChange={(value) => {
+              setStatus(value as ProductStatus);
+              setDirty(true);
+            }}
+          >
+            <SelectTrigger className="min-h-11">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
               {statuses.map((item) => (
                 <SelectItem key={item} value={item}>
-                  {item}
+                  {tStatus(item)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -205,52 +169,81 @@ export function ProductEditor({ product }: { product?: Product }) {
       <AssetField label="OG image" value={ogUrl} onChange={setOgUrl} folder="og" />
 
       <div className="space-y-3 rounded-2xl border bg-white p-4">
-        <Label>Screenshots</Label>
+        <Label>{t("screenshots")}</Label>
         <MediaUploader
           folder="product"
-          onUploaded={(url) => setScreenshots((current) => [...current, url])}
+          onUploaded={(url) => {
+            setScreenshots((current) => [...current, url]);
+            setDirty(true);
+          }}
         />
         {screenshots.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No screenshots yet.</p>
+          <p className="text-sm text-muted-foreground">{t("empty")}</p>
         ) : (
           <ol className="grid gap-3 sm:grid-cols-2">
             {screenshots.map((url, index) => (
               <li key={`${url}-${index}`} className="rounded-xl border p-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={url} alt="" className="h-28 w-full rounded-lg object-cover" />
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   <Button
                     type="button"
                     size="sm"
                     variant="outline"
+                    className="min-h-11"
                     disabled={index === 0}
-                    onClick={() =>
+                    onClick={() => {
                       setScreenshots((current) => {
                         const next = [...current];
                         [next[index - 1], next[index]] = [next[index], next[index - 1]];
                         return next;
-                      })
-                    }
+                      });
+                      setDirty(true);
+                    }}
                   >
-                    Up
+                    ↑
                   </Button>
                   <Button
                     type="button"
                     size="sm"
                     variant="outline"
-                    onClick={() => setHeroUrl(url)}
+                    className="min-h-11"
+                    disabled={index === screenshots.length - 1}
+                    onClick={() => {
+                      setScreenshots((current) => {
+                        const next = [...current];
+                        [next[index + 1], next[index]] = [next[index], next[index + 1]];
+                        return next;
+                      });
+                      setDirty(true);
+                    }}
                   >
-                    Set as hero
+                    ↓
                   </Button>
                   <Button
                     type="button"
                     size="sm"
                     variant="outline"
-                    onClick={() =>
-                      setScreenshots((current) => current.filter((_, item) => item !== index))
-                    }
+                    className="min-h-11"
+                    onClick={() => {
+                      setHeroUrl(url);
+                      setDirty(true);
+                    }}
                   >
-                    Remove
+                    {t("setHero")}
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="min-h-11"
+                    onClick={() => {
+                      if (!window.confirm(t("confirmDelete"))) return;
+                      setScreenshots((current) => current.filter((_, item) => item !== index));
+                      setDirty(true);
+                    }}
+                  >
+                    {t("remove")}
                   </Button>
                 </div>
               </li>
@@ -261,16 +254,28 @@ export function ProductEditor({ product }: { product?: Product }) {
 
       <div className="flex gap-6">
         <label className="flex items-center gap-2 text-sm">
-          <Checkbox checked={featured} onCheckedChange={(value) => setFeatured(Boolean(value))} />
-          Featured
+          <Checkbox
+            checked={featured}
+            onCheckedChange={(value) => {
+              setFeatured(Boolean(value));
+              setDirty(true);
+            }}
+          />
+          {t("featured")}
         </label>
-        <label className="flex items-center gap-2 text-sm">
-          <Checkbox checked={published} onCheckedChange={(value) => setPublished(Boolean(value))} />
-          Published
+        <label className="flex min-h-11 items-center gap-2 text-sm">
+          <Checkbox
+            checked={published}
+            onCheckedChange={(value) => {
+              setPublished(Boolean(value));
+              setDirty(true);
+            }}
+          />
+          {t("published")}
         </label>
       </div>
 
-      <Tabs defaultValue="ja">
+      <Tabs defaultValue="vi">
         <TabsList>
           <TabsTrigger value="ja">日本語</TabsTrigger>
           <TabsTrigger value="vi">Tiếng Việt</TabsTrigger>
@@ -288,7 +293,7 @@ export function ProductEditor({ product }: { product?: Product }) {
                     [locale]: { ...current[locale], name: event.target.value },
                   }))
                 }
-                required={locale === "ja"}
+                required={locale === "vi"}
               />
             </div>
             <div className="space-y-2">
@@ -343,8 +348,8 @@ export function ProductEditor({ product }: { product?: Product }) {
         ))}
       </Tabs>
 
-      <Button type="submit" disabled={saving}>
-        {saving ? "Saving…" : "Save"}
+      <Button type="submit" className="min-h-11" disabled={saving}>
+        {saving ? t("saving") : t("save")}
       </Button>
     </form>
   );

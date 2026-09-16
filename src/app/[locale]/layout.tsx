@@ -42,11 +42,13 @@ export async function generateMetadata({
     },
     description: messages.meta.description,
     alternates: {
-      canonical: locale === "ja" ? SITE_URL : `${SITE_URL}/${locale}`,
+      canonical: locale === "vi" ? SITE_URL : `${SITE_URL}/${locale}`,
       languages: {
-        ja: SITE_URL,
-        vi: `${SITE_URL}/vi`,
+        vi: SITE_URL,
+        "vi-VN": SITE_URL,
         en: `${SITE_URL}/en`,
+        ja: `${SITE_URL}/ja`,
+        "x-default": SITE_URL,
       },
     },
     icons: {

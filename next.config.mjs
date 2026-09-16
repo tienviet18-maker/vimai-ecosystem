@@ -10,4 +10,13 @@ const nextConfig = {
   trailingSlash: false,
 };
 
+if (process.env.NODE_ENV === "development") {
+  try {
+    const { setupDevPlatform } = await import("@cloudflare/next-on-pages/next-dev");
+    await setupDevPlatform();
+  } catch {
+    /* next build / machines without wrangler bindings still compile */
+  }
+}
+
 export default withNextIntl(nextConfig);

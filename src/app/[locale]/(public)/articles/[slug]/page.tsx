@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { getArticleBySlug } from "@/lib/articles";
-import { SITE_URL } from "@/lib/utils";
+import { publicUrl } from "@/lib/utils";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -15,11 +15,10 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const article = await getArticleBySlug(slug, locale as Locale);
   if (!article) return {};
-  const path = locale === "ja" ? `/articles/${slug}` : `/${locale}/articles/${slug}`;
   return {
     title: article.seo_title || article.title,
     description: article.seo_description || article.excerpt,
-    alternates: { canonical: `${SITE_URL}${path}` },
+    alternates: { canonical: publicUrl(locale, `/articles/${slug}`) },
     openGraph: {
       title: article.seo_title || article.title,
       description: article.seo_description || article.excerpt,

@@ -1,8 +1,8 @@
-export const locales = ["ja", "vi", "en"] as const;
+export const locales = ["vi", "en", "ja"] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = "ja";
+export const defaultLocale: Locale = "vi";
 
 export type ProductStatus =
   | "idea"

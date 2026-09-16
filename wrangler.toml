@@ -2,3 +2,20 @@ name = "vimai-ecosystem"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
+
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://vimai.jp"
+NEXT_PUBLIC_CONTACT_EMAIL = "hello@vimai.jp"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "vimai-cms"
+database_id = "73aff58e-9876-442c-9816-a2da61f87f1c"
+migrations_dir = "d1/migrations"
+
+# R2 is not enabled on this Cloudflare account yet (API 10042).
+# After enabling R2 in the Dashboard, create the bucket and uncomment:
+# npx wrangler r2 bucket create vimai-media
+# [[r2_buckets]]
+# binding = "MEDIA"
+# bucket_name = "vimai-media"

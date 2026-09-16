@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, writeAudit } from "@/lib/auth";
+import { updateReview } from "@/lib/reviews";
+import { assertSameOrigin } from "@/lib/session";
 import type { ReviewStatus } from "@/types";
 
 export const runtime = "edge";
 
 export async function PATCH(request: NextRequest) {
-  const { user, supabase, configured } = await requireAdmin();
-  if (!configured || !user || !supabase) {
+  if (!assertSameOrigin(request)) {
+    return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
+  }
+  const { user, configured } = await requireAdmin();
+  if (!configured || !user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -18,16 +23,16 @@ export async function PATCH(request: NextRequest) {
   };
   if (!body.id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
-  const patch: Record<string, unknown> = {
-    moderated_at: new Date().toISOString(),
+  const result = await updateReview({
+    id: body.id,
+    status: body.status,
+    featured: body.featured,
+    body: body.body,
     moderated_by: user.id,
-  };
-  if (body.status) patch.status = body.status;
-  if (typeof body.featured === "boolean") patch.featured = body.featured;
-  if (typeof body.body === "string") patch.body = body.body.slice(0, 2000);
-
-  const { error } = await supabase.from("reviews").update(patch).eq("id", body.id);
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  });
+  if (result.error) {
+    return NextResponse.json({ error: result.error }, { status: 400 });
+  }
 
   await writeAudit(
     body.status === "approved"

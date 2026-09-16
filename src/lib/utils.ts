@@ -12,20 +12,17 @@ export const SITE_URL = (
 export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@vimai.jp";
 
-export const MEDIA_BUCKET = process.env.MEDIA_BUCKET ?? "media";
+export function publicUrl(locale: string, path = "") {
+  const suffix = !path || path === "/" ? "" : path;
+  if (locale === "vi") return `${SITE_URL}${suffix || "/"}`;
+  return `${SITE_URL}/${locale}${suffix}`;
+}
+
 export const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
 export const ALLOWED_IMAGE_TYPES = [
   "image/jpeg",
   "image/png",
   "image/webp",
   "image/avif",
-  "image/svg+xml",
   "image/gif",
 ];
-
-export function isSupabaseConfigured() {
-  return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  );
-}

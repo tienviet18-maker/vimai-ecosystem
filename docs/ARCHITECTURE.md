@@ -2,42 +2,36 @@
 
 Production domain: `https://vimai.jp`  
 Code: GitHub `tienviet18-maker/vimai-ecosystem` → Cloudflare Pages project `vimai-ecosystem`  
-CMS data and media: Supabase (PostgreSQL, Auth, Storage)
+CMS database: Cloudflare D1 (`DB` binding, database name `vimai-cms`)  
+Media: Cloudflare R2 (`MEDIA` binding, bucket `vimai-media`)
 
 ## Stack
 
 - Next.js 15.5.2 App Router (`src/app/[locale]`)
-- next-intl (`ja` default, `vi`, `en`, `localePrefix: as-needed`)
+- next-intl (`vi` default, `en`, `ja`, `localePrefix: as-needed`, `localeDetection: false`)
 - Tailwind + shadcn/ui
-- Supabase Auth for admin (no hardcoded credentials)
-- `@cloudflare/next-on-pages` (edge runtime)
+- HMAC admin sessions (`AUTH_SECRET`, min 32 chars) + `admin_users` in D1
+- `@cloudflare/next-on-pages` (edge)
 
-Public and admin share one Next.js app. Admin lives at `/[locale]/admin` and can later be served on `https://admin.vimai.jp` via the host rewrite in `src/middleware.ts`. Do not create a second Pages project.
+Public and admin share one Next.js app. Admin lives at `/admin`. Do not create another Pages project.
 
 ## Data
 
-Conceptual entities:
-
-- `products` + `product_translations` + `product_images`
-- `articles` + `article_translations`
-- `media`
-- `reviews`
-- `audit_logs`
-- `site_settings`
-- `faqs` / `contact_messages` (existing)
-
-Public pages fall back to `src/lib/seed.ts` if Supabase is unavailable so the site is not blank. Seed products are real ViMai apps, not fabricated testimonials.
-
-Images live in the Supabase `media` bucket, not in Git. R2 env vars are reserved as a future storage seam.
+- Public pages read D1. If D1 is unbound or empty, `src/lib/seed.ts` is used so the site is not blank.
+- Images uploaded in admin go to R2 and are served at `/api/media/...` (or `PUBLIC_MEDIA_BASE_URL`).
+- GitHub stores application code only.
+- `wrangler.toml` bindings are local/code configuration. Production bindings must also be set in Cloudflare Dashboard.
 
 ## Auth
 
-Admin console layout redirects unless a Supabase session exists. `/api/admin/*` calls `requireAdmin()`. Reviews are inserted as `pending` and are only public when `approved`.
+`POST /api/admin/login` verifies PBKDF2 password hashes in D1 and sets an HttpOnly HMAC cookie `vimai_session`. Sessions are rejected if the admin row is deleted. Mutating admin APIs require same-origin. All `/api/admin/*` routes call `requireAdmin()`. No Supabase Auth.
+
+Bootstrap (`ADMIN_BOOTSTRAP_EMAIL` / `ADMIN_BOOTSTRAP_PASSWORD`) works only when `admin_users` is empty. Remove those secrets after the first login.
 
 ## Analytics
 
-Optional Cloudflare Web Analytics beacon (`NEXT_PUBLIC_CF_BEACON_TOKEN`) plus optional GraphQL zone totals (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`). Metrics are approximate; unique-user counts are never invented.
+Optional Cloudflare Web Analytics beacon + optional GraphQL zone totals. Numbers are not invented.
 
-## Environment variables
+## Backup
 
-See `.env.example`. Never commit real secrets. Canonical URL must remain `https://vimai.jp`.
+Export D1 (`wrangler d1 export`) and enable R2 object-versioning or periodic copies. Media is not in Git.

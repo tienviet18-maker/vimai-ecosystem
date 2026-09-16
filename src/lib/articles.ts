@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/utils";
+import { getDb, parseJson } from "@/lib/cloudflare";
 import type { Locale, LocalizedArticle } from "@/types";
 
 function isPublic(status: string, publishAt: string | null) {
@@ -8,82 +7,116 @@ function isPublic(status: string, publishAt: string | null) {
   return new Date(publishAt).getTime() <= Date.now();
 }
 
-export async function getPublishedArticles(locale: Locale): Promise<LocalizedArticle[]> {
-  if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
-  if (!supabase) return [];
+type ArticleRow = {
+  id: string;
+  slug: string;
+  status: string;
+  cover_image_url: string | null;
+  category: string | null;
+  tags: string | null;
+  author_name: string | null;
+  publish_at: string | null;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
 
-  const { data, error } = await supabase
-    .from("articles")
-    .select("*, article_translations(*)")
-    .order("publish_at", { ascending: false, nullsFirst: false });
+type TranslationRow = {
+  article_id: string;
+  locale: Locale;
+  title: string;
+  excerpt: string | null;
+  content: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
+};
 
-  if (error || !data) return [];
-
-  return data
-    .filter((row) => isPublic(row.status, row.publish_at))
-    .map((row) => localize(row, locale))
-    .filter(Boolean) as LocalizedArticle[];
-}
-
-export async function getArticleBySlug(slug: string, locale: Locale, options?: { preview?: boolean }) {
-  if (!isSupabaseConfigured()) return null;
-  const supabase = await createClient();
-  if (!supabase) return null;
-  const { data } = await supabase
-    .from("articles")
-    .select("*, article_translations(*)")
-    .eq("slug", slug)
-    .maybeSingle();
-  if (!data) return null;
-  if (!options?.preview && !isPublic(data.status, data.publish_at)) return null;
-  return localize(data, locale);
-}
-
-export async function getAllArticles(): Promise<
-  Array<{
-    id: string;
-    slug: string;
-    status: string;
-    article_translations?: Array<{
-      locale: string;
-      title: string;
-      excerpt: string;
-      content: string;
-    }>;
-  }>
-> {
-  if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
-  if (!supabase) return [];
-  const { data } = await supabase
-    .from("articles")
-    .select("*, article_translations(*)")
-    .order("updated_at", { ascending: false });
-  return (data ?? []) as Array<{ id: string; slug: string; status: string }>;
-}
-
-function localize(row: Record<string, unknown>, locale: Locale): LocalizedArticle | null {
-  const translations = (row.article_translations as Array<Record<string, string>>) ?? [];
+function localize(
+  row: ArticleRow,
+  translations: TranslationRow[],
+  locale: Locale,
+): LocalizedArticle | null {
   const translation =
     translations.find((item) => item.locale === locale) ??
-    translations.find((item) => item.locale === "ja") ??
+    translations.find((item) => item.locale === "vi") ??
     translations[0];
   if (!translation) return null;
   return {
-    id: String(row.id),
-    slug: String(row.slug),
+    id: row.id,
+    slug: row.slug,
     status: row.status as LocalizedArticle["status"],
-    cover_image_url: (row.cover_image_url as string) ?? null,
-    category: (row.category as string) ?? null,
-    tags: (row.tags as string[]) ?? [],
-    author_name: (row.author_name as string) ?? null,
-    publish_at: (row.publish_at as string) ?? null,
-    updated_at: (row.updated_at as string) ?? undefined,
+    cover_image_url: row.cover_image_url,
+    category: row.category,
+    tags: parseJson<string[]>(row.tags, []),
+    author_name: row.author_name,
+    publish_at: row.publish_at,
+    updated_at: row.updated_at,
     title: translation.title,
     excerpt: translation.excerpt ?? "",
     content: translation.content ?? "",
-    seo_title: translation.seo_title,
-    seo_description: translation.seo_description,
+    seo_title: translation.seo_title ?? undefined,
+    seo_description: translation.seo_description ?? undefined,
   };
+}
+
+async function loadArticles() {
+  const db = getDb();
+  if (!db) return { rows: [] as ArticleRow[], translations: [] as TranslationRow[] };
+  const rows = await db
+    .prepare("SELECT * FROM articles ORDER BY updated_at DESC")
+    .all<ArticleRow>();
+  const translations = await db.prepare("SELECT * FROM article_translations").all<TranslationRow>();
+  return { rows: rows.results ?? [], translations: translations.results ?? [] };
+}
+
+export async function getPublishedArticles(locale: Locale): Promise<LocalizedArticle[]> {
+  try {
+    const { rows, translations } = await loadArticles();
+    return rows
+      .filter((row) => isPublic(row.status, row.publish_at))
+      .map((row) =>
+        localize(
+          row,
+          translations.filter((item) => item.article_id === row.id),
+          locale,
+        ),
+      )
+      .filter(Boolean) as LocalizedArticle[];
+  } catch {
+    return [];
+  }
+}
+
+export async function getArticleBySlug(
+  slug: string,
+  locale: Locale,
+  options?: { preview?: boolean },
+) {
+  try {
+    const { rows, translations } = await loadArticles();
+    const row = rows.find((item) => item.slug === slug);
+    if (!row) return null;
+    if (!options?.preview && !isPublic(row.status, row.publish_at)) return null;
+    return localize(
+      row,
+      translations.filter((item) => item.article_id === row.id),
+      locale,
+    );
+  } catch {
+    return null;
+  }
+}
+
+export async function getAllArticles(): Promise<
+  Array<ArticleRow & { article_translations: TranslationRow[] }>
+> {
+  try {
+    const { rows, translations } = await loadArticles();
+    return rows.map((row) => ({
+      ...row,
+      article_translations: translations.filter((item) => item.article_id === row.id),
+    }));
+  } catch {
+    return [];
+  }
 }

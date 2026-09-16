@@ -19,19 +19,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MediaUploader } from "@/components/admin/MediaUploader";
 import { createClient } from "@/lib/supabase/client";
 import type { Product, ProductStatus } from "@/types";
+import { productStatuses } from "@/types";
 
-const statuses: ProductStatus[] = [
-  "development",
-  "coming_soon",
-  "available",
-  "maintenance",
-  "archived",
-];
+const statuses: ProductStatus[] = productStatuses;
 
 type TranslationDraft = {
   name: string;
   tagline: string;
   description: string;
+  long_description: string;
   features: string;
 };
 
@@ -39,6 +35,12 @@ export function ProductEditor({ product }: { product?: Product }) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [logoUrl, setLogoUrl] = useState(product?.logo_url ?? "");
+  const [iconUrl, setIconUrl] = useState(product?.icon_url ?? "");
+  const [heroUrl, setHeroUrl] = useState(product?.hero_image_url ?? "");
+  const [ogUrl, setOgUrl] = useState(product?.og_image_url ?? "");
+  const [screenshots, setScreenshots] = useState<string[]>(
+    product?.screenshots?.map((item) => item.url) ?? [],
+  );
   const [status, setStatus] = useState<ProductStatus>(product?.status ?? "development");
   const [featured, setFeatured] = useState(product?.featured ?? false);
   const [published, setPublished] = useState(product?.published ?? false);
@@ -62,12 +64,19 @@ export function ProductEditor({ product }: { product?: Product }) {
     const payload = {
       slug: String(form.get("slug")),
       status,
+      category: emptyToNull(form.get("category")),
       app_store_url: emptyToNull(form.get("app_store_url")),
       google_play_url: emptyToNull(form.get("google_play_url")),
       website_url: emptyToNull(form.get("website_url")),
       featured,
       sort_order: Number(form.get("sort_order") || 0),
       logo_url: logoUrl || null,
+      icon_url: iconUrl || null,
+      hero_image_url: heroUrl || null,
+      og_image_url: ogUrl || null,
+      seo_title: emptyToNull(form.get("seo_title")),
+      seo_description: emptyToNull(form.get("seo_description")),
+      target_audience: emptyToNull(form.get("target_audience")),
       published,
       updated_at: new Date().toISOString(),
     };
@@ -98,6 +107,7 @@ export function ProductEditor({ product }: { product?: Product }) {
         name: draft.name,
         tagline: draft.tagline,
         description: draft.description,
+        long_description: draft.long_description,
         features: draft.features
           .split("\n")
           .map((item) => item.trim())
@@ -113,6 +123,31 @@ export function ProductEditor({ product }: { product?: Product }) {
       }
     }
 
+    await supabase.from("product_images").delete().eq("product_id", productId);
+    if (screenshots.length > 0) {
+      const { error } = await supabase.from("product_images").insert(
+        screenshots.map((url, index) => ({
+          product_id: productId,
+          url,
+          kind: "screenshot",
+          sort_order: index,
+        })),
+      );
+      if (error) {
+        toast.error(error.message);
+        setSaving(false);
+        return;
+      }
+    }
+
+    await supabase.from("audit_logs").insert({
+      actor_id: (await supabase.auth.getUser()).data.user?.id,
+      action: product ? "product updated" : "product created",
+      entity: "product",
+      entity_id: productId,
+      metadata: { status },
+    });
+
     toast.success("Saved");
     router.push("/admin/products");
     router.refresh();
@@ -122,6 +157,7 @@ export function ProductEditor({ product }: { product?: Product }) {
     <form onSubmit={onSubmit} className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Slug" name="slug" defaultValue={product?.slug} required />
+        <Field label="Category" name="category" defaultValue={product?.category ?? ""} />
         <div className="space-y-2">
           <Label>Status</Label>
           <Select value={status} onValueChange={(value) => setStatus(value as ProductStatus)}>
@@ -150,12 +186,77 @@ export function ProductEditor({ product }: { product?: Product }) {
           type="number"
           defaultValue={String(product?.sort_order ?? 0)}
         />
+        <Field label="SEO title" name="seo_title" defaultValue={product?.seo_title ?? ""} />
+        <Field
+          label="SEO description"
+          name="seo_description"
+          defaultValue={product?.seo_description ?? ""}
+        />
+        <Field
+          label="Target audience"
+          name="target_audience"
+          defaultValue={product?.target_audience ?? ""}
+        />
       </div>
 
-      <div className="space-y-2">
-        <Label>Logo URL</Label>
-        <Input value={logoUrl} onChange={(event) => setLogoUrl(event.target.value)} />
-        <MediaUploader onUploaded={setLogoUrl} />
+      <AssetField label="Logo" value={logoUrl} onChange={setLogoUrl} folder="product" />
+      <AssetField label="Icon" value={iconUrl} onChange={setIconUrl} folder="product" />
+      <AssetField label="Hero image" value={heroUrl} onChange={setHeroUrl} folder="hero" />
+      <AssetField label="OG image" value={ogUrl} onChange={setOgUrl} folder="og" />
+
+      <div className="space-y-3 rounded-2xl border bg-white p-4">
+        <Label>Screenshots</Label>
+        <MediaUploader
+          folder="product"
+          onUploaded={(url) => setScreenshots((current) => [...current, url])}
+        />
+        {screenshots.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No screenshots yet.</p>
+        ) : (
+          <ol className="grid gap-3 sm:grid-cols-2">
+            {screenshots.map((url, index) => (
+              <li key={`${url}-${index}`} className="rounded-xl border p-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="" className="h-28 w-full rounded-lg object-cover" />
+                <div className="mt-2 flex gap-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    disabled={index === 0}
+                    onClick={() =>
+                      setScreenshots((current) => {
+                        const next = [...current];
+                        [next[index - 1], next[index]] = [next[index], next[index - 1]];
+                        return next;
+                      })
+                    }
+                  >
+                    Up
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setHeroUrl(url)}
+                  >
+                    Set as hero
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      setScreenshots((current) => current.filter((_, item) => item !== index))
+                    }
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
 
       <div className="flex gap-6">
@@ -215,6 +316,18 @@ export function ProductEditor({ product }: { product?: Product }) {
               />
             </div>
             <div className="space-y-2">
+              <Label>Long description</Label>
+              <Textarea
+                value={translations[locale].long_description}
+                onChange={(event) =>
+                  setTranslations((current) => ({
+                    ...current,
+                    [locale]: { ...current[locale], long_description: event.target.value },
+                  }))
+                }
+              />
+            </div>
+            <div className="space-y-2">
               <Label>Features (one per line)</Label>
               <Textarea
                 value={translations[locale].features}
@@ -264,8 +377,33 @@ function fromProduct(product: Product | undefined, locale: "ja" | "vi" | "en"): 
     name: translation?.name ?? "",
     tagline: translation?.tagline ?? "",
     description: translation?.description ?? "",
+    long_description: translation?.long_description ?? "",
     features: (translation?.features ?? []).join("\n"),
   };
+}
+
+function AssetField({
+  label,
+  value,
+  onChange,
+  folder,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  folder: string;
+}) {
+  return (
+    <div className="space-y-2 rounded-2xl border bg-white p-4">
+      <Label>{label}</Label>
+      <Input value={value} onChange={(event) => onChange(event.target.value)} />
+      <MediaUploader folder={folder} onUploaded={onChange} />
+      {value ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={value} alt="" className="mt-2 h-20 w-20 rounded-xl object-cover" />
+      ) : null}
+    </div>
+  );
 }
 
 function emptyToNull(value: FormDataEntryValue | null) {

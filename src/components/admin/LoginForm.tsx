@@ -46,6 +46,12 @@ export function LoginForm() {
       return;
     }
 
+    await fetch("/api/admin/audit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "login" }),
+    }).catch(() => undefined);
+
     router.replace("/admin");
     router.refresh();
   }

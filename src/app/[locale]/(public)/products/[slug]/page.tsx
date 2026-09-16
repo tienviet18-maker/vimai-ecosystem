@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AppStoreButton } from "@/components/shared/AppStoreButton";
 import { PlayStoreButton } from "@/components/shared/PlayStoreButton";
+import { ProductGallery } from "@/components/shared/ProductGallery";
 import { FeatureList } from "@/components/shared/FeatureList";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import {
@@ -81,6 +82,8 @@ export default async function ProductPage({
           </div>
         </div>
       </div>
+
+      <ProductGallery images={product.screenshots ?? []} productName={product.name} />
 
       {faqs.length > 0 ? (
         <section className="mt-20 max-w-3xl">

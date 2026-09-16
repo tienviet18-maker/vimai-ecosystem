@@ -159,3 +159,5 @@ with check (true);
 create policy "auth read contact"
 on public.contact_messages for select
 using (auth.role() = 'authenticated');
+
+-- Platform CMS tables live in supabase/migrations/002_cms_platform.sql

@@ -50,7 +50,8 @@ export async function generateMetadata({
       },
     },
     icons: {
-      icon: "/favicon.svg",
+      icon: "/brand/vimai-logo.jpg",
+      apple: "/brand/favicon/apple-touch-icon.jpg",
     },
     openGraph: {
       title: messages.meta.title,
@@ -59,6 +60,13 @@ export async function generateMetadata({
       siteName: "ViMai",
       locale,
       type: "website",
+      images: [{ url: "/brand/og/og-default.jpg" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: messages.meta.title,
+      description: messages.meta.description,
+      images: ["/brand/og/og-default.jpg"],
     },
   };
 }

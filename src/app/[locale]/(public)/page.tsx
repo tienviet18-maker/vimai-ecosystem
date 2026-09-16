@@ -1,9 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, BookOpen, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, HeartPulse, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shared/ProductCard";
+import { FeedbackForm } from "@/components/shared/FeedbackForm";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
+import { getApprovedReviews } from "@/lib/reviews";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -17,25 +19,26 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const products = await getLocalizedProducts(locale as Locale);
-
+  const featured = products.filter((item) => item.featured);
+  const reviews = await getApprovedReviews(locale as Locale);
   const pillars = [
-    { icon: BookOpen, title: t("pillar1Title"), body: t("pillar1Body") },
-    { icon: Sparkles, title: t("pillar2Title"), body: t("pillar2Body") },
-    { icon: ShieldCheck, title: t("pillar3Title"), body: t("pillar3Body") },
+    { icon: BookOpen, title: t("learnTitle"), body: t("learnBody") },
+    { icon: Briefcase, title: t("workTitle"), body: t("workBody") },
+    { icon: HeartPulse, title: t("liveTitle"), body: t("liveBody") },
   ];
 
   return (
     <>
       <section className="border-b border-slate-200/80 bg-white">
-        <div className="container grid gap-14 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:py-28">
+        <div className="container grid gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
               {t("eyebrow")}
             </p>
-            <h1 className="mt-5 max-w-3xl text-[2rem] font-semibold leading-[1.25] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.2]">
+            <h1 className="mt-5 max-w-3xl text-[2rem] font-semibold leading-[1.25] text-slate-900 sm:text-4xl lg:text-[2.85rem]">
               {t("title")}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-slate-500 sm:text-lg sm:leading-8">
+            <p className="mt-6 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
               {t("lead")}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -55,17 +58,15 @@ export default async function HomePage({
               <Link
                 key={product.slug}
                 href={`/products/${product.slug}`}
-                className="group rounded-2xl border border-slate-200/80 bg-navy-50/70 p-5 text-center shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift"
+                className="group rounded-2xl border border-slate-200/80 bg-[#FAFAFA] p-5 text-center transition-colors duration-300 hover:border-navy-200"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={product.logo_url}
                   alt={product.name}
-                  className="mx-auto h-20 w-20 rounded-2xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.03] sm:h-24 sm:w-24"
+                  className="mx-auto h-20 w-20 rounded-2xl object-cover sm:h-24 sm:w-24"
                 />
-                <p className="mt-4 text-sm font-medium tracking-tight text-slate-800">
-                  {product.name}
-                </p>
+                <p className="mt-4 text-sm font-medium tracking-tight">{product.name}</p>
               </Link>
             ))}
           </div>
@@ -73,21 +74,11 @@ export default async function HomePage({
       </section>
 
       <section className="container py-20 lg:py-24">
-        <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
-              {t("productsTitle")}
-            </h2>
-            <p className="mt-3 leading-7 text-slate-500">{t("productsLead")}</p>
-          </div>
-          <Button asChild variant="outline">
-            <Link href="/products">
-              {t("viewAll")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-        <div className="grid gap-7 sm:grid-cols-2 xl:grid-cols-3">
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+          {t("ecosystemTitle")}
+        </h2>
+        <p className="mt-3 max-w-2xl leading-7 text-slate-500">{t("productsLead")}</p>
+        <div className="mt-12 grid gap-7 sm:grid-cols-2 xl:grid-cols-3">
           {products.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
@@ -96,19 +87,14 @@ export default async function HomePage({
 
       <section className="border-y border-slate-200/80 bg-white">
         <div className="container py-20 lg:py-24">
-          <h2 className="max-w-xl text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
-            {t("pillarsTitle")}
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+            {t("lwlTitle")}
           </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
             {pillars.map((pillar) => (
-              <div
-                key={pillar.title}
-                className="rounded-2xl border border-slate-200/80 bg-navy-50/40 p-7 shadow-soft"
-              >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-primary shadow-sm">
-                  <pillar.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold tracking-tight">{pillar.title}</h3>
+              <div key={pillar.title} className="max-w-md">
+                <pillar.icon className="h-6 w-6 text-primary" />
+                <h3 className="mt-4 text-lg font-semibold">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-500">{pillar.body}</p>
               </div>
             ))}
@@ -117,14 +103,75 @@ export default async function HomePage({
       </section>
 
       <section className="container py-20 lg:py-24">
-        <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200/80 bg-white px-8 py-14 text-center shadow-soft sm:px-14">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
-            {t("ctaTitle")}
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl leading-7 text-slate-500">{t("ctaBody")}</p>
-          <Button asChild size="lg" className="mt-8">
-            <Link href="/contact">{t("ctaContact")}</Link>
-          </Button>
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+          {t("pillarsTitle")}
+        </h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-3">
+          <div>
+            <h3 className="text-lg font-semibold">{t("pillar1Title")}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar1Body")}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">{t("pillar2Title")}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar2Body")}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">{t("pillar3Title")}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar3Body")}</p>
+          </div>
+        </div>
+      </section>
+
+      {featured[0] ? (
+        <section className="border-y border-slate-200/80 bg-white">
+          <div className="container grid gap-10 py-20 lg:grid-cols-2 lg:items-center lg:py-24">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+                {t("showcaseEyebrow")}
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight">{featured[0].name}</h2>
+              <p className="mt-4 leading-8 text-slate-500">{featured[0].description}</p>
+              <Button asChild className="mt-8">
+                <Link href={`/products/${featured[0].slug}`}>{t("ctaProducts")}</Link>
+              </Button>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={featured[0].hero_image_url || featured[0].logo_url}
+              alt={featured[0].name}
+              className="mx-auto max-h-80 rounded-2xl object-contain"
+            />
+          </div>
+        </section>
+      ) : null}
+
+      <section className="container py-20 lg:py-24">
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+          {t("feedbackTitle")}
+        </h2>
+        <p className="mt-3 max-w-2xl leading-7 text-slate-500">{t("feedbackLead")}</p>
+        {reviews.length === 0 ? (
+          <p className="mt-8 text-slate-500">{t("feedbackEmpty")}</p>
+        ) : (
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {reviews.slice(0, 4).map((review) => (
+              <blockquote
+                key={review.id}
+                className="rounded-2xl border border-slate-200/80 bg-white p-6"
+              >
+                <p className="leading-7 text-slate-700">“{review.body}”</p>
+                <footer className="mt-4 text-sm font-medium text-slate-500">
+                  {review.display_name}
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        )}
+        <div className="mt-12 max-w-2xl rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-8">
+          <h3 className="text-lg font-semibold">{t("feedbackCta")}</h3>
+          <div className="mt-6">
+            <FeedbackForm products={products} />
+          </div>
         </div>
       </section>
     </>

@@ -16,7 +16,7 @@ export async function Footer({ locale }: { locale: Locale }) {
         <div className="lg:col-span-2">
           <BrandMark />
           <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500">
-            {tBrand("tagline")}. {tBrand("mission")}.
+            {tBrand("tagline")}
           </p>
         </div>
         <div>
@@ -42,27 +42,33 @@ export async function Footer({ locale }: { locale: Locale }) {
           </h2>
           <ul className="mt-5 space-y-3">
             <li>
-              <Link
-                href="/about"
-                className="text-sm text-slate-600 transition-colors duration-300 hover:text-primary"
-              >
+              <Link href="/articles" className="text-sm text-slate-600 hover:text-primary">
+                {tNav("articles")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="text-sm text-slate-600 hover:text-primary">
                 {tNav("about")}
               </Link>
             </li>
             <li>
-              <Link
-                href="/support"
-                className="text-sm text-slate-600 transition-colors duration-300 hover:text-primary"
-              >
+              <Link href="/support" className="text-sm text-slate-600 hover:text-primary">
                 {tNav("support")}
               </Link>
             </li>
             <li>
-              <Link
-                href="/contact"
-                className="text-sm text-slate-600 transition-colors duration-300 hover:text-primary"
-              >
+              <Link href="/contact" className="text-sm text-slate-600 hover:text-primary">
                 {tNav("contact")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="text-sm text-slate-600 hover:text-primary">
+                {t("privacy")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="text-sm text-slate-600 hover:text-primary">
+                {t("terms")}
               </Link>
             </li>
           </ul>

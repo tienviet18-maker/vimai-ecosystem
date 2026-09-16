@@ -1,25 +1,32 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { usePathname } from "@/lib/i18n/navigation";
-import { Link } from "@/lib/i18n/navigation";
+import { usePathname, Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import {
-  FileQuestion,
+  BarChart3,
+  FileText,
   ImageIcon,
   LayoutDashboard,
   LogOut,
   Mail,
+  MessageSquare,
   Package,
+  Search,
+  Settings,
 } from "lucide-react";
 
 const items = [
   { href: "/admin", key: "dashboard", icon: LayoutDashboard },
   { href: "/admin/products", key: "products", icon: Package },
+  { href: "/admin/articles", key: "articles", icon: FileText },
   { href: "/admin/media", key: "media", icon: ImageIcon },
-  { href: "/admin/faq", key: "faq", icon: FileQuestion },
+  { href: "/admin/reviews", key: "reviews", icon: MessageSquare },
+  { href: "/admin/analytics", key: "analytics", icon: BarChart3 },
+  { href: "/admin/seo", key: "seo", icon: Search },
+  { href: "/admin/settings", key: "settings", icon: Settings },
   { href: "/admin/messages", key: "messages", icon: Mail },
 ] as const;
 
@@ -29,12 +36,17 @@ export function AdminSidebar() {
 
   async function logout() {
     const supabase = createClient();
+    await fetch("/api/admin/audit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "logout" }),
+    }).catch(() => undefined);
     await supabase?.auth.signOut();
     window.location.href = "/admin/login";
   }
 
   return (
-    <aside className="flex w-full flex-col border-b bg-white md:h-screen md:w-60 md:border-b-0 md:border-r">
+    <aside className="flex w-full flex-col border-b bg-white md:h-screen md:w-64 md:border-b-0 md:border-r">
       <div className="border-b px-4 py-4">
         <p className="text-sm font-semibold text-primary">ViMai</p>
         <p className="text-xs text-muted-foreground">{t("title")}</p>
@@ -51,7 +63,7 @@ export function AdminSidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm",
+                "inline-flex min-h-11 items-center gap-2 rounded-xl px-3 py-2 text-sm",
                 active ? "bg-navy-50 font-medium text-primary" : "text-slate-600 hover:bg-secondary",
               )}
             >

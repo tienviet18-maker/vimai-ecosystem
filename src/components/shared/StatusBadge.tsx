@@ -6,10 +6,15 @@ const variants: Record<
   ProductStatus,
   "default" | "secondary" | "outline" | "success" | "warning" | "muted"
 > = {
+  launched: "success",
   available: "success",
+  beta: "default",
   coming_soon: "warning",
   development: "secondary",
+  idea: "muted",
+  paused: "muted",
   maintenance: "muted",
+  discontinued: "outline",
   archived: "outline",
 };
 

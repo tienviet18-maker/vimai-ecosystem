@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "siteName": "ViMai",
+    "title": "ViMai | Education & Technology Ecosystem",
+    "description": "Japanese Tokutei exam prep, auto mechanic study, children's education, and health tracking. ViMai is an education and technology ecosystem.",
+    "keywords": "ViMai, Tokutei, taxi, transport, mechanic exam, kids education, health tracking"
+  },
+  "nav": {
+    "products": "Products",
+    "about": "About",
+    "support": "Support",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
+  },
+  "brand": {
+    "name": "ViMai",
+    "tagline": "Education & Technology Ecosystem",
+    "mission": "Building Vietnam's Future"
+  },
+  "home": {
+    "eyebrow": "ViMai Ecosystem",
+    "title": "Learning and health, built with Japanese-quality craft.",
+    "lead": "From Tokutei certification prep and auto mechanic exams to children's learning and daily health tracking. ViMai turns essential knowledge into clear, trustworthy apps.",
+    "ctaProducts": "View products",
+    "ctaContact": "Talk with us",
+    "productsTitle": "Applications",
+    "productsLead": "Choose the app that matches the goal: certification, kids' learning, or health.",
+    "viewAll": "All products",
+    "pillarsTitle": "What ViMai stands for",
+    "pillar1Title": "Reliable study",
+    "pillar1Body": "Exam prep should have a clear scope and path. Mock exams are the core of how we help learners get ready.",
+    "pillar2Title": "Straightforward design",
+    "pillar2Body": "No visual noise. Information hierarchy first, so people can use the product on day one.",
+    "pillar3Title": "Japanese quality bar",
+    "pillar3Body": "These tools serve people who work and study in Japan, so accuracy and readability come first.",
+    "ctaTitle": "Launch timing or partnership",
+    "ctaBody": "Contact us about store release dates, deployment, or press."
+  },
+  "products": {
+    "indexTitle": "Products",
+    "indexLead": "Applications in the ViMai ecosystem.",
+    "storeSoon": "Store listing coming soon",
+    "website": "Website",
+    "features": "Key features",
+    "download": "Download",
+    "relatedFaq": "FAQ",
+    "back": "Back to products",
+    "notFound": "Product not found.",
+    "status": {
+      "development": "In development",
+      "coming_soon": "Coming soon",
+      "available": "Available",
+      "maintenance": "Maintenance",
+      "archived": "Archived"
+    }
+  },
+  "about": {
+    "title": "About",
+    "lead": "ViMai is an education and technology ecosystem. We build trustworthy digital products for people preparing for Japanese certifications, children, and anyone tracking daily health.",
+    "storyTitle": "Vision",
+    "storyBody": "Guided by “Building Vietnam's Future,” ViMai is not only about passing an exam. It is about durable learning and daily wellbeing.",
+    "scopeTitle": "Focus areas",
+    "scope1": "Tokutei Gino exam prep for taxi and transport",
+    "scope2": "Class 3 automobile mechanic exam prep",
+    "scope3": "Children's education with parent controls",
+    "scope4": "Health, nutrition, and calorie tracking",
+    "qualityTitle": "Quality bar",
+    "qualityBody": "Facts only where confirmed, readable Japanese, and a calm interface. Unreleased products are labeled clearly; missing details are marked for CMS update."
+  },
+  "support": {
+    "title": "Support",
+    "lead": "Find answers about usage, release timing, and accounts.",
+    "faqTitle": "Frequently asked questions",
+    "contactCta": "Still need help? Send a message.",
+    "contactButton": "Contact"
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Questions about products, press, or deployment are welcome.",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Sent. We will reply after reviewing your message.",
+    "error": "Could not send. Please try again.",
+    "unconfigured": "Contact intake is not configured yet. It will work after Supabase / CMS is connected.",
+    "direct": "Email us",
+    "required": "This field is required."
+  },
+  "footer": {
+    "products": "Products",
+    "company": "Company",
+    "legal": "© 2026 ViMai. All Rights Reserved."
+  },
+  "floating": {
+    "label": "Contact",
+    "email": "Email"
+  },
+  "admin": {
+    "title": "Admin",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "media": "Media",
+    "faq": "FAQ",
+    "messages": "Messages",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "needSetup": "Supabase environment variables are missing. Check .env.local.",
+    "overview": "Product status",
+    "published": "Published",
+    "draft": "Unpublished",
+    "newProduct": "Add product",
+    "save": "Save",
+    "saved": "Saved.",
+    "upload": "Upload",
+    "empty": "No data yet."
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "loading": "Loading…"
+  }
+}

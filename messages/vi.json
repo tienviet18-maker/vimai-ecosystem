@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "siteName": "ViMai",
+    "title": "ViMai | Hệ sinh thái Giáo dục & Công nghệ",
+    "description": "Luyện thi Tokutei, ôn thi thợ sửa ô tô, giáo dục trẻ em và theo dõi sức khỏe. ViMai là hệ sinh thái giáo dục và công nghệ.",
+    "keywords": "ViMai, Tokutei, Taxi, Vận tải, Seibi, giáo dục, sức khỏe"
+  },
+  "nav": {
+    "products": "Sản phẩm",
+    "about": "Về chúng tôi",
+    "support": "Hỗ trợ",
+    "contact": "Liên hệ",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "language": "Ngôn ngữ"
+  },
+  "brand": {
+    "name": "ViMai",
+    "tagline": "Hệ sinh thái Giáo dục & Công nghệ ViMai",
+    "mission": "Kiến tạo tương lai Việt"
+  },
+  "home": {
+    "eyebrow": "ViMai Ecosystem",
+    "title": "Kiến thức và sức khỏe, được thiết kế để dùng mỗi ngày.",
+    "lead": "Từ luyện thi kỹ năng đặc định, ôn thi thợ sửa ô tô, học tập cho trẻ em đến theo dõi sức khỏe. ViMai gom các nhu cầu thiết yếu vào những ứng dụng rõ ràng, đáng tin cậy.",
+    "ctaProducts": "Xem sản phẩm",
+    "ctaContact": "Trao đổi hợp tác",
+    "productsTitle": "Ứng dụng",
+    "productsLead": "Chọn đúng công cụ theo mục tiêu: thi chứng chỉ, học cho trẻ, hoặc theo dõi sức khỏe.",
+    "viewAll": "Tất cả sản phẩm",
+    "pillarsTitle": "Nguyên tắc của ViMai",
+    "pillar1Title": "Học tập đáng tin",
+    "pillar1Body": "Luyện thi cần phạm vi rõ và lộ trình rõ. Chúng tôi tập trung vào đề thi thử để người học chuẩn bị cho kỳ thi thật.",
+    "pillar2Title": "Giao diện dễ dùng",
+    "pillar2Body": "Không hiệu ứng thừa. Phân tầng thông tin rõ ràng để người dùng thao tác được ngay từ lần đầu.",
+    "pillar3Title": "Chuẩn chất lượng Nhật Bản",
+    "pillar3Body": "Sản phẩm phục vụ người học và làm việc tại Nhật, nên độ chính xác và dễ đọc được đặt lên hàng đầu.",
+    "ctaTitle": "Cần thông tin phát hành hoặc hợp tác?",
+    "ctaBody": "Liên hệ với chúng tôi về lịch mở trên store, triển khai hoặc truyền thông."
+  },
+  "products": {
+    "indexTitle": "Sản phẩm",
+    "indexLead": "Danh sách ứng dụng trong hệ sinh thái ViMai.",
+    "storeSoon": "Chưa mở trên store",
+    "website": "Website",
+    "features": "Tính năng chính",
+    "download": "Tải về",
+    "relatedFaq": "Câu hỏi thường gặp",
+    "back": "Về danh sách sản phẩm",
+    "notFound": "Không tìm thấy sản phẩm.",
+    "status": {
+      "development": "Đang phát triển",
+      "coming_soon": "Sắp ra mắt",
+      "available": "Đã phát hành",
+      "maintenance": "Bảo trì",
+      "archived": "Lưu trữ"
+    }
+  },
+  "about": {
+    "title": "Về chúng tôi",
+    "lead": "ViMai là hệ sinh thái Giáo dục & Công nghệ. Chúng tôi tạo sản phẩm số đáng tin cậy cho người luyện thi tại Nhật, trẻ em và người cần theo dõi sức khỏe hằng ngày.",
+    "storyTitle": "Tầm nhìn",
+    "storyBody": "Lấy tinh thần « Kiến tạo tương lai Việt » trên nhận diện thương hiệu, ViMai không chỉ hướng tới kỳ thi mà còn xây nền tảng học tập và sinh hoạt bền vững.",
+    "scopeTitle": "Lĩnh vực",
+    "scope1": "Luyện thi Tokutei Gino (Taxi / Vận tải)",
+    "scope2": "Luyện thi 3級自動車整備士",
+    "scope3": "Ứng dụng giáo dục trẻ em có kiểm soát phụ huynh",
+    "scope4": "Theo dõi sức khỏe, dinh dưỡng và calories",
+    "qualityTitle": "Cam kết chất lượng",
+    "qualityBody": "Thông tin dựa trên sự thật đã xác nhận, tiếng Nhật dễ đọc, giao diện không phô trương. Sản phẩm chưa ra mắt được ghi rõ trạng thái; chi tiết còn thiếu sẽ cập nhật qua CMS."
+  },
+  "support": {
+    "title": "Hỗ trợ",
+    "lead": "Xem câu hỏi thường gặp về cách dùng, lịch phát hành và tài khoản.",
+    "faqTitle": "Câu hỏi thường gặp",
+    "contactCta": "Chưa giải quyết được? Hãy gửi liên hệ.",
+    "contactButton": "Liên hệ"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "lead": "Gửi câu hỏi về sản phẩm, truyền thông hoặc hợp tác triển khai.",
+    "name": "Họ tên",
+    "email": "Email",
+    "subject": "Tiêu đề",
+    "message": "Nội dung",
+    "submit": "Gửi",
+    "sending": "Đang gửi…",
+    "success": "Đã gửi. Chúng tôi sẽ phản hồi sau khi tiếp nhận.",
+    "error": "Gửi không thành công. Vui lòng thử lại.",
+    "unconfigured": "Chưa cấu hình hộp thư liên hệ. Tính năng sẽ hoạt động sau khi kết nối Supabase / CMS.",
+    "direct": "Gửi email",
+    "required": "Trường bắt buộc."
+  },
+  "footer": {
+    "products": "Sản phẩm",
+    "company": "Thông tin",
+    "legal": "© 2026 ViMai. All Rights Reserved."
+  },
+  "floating": {
+    "label": "Liên hệ",
+    "email": "Email"
+  },
+  "admin": {
+    "title": "Quản trị",
+    "dashboard": "Tổng quan",
+    "products": "Sản phẩm",
+    "media": "Media",
+    "faq": "FAQ",
+    "messages": "Liên hệ",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "signIn": "Đăng nhập",
+    "needSetup": "Chưa cấu hình biến môi trường Supabase. Kiểm tra .env.local.",
+    "overview": "Tình trạng sản phẩm",
+    "published": "Công khai",
+    "draft": "Nháp",
+    "newProduct": "Thêm sản phẩm",
+    "save": "Lưu",
+    "saved": "Đã lưu.",
+    "upload": "Tải lên",
+    "empty": "Chưa có dữ liệu."
+  },
+  "common": {
+    "learnMore": "Xem chi tiết",
+    "loading": "Đang tải…"
+  }
+}

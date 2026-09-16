@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "siteName": "ViMai",
+    "title": "ViMai | 教育とテクノロジーのエコシステム",
+    "description": "特定技能の試験対策、子ども向け学習、ヘルスケアまで。ViMaiは教育とテクノロジーのエコシステムです。",
+    "keywords": "ViMai, 特定技能, タクシー, 運送, 自動車整備士, 教育アプリ, ヘルスケア"
+  },
+  "nav": {
+    "products": "製品",
+    "about": "私たちについて",
+    "support": "サポート",
+    "contact": "お問い合わせ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "language": "言語"
+  },
+  "brand": {
+    "name": "ViMai",
+    "tagline": "教育とテクノロジーのエコシステム",
+    "mission": "ベトナムの未来を創る"
+  },
+  "home": {
+    "eyebrow": "ViMai Ecosystem",
+    "title": "学びと健康を、確かな技術で支える。",
+    "lead": "特定技能の試験対策、自動車整備士の学習、子ども向け教育、日々のヘルスケアまで。ViMaiは必要な知識と習慣を、使いやすいアプリにまとめています。",
+    "ctaProducts": "製品を見る",
+    "ctaContact": "導入・掲載の相談",
+    "productsTitle": "アプリケーション",
+    "productsLead": "試験対策から子育て、健康管理まで。目的に合わせて選べます。",
+    "viewAll": "すべての製品",
+    "pillarsTitle": "ViMaiが大切にしていること",
+    "pillar1Title": "信頼できる学習",
+    "pillar1Body": "試験対策は、出題範囲と学習の進め方が明確であること。模擬試験を中心に、合格へ向けた準備を支えます。",
+    "pillar2Title": "使いやすい設計",
+    "pillar2Body": "余計な演出を避け、情報の優先順位をはっきりさせる。毎日使うアプリとして、迷わず操作できる画面を目指します。",
+    "pillar3Title": "日本語品質の基準",
+    "pillar3Body": "日本で働く・学ぶためのツールとして、正確さと読みやすさを基準にしています。",
+    "ctaTitle": "製品の公開状況や掲載について",
+    "ctaBody": "ストア公開時期、導入、メディア掲載のご相談はお問い合わせください。"
+  },
+  "products": {
+    "indexTitle": "製品",
+    "indexLead": "ViMaiのアプリケーション一覧です。",
+    "storeSoon": "ストア公開準備中",
+    "website": "公式サイト",
+    "features": "主な機能",
+    "download": "ダウンロード",
+    "relatedFaq": "よくある質問",
+    "back": "製品一覧へ",
+    "notFound": "製品が見つかりません。",
+    "status": {
+      "development": "開発中",
+      "coming_soon": "近日公開",
+      "available": "公開中",
+      "maintenance": "メンテナンス",
+      "archived": "アーカイブ"
+    }
+  },
+  "about": {
+    "title": "私たちについて",
+    "lead": "ViMaiは、教育とテクノロジーのエコシステムです。日本で働く・学ぶ人、子ども、そして日々の健康管理が必要な人に、信頼できるデジタルプロダクトを届けます。",
+    "storyTitle": "ビジョン",
+    "storyBody": "ロゴにもある「ベトナムの未来を創る」という想いを軸に、試験合格だけではない、続く学びと生活の基盤をつくります。",
+    "scopeTitle": "対象領域",
+    "scope1": "特定技能（タクシー / 運送）の試験対策",
+    "scope2": "3級自動車整備士の学科対策",
+    "scope3": "子ども向けの学習アプリ（保護者管理つき）",
+    "scope4": "健康・栄養・カロリーの日常記録",
+    "qualityTitle": "品質の考え方",
+    "qualityBody": "事実に基づく情報、読みやすい日本語、過剰な演出のない画面。公開前の製品は「開発中」「近日公開」と明示し、未確定の詳細はCMSで更新します。"
+  },
+  "support": {
+    "title": "サポート",
+    "lead": "製品の使い方、公開時期、アカウントに関するご質問はこちらをご確認ください。",
+    "faqTitle": "よくある質問",
+    "contactCta": "解決しない場合はお問い合わせください。",
+    "contactButton": "お問い合わせ"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "lead": "製品に関するご質問、掲載、導入のご相談を受け付けています。",
+    "name": "お名前",
+    "email": "メールアドレス",
+    "subject": "件名",
+    "message": "メッセージ",
+    "submit": "送信する",
+    "sending": "送信中…",
+    "success": "送信しました。内容を確認のうえ、ご連絡いたします。",
+    "error": "送信に失敗しました。時間をおいて再度お試しください。",
+    "unconfigured": "お問い合わせ受付の設定がまだ完了していません。CMS / Supabase の接続後に有効になります。",
+    "direct": "メールで送る",
+    "required": "必須項目です。"
+  },
+  "footer": {
+    "products": "製品",
+    "company": "会社情報",
+    "legal": "© 2026 ViMai. All Rights Reserved."
+  },
+  "floating": {
+    "label": "お問い合わせ",
+    "email": "メール"
+  },
+  "admin": {
+    "title": "管理画面",
+    "dashboard": "ダッシュボード",
+    "products": "製品",
+    "media": "メディア",
+    "faq": "FAQ",
+    "messages": "問い合わせ",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "email": "メール",
+    "password": "パスワード",
+    "signIn": "サインイン",
+    "needSetup": "Supabase の環境変数が未設定です。.env.local を確認してください。",
+    "overview": "公開状況の概要",
+    "published": "公開",
+    "draft": "非公開",
+    "newProduct": "製品を追加",
+    "save": "保存",
+    "saved": "保存しました。",
+    "upload": "アップロード",
+    "empty": "データがありません。"
+  },
+  "common": {
+    "learnMore": "詳しく見る",
+    "loading": "読み込み中…"
+  }
+}

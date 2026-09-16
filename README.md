@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ViMai Ecosystem
 
-## Getting Started
+Production website for [https://vimai.jp](https://vimai.jp) — education and technology products for Tokutei certification, auto mechanic exam prep, children's learning, and health tracking.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router (pinned to 15.5.2 for `@cloudflare/next-on-pages`)
+- Cloudflare Pages via `@cloudflare/next-on-pages`
+- Supabase (PostgreSQL, Auth, Storage)
+- Tailwind CSS + shadcn/ui
+- next-intl: Japanese (default), Vietnamese, English
+
+The public site works without Supabase by falling back to `src/lib/seed.ts`. Connect Supabase to enable CMS writes, contact intake, and media uploads.
+
+## Local development
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Japanese is the default locale (`/`). Vietnamese is `/vi`, English is `/en`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Admin: `/admin` (or `/vi/admin`, `/en/admin`). Until Supabase env vars are set, the dashboard shows seed data.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Supabase
 
-## Learn More
+1. Create a project.
+2. Run `supabase/schema.sql`, then optionally `supabase/seed.sql`.
+3. Create a public storage bucket named `media`.
+4. Create an Auth user for CMS access.
+5. Put URL and anon key in `.env.local`. Service role is only needed for server-side admin tooling.
 
-To learn more about Next.js, take a look at the following resources:
+## Cloudflare Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Do **not** deploy to Vercel or Netlify.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Dashboard settings:
 
-## Deploy on Vercel
+- Framework preset: None
+- Build command: `npx @cloudflare/next-on-pages`
+- Build output directory: `.vercel/output/static`
+- Compatibility flags: `nodejs_compat`
+- Node version: 18 or 20
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Environment variables (Production):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `NEXT_PUBLIC_SITE_URL=https://vimai.jp`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (optional)
+- `NEXT_PUBLIC_CONTACT_EMAIL`
+
+Custom domain: `vimai.jp` (canonical).
+
+CLI:
+
+```bash
+npm run pages:build
+npm run preview
+npm run deploy
+```
+
+`@cloudflare/next-on-pages` currently requires Next.js `<= 15.5.2`. Do not bump Next past that without switching adapters.
+
+## Assets
+
+Product logos live in `/logo các app/` and are copied to `public/images/products/`. Do not replace them with generated artwork.
+
+## Footer
+
+The legal line at the bottom of every public page is:
+
+`© 2026 ViMai. All Rights Reserved.`

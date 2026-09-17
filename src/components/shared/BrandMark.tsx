@@ -13,7 +13,7 @@ export function BrandMark({
     <Link
       href="/"
       className={cn(
-        "group inline-flex items-center no-underline transition-opacity duration-300 hover:opacity-80",
+        "group inline-flex shrink-0 items-center no-underline",
         className,
       )}
       aria-label="ViMai home"
@@ -21,11 +21,11 @@ export function BrandMark({
       <Image
         src="/brand/vimai-logo.jpg"
         alt="ViMai"
-        width={compact ? 120 : 156}
-        height={compact ? 48 : 64}
+        width={compact ? 132 : 176}
+        height={compact ? 54 : 72}
         className={cn(
-          "w-auto object-contain object-left",
-          compact ? "h-9" : "h-11 sm:h-12",
+          "w-auto object-contain object-left transition-opacity duration-300 group-hover:opacity-80",
+          compact ? "h-10" : "h-12 sm:h-[3.35rem]",
         )}
         priority
       />

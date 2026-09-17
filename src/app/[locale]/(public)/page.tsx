@@ -1,7 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, BookOpen, HeartPulse, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/shared/ProductCard";
+import { ProductEcosystemStrip } from "@/components/shared/ProductEcosystemStrip";
+import { ProductGrid } from "@/components/shared/ProductGrid";
 import { FeedbackForm } from "@/components/shared/FeedbackForm";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
@@ -30,18 +31,18 @@ export default async function HomePage({
   return (
     <>
       <section className="border-b border-slate-200/80 bg-white">
-        <div className="container grid gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
-          <div>
+        <div className="container py-12 sm:py-16 lg:py-20">
+          <div className="max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
               {t("eyebrow")}
             </p>
-            <h1 className="mt-5 max-w-3xl text-[2rem] font-semibold leading-[1.25] text-slate-900 sm:text-4xl lg:text-[2.85rem]">
+            <h1 className="mt-4 text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]">
               {t("title")}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
               {t("lead")}
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link href="/products">
                   {t("ctaProducts")}
@@ -53,47 +54,34 @@ export default async function HomePage({
               </Button>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {products.slice(0, 4).map((product) => (
-              <Link
-                key={product.slug}
-                href={`/products/${product.slug}`}
-                className="group rounded-2xl border border-slate-200/80 bg-[#FAFAFA] p-5 text-center transition-colors duration-300 hover:border-navy-200"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={product.logo_url}
-                  alt={product.name}
-                  className="mx-auto h-20 w-20 rounded-2xl object-cover sm:h-24 sm:w-24"
-                />
-                <p className="mt-4 text-sm font-medium tracking-tight">{product.name}</p>
-              </Link>
-            ))}
+          <div className="mt-10 lg:mt-14">
+            <ProductEcosystemStrip products={products} label={t("ecosystemTitle")} />
           </div>
         </div>
       </section>
 
-      <section className="container py-20 lg:py-24">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+      <section className="container py-16 lg:py-20">
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
           {t("ecosystemTitle")}
         </h2>
         <p className="mt-3 max-w-2xl leading-7 text-slate-500">{t("productsLead")}</p>
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 xl:grid-cols-3">
-          {products.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
+        <div className="mt-10">
+          <ProductGrid products={products} />
         </div>
       </section>
 
       <section className="border-y border-slate-200/80 bg-white">
-        <div className="container py-20 lg:py-24">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+        <div className="container py-16 lg:py-20">
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
             {t("lwlTitle")}
           </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-3 md:gap-6">
             {pillars.map((pillar) => (
-              <div key={pillar.title} className="max-w-md">
-                <pillar.icon className="h-6 w-6 text-primary" />
+              <div
+                key={pillar.title}
+                className="rounded-2xl border border-slate-200/80 bg-navy-50/40 px-6 py-7"
+              >
+                <pillar.icon className="h-5 w-5 text-primary" aria-hidden="true" />
                 <h3 className="mt-4 text-lg font-semibold">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-500">{pillar.body}</p>
               </div>
@@ -102,11 +90,11 @@ export default async function HomePage({
         </div>
       </section>
 
-      <section className="container py-20 lg:py-24">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+      <section className="container py-16 lg:py-20">
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
           {t("pillarsTitle")}
         </h2>
-        <div className="mt-10 grid gap-10 md:grid-cols-3">
+        <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
           <div>
             <h3 className="text-lg font-semibold">{t("pillar1Title")}</h3>
             <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar1Body")}</p>
@@ -124,29 +112,33 @@ export default async function HomePage({
 
       {featured[0] ? (
         <section className="border-y border-slate-200/80 bg-white">
-          <div className="container grid gap-10 py-20 lg:grid-cols-2 lg:items-center lg:py-24">
+          <div className="container grid gap-10 py-16 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
                 {t("showcaseEyebrow")}
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight">{featured[0].name}</h2>
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+                {featured[0].name}
+              </h2>
               <p className="mt-4 leading-8 text-slate-500">{featured[0].description}</p>
               <Button asChild className="mt-8">
                 <Link href={`/products/${featured[0].slug}`}>{t("ctaProducts")}</Link>
               </Button>
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={featured[0].hero_image_url || featured[0].logo_url}
-              alt={featured[0].name}
-              className="mx-auto max-h-80 rounded-2xl object-contain"
-            />
+            <div className="flex items-center justify-center rounded-[1.75rem] border border-slate-200/80 bg-navy-50/80 p-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={featured[0].hero_image_url || featured[0].logo_url}
+                alt={featured[0].name}
+                className="mx-auto max-h-72 w-auto object-contain"
+              />
+            </div>
           </div>
         </section>
       ) : null}
 
-      <section className="container py-20 lg:py-24">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.85rem]">
+      <section className="container py-16 lg:py-20">
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
           {t("feedbackTitle")}
         </h2>
         <p className="mt-3 max-w-2xl leading-7 text-slate-500">{t("feedbackLead")}</p>

@@ -108,14 +108,18 @@
     "error": "送信に失敗しました。時間をおいて再度お試しください。",
     "unconfigured": "お問い合わせ受付の設定がまだ完了していません。D1 接続後に有効になります。",
     "direct": "メールで送る",
-    "required": "必須項目です。"
+    "required": "必須項目です。",
+    "zaloAria": "ZaloでViMaiに連絡",
+    "messengerAria": "MessengerでViMaiに連絡",
+    "emailAria": "ViMaiにメールする"
   },
   "footer": {
     "products": "製品",
     "company": "会社情報",
     "privacy": "プライバシー",
     "terms": "利用について",
-    "legal": "© 2026 ViMai. All Rights Reserved."
+    "contact": "お問い合わせ",
+    "legal": "© 2026 ViMai Ecosystem. All rights reserved."
   },
   "articles": {
     "title": "記事",

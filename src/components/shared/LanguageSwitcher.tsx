@@ -27,7 +27,7 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="rounded-xl text-slate-600" aria-label={t("language")}>
+        <Button variant="outline" size="sm" className="rounded-xl px-3 text-slate-600" aria-label={t("language")}>
           <Globe className="h-4 w-4" />
           <span className="hidden sm:inline">{labels[locale]}</span>
         </Button>

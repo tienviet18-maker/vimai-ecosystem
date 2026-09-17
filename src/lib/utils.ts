@@ -9,8 +9,7 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://vimai.jp"
 ).replace(/\/$/, "");
 
-export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@vimai.jp";
+export { CONTACT_EMAIL } from "@/lib/contact";
 
 export function publicUrl(locale: string, path = "") {
   const suffix = !path || path === "/" ? "" : path;

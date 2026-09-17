@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdminTable } from "@/components/admin/AdminTable";
-import { listContactMessages } from "@/lib/contact";
+import { listContactMessages } from "@/lib/contact-messages";
 
 export const runtime = "edge";
 

@@ -108,14 +108,18 @@
     "error": "Gửi không thành công. Vui lòng thử lại.",
     "unconfigured": "Chưa cấu hình hộp thư liên hệ. Tính năng sẽ hoạt động sau khi kết nối D1.",
     "direct": "Gửi email",
-    "required": "Trường bắt buộc."
+    "required": "Trường bắt buộc.",
+    "zaloAria": "Liên hệ ViMai qua Zalo",
+    "messengerAria": "Liên hệ ViMai qua Messenger",
+    "emailAria": "Gửi email cho ViMai"
   },
   "footer": {
     "products": "Sản phẩm",
     "company": "Thông tin",
     "privacy": "Quyền riêng tư",
     "terms": "Điều khoản",
-    "legal": "© 2026 ViMai. All Rights Reserved."
+    "contact": "Liên hệ",
+    "legal": "© 2026 ViMai Ecosystem. All rights reserved."
   },
   "articles": {
     "title": "Bài viết",

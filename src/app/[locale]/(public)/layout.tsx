@@ -26,7 +26,7 @@ export default async function PublicLayout({
         {t("skipToContent")}
       </a>
       <Header />
-      <main id="main" className="flex-1">
+      <main id="main" className="flex-1 pb-24 sm:pb-12">
         {children}
       </main>
       <Footer locale={locale as Locale} />

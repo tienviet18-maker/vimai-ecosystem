@@ -27,20 +27,23 @@ export function Header() {
 
   const navLinkClass = (href: string) =>
     cn(
-      "relative min-h-11 rounded-lg px-3 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300",
+      "relative inline-flex min-h-11 items-center rounded-lg px-3.5 text-sm font-medium tracking-wide transition-colors duration-300",
       isActive(href)
         ? "text-primary"
         : "text-slate-500 hover:bg-navy-50 hover:text-primary",
       isActive(href) &&
-        "after:absolute after:inset-x-3 after:bottom-1 after:h-px after:bg-primary",
+        "after:absolute after:inset-x-3.5 after:bottom-1.5 after:h-px after:bg-primary",
     );
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white">
-      <div className="container flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
+      <div className="container grid h-[4.35rem] grid-cols-[auto_1fr_auto] items-center gap-4 sm:h-[4.85rem] lg:gap-8">
         <BrandMark />
 
-        <nav className="hidden items-center justify-center gap-0.5 lg:flex" aria-label="Primary">
+        <nav
+          className="hidden justify-self-center lg:flex lg:items-center lg:gap-1"
+          aria-label="Primary"
+        >
           {links.map((item) => (
             <Link key={item.href} href={item.href} className={navLinkClass(item.href)}>
               {t(item.key)}
@@ -48,9 +51,9 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-end gap-2 sm:gap-2.5">
           <LanguageSwitcher />
-          <Button asChild size="sm" className="hidden min-h-10 sm:inline-flex">
+          <Button asChild className="hidden min-h-11 px-5 sm:inline-flex">
             <Link href="/contact">{t("contact")}</Link>
           </Button>
 

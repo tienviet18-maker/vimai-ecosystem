@@ -5,7 +5,7 @@ pages_build_output_dir = ".vercel/output/static"
 
 [vars]
 NEXT_PUBLIC_SITE_URL = "https://vimai.jp"
-NEXT_PUBLIC_CONTACT_EMAIL = "hello@vimai.jp"
+NEXT_PUBLIC_CONTACT_EMAIL = "vimai.support@gmail.com"
 
 [[d1_databases]]
 binding = "DB"

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { BrandMark } from "@/components/shared/BrandMark";
+import { ContactChannels } from "@/components/shared/ContactChannels";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
 import type { Locale } from "@/types";
@@ -12,12 +13,18 @@ export async function Footer({ locale }: { locale: Locale }) {
 
   return (
     <footer className="border-t border-slate-200/80 bg-white">
-      <div className="container grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16 lg:py-20">
+      <div className="container grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16 lg:py-16">
         <div className="lg:col-span-2">
           <BrandMark />
           <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500">
             {tBrand("tagline")}
           </p>
+          <div className="mt-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+              {t("contact")}
+            </p>
+            <ContactChannels className="mt-3" />
+          </div>
         </div>
         <div>
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
@@ -75,9 +82,10 @@ export async function Footer({ locale }: { locale: Locale }) {
         </div>
       </div>
       <div className="border-t border-slate-200/80">
-        <p className="container py-5 text-center text-xs tracking-wide text-slate-400">
-          {t("legal")}
-        </p>
+        <div className="container flex flex-col items-center gap-1 py-6 text-center">
+          <p className="text-xs tracking-wide text-slate-400">{t("legal")}</p>
+          <p className="text-xs tracking-wide text-slate-400">{tBrand("tagline")}</p>
+        </div>
       </div>
     </footer>
   );

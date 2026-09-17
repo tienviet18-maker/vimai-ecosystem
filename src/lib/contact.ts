@@ -1,37 +1,18 @@
-import { getDb, newId, nowIso } from "@/lib/cloudflare";
+/** Canonical public contact. Do not duplicate these values in components. */
 
-export async function insertContactMessage(input: {
-  name: string;
-  email: string;
-  subject?: string | null;
-  message: string;
-  locale?: string | null;
-}) {
-  const db = getDb();
-  if (!db) return { error: "unconfigured" as const };
-  await db
-    .prepare(
-      `INSERT INTO contact_messages (id, name, email, locale, subject, message, status, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, 'new', ?)`,
-    )
-    .bind(
-      newId(),
-      input.name,
-      input.email,
-      input.locale ?? null,
-      input.subject ?? null,
-      input.message,
-      nowIso(),
-    )
-    .run();
-  return { error: null };
-}
+export const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "vimai.support@gmail.com";
 
-export async function listContactMessages() {
-  const db = getDb();
-  if (!db) return [];
-  const { results } = await db
-    .prepare("SELECT * FROM contact_messages ORDER BY created_at DESC")
-    .all();
-  return results ?? [];
-}
+/** Official Zalo destination. Never render the phone number in the UI. */
+export const CONTACT_ZALO_URL =
+  process.env.NEXT_PUBLIC_ZALO_URL ?? "https://zalo.me/817026716597";
+
+/**
+ * Optional Messenger destination. Only rendered when a verified URL is configured.
+ * Do not invent a Messenger link.
+ */
+export const CONTACT_MESSENGER_URL = (
+  process.env.NEXT_PUBLIC_MESSENGER_URL ?? ""
+).trim();
+
+export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`;

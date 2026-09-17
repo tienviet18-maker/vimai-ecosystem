@@ -108,14 +108,18 @@
     "error": "Could not send. Please try again.",
     "unconfigured": "Contact intake is not configured yet. It will work after D1 is bound.",
     "direct": "Email us",
-    "required": "This field is required."
+    "required": "This field is required.",
+    "zaloAria": "Contact ViMai on Zalo",
+    "messengerAria": "Contact ViMai on Messenger",
+    "emailAria": "Email ViMai"
   },
   "footer": {
     "products": "Products",
     "company": "Company",
     "privacy": "Privacy",
     "terms": "Terms",
-    "legal": "© 2026 ViMai. All Rights Reserved."
+    "contact": "Contact",
+    "legal": "© 2026 ViMai Ecosystem. All rights reserved."
   },
   "articles": {
     "title": "Articles",

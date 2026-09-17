@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { insertContactMessage } from "@/lib/contact";
+import { insertContactMessage } from "@/lib/contact-messages";
 import { isCmsConfigured } from "@/lib/cloudflare";
 import { rateLimit } from "@/lib/rate-limit";
 

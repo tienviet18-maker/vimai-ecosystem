@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { CONTACT_EMAIL } from "@/lib/utils";
+import { CONTACT_MAILTO } from "@/lib/contact";
 
 export function ContactForm() {
   const t = useTranslations("contact");
@@ -81,7 +81,7 @@ export function ContactForm() {
           {status === "sending" ? t("sending") : t("submit")}
         </Button>
         <Button asChild variant="outline">
-          <a href={`mailto:${CONTACT_EMAIL}`}>{t("direct")}</a>
+          <a href={CONTACT_MAILTO}>{t("direct")}</a>
         </Button>
       </div>
     </form>

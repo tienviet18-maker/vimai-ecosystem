@@ -38,7 +38,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white">
       <div className="container grid h-[4.35rem] grid-cols-[auto_1fr_auto] items-center gap-4 sm:h-[4.85rem] lg:gap-8">
-        <BrandMark />
+        <div className="flex items-center gap-5">
+          <BrandMark />
+          <span aria-hidden="true" className="hidden h-6 w-px bg-slate-200 lg:block" />
+        </div>
 
         <nav
           className="hidden justify-self-center lg:flex lg:items-center lg:gap-1"

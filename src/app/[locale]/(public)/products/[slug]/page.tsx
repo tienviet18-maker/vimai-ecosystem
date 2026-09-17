@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ProductMark } from "@/components/shared/ProductMark";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AppStoreButton } from "@/components/shared/AppStoreButton";
@@ -39,17 +39,8 @@ export default async function ProductPage({
         <Link href="/products">← {t("back")}</Link>
       </Button>
 
-      <div className="grid gap-12 lg:grid-cols-[300px_1fr] lg:items-start lg:gap-16">
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-8 shadow-soft">
-          <Image
-            src={product.logo_url}
-            alt={product.name}
-            width={320}
-            height={320}
-            className="mx-auto h-44 w-44 rounded-3xl object-cover shadow-soft"
-            priority
-          />
-        </div>
+      <div className="grid gap-12 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-16">
+        <ProductMark src={product.logo_url} alt={product.name} size="lg" priority />
 
         <div>
           <div className="flex flex-wrap items-center gap-3">

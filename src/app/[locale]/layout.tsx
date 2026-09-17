@@ -72,6 +72,10 @@ export async function generateMetadata({
       description: messages.meta.description,
       images: ["/brand/og/og-default.jpg"],
     },
+    icons: {
+      icon: "/brand/vimai-logo.jpg",
+      apple: "/brand/vimai-logo.jpg",
+    },
   };
 }
 

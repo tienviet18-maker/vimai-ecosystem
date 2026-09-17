@@ -13,19 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#123A6F",
     icons: [
       {
-        src: "/favicon.ico",
-        sizes: "48x48",
-        type: "image/x-icon",
-      },
-      {
-        src: "/icon.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
-      {
-        src: "/apple-icon.png",
-        sizes: "180x180",
-        type: "image/png",
+        src: "/brand/vimai-logo.jpg",
+        sizes: "any",
+        type: "image/jpeg",
       },
     ],
   };

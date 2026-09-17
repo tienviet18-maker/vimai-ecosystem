@@ -7,12 +7,13 @@ import { ProductMark } from "@/components/shared/ProductMark";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 
 export function ProductCard({ product }: { product: LocalizedProduct }) {
-  const t = useTranslations("common");
+  const t = useTranslations("products");
+  const highlights = product.features.slice(0, 3);
 
   return (
     <Link href={`/products/${product.slug}`} className="group block h-full no-underline">
       <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:border-navy-200 group-hover:shadow-lift">
-        <div className="flex items-center justify-center bg-navy-50/90 px-6 py-7">
+        <div className="flex items-center justify-center bg-navy-50/70 px-6 py-6">
           <ProductMark src={product.logo_url} alt={product.name} />
         </div>
         <div className="flex flex-1 flex-col gap-3 px-6 py-6">
@@ -24,10 +25,25 @@ export function ProductCard({ product }: { product: LocalizedProduct }) {
               <StatusBadge status={product.status} />
             </span>
           </div>
-          <p className="text-sm font-medium leading-6 text-primary/85">{product.tagline}</p>
-          <p className="line-clamp-3 text-sm leading-7 text-slate-500">{product.description}</p>
-          <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-medium text-primary">
-            {t("learnMore")}
+          <p className="text-sm leading-6 text-slate-600">{product.tagline}</p>
+          {product.target_audience ? (
+            <p className="text-sm leading-6 text-slate-500">
+              <span className="font-medium text-slate-700">{t("audience")}: </span>
+              {product.target_audience}
+            </p>
+          ) : null}
+          {highlights.length > 0 ? (
+            <ul className="space-y-1.5 text-sm leading-6 text-slate-500">
+              {highlights.map((feature) => (
+                <li key={feature} className="flex gap-2">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <span className="mt-auto inline-flex min-h-11 items-center gap-1.5 pt-2 text-sm font-medium text-primary">
+            {t("explore")}
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>
         </div>

@@ -19,6 +19,7 @@ const links = [
 
 export function Header() {
   const t = useTranslations("nav");
+  const tBrand = useTranslations("brand");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -37,8 +38,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white">
-      <div className="container grid h-[4.35rem] grid-cols-[auto_1fr_auto] items-center gap-4 sm:h-[4.85rem] lg:gap-8">
-        <BrandMark />
+      <div className="container grid min-h-[4.35rem] grid-cols-[auto_1fr_auto] items-center gap-3 py-2 sm:min-h-[4.85rem] lg:gap-8">
+        <BrandMark tagline={tBrand("headerTagline")} />
 
         <nav
           className="hidden justify-self-center lg:flex lg:items-center lg:gap-1"

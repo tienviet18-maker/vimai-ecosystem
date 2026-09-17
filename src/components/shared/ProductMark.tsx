@@ -8,22 +8,23 @@ export function ProductMark({
 }: {
   src: string;
   alt: string;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
 }) {
   return (
     <span
       className={cn(
-        "flex items-center justify-center overflow-hidden rounded-2xl bg-white",
+        "flex items-center justify-center overflow-hidden bg-transparent",
         size === "sm" && "h-[4.25rem] w-[4.25rem] sm:h-20 sm:w-20",
         size === "md" && "h-[6.75rem] w-[6.75rem] sm:h-[7.5rem] sm:w-[7.5rem]",
+        size === "lg" && "h-40 w-40 sm:h-44 sm:w-44",
       )}
     >
       <Image
         src={src}
         alt={alt}
-        width={160}
-        height={160}
-        className="h-full w-full object-contain p-1.5"
+        width={size === "lg" ? 320 : 160}
+        height={size === "lg" ? 320 : 160}
+        className="h-full w-full object-contain"
       />
     </span>
   );

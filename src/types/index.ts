@@ -80,6 +80,7 @@ export type LocalizedProduct = Omit<Product, "translations"> & {
   description: string;
   long_description?: string;
   features: string[];
+  target_audience?: string | null;
 };
 
 export type Faq = {

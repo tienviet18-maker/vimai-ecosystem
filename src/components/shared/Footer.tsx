@@ -15,7 +15,7 @@ export async function Footer({ locale }: { locale: Locale }) {
     <footer className="border-t border-slate-200/80 bg-white">
       <div className="container grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16 lg:py-16">
         <div className="lg:col-span-2">
-          <BrandMark />
+          <BrandMark compact />
           <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500">
             {tBrand("tagline")}
           </p>

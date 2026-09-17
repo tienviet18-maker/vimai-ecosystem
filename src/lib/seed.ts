@@ -1,4 +1,5 @@
 import type { Faq, Locale, Product } from "@/types";
+import { resolveProductSite } from "@/lib/product-sites";
 
 export const seedProducts: Product[] = [
   {
@@ -7,7 +8,7 @@ export const seedProducts: Product[] = [
     status: "coming_soon",
     app_store_url: null,
     google_play_url: null,
-    website_url: null,
+    website_url: "https://tokutei-taxi.vimai.jp",
     featured: true,
     sort_order: 1,
     logo_url: "/images/products/tokutei_taxi.png",
@@ -16,40 +17,61 @@ export const seedProducts: Product[] = [
       {
         locale: "ja",
         name: "ViMai Tokutei Taxi",
-        tagline: "特定技能（タクシー）試験対策アプリ",
+        tagline: "特定技能1号（タクシー）の学習アプリ",
         description:
-          "日本の特定技能「自動車運送業（タクシー）」分野の試験対策アプリケーションです。模擬試験を通じて、合格に必要な知識を効率よく学習できます。",
+          "外国人が日本の特定技能1号・タクシー分野の試験勉強と演習を行うためのアプリです。CBT形式の練習、模擬問題、誤答の見直し、学習のヒント、日本語とベトナム語、振り仮名、解説を備えています。",
+        long_description:
+          "試験の合格を保証するものではありません。出題形式に慣れることと、間違えた箇所を見直すことを目的とした学習ツールです。",
+        target_audience:
+          "日本でタクシー分野の特定技能1号を目指す外国人学習者。",
         features: [
-          "特定技能タクシー分野に特化した模擬試験",
-          "本番形式に近い出題と解説",
-          "学習進度の確認（CMS更新予定）",
-          "日本語・ベトナム語での学習サポート（CMS更新予定）",
+          "CBT形式の練習",
+          "模擬問題",
+          "誤答の見直し",
+          "学習のヒント",
+          "日本語・ベトナム語",
+          "振り仮名",
+          "わかりやすい解説",
         ],
       },
       {
         locale: "vi",
         name: "ViMai Tokutei Taxi",
-        tagline: "Luyện thi Tokutei Gino ngành Taxi tại Nhật Bản",
+        tagline: "Ứng dụng luyện thi 特定技能1号 – Taxi",
         description:
-          "Ứng dụng luyện thi chứng chỉ kỹ năng đặc định (Tokutei Gino) lĩnh vực vận tải / tài xế taxi tại Nhật Bản. Bao gồm đề thi thử mô phỏng kỳ thi thật.",
+          "Ứng dụng dành cho người nước ngoài học và luyện thi 特定技能1号 ngành Taxi tại Nhật. Có luyện CBT, câu hỏi mô phỏng, ôn lại câu sai, mẹo làm bài, hỗ trợ tiếng Nhật và tiếng Việt, Furigana và phần giải thích.",
+        long_description:
+          "Công cụ học tập để làm quen dạng đề và rà soát chỗ sai. Không cam kết đậu kỳ thi.",
+        target_audience:
+          "Người nước ngoài tại Nhật đang chuẩn bị thi 特定技能1号 ngành Taxi.",
         features: [
-          "Đề thi thử chuyên biệt cho ngành Taxi",
-          "Câu hỏi sát định dạng kỳ thi và phần giải thích",
-          "Theo dõi tiến độ học tập (cần cập nhật CMS)",
-          "Hỗ trợ học bằng tiếng Việt và tiếng Nhật (cần cập nhật CMS)",
+          "Luyện dạng CBT",
+          "Câu hỏi thi thử",
+          "Ôn lại câu sai",
+          "Mẹo làm bài",
+          "Hỗ trợ tiếng Nhật và tiếng Việt",
+          "Furigana",
+          "Giải thích rõ ràng",
         ],
       },
       {
         locale: "en",
         name: "ViMai Tokutei Taxi",
-        tagline: "Tokutei Gino taxi exam preparation",
+        tagline: "Study app for Specified Skilled Worker (i) Taxi",
         description:
-          "An exam-prep application for Japan's Specified Skilled Worker (Tokutei Gino) certification in the taxi / automobile transport field. Includes mock exams.",
+          "An app for foreigners studying and practicing for Japan’s Specified Skilled Worker (i) Taxi field. It includes CBT-style practice, mock questions, mistake review, study tips, Japanese and Vietnamese support, furigana, and explanations.",
+        long_description:
+          "A study tool for exam format and review. It does not guarantee a passing result.",
+        target_audience:
+          "Foreign residents in Japan preparing for Specified Skilled Worker (i) Taxi.",
         features: [
-          "Mock exams tailored to the taxi field",
-          "Exam-style questions with explanations",
-          "Learning progress tracking [CMS update]",
-          "Japanese and Vietnamese study support [CMS update]",
+          "CBT-style practice",
+          "Mock questions",
+          "Mistake review",
+          "Study tips",
+          "Japanese and Vietnamese support",
+          "Furigana",
+          "Clear explanations",
         ],
       },
     ],
@@ -60,7 +82,7 @@ export const seedProducts: Product[] = [
     status: "coming_soon",
     app_store_url: null,
     google_play_url: null,
-    website_url: null,
+    website_url: "https://tokutei-truck.vimai.jp",
     featured: true,
     sort_order: 2,
     logo_url: "/images/products/tokutei_vantai.png",
@@ -69,40 +91,58 @@ export const seedProducts: Product[] = [
       {
         locale: "ja",
         name: "ViMai Transport",
-        tagline: "特定技能（自動車運送業）試験対策アプリ",
+        tagline: "特定技能（自動車運送・トラック）の学習アプリ",
         description:
-          "特定技能「自動車運送業」分野の試験対策アプリケーションです。運送・ドライバー業務に必要な基礎知識を、模擬試験形式で学習します。",
+          "特定技能の運送・トラック分野に取り組む外国人向けの学習アプリです。対象者、学習の目的、模擬試験、日本語サポート、振り仮名、わかりやすい解説、日本での就労の方向性を整理して学べます。",
+        long_description:
+          "試験や就労の結果を保証するものではありません。学習範囲と出題形式を把握するためのツールです。",
+        target_audience:
+          "日本の特定技能・自動車運送業（トラック等）を目指す外国人学習者。",
         features: [
-          "自動車運送業分野に特化した学習コンテンツ",
-          "模擬試験と復習機能（CMS更新予定）",
-          "現場で使う専門用語の確認（CMS更新予定）",
-          "スキマ時間で続けられるモバイル学習",
+          "運送分野の学習目的が明確",
+          "模擬試験",
+          "日本語サポート",
+          "振り仮名",
+          "わかりやすい解説",
+          "日本での就労に向けた方向づけ",
         ],
       },
       {
         locale: "vi",
         name: "ViMai Transport",
-        tagline: "Luyện thi Tokutei Gino ngành Vận tải tại Nhật Bản",
+        tagline: "Ứng dụng luyện thi 特定技能 ngành vận tải / xe tải",
         description:
-          "Ứng dụng luyện thi Tokutei Gino lĩnh vực vận tải (自動車運送業). Giúp người học nắm kiến thức nền tảng cho công việc tài xế / vận tải tại Nhật Bản.",
+          "Ứng dụng cho người học lĩnh vực 特定技能 vận tải / xe tải. Nêu rõ đối tượng, mục đích học, đề thi thử, hỗ trợ tiếng Nhật, Furigana, giải thích dễ hiểu và định hướng nghề nghiệp tại Nhật.",
+        long_description:
+          "Công cụ nắm phạm vi học và dạng đề. Không cam kết kết quả thi hay việc làm.",
+        target_audience:
+          "Người nước ngoài chuẩn bị thi và làm việc trong ngành vận tải / xe tải tại Nhật.",
         features: [
-          "Nội dung học chuyên biệt cho ngành vận tải",
-          "Thi thử và ôn tập (cần cập nhật CMS)",
-          "Thuật ngữ chuyên ngành thực tế (cần cập nhật CMS)",
-          "Học trên điện thoại, phù hợp thời gian rảnh",
+          "Mục tiêu học rõ ràng theo ngành vận tải",
+          "Đề thi thử",
+          "Hỗ trợ tiếng Nhật",
+          "Furigana",
+          "Giải thích dễ hiểu",
+          "Định hướng nghề nghiệp tại Nhật",
         ],
       },
       {
         locale: "en",
         name: "ViMai Transport",
-        tagline: "Tokutei Gino transport exam preparation",
+        tagline: "Study app for Specified Skilled Worker transport / trucking",
         description:
-          "A Tokutei Gino application for Japan's automobile transport field. Learners prepare with mock exams covering the knowledge required for transport and driving work.",
+          "An app for foreigners studying the Specified Skilled Worker transport and trucking field. It highlights the audience, study purpose, practice exams, Japanese support, furigana, clear explanations, and career orientation in Japan.",
+        long_description:
+          "A tool for understanding the study scope and exam format. It does not guarantee exam or employment outcomes.",
+        target_audience:
+          "Foreign learners preparing for Specified Skilled Worker automobile transport / trucking in Japan.",
         features: [
-          "Study content focused on automobile transport",
-          "Mock exams and review tools [CMS update]",
-          "On-the-job terminology practice [CMS update]",
-          "Mobile-first study for short sessions",
+          "Clear study purpose for transport work",
+          "Practice exams",
+          "Japanese-language support",
+          "Furigana",
+          "Clear explanations",
+          "Career orientation in Japan",
         ],
       },
     ],
@@ -113,7 +153,7 @@ export const seedProducts: Product[] = [
     status: "development",
     app_store_url: null,
     google_play_url: null,
-    website_url: null,
+    website_url: "https://seibi.vimai.jp",
     featured: true,
     sort_order: 3,
     logo_url: "/images/products/sebishi_3kyu.png",
@@ -122,40 +162,52 @@ export const seedProducts: Product[] = [
       {
         locale: "ja",
         name: "ViMai Seibi",
-        tagline: "3級自動車整備士 試験対策",
+        tagline: "3級自動車整備士の学習アプリ",
         description:
-          "3級自動車整備士試験の対策アプリケーションです。学科試験に必要な基礎知識を、問題演習を中心に効率よく学べます。",
+          "3級自動車整備士（Seibi 3kyu）を学ぶ人のためのアプリです。対象者、学習範囲、外国人学習者への配慮、段階的な学習、わかりやすい構成を中心に設計しています。",
+        long_description:
+          "学科試験の学習を整理するためのツールです。合格を保証するものではありません。",
+        target_audience:
+          "3級自動車整備士の学科を学ぶ外国人および日本語学習者。",
         features: [
-          "3級自動車整備士の学科対策",
-          "分野別の問題演習（CMS更新予定）",
-          "弱点の可視化（CMS更新予定）",
-          "整備現場で使う知識の整理",
+          "3級整備士の学習範囲に沿った構成",
+          "外国人学習者への配慮",
+          "段階的に進められる学習",
+          "学科の基礎を整理",
         ],
       },
       {
         locale: "vi",
         name: "ViMai Seibi",
-        tagline: "Luyện thi Sebishi 3kyu ngành Ô tô tại Nhật Bản",
+        tagline: "Ứng dụng học Seibi 3kyu (3級自動車整備士)",
         description:
-          "Ứng dụng luyện thi chứng chỉ thợ sửa chữa ô tô cấp 3 (3級自動車整備士). Tập trung vào phần thi lý thuyết với ngân hàng câu hỏi luyện tập.",
+          "Ứng dụng học chứng chỉ Seibi 3kyu. Nêu rõ đối tượng, phạm vi học, hỗ trợ người nước ngoài, lộ trình có cấu trúc và điểm mạnh của sản phẩm.",
+        long_description:
+          "Công cụ sắp xếp kiến thức thi lý thuyết. Không cam kết đậu kỳ thi.",
+        target_audience:
+          "Người nước ngoài và người học tiếng Nhật đang ôn thi 3級自動車整備士.",
         features: [
-          "Luyện thi lý thuyết 3級自動車整備士",
-          "Bài tập theo từng chuyên đề (cần cập nhật CMS)",
-          "Nhìn rõ phần kiến thức còn yếu (cần cập nhật CMS)",
-          "Hệ thống lại kiến thức dùng trong xưởng",
+          "Bám phạm vi Seibi 3kyu",
+          "Hỗ trợ người học nước ngoài",
+          "Học theo lộ trình có cấu trúc",
+          "Hệ thống kiến thức lý thuyết",
         ],
       },
       {
         locale: "en",
         name: "ViMai Seibi",
-        tagline: "Class 3 automobile mechanic exam prep",
+        tagline: "Study app for Seibi 3kyu (Class 3 automobile mechanic)",
         description:
-          "An exam-prep application for Japan's Class 3 Automobile Mechanic (3級自動車整備士) certification. Built around practice questions for the written exam.",
+          "An app for studying Seibi 3kyu. It highlights the audience, curriculum scope, support for foreign learners, structured study, and the product’s strengths.",
+        long_description:
+          "A tool for organizing written-exam study. It does not guarantee a passing result.",
+        target_audience:
+          "Foreign learners and Japanese-language learners studying Class 3 automobile mechanic theory.",
         features: [
-          "Class 3 mechanic written-exam preparation",
-          "Practice by topic [CMS update]",
-          "Weak-area tracking [CMS update]",
-          "Workshop-oriented knowledge review",
+          "Curriculum aligned with Seibi 3kyu",
+          "Support for foreign learners",
+          "Structured learning path",
+          "Written-exam knowledge organized clearly",
         ],
       },
     ],
@@ -166,49 +218,70 @@ export const seedProducts: Product[] = [
     status: "development",
     app_store_url: null,
     google_play_url: null,
-    website_url: null,
+    website_url: "https://kids.vimai.jp",
     featured: false,
     sort_order: 4,
-    logo_url: "/images/products/vimai_kids.jpg",
+    logo_url: "/images/products/vimai_kids.png",
     published: true,
     translations: [
       {
         locale: "ja",
         name: "ViMai Kids",
-        tagline: "子ども向けの学びアプリ",
+        tagline: "保護者向けに設計した子どもの学びアプリ",
         description:
-          "算数ゲームなどを通じて、子どもが楽しく学べる教育アプリケーションです。保護者が学習時間や内容を管理できる仕組みを備えています。",
+          "子どもが文字、ひらがな、カタカナ、ベトナム語に触れ、練習モードで学べる教育アプリです。Apple Pencilに対応し、就学前の準備にも使えます。保護者が内容を把握しやすい設計です。",
+        long_description:
+          "家庭での学習を補助するアプリです。学校の成績や発達を保証するものではありません。",
+        target_audience:
+          "就学前〜小学校低学年のお子さまを持つ保護者。",
         features: [
-          "算数などのインタラクティブな学習ゲーム",
-          "保護者による管理機能",
-          "年齢に合わせた学習（CMS更新予定）",
-          "短時間でも続けやすい設計",
+          "文字の練習",
+          "ひらがな・カタカナ",
+          "ベトナム語",
+          "練習モード",
+          "Apple Pencil対応",
+          "インタラクティブな学習",
+          "就学前の準備",
         ],
       },
       {
         locale: "vi",
         name: "ViMai Kids",
-        tagline: "Ứng dụng giáo dục tương tác cho trẻ em",
+        tagline: "Ứng dụng học cho trẻ, thiết kế cho phụ huynh",
         description:
-          "Ứng dụng giáo dục tương tác dành cho trẻ em, với trò chơi toán học và cơ chế kiểm soát dành cho phụ huynh.",
+          "Ứng dụng giáo dục cho trẻ: chữ cái, Hiragana, Katakana, tiếng Việt, chế độ luyện tập, hỗ trợ Apple Pencil, học tương tác và chuẩn bị vào lớp. Giọng điệu dành cho phụ huynh theo dõi nội dung học của con.",
+        long_description:
+          "Hỗ trợ học tại nhà. Không cam kết kết quả học đường hay phát triển.",
+        target_audience:
+          "Phụ huynh có con ở độ tuổi mầm non đến đầu tiểu học.",
         features: [
-          "Trò chơi học tập tương tác, tập trung vào toán",
-          "Công cụ kiểm soát dành cho phụ huynh",
-          "Nội dung theo độ tuổi (cần cập nhật CMS)",
-          "Thiết kế học ngắn, dễ duy trì mỗi ngày",
+          "Luyện chữ cái",
+          "Hiragana và Katakana",
+          "Tiếng Việt",
+          "Chế độ luyện tập",
+          "Hỗ trợ Apple Pencil",
+          "Học tương tác",
+          "Chuẩn bị vào lớp",
         ],
       },
       {
         locale: "en",
         name: "ViMai Kids",
-        tagline: "Interactive learning for children",
+        tagline: "A children’s learning app designed for parents",
         description:
-          "An interactive educational application for children featuring math games and parent control mechanisms.",
+          "An educational app for children covering letters, hiragana, katakana, Vietnamese, practice modes, Apple Pencil support, interactive learning, and preschool preparation. Written for parents who want to see what their child is practicing.",
+        long_description:
+          "A home-learning aid. It does not promise school results or developmental outcomes.",
+        target_audience:
+          "Parents of children in preschool through early elementary years.",
         features: [
-          "Interactive learning games with a math focus",
-          "Parent control tools",
-          "Age-appropriate content [CMS update]",
-          "Short sessions designed for daily use",
+          "Letter practice",
+          "Hiragana and katakana",
+          "Vietnamese",
+          "Practice modes",
+          "Apple Pencil support",
+          "Interactive learning",
+          "Preschool preparation",
         ],
       },
     ],
@@ -219,49 +292,70 @@ export const seedProducts: Product[] = [
     status: "development",
     app_store_url: null,
     google_play_url: null,
-    website_url: null,
+    website_url: "https://maimai.vimai.jp",
     featured: false,
     sort_order: 5,
-    logo_url: "/images/products/maimai.jpg",
+    logo_url: "/images/products/maimai.png",
     published: true,
     translations: [
       {
         locale: "ja",
         name: "Maimai",
-        tagline: "健康・栄養・カロリー記録",
+        tagline: "自分の生活指標を記録するアプリ",
         description:
-          "健康、栄養、カロリーを記録するアプリケーションです。日々の指標をカスタムして、自分に合ったペースで体調管理を続けられます。",
+          "体重、水分、睡眠、栄養、活動、周期、その他の個人指標を記録するヘルスケア／ライフスタイル記録アプリです。医療行為ではなく、日々の記録のためのツールです。",
+        long_description:
+          "診断・治療・予防の効果を示すものではありません。体調や健康の結果を保証しません。必要に応じて専門家に相談してください。",
+        target_audience:
+          "体重、睡眠、水分、栄養、活動、周期などを自分で記録したい人。",
         features: [
-          "カロリーと栄養の記録",
-          "カスタム可能な日常トラッキング指標",
-          "健康習慣の可視化（CMS更新予定）",
-          "シンプルで続けやすい入力画面",
+          "体重の記録",
+          "水分摂取の記録",
+          "睡眠の記録",
+          "栄養の記録",
+          "活動の記録",
+          "周期の記録",
+          "個人指標のカスタム",
         ],
       },
       {
         locale: "vi",
         name: "Maimai",
-        tagline: "Theo dõi sức khỏe, dinh dưỡng và calories",
+        tagline: "Ghi nhận chỉ số sinh hoạt cá nhân",
         description:
-          "Ứng dụng theo dõi sức khỏe, dinh dưỡng và calories với các chỉ số ghi nhận hằng ngày có thể tùy chỉnh.",
+          "Ứng dụng theo dõi lối sống: cân nặng, nước, ngủ, dinh dưỡng, hoạt động, chu kỳ và các chỉ số cá nhân. Không phải công cụ y tế; chỉ dùng để ghi nhận hằng ngày.",
+        long_description:
+          "Không chẩn đoán, điều trị hay cam kết kết quả sức khỏe. Khi cần, hãy hỏi chuyên gia.",
+        target_audience:
+          "Người muốn tự ghi nhận cân nặng, giấc ngủ, nước, dinh dưỡng, hoạt động và chu kỳ.",
         features: [
-          "Ghi nhận calories và dinh dưỡng",
-          "Chỉ số theo dõi hằng ngày tùy chỉnh",
-          "Nhìn rõ thói quen sức khỏe (cần cập nhật CMS)",
-          "Giao diện nhập liệu đơn giản, dễ duy trì",
+          "Ghi nhận cân nặng",
+          "Ghi nhận lượng nước",
+          "Ghi nhận giấc ngủ",
+          "Ghi nhận dinh dưỡng",
+          "Ghi nhận hoạt động",
+          "Ghi nhận chu kỳ",
+          "Chỉ số cá nhân tùy chỉnh",
         ],
       },
       {
         locale: "en",
         name: "Maimai",
-        tagline: "Health, nutrition, and calorie tracking",
+        tagline: "A personal health and lifestyle tracker",
         description:
-          "A health, nutrition, and calorie-tracking application with custom daily tracking metrics.",
+          "A lifestyle tracker for weight, water intake, sleep, nutrition, activity, cycle tracking, and other personal metrics. It is a daily log, not a medical device.",
+        long_description:
+          "It does not diagnose, treat, or promise health outcomes. Consult a professional when you need medical advice.",
+        target_audience:
+          "People who want to log weight, sleep, water, nutrition, activity, and cycle data themselves.",
         features: [
-          "Calorie and nutrition logging",
-          "Custom daily tracking metrics",
-          "Habit visibility [CMS update]",
-          "Simple input designed for consistency",
+          "Weight logging",
+          "Water-intake logging",
+          "Sleep logging",
+          "Nutrition logging",
+          "Activity logging",
+          "Cycle tracking",
+          "Custom personal metrics",
         ],
       },
     ],
@@ -380,9 +474,12 @@ export function localizeProduct(product: Product, locale: Locale) {
 
   return {
     ...product,
+    website_url: resolveProductSite(product.slug, product.website_url),
     name: translation?.name ?? product.slug,
     tagline: translation?.tagline ?? "",
     description: translation?.description ?? "",
+    long_description: translation?.long_description,
     features: translation?.features ?? [],
+    target_audience: translation?.target_audience ?? product.target_audience,
   };
 }

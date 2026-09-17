@@ -33,7 +33,7 @@ export function ProductEcosystemStrip({
               href={`/products/${product.slug}`}
               className="group flex h-full flex-col items-center gap-3 rounded-2xl bg-white px-3 py-4 text-center no-underline shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift"
             >
-              <ProductMark src={product.logo_url} alt="" size="sm" />
+              <ProductMark src={product.logo_url} alt={product.name} size="sm" />
               <span className="text-[13px] font-medium leading-snug tracking-tight text-slate-800">
                 {product.name}
               </span>

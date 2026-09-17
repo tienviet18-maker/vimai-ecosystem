@@ -31,8 +31,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = (await import(`../../../messages/${locale}.json`)).default as {
-    meta: { title: string; description: string };
+    meta: { title: string; description: string; keywords: string };
   };
+
+  const ogLocale = locale === "ja" ? "ja_JP" : locale === "en" ? "en_US" : "vi_VN";
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -41,6 +43,10 @@ export async function generateMetadata({
       template: `%s | ViMai`,
     },
     description: messages.meta.description,
+    keywords: messages.meta.keywords,
+    applicationName: "ViMai",
+    category: "education",
+    robots: { index: true, follow: true },
     alternates: {
       canonical: locale === "vi" ? SITE_URL : `${SITE_URL}/${locale}`,
       languages: {
@@ -51,18 +57,14 @@ export async function generateMetadata({
         "x-default": SITE_URL,
       },
     },
-    icons: {
-      icon: "/brand/vimai-logo.jpg",
-      apple: "/brand/favicon/apple-touch-icon.jpg",
-    },
     openGraph: {
       title: messages.meta.title,
       description: messages.meta.description,
-      url: SITE_URL,
+      url: locale === "vi" ? SITE_URL : `${SITE_URL}/${locale}`,
       siteName: "ViMai",
-      locale,
+      locale: ogLocale,
       type: "website",
-      images: [{ url: "/brand/og/og-default.jpg" }],
+      images: [{ url: "/brand/og/og-default.jpg", alt: "ViMai" }],
     },
     twitter: {
       card: "summary_large_image",

@@ -8,8 +8,9 @@ export const CONTACT_ZALO_URL =
   process.env.NEXT_PUBLIC_ZALO_URL ?? "https://zalo.me/817026716597";
 
 /**
- * Optional Messenger destination. Only rendered when a verified URL is configured.
- * Do not invent a Messenger link.
+ * Optional Messenger destination.
+ * REQUIRED_CONFIGURATION: Insert Messenger VietOsaka URL here
+ * (or set NEXT_PUBLIC_MESSENGER_URL). Do not invent a URL.
  */
 export const CONTACT_MESSENGER_URL = (
   process.env.NEXT_PUBLIC_MESSENGER_URL ?? ""

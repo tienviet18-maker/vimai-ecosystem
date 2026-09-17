@@ -2,7 +2,7 @@
   "meta": {
     "siteName": "ViMai",
     "title": "ViMai | 教育とテクノロジーのエコシステム",
-    "description": "特定技能の試験対策、子ども向け学習、ヘルスケアまで。ViMaiは教育とテクノロジーのエコシステムです。",
+    "description": "特定技能の学習、3級自動車整備士、子ども向け学習、生活記録まで。ViMaiは教育とテクノロジーのエコシステムハブです。",
     "keywords": "ViMai, 特定技能, タクシー, 運送, 自動車整備士, 教育アプリ, ヘルスケア"
   },
   "nav": {
@@ -18,6 +18,7 @@
   "brand": {
     "name": "ViMai",
     "tagline": "教育とテクノロジーのエコシステム",
+    "headerTagline": "教育とテクノロジーのエコシステム",
     "mission": "ベトナムの未来を創る"
   },
   "home": {
@@ -57,6 +58,13 @@
     "indexLead": "ViMaiのアプリケーション一覧です。",
     "storeSoon": "ストア公開準備中",
     "website": "公式サイト",
+    "explore": "詳しく見る",
+    "audience": "対象",
+    "howToStart": "使い始める",
+    "howToStartStep1": "このページで、製品の内容・対象・主な機能を確認します。",
+    "howToStartStep2": "準備ができたら、ViMaiの製品サイト（サブドメイン）を開きます。",
+    "howToStartStep3": "ストア公開後は、App Store または Google Play から入手します。",
+    "openSite": "製品サイトを開く",
     "features": "主な機能",
     "download": "ダウンロード",
     "relatedFaq": "よくある質問",
@@ -110,8 +118,15 @@
     "direct": "メールで送る",
     "required": "必須項目です。",
     "zaloAria": "ZaloでViMaiに連絡",
-    "messengerAria": "MessengerでViMaiに連絡",
-    "emailAria": "ViMaiにメールする"
+    "messengerAria": "Messenger VietOsakaでViMaiに連絡",
+    "emailAria": "ViMaiにメールする",
+    "channelsTitle": "サポート窓口",
+    "zalo": "Zalo",
+    "zaloHint": "直接メッセージ",
+    "emailLabel": "メール",
+    "messenger": "Messenger VietOsaka",
+    "messengerHint": "Messengerで連絡",
+    "messengerPending": "MessengerのURLは未設定です"
   },
   "footer": {
     "products": "製品",

@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import {
   CONTACT_EMAIL,
   CONTACT_MAILTO,
-  CONTACT_MESSENGER_URL,
   CONTACT_ZALO_URL,
 } from "@/lib/contact";
 import { cn } from "@/lib/utils";
@@ -48,7 +47,9 @@ export function ContactChannels({
   className?: string;
 }) {
   const t = useTranslations("contact");
-  const messenger = CONTACT_MESSENGER_URL;
+  
+  // Link Messenger đã được gán trực tiếp
+  const messengerHref = "https://m.me/vietosaka";
 
   return (
     <div
@@ -67,17 +68,17 @@ export function ContactChannels({
       >
         <ZaloMark className="h-6 w-6" />
       </a>
-      {messenger ? (
-        <a
-          href={messenger}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={iconButtonClass}
-          aria-label={t("messengerAria")}
-        >
-          <MessengerMark className="h-6 w-6" />
-        </a>
-      ) : null}
+      
+      <a
+        href={messengerHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={iconButtonClass}
+        aria-label={t("messengerAria")}
+      >
+        <MessengerMark className="h-6 w-6" />
+      </a>
+
       {variant === "page" ? (
         <a
           href={CONTACT_MAILTO}

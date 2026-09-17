@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { ProductEcosystemStrip } from "@/components/shared/ProductEcosystemStrip";
 import { ProductGrid } from "@/components/shared/ProductGrid";
 import { FeedbackForm } from "@/components/shared/FeedbackForm";
+import { JsonLd } from "@/components/shared/JsonLd";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
 import { getApprovedReviews } from "@/lib/reviews";
+import { SITE_URL } from "@/lib/utils";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -30,6 +32,32 @@ export default async function HomePage({
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "ViMai",
+          url: SITE_URL,
+          logo: `${SITE_URL}/brand/vimai-logo-trim.png`,
+          description: t("lead"),
+          knowsAbout: [
+            "Specified Skilled Worker",
+            "Tokutei Gino",
+            "education technology",
+            "Japanese language study",
+          ],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "ViMai product ecosystem",
+            itemListElement: products.map((product, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: product.name,
+              url: `${SITE_URL}/products/${product.slug}`,
+            })),
+          },
+        }}
+      />
       <section className="border-b border-slate-200/80 bg-white">
         <div className="container py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">

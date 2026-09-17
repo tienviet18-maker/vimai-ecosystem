@@ -223,7 +223,13 @@
     "save": "保存",
     "saved": "保存しました。",
     "upload": "アップロード",
-    "empty": "データがありません。"
+    "empty": "データがありません。",
+    "categories": "カテゴリ",
+    "pages": "ページ",
+    "translations": "翻訳",
+    "users": "管理者",
+    "audit": "監査ログ",
+    "title": "タイトル"
   },
   "common": {
     "learnMore": "詳しく見る",

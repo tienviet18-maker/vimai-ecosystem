@@ -223,7 +223,13 @@
     "save": "Lưu",
     "saved": "Đã lưu.",
     "upload": "Tải lên",
-    "empty": "Chưa có dữ liệu."
+    "empty": "Chưa có dữ liệu.",
+    "categories": "Danh mục",
+    "pages": "Trang",
+    "translations": "Bản dịch",
+    "users": "Tài khoản",
+    "audit": "Nhật ký",
+    "title": "Tiêu đề"
   },
   "common": {
     "learnMore": "Xem chi tiết",

@@ -34,7 +34,7 @@ export async function generateMetadata({
   if (!product) return {};
   const title = product.seo_title || product.name;
   const description = product.seo_description || product.description;
-  const canonical = publicUrl(locale, `/products/${slug}`);
+  const canonical = product.website_url || publicUrl(locale, `/products/${slug}`);
   return {
     title,
     description,

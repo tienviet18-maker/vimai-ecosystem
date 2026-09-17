@@ -3,6 +3,7 @@ import { ArticleEditor } from "@/components/admin/ArticleEditor";
 import { AdminTable } from "@/components/admin/AdminTable";
 import { getAllArticles } from "@/lib/articles";
 import { Link } from "@/lib/i18n/navigation";
+import { RecordDelete } from "@/components/admin/RecordDelete";
 
 export const runtime = "edge";
 
@@ -56,6 +57,7 @@ export default async function AdminArticlesPage({
             <Link href={`/admin/preview/article/${article.id}`} className="min-h-11 text-primary">
               {t("preview")}
             </Link>
+            <RecordDelete endpoint="/api/admin/articles" id={article.id} />
           </span>,
         ])}
       />

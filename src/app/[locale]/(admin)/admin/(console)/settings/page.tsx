@@ -1,8 +1,10 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { requirePagePermission } from "@/lib/admin-guard";
 import { isAuthConfigured, isCmsConfigured, getR2 } from "@/lib/cloudflare";
 import { getSiteSettings } from "@/lib/settings";
 import { SITE_URL } from "@/lib/utils";
 import { SettingsForm } from "@/components/admin/SettingsForm";
+import { PasswordForm } from "@/components/admin/PasswordForm";
 
 export const runtime = "edge";
 
@@ -13,6 +15,7 @@ export default async function SettingsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await requirePagePermission("settings", locale);
   const t = await getTranslations("admin");
   const settings = await getSiteSettings();
 
@@ -32,6 +35,7 @@ export default async function SettingsPage({
         ogImageUrl={settings.og_image_url ?? ""}
         contactEmail={settings.contact_email ?? ""}
       />
+      <PasswordForm />
     </div>
   );
 }

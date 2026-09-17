@@ -223,7 +223,13 @@
     "save": "Save",
     "saved": "Saved.",
     "upload": "Upload",
-    "empty": "No data yet."
+    "empty": "No data yet.",
+    "categories": "Categories",
+    "pages": "Pages",
+    "translations": "Translations",
+    "users": "Users",
+    "audit": "Audit logs",
+    "title": "Title"
   },
   "common": {
     "learnMore": "Learn more",

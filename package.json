@@ -13,7 +13,7 @@
     "d1:migrate:local": "wrangler d1 execute vimai-cms --local --file=d1/schema.sql",
     "d1:migrate": "wrangler d1 execute vimai-cms --remote --file=d1/schema.sql",
     "d1:seed": "wrangler d1 execute vimai-cms --remote --file=d1/seed.sql",
-    "d1:seed": "wrangler d1 execute vimai-cms --remote --file=d1/seed.sql"
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

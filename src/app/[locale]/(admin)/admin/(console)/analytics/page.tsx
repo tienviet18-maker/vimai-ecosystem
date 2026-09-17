@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { requirePagePermission } from "@/lib/admin-guard";
 import { getAnalyticsSnapshot } from "@/lib/analytics";
 
 export const runtime = "edge";
@@ -10,6 +11,7 @@ export default async function AnalyticsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await requirePagePermission("analytics", locale);
   const t = await getTranslations("admin");
   const analytics = await getAnalyticsSnapshot();
 

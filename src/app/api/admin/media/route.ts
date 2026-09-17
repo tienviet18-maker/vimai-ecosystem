@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin, writeAudit } from "@/lib/auth";
+import { authorizeAdmin } from "@/lib/admin-api";
+import { writeAudit } from "@/lib/auth";
 import { deleteMedia, listMedia, updateMedia, uploadMediaFile } from "@/lib/storage";
-import { assertSameOrigin } from "@/lib/session";
 
 export const runtime = "edge";
 
 export async function GET(request: NextRequest) {
-  const { user, configured } = await requireAdmin();
-  if (!configured || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const auth = await authorizeAdmin(request, "media");
+  if ("response" in auth) return auth.response;
   const { searchParams } = new URL(request.url);
   const assets = await listMedia({
     q: searchParams.get("q") ?? undefined,
@@ -20,13 +18,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  if (!assertSameOrigin(request)) {
-    return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
-  }
-  const { user, configured } = await requireAdmin();
-  if (!configured || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const auth = await authorizeAdmin(request, "media", { mutate: true });
+  if ("response" in auth) return auth.response;
 
   const form = await request.formData();
   const file = form.get("file");
@@ -48,13 +41,8 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-  if (!assertSameOrigin(request)) {
-    return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
-  }
-  const { user, configured } = await requireAdmin();
-  if (!configured || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const auth = await authorizeAdmin(request, "media", { mutate: true });
+  if ("response" in auth) return auth.response;
   const body = (await request.json().catch(() => null)) as {
     id?: string;
     filename?: string;
@@ -74,13 +62,8 @@ export async function PATCH(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  if (!assertSameOrigin(request)) {
-    return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
-  }
-  const { user, configured } = await requireAdmin();
-  if (!configured || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const auth = await authorizeAdmin(request, "media", { mutate: true });
+  if ("response" in auth) return auth.response;
   const { id } = (await request.json()) as { id?: string };
   if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
   const result = await deleteMedia(id);

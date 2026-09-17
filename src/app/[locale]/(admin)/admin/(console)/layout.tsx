@@ -18,11 +18,12 @@ export default async function AdminConsoleLayout({
 
   if (!configured || !user) {
     redirect({ href: "/admin/login", locale });
+    throw new Error("unauthorized");
   }
 
   return (
     <div className="flex min-h-screen flex-col bg-[#F7F8FA] md:flex-row">
-      <AdminSidebar />
+      <AdminSidebar role={user.role} />
       <div className="flex-1 p-4 sm:p-8">{children}</div>
     </div>
   );

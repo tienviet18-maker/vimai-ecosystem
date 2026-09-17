@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin, writeAudit } from "@/lib/auth";
+import { authorizeAdmin } from "@/lib/admin-api";
+import { writeAudit } from "@/lib/auth";
 import { getDb, newId, nowIso } from "@/lib/cloudflare";
-import { assertSameOrigin } from "@/lib/session";
 import { productStatuses, type ProductStatus } from "@/types";
 
 export const runtime = "edge";
@@ -15,13 +15,11 @@ type TranslationInput = {
 };
 
 export async function POST(request: NextRequest) {
-  if (!assertSameOrigin(request)) {
-    return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
-  }
-  const { user, configured } = await requireAdmin();
+  const auth = await authorizeAdmin(request, "products", { mutate: true });
+  if ("response" in auth) return auth.response;
   const db = getDb();
-  if (!configured || !user || !db) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!db) {
+    return NextResponse.json({ error: "unconfigured" }, { status: 503 });
   }
 
   const body = (await request.json().catch(() => null)) as {
@@ -170,13 +168,11 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  if (!assertSameOrigin(request)) {
-    return NextResponse.json({ error: "forbidden" }, { status: 403 });
-  }
-  const { user, configured } = await requireAdmin();
+  const auth = await authorizeAdmin(request, "products", { mutate: true });
+  if ("response" in auth) return auth.response;
   const db = getDb();
-  if (!configured || !user || !db) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!db) {
+    return NextResponse.json({ error: "unconfigured" }, { status: 503 });
   }
   const body = (await request.json().catch(() => null)) as { id?: string } | null;
   if (!body?.id) return NextResponse.json({ error: "invalid" }, { status: 400 });

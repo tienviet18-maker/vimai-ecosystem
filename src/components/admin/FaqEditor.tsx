@@ -19,6 +19,7 @@ export function FaqEditor() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         product_id: emptyToNull(form.get("product_id")),
+        category: emptyToNull(form.get("category")),
         sort_order: Number(form.get("sort_order") || 0),
         published,
         translations: {
@@ -52,6 +53,10 @@ export function FaqEditor() {
         <div className="space-y-2">
           <Label htmlFor="product_id">Product ID (optional)</Label>
           <Input id="product_id" name="product_id" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="category">Category</Label>
+          <Input id="category" name="category" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="sort_order">Sort order</Label>

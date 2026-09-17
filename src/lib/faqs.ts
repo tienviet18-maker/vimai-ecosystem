@@ -74,6 +74,31 @@ export async function getFaqs(locale: Locale, productId?: string | null) {
     }));
 }
 
+export async function getAllFaqsForAdmin(locale: Locale) {
+  const db = getDb();
+  if (!db) return [] as Array<Faq & { category?: string | null }>;
+  try {
+    const faqs = await db.prepare("SELECT * FROM faqs ORDER BY sort_order ASC").all<FaqRow & { category?: string | null }>();
+    const translations = await db.prepare("SELECT * FROM faq_translations").all<TranslationRow>();
+    return (faqs.results ?? []).map((row) => {
+      const list = (translations.results ?? []).filter((item) => item.faq_id === row.id);
+      const translation =
+        list.find((item) => item.locale === locale) ?? list.find((item) => item.locale === "vi");
+      return {
+        id: row.id,
+        product_id: row.product_id,
+        sort_order: row.sort_order,
+        published: asBool(row.published),
+        category: row.category ?? null,
+        question: translation?.question ?? "(missing translation)",
+        answer: translation?.answer ?? "",
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
 export async function getSupportFaqs(locale: Locale) {
   const general = await getFaqs(locale, null);
   if (general.length > 0) return general;

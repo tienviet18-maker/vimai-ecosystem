@@ -1,19 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin, writeAudit } from "@/lib/auth";
+import { authorizeAdmin } from "@/lib/admin-api";
+import { writeAudit } from "@/lib/auth";
 import { updateReview } from "@/lib/reviews";
-import { assertSameOrigin } from "@/lib/session";
 import type { ReviewStatus } from "@/types";
 
 export const runtime = "edge";
 
 export async function PATCH(request: NextRequest) {
-  if (!assertSameOrigin(request)) {
-    return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
-  }
-  const { user, configured } = await requireAdmin();
-  if (!configured || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const auth = await authorizeAdmin(request, "reviews", { mutate: true });
+  if ("response" in auth) return auth.response;
 
   const body = (await request.json()) as {
     id?: string;
@@ -28,7 +23,7 @@ export async function PATCH(request: NextRequest) {
     status: body.status,
     featured: body.featured,
     body: body.body,
-    moderated_by: user.id,
+    moderated_by: auth.user.id,
   });
   if (result.error) {
     return NextResponse.json({ error: result.error }, { status: 400 });

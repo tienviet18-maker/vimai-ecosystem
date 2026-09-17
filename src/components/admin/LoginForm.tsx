@@ -20,6 +20,7 @@ export function LoginForm() {
     const form = new FormData(event.currentTarget);
     const response = await fetch("/api/admin/login", {
       method: "POST",
+      credentials: "same-origin",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: form.get("email"),

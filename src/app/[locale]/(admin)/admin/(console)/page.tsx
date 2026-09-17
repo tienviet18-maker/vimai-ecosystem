@@ -1,11 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getProducts } from "@/lib/products";
-import { getAllArticles } from "@/lib/articles";
-import { getAllReviews } from "@/lib/reviews";
-import { getAnalyticsSnapshot } from "@/lib/analytics";
+import { getAdminCounts } from "@/lib/admin-counts";
 import { getAuditLogs } from "@/lib/auth";
-import { listMedia } from "@/lib/storage";
+import { getAnalyticsSnapshot } from "@/lib/analytics";
+import { PasswordForm } from "@/components/admin/PasswordForm";
 
 export const runtime = "edge";
 
@@ -17,12 +15,9 @@ export default async function AdminDashboardPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("admin");
-  const products = await getProducts({ publishedOnly: false });
-  const articles = await getAllArticles();
-  const reviews = await getAllReviews();
+  const counts = await getAdminCounts();
   const analytics = await getAnalyticsSnapshot();
   const logs = await getAuditLogs(8);
-  const media = await listMedia();
 
   return (
     <div className="space-y-6">
@@ -31,24 +26,14 @@ export default async function AdminDashboardPage({
         <p className="text-sm text-muted-foreground">{t("overview")}</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat title={t("products")} value={products.length} />
-        <Stat title={t("mediaCount")} value={media.length} />
-        <Stat
-          title={t("published")}
-          value={articles.filter((item) => item.status === "published").length}
-        />
-        <Stat
-          title={t("draft")}
-          value={articles.filter((item) => item.status === "draft").length}
-        />
-        <Stat
-          title={t("scheduled")}
-          value={articles.filter((item) => item.status === "scheduled").length}
-        />
-        <Stat
-          title={t("reviews")}
-          value={reviews.filter((item) => item.status === "pending").length}
-        />
+        <Stat title={t("products")} value={counts.products} />
+        <Stat title={t("articles")} value={counts.articles} />
+        <Stat title={t("faq")} value={counts.faqs} />
+        <Stat title={t("media")} value={counts.media} />
+        <Stat title={t("messages")} value={counts.messages} />
+        <Stat title={t("users")} value={counts.users} />
+        <Stat title={t("pages")} value={counts.pages} />
+        <Stat title={t("categories")} value={counts.categories} />
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
@@ -69,7 +54,7 @@ export default async function AdminDashboardPage({
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm">{t("overview")}</CardTitle>
+            <CardTitle className="text-sm">{t("audit")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             {logs.length === 0 ? (
@@ -77,7 +62,7 @@ export default async function AdminDashboardPage({
             ) : (
               logs.map((log) => (
                 <p key={log.id}>
-                  {log.action}
+                  {log.created_at} · {log.actor_email ?? "system"} · {log.action}
                   {log.entity ? ` · ${log.entity}` : ""}
                 </p>
               ))
@@ -85,6 +70,7 @@ export default async function AdminDashboardPage({
           </CardContent>
         </Card>
       </div>
+      <PasswordForm />
     </div>
   );
 }

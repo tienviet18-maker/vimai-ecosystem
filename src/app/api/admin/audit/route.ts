@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin, writeAudit } from "@/lib/auth";
+import { authorizeAdmin } from "@/lib/admin-api";
+import { getAuditLogs } from "@/lib/auth";
 
 export const runtime = "edge";
 
-export async function POST(request: NextRequest) {
-  const { user, configured } = await requireAdmin();
-  if (!configured || !user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  const body = (await request.json().catch(() => ({}))) as {
-    action?: string;
-    entity?: string;
-    entityId?: string;
-  };
-  await writeAudit(body.action ?? "login", body.entity, body.entityId);
-  return NextResponse.json({ ok: true });
+export async function GET(request: NextRequest) {
+  const auth = await authorizeAdmin(request, "audit");
+  if ("response" in auth) return auth.response;
+  const limit = Number(new URL(request.url).searchParams.get("limit") ?? 100);
+  const logs = await getAuditLogs(Math.min(Math.max(limit, 1), 200));
+  return NextResponse.json({ logs });
 }

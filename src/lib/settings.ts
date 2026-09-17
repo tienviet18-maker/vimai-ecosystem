@@ -1,6 +1,15 @@
 import { getDb, nowIso } from "@/lib/cloudflare";
 
-const ALLOWED_KEYS = ["seo_title", "seo_description", "og_image_url", "contact_email"] as const;
+const ALLOWED_KEYS = [
+  "seo_title",
+  "seo_description",
+  "seo_canonical",
+  "og_title",
+  "og_description",
+  "og_image_url",
+  "robots",
+  "contact_email",
+] as const;
 
 export type SiteSettingKey = (typeof ALLOWED_KEYS)[number];
 

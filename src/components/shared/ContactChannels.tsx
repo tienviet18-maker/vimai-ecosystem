@@ -11,17 +11,13 @@ import { cn } from "@/lib/utils";
 
 function ZaloMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="6" fill="#0068FF" />
-      <path
-        d="M12.55 10.82h-2.1v-1.3h3.5c.33 0 .6-.27.6-.6v-2.1c0-.33-.27-.6-.6-.6H7.35c-.33 0-.6.27-.6.6v7c0 .33.27.6.6.6h5.2c.33 0 .6-.27.6-.6v-2.1c0-.33-.27-.6-.6-.6zm-2.1-3.1h1.5v.7h-1.5v-.7zm0 3.8v-.7h1.5v.7h-1.5z"
-        fill="white"
-      />
-      <path
-        d="M16.65 6.22h-1.8c-.33 0-.6.27-.6.6v10.4c0 .33.27.6.6.6h1.8c.33 0 .6-.27.6-.6V6.82c0-.33-.27-.6-.6-.6z"
-        fill="white"
-      />
-    </svg>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="https://page.widget.zalo.me/static/images/2.0/Logo.svg"
+      alt="Zalo"
+      className={className}
+      style={{ objectFit: "contain" }}
+    />
   );
 }
 

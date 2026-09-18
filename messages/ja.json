@@ -22,7 +22,6 @@
     "mission": "ベトナムの未来を創る"
   },
   "home": {
-    "eyebrow": "教育とテクノロジーのエコシステム",
     "title": "学び、仕事、暮らしを、シンプルにする技術。",
     "lead": "特定技能の試験対策、子ども向けの学習、日々の健康管理まで。ViMaiは事実に基づく情報と、落ち着いた設計のプロダクトを届けます。",
     "ctaProducts": "製品を見る",
@@ -216,6 +215,8 @@
     "mediaCount": "メディア",
     "bound": "接続済み",
     "notBound": "未接続",
+    "r2Help": "メディアアップロードには R2 が必要です。Binding: MEDIA。Bucket: vimai-media。実ファイルは R2、メタデータは D1 の media テーブル、公開 URL は /api/media/… です。この Cloudflare アカウントは R2 未契約です（API 10042）。Dashboard → Storage & databases → R2 で有効化し、bucket vimai-media を作成して Pages production に MEDIA をバインドしてください。",
+    "r2Ready": "アップロード先は R2 bucket vimai-media（binding MEDIA）。メタデータは D1。公開 URL は /api/media/… です。",
     "overview": "公開状況の概要",
     "published": "公開",
     "draft": "非公開",

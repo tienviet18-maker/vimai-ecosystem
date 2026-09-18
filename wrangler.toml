@@ -13,8 +13,11 @@ database_name = "vimai-cms"
 database_id = "73aff58e-9876-442c-9816-a2da61f87f1c"
 migrations_dir = "d1/migrations"
 
-# R2 is not enabled on this Cloudflare account yet (API 10042).
-# After enabling R2 in the Dashboard, create the bucket and uncomment:
+# R2 is not entitled on this Cloudflare account (API 10042 / NotEntitled).
+# Pages production currently binds D1 `DB` only. There is no `MEDIA` R2 binding.
+# After enabling R2 in Dashboard → Storage & databases → R2, create the bucket
+# and uncomment the block below. Do not uncomment before the bucket exists;
+# a missing bucket would fail Pages Function publish.
 # npx wrangler r2 bucket create vimai-media
 # [[r2_buckets]]
 # binding = "MEDIA"

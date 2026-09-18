@@ -12,9 +12,13 @@ import { cn } from "@/lib/utils";
 function ZaloMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" fill="#0068FF" />
+      <rect width="24" height="24" rx="6" fill="#0068FF" />
       <path
-        d="M8.1 8.2h2.15c1.86 0 3.05 1.08 3.05 2.78 0 1.74-1.24 2.82-3.18 2.82H9.55V15.8H8.1V8.2Zm1.45 1.22v3.02h.86c1.08 0 1.72-.58 1.72-1.52 0-.92-.64-1.5-1.7-1.5H9.55Z"
+        d="M12.55 10.82h-2.1v-1.3h3.5c.33 0 .6-.27.6-.6v-2.1c0-.33-.27-.6-.6-.6H7.35c-.33 0-.6.27-.6.6v7c0 .33.27.6.6.6h5.2c.33 0 .6-.27.6-.6v-2.1c0-.33-.27-.6-.6-.6zm-2.1-3.1h1.5v.7h-1.5v-.7zm0 3.8v-.7h1.5v.7h-1.5z"
+        fill="white"
+      />
+      <path
+        d="M16.65 6.22h-1.8c-.33 0-.6.27-.6.6v10.4c0 .33.27.6.6.6h1.8c.33 0 .6-.27.6-.6V6.82c0-.33-.27-.6-.6-.6z"
         fill="white"
       />
     </svg>
@@ -47,8 +51,6 @@ export function ContactChannels({
   className?: string;
 }) {
   const t = useTranslations("contact");
-  
-  // Link Messenger đã được gán trực tiếp
   const messengerHref = "https://m.me/vietosaka";
 
   return (

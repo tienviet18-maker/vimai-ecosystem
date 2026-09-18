@@ -22,7 +22,6 @@
     "mission": "Kiến tạo tương lai Việt"
   },
   "home": {
-    "eyebrow": "Hệ sinh thái Giáo dục & Công nghệ",
     "title": "Công nghệ giúp học tập, công việc và đời sống trở nên đơn giản hơn.",
     "lead": "ViMai làm sản phẩm cho luyện thi chứng chỉ tại Nhật, học tập của trẻ em và theo dõi sức khỏe hằng ngày. Thông tin có thật. Giao diện điềm tĩnh.",
     "ctaProducts": "Xem sản phẩm",
@@ -216,6 +215,8 @@
     "mediaCount": "Media",
     "bound": "Đã kết nối",
     "notBound": "Chưa kết nối",
+    "r2Help": "Upload media cần R2. Binding: MEDIA. Bucket: vimai-media. File lưu trên R2, metadata lưu bảng media trên D1, đọc công khai qua /api/media/…. Cloudflare account hiện chưa entitle R2 (API 10042). Bật R2 trong Dashboard → Storage & databases → R2, tạo bucket vimai-media, rồi bind MEDIA trên Pages production.",
+    "r2Ready": "Upload đi R2 bucket vimai-media (binding MEDIA). Metadata nằm trong D1. URL công khai: /api/media/…",
     "overview": "Tình trạng sản phẩm",
     "published": "Công khai",
     "draft": "Nháp",

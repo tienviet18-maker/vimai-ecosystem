@@ -33,7 +33,7 @@ export function MediaUploader({
     if (!response.ok) {
       toast.error(
         response.status === 503
-          ? "R2 is not enabled on Cloudflare yet."
+          ? "R2 is not enabled on this Cloudflare account yet (API 10042). Enable R2 in Dashboard, create bucket vimai-media, bind MEDIA."
           : (json.error ?? "Upload failed"),
       );
       setUploading(false);

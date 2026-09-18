@@ -22,7 +22,6 @@
     "mission": "Building Vietnam's Future"
   },
   "home": {
-    "eyebrow": "Education & Technology Ecosystem",
     "title": "Technology products that make learning, work, and everyday life simpler.",
     "lead": "ViMai builds careful software for Japanese certification study, children's learning, and daily health. Real products. Clear information. No noise.",
     "ctaProducts": "View products",
@@ -216,6 +215,8 @@
     "mediaCount": "Media",
     "bound": "Bound",
     "notBound": "Not bound",
+    "r2Help": "Media uploads need R2. Binding: MEDIA. Bucket: vimai-media. Objects live in R2, metadata in the D1 media table, public reads at /api/media/…. This Cloudflare account is not entitled for R2 (API 10042). Enable R2 in Dashboard → Storage & databases → R2, create bucket vimai-media, then bind MEDIA on Pages production.",
+    "r2Ready": "Uploads go to R2 bucket vimai-media (MEDIA binding). Metadata is stored in D1. Public URL: /api/media/…",
     "overview": "Product status",
     "published": "Published",
     "draft": "Unpublished",

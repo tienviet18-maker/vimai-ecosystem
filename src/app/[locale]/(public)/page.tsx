@@ -61,10 +61,7 @@ export default async function HomePage({
       <section className="border-b border-slate-200/80 bg-white">
         <div className="container py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
-              {t("eyebrow")}
-            </p>
-            <h1 className="mt-4 text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]">
+            <h1 className="text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]">
               {t("title")}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">

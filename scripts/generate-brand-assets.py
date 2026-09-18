@@ -153,8 +153,8 @@ def clean_product_icons() -> None:
         "tokutei_taxi.png": "tokutei_taxi.png",
         "tokutei_vantai.png": "tokutei_vantai.png",
         "sebishi_3kyu.png": "sebishi_3kyu.png",
-        "vimai_kids.jpg": "vimai_kids.png",
-        "maimai.jpg": "maimai.png",
+        "vimai_kids.png": "vimai_kids.png",
+        "maimai.png": "maimai.png",
     }
     for src_name, dest_name in mapping.items():
         src = PRODUCTS / src_name

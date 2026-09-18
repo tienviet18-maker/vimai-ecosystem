@@ -7,6 +7,15 @@ export const PRODUCT_SITES: Record<string, string> = {
   maimai: "https://maimai.vimai.jp",
 };
 
+/** Canonical product logos served from /public/images/products. */
+export const PRODUCT_LOGOS: Record<string, string> = {
+  "tokutei-taxi": "/images/products/tokutei_taxi.png",
+  "tokutei-transport": "/images/products/tokutei_vantai.png",
+  seibi: "/images/products/sebishi_3kyu.png",
+  kids: "/images/products/vimai_kids.png",
+  maimai: "/images/products/maimai.png",
+};
+
 export function resolveProductSite(
   slug: string,
   websiteUrl?: string | null,
@@ -14,4 +23,17 @@ export function resolveProductSite(
   const fromRecord = websiteUrl?.trim();
   if (fromRecord) return fromRecord;
   return PRODUCT_SITES[slug] ?? null;
+}
+
+export function resolveProductLogo(
+  slug: string,
+  logoUrl?: string | null,
+): string {
+  const canonical = PRODUCT_LOGOS[slug];
+  if (slug === "tokutei-transport") {
+    return PRODUCT_LOGOS["tokutei-transport"];
+  }
+  const fromRecord = logoUrl?.trim();
+  if (fromRecord) return fromRecord;
+  return canonical ?? PRODUCT_LOGOS["tokutei-taxi"];
 }

@@ -7,8 +7,8 @@ insert into public.products (
   ('00000000-0000-0000-0000-000000000001', 'tokutei-taxi', 'coming_soon', true, 1, '/images/products/tokutei_taxi.png', true),
   ('00000000-0000-0000-0000-000000000002', 'tokutei-transport', 'coming_soon', true, 2, '/images/products/tokutei_vantai.png', true),
   ('00000000-0000-0000-0000-000000000003', 'seibi', 'development', true, 3, '/images/products/sebishi_3kyu.png', true),
-  ('00000000-0000-0000-0000-000000000004', 'kids', 'development', false, 4, '/images/products/vimai_kids.jpg', true),
-  ('00000000-0000-0000-0000-000000000005', 'maimai', 'development', false, 5, '/images/products/maimai.jpg', true)
+  ('00000000-0000-0000-0000-000000000004', 'kids', 'development', false, 4, '/images/products/vimai_kids.png', true),
+  ('00000000-0000-0000-0000-000000000005', 'maimai', 'development', false, 5, '/images/products/maimai.png', true)
 on conflict (id) do nothing;
 
 insert into public.product_translations (product_id, locale, name, tagline, description, features)

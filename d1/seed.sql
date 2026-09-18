@@ -96,7 +96,7 @@ INSERT OR IGNORE INTO products (
     ) VALUES (
       '00000000-0000-0000-0000-000000000004', 'kids', 'development',
       NULL, NULL, NULL,
-      0, 4, '/images/products/vimai_kids.jpg',
+      0, 4, '/images/products/vimai_kids.png',
       1, strftime('%Y-%m-%dT%H:%M:%fZ','now'), strftime('%Y-%m-%dT%H:%M:%fZ','now')
     );
 INSERT OR IGNORE INTO product_translations (
@@ -126,7 +126,7 @@ INSERT OR IGNORE INTO products (
     ) VALUES (
       '00000000-0000-0000-0000-000000000005', 'maimai', 'development',
       NULL, NULL, NULL,
-      0, 5, '/images/products/maimai.jpg',
+      0, 5, '/images/products/maimai.png',
       1, strftime('%Y-%m-%dT%H:%M:%fZ','now'), strftime('%Y-%m-%dT%H:%M:%fZ','now')
     );
 INSERT OR IGNORE INTO product_translations (

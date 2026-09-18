@@ -1,6 +1,6 @@
 import { localizeProduct, seedProducts } from "@/lib/seed";
 import { asBool, getDb, parseJson } from "@/lib/cloudflare";
-import { resolveProductSite } from "@/lib/product-sites";
+import { resolveProductLogo, resolveProductSite } from "@/lib/product-sites";
 import type {
   Locale,
   LocalizedProduct,
@@ -65,10 +65,10 @@ function toProduct(
     google_play_url: row.google_play_url,
     featured: asBool(row.featured),
     sort_order: row.sort_order,
-    logo_url: row.logo_url ?? "/images/products/tokutei_taxi.png",
-    icon_url: row.icon_url ?? row.logo_url,
-    hero_image_url: row.hero_image_url ?? row.logo_url,
-    og_image_url: row.og_image_url ?? row.logo_url,
+    logo_url: resolveProductLogo(row.slug, row.logo_url),
+    icon_url: row.icon_url ?? resolveProductLogo(row.slug, row.logo_url),
+    hero_image_url: row.hero_image_url ?? resolveProductLogo(row.slug, row.logo_url),
+    og_image_url: row.og_image_url ?? resolveProductLogo(row.slug, row.logo_url),
     seo_title: row.seo_title,
     seo_description: row.seo_description,
     target_audience: row.target_audience,

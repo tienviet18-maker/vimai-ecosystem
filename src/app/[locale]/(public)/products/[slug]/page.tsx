@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
+import { AppStoreButton } from "@/components/shared/AppStoreButton";
+import { PlayStoreButton } from "@/components/shared/PlayStoreButton";
 import { ProductGallery } from "@/components/shared/ProductGallery";
 import { PwaInstallGuide } from "@/components/shared/PwaInstallGuide";
 import { FeatureList } from "@/components/shared/FeatureList";
@@ -152,7 +154,14 @@ export default async function ProductPage({
             ) : null}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 space-y-8">
+            <div>
+              <h2 className="text-lg font-semibold tracking-tight">{t("download")}</h2>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <AppStoreButton href={product.app_store_url} label={t("storeSoon")} />
+                <PlayStoreButton href={product.google_play_url} label={t("storeSoon")} />
+              </div>
+            </div>
             <PwaInstallGuide />
           </div>
         </div>

@@ -99,7 +99,7 @@
   },
   "about": {
     "title": "About",
-    "lead": "ViMai is an education and technology ecosystem. We build trustworthy digital products for people preparing for Japanese certifications, children, and anyone tracking daily health.",
+    "lead": "ViMai is an independent software project focused on building an application ecosystem for learning, health, and everyday utilities. Our mission is to provide clear, practical software tools that help users with specific needs: certification exam study, children's education, and daily health tracking.",
     "storyTitle": "Vision",
     "storyBody": "Guided by “Building Vietnam's Future,” ViMai is not only about passing an exam. It is about durable learning and daily wellbeing.",
     "missionP1": "ViMai is an independent software project focused on building an application ecosystem for learning, health, and everyday utilities. Our mission is to provide clear, practical software tools that help users with specific needs: certification exam study, children's education, and daily health tracking. We do not promise exam passes or medical outcomes. Each product is a support tool, and its release status is stated on this website.",
@@ -147,7 +147,7 @@
   },
   "footer": {
     "products": "Products",
-    "company": "Company",
+    "company": "Information",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "contact": "Contact",

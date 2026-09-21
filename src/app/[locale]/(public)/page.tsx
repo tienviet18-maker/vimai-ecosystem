@@ -45,8 +45,8 @@ export default async function HomePage({
           email: CONTACT_EMAIL,
           address: {
             "@type": "PostalAddress",
-            addressLocality: "Osaka",
-            addressCountry: "JP",
+            addressLocality: "Ninh Binh",
+            addressCountry: "VN",
           },
           knowsAbout: [
             "Specified Skilled Worker",

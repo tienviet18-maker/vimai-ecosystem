@@ -24,7 +24,7 @@
   },
   "home": {
     "title": "ViMai - Kiến tạo hệ sinh thái ứng dụng thông minh cho cuộc sống của bạn.",
-    "lead": "ViMai là công ty công nghệ tập trung vào giáo dục, sức khỏe và tiện ích đời sống. Chúng tôi xây dựng ứng dụng luyện thi chứng chỉ tại Nhật, học tập cho trẻ em và theo dõi sức khỏe hằng ngày. Thông tin công bố dựa trên sự thật đã xác nhận; sản phẩm chưa ra mắt được ghi rõ trạng thái.",
+    "lead": "ViMai là một dự án phát triển phần mềm độc lập, tập trung xây dựng hệ sinh thái ứng dụng cho học tập, sức khỏe và tiện ích đời sống. Sứ mệnh của chúng tôi là cung cấp các công cụ phần mềm rõ ràng, thực tiễn để giúp cộng đồng người dùng giải quyết những nhu cầu cụ thể: luyện thi chứng chỉ, hỗ trợ giáo dục trẻ em, và theo dõi sức khỏe hằng ngày. Thông tin công bố dựa trên sự thật đã xác nhận; sản phẩm chưa ra mắt được ghi rõ trạng thái.",
     "ctaProducts": "Khám phá ứng dụng",
     "ctaContact": "Liên hệ hợp tác",
     "productsTitle": "Ứng dụng",
@@ -102,7 +102,7 @@
     "lead": "ViMai là hệ sinh thái Giáo dục & Công nghệ. Chúng tôi tạo sản phẩm số đáng tin cậy cho người luyện thi tại Nhật, trẻ em và người cần theo dõi sức khỏe hằng ngày.",
     "storyTitle": "Tầm nhìn",
     "storyBody": "Lấy tinh thần « Kiến tạo tương lai Việt » trên nhận diện thương hiệu, ViMai không chỉ hướng tới kỳ thi mà còn xây nền tảng học tập và sinh hoạt bền vững.",
-    "missionP1": "ViMai là công ty công nghệ đặt trụ sở định hướng tại Osaka, Nhật Bản, xây dựng hệ sinh thái ứng dụng cho học tập, sức khỏe và tiện ích đời sống. Sứ mệnh của chúng tôi là dùng phần mềm rõ ràng, kiểm chứng được để giúp người dùng — đặc biệt người Việt đang sống và làm việc tại Nhật — giải quyết những việc cụ thể: luyện thi chứng chỉ, hỗ trợ con học, và ghi nhận sức khỏe hằng ngày. Chúng tôi không cam kết đậu kỳ thi hay hiệu quả y tế. Mỗi sản phẩm là công cụ hỗ trợ; trạng thái phát hành (ý tưởng, đang phát triển, sắp ra mắt, đã phát hành) luôn được ghi rõ trên website.",
+    "missionP1": "ViMai là một dự án phát triển phần mềm độc lập, tập trung xây dựng hệ sinh thái ứng dụng cho học tập, sức khỏe và tiện ích đời sống. Sứ mệnh của chúng tôi là cung cấp các công cụ phần mềm rõ ràng, thực tiễn để giúp cộng đồng người dùng giải quyết những nhu cầu cụ thể: luyện thi chứng chỉ, hỗ trợ giáo dục trẻ em, và theo dõi sức khỏe hằng ngày. Chúng tôi không cam kết đậu kỳ thi hay hiệu quả y tế. Mỗi sản phẩm là công cụ hỗ trợ; trạng thái phát hành (ý tưởng, đang phát triển, sắp ra mắt, đã phát hành) luôn được ghi rõ trên website.",
     "missionP2": "Mỗi ứng dụng xuất phát từ một vấn đề thực tiễn chứ không phải từ hiệu ứng thị giác. Tokutei Taxi và ViMai Transport phục vụ luyện thi 特定技能 trong lĩnh vực taxi và vận tải. ViMai Seibi hỗ trợ ôn thi 3級自動車整備士. ViMai Kids là nền tảng học tương tác cho trẻ, với góc nhìn dành cho phụ huynh. Maimai ghi nhận các chỉ số sinh hoạt cá nhân như giấc ngủ, nước, dinh dưỡng và chu kỳ. Giao diện được thiết kế tối giản: ưu tiên tốc độ tải, thứ tự thông tin và chữ dễ đọc trên điện thoại. Người dùng cần hiểu sản phẩm làm gì, dành cho ai, và giới hạn ở đâu ngay từ lần truy cập đầu tiên.",
     "missionP3": "Cam kết bảo mật dữ liệu là điều kiện để vận hành lâu dài, không phải lớp trang trí. Website chỉ thu thập thông tin cần để trả lời liên hệ, vận hành CMS và (nếu bạn chủ động gửi) xét duyệt phản hồi. Email không được công khai. Chúng tôi không bán dữ liệu cá nhân. Hạ tầng công khai chạy trên Cloudflare. Chi tiết phạm vi xử lý, cookie, quyền của bạn và cách liên hệ được nêu trong Chính sách bảo mật. Khi dùng ứng dụng cho trẻ em, phụ huynh chịu trách nhiệm giám sát nội dung và thời gian sử dụng.",
     "scopeTitle": "Lĩnh vực",
@@ -151,7 +151,7 @@
     "privacy": "Chính sách bảo mật (Privacy Policy)",
     "terms": "Điều khoản sử dụng (Terms of Service)",
     "contact": "Liên hệ",
-    "address": "Osaka, Japan",
+    "address": "Ninh Bình, Việt Nam",
     "emailLabel": "Email",
     "addressLabel": "Địa chỉ",
     "legal": "© 2026 ViMai Ecosystem. All rights reserved."
@@ -179,10 +179,10 @@
   "legal": {
     "privacyTitle": "Chính sách bảo mật (Privacy Policy)",
     "privacyUpdated": "Có hiệu lực / cập nhật: 21 tháng 9 năm 2026.",
-    "privacyIntro": "Chính sách này mô tả cách website vimai.jp (\"Website\") xử lý thông tin khi bạn truy cập trang giới thiệu hệ sinh thái ViMai, gửi liên hệ, gửi phản hồi, hoặc khi quản trị viên đăng nhập CMS. ViMai không bịa đặt thông tin pháp nhân chưa xác nhận. Nếu có mâu thuẫn giữa bản tiếng Việt, tiếng Anh và tiếng Nhật, bản tiếng Việt trên vimai.jp được dùng cho người dùng mặc định; các bản dịch nhằm giúp đọc, không tạo cam kết khác.",
+    "privacyIntro": "Chính sách này mô tả cách website vimai.jp (\"Website\") xử lý thông tin khi bạn truy cập trang giới thiệu hệ sinh thái ViMai, gửi liên hệ, gửi phản hồi, hoặc khi quản trị viên đăng nhập CMS. ViMai không bịa đặt thông tin pháp lý chưa xác nhận. Nếu có mâu thuẫn giữa bản tiếng Việt, tiếng Anh và tiếng Nhật, bản tiếng Việt trên vimai.jp được dùng cho người dùng mặc định; các bản dịch nhằm giúp đọc, không tạo cam kết khác.",
     "privacyContactLead": "Mọi yêu cầu liên quan đến dữ liệu cá nhân, xin gửi tới",
     "whoTitle": "1. Đơn vị vận hành",
-    "whoBody": "Website do ViMai vận hành. Định hướng địa lý: Osaka, Japan. Email hỗ trợ: vimai.support@gmail.com. Chúng tôi chưa công bố mã số pháp nhân trên trang này vì thông tin đó chỉ được đăng khi đã xác nhận. Yêu cầu liên hệ qua email nêu trên.",
+    "whoBody": "Website do dự án phần mềm độc lập ViMai vận hành. Địa chỉ liên hệ: Ninh Bình, Việt Nam. Email hỗ trợ: vimai.support@gmail.com. Mọi yêu cầu xin gửi qua email nêu trên.",
     "collectTitle": "2. Dữ liệu chúng tôi thu thập",
     "collectBody": "Dữ liệu bạn chủ động gửi: họ tên, email, tiêu đề và nội dung form Liên hệ; tên hiển thị, nội dung, đánh giá tùy chọn và quốc gia tùy chọn khi gửi phản hồi cộng đồng. Dữ liệu kỹ thuật tối thiểu: địa chỉ IP, user agent, thời điểm gửi, có thể được dùng để chống spam và bảo vệ form (giới hạn tần suất). Dữ liệu quản trị: email đăng nhập và phiên phiên bản cookie HttpOnly khi nhân sự được cấp quyền CMS. Chúng tôi không yêu cầu số thẻ tín dụng trên website công khai này. Chúng tôi không thu thập dữ liệu sức khỏe chi tiết từ Maimai hay dữ liệu học tập của trẻ từ ViMai Kids trên website vimai.jp trừ khi bạn tự viết chúng vào form — vui lòng không gửi thông tin y tế, giấy tờ tùy thân hoặc dữ liệu của trẻ vào form liên hệ.",
     "useTitle": "3. Mục đích sử dụng",
@@ -190,7 +190,7 @@
     "legalBasisTitle": "4. Cơ sở xử lý",
     "legalBasisBody": "Với người dùng tại Nhật Bản, chúng tôi xử lý dữ liệu theo Luật bảo vệ thông tin cá nhân (APPI) ở phạm vi áp dụng. Cơ sở chính: thực hiện yêu cầu bạn gửi (trả lời liên hệ); lợi ích vận hành hợp pháp (bảo mật, chống lạm dụng); và sự đồng ý khi bạn gửi phản hồi để xét duyệt. Chúng tôi không dùng dữ liệu form để ra quyết định tự động mang tính pháp lý đối với bạn.",
     "shareTitle": "5. Chia sẻ dữ liệu",
-    "shareBody": "ViMai không bán dữ liệu cá nhân. Dữ liệu có thể được xử lý bởi nhà cung cấp hạ tầng cần thiết để chạy Website, hiện là Cloudflare (mạng, DNS, Pages, cơ sở dữ liệu D1 và — khi được bật — lưu trữ media). Nhân sự quản trị chỉ truy cập CMS khi có tài khoản được cấp. Chúng tôi có thể tiết lộ thông tin nếu pháp luật Nhật Bản yêu cầu. Phản hồi đã duyệt chỉ hiện tên hiển thị và nội dung bạn gửi, không kèm email.",
+    "shareBody": "ViMai không bán dữ liệu cá nhân. Dữ liệu có thể được xử lý bởi nhà cung cấp hạ tầng cần thiết để chạy Website, hiện là Cloudflare (mạng, DNS, Pages, cơ sở dữ liệu D1 và — khi được bật — lưu trữ media). Nhân sự quản trị chỉ truy cập CMS khi có tài khoản được cấp. Chúng tôi có thể tiết lộ thông tin nếu pháp luật Việt Nam yêu cầu. Phản hồi đã duyệt chỉ hiện tên hiển thị và nội dung bạn gửi, không kèm email.",
     "cookiesTitle": "6. Cookie và phân tích",
     "cookiesBody": "Cookie phiên đăng nhập quản trị (vimai_session) là cookie HttpOnly, dùng cho CMS, không dùng cho quảng cáo. Nếu Cloudflare Web Analytics được bật, đây là giải pháp hướng tới quyền riêng tư, không dùng cookie quảng cáo. Số liệu trên trang quản trị có thể là ước lượng. Trình duyệt của bạn có thể chặn một phần đo lường.",
     "adsTitle": "7. Quảng cáo (kể cả Google AdSense)",
@@ -206,7 +206,7 @@
     "rightsTitle": "12. Quyền của bạn",
     "rightsBody": "Tùy phạm vi APPI và pháp luật nơi bạn cư trú, bạn có thể yêu cầu được biết dữ liệu liên hệ chúng tôi đang giữ, yêu cầu sửa, xóa, hoặc hạn chế xử lý khi có cơ sở. Gửi email từ địa chỉ đã dùng để liên hệ, nêu rõ yêu cầu. Chúng tôi có thể cần xác minh danh tính ở mức hợp lý. Quyền có thể bị giới hạn khi pháp luật yêu cầu lưu hồ sơ hoặc khi yêu cầu ảnh hưởng quyền của người khác.",
     "contactUsTitle": "13. Liên hệ về quyền riêng tư",
-    "contactUsBody": "Email: vimai.support@gmail.com. Địa chỉ định hướng: Osaka, Japan. Chúng tôi phản hồi trong thời gian hợp lý sau khi nhận đủ thông tin để xác định yêu cầu.",
+    "contactUsBody": "Email: vimai.support@gmail.com. Địa chỉ liên hệ: Ninh Bình, Việt Nam. Chúng tôi phản hồi trong thời gian hợp lý sau khi nhận đủ thông tin để xác định yêu cầu.",
     "changesTitle": "14. Thay đổi chính sách",
     "changesBody": "Khi phạm vi xử lý thay đổi (ví dụ bật quảng cáo, thêm thanh toán, hoặc công bố pháp nhân đầy đủ), chúng tôi cập nhật trang này và sửa ngày hiệu lực. Việc tiếp tục sử dụng Website sau khi chính sách được đăng tải đồng nghĩa bạn đã đọc phiên bản mới. Bản ghi trên git/website công khai là nguồn hiển thị hiện hành.",
     "termsTitle": "Điều khoản sử dụng (Terms of Service)",
@@ -221,7 +221,7 @@
     "termsLiabilityTitle": "Giới hạn trách nhiệm",
     "termsLiabilityBody": "Website được cung cấp \"nguyên trạng\". Trong phạm vi pháp luật cho phép, ViMai không chịu trách nhiệm cho thiệt hại gián tiếp phát sinh từ việc dựa vào nội dung giới thiệu hoặc từ gián đoạn mạng. Điều khoản chi tiết hơn sẽ được bổ sung khi thông tin pháp nhân được xác nhận.",
     "termsLawTitle": "Luật áp dụng",
-    "termsLawBody": "Trong phạm vi cho phép, điều khoản này được hiểu theo pháp luật Nhật Bản. Tranh chấp ưu tiên thương lượng qua email vimai.support@gmail.com."
+    "termsLawBody": "Trong phạm vi cho phép, điều khoản này được hiểu theo pháp luật Việt Nam. Tranh chấp ưu tiên thương lượng qua email vimai.support@gmail.com."
   },
   "floating": {
     "label": "Liên hệ",

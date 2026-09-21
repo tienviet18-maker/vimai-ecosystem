@@ -24,7 +24,7 @@
   },
   "home": {
     "title": "ViMai — a practical application ecosystem for learning, health, and daily life.",
-    "lead": "ViMai is a technology company focused on education, health, and everyday utilities. We build exam-prep tools for people in Japan, learning apps for children, and personal health logging. Public information is limited to confirmed facts; unreleased products are labeled clearly.",
+    "lead": "ViMai is an independent software project building an application ecosystem for learning, health, and everyday utilities. Our mission is to provide clear, practical software tools that help people with specific needs: certification exam study, children's education, and daily health tracking. Public information is limited to confirmed facts; unreleased products are labeled clearly.",
     "ctaProducts": "Explore apps",
     "ctaContact": "Partnership inquiry",
     "productsTitle": "Applications",
@@ -102,7 +102,7 @@
     "lead": "ViMai is an education and technology ecosystem. We build trustworthy digital products for people preparing for Japanese certifications, children, and anyone tracking daily health.",
     "storyTitle": "Vision",
     "storyBody": "Guided by “Building Vietnam's Future,” ViMai is not only about passing an exam. It is about durable learning and daily wellbeing.",
-    "missionP1": "ViMai is a technology company oriented toward Osaka, Japan. We build an application ecosystem for learning, health, and everyday utilities. Our mission is to use clear, verifiable software to help people — especially Vietnamese residents working and studying in Japan — with concrete tasks: exam preparation, children's learning, and daily health logging. We do not promise exam passes or medical outcomes. Each product is a support tool, and its release status is stated on this website.",
+    "missionP1": "ViMai is an independent software project focused on building an application ecosystem for learning, health, and everyday utilities. Our mission is to provide clear, practical software tools that help users with specific needs: certification exam study, children's education, and daily health tracking. We do not promise exam passes or medical outcomes. Each product is a support tool, and its release status is stated on this website.",
     "missionP2": "Each app starts from a practical problem, not from visual effects. Tokutei Taxi and ViMai Transport support Specified Skilled Worker study in taxi and transport. ViMai Seibi supports Class 3 automobile mechanic theory. ViMai Kids is an interactive learning platform designed for parents to follow. Maimai logs personal lifestyle metrics such as sleep, water, nutrition, and cycle tracking. The interface is intentionally calm: fast pages, readable type, and a clear order of information on mobile. Visitors should see what a product does, who it is for, and where its limits are on the first visit.",
     "missionP3": "Data protection is an operating requirement, not decoration. This website collects only what is needed to answer inquiries, run the CMS, and (if you choose to send feedback) moderate that feedback. Email addresses are not published. We do not sell personal data. The public site runs on Cloudflare. The Privacy Policy explains processing, cookies, your rights, and how to contact us. When a product is used by children, a parent or guardian is responsible for supervision.",
     "scopeTitle": "Focus areas",
@@ -151,7 +151,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "contact": "Contact",
-    "address": "Osaka, Japan",
+    "address": "Ninh Binh, Vietnam",
     "emailLabel": "Email",
     "addressLabel": "Address",
     "legal": "© 2026 ViMai Ecosystem. All rights reserved."
@@ -179,10 +179,10 @@
   "legal": {
     "privacyTitle": "Privacy Policy",
     "privacyUpdated": "Effective / last updated: 21 September 2026.",
-    "privacyIntro": "This policy describes how vimai.jp (the \"Website\") handles information when you browse the ViMai ecosystem hub, send a contact message, submit optional feedback, or when staff sign in to the CMS. ViMai does not invent unconfirmed legal-entity details. Translations help readers; they do not create a separate contract.",
+    "privacyIntro": "This policy describes how vimai.jp (the \"Website\") handles information when you browse the ViMai ecosystem hub, send a contact message, submit optional feedback, or when staff sign in to the CMS. ViMai does not invent unconfirmed legal details. Translations help readers; they do not create a separate contract.",
     "privacyContactLead": "For privacy requests, email",
     "whoTitle": "1. Operator",
-    "whoBody": "The Website is operated by ViMai. Geographic orientation: Osaka, Japan. Support email: vimai.support@gmail.com. A corporate registration number is not published here until it is confirmed. Contact the email above.",
+    "whoBody": "The Website is operated by the independent software project ViMai. Contact address: Ninh Binh, Vietnam. Support email: vimai.support@gmail.com. Please use that email for all requests.",
     "collectTitle": "2. Data we collect",
     "collectBody": "Information you submit: name, email, subject and message on the Contact form; display name, message, optional rating and optional country on community feedback. Technical minimums: IP address, user agent and timestamps may be used to rate-limit forms and reduce spam. Admin data: login email and an HttpOnly session cookie for authorised CMS users. This public website does not collect payment card numbers. Do not send medical details, identity documents or children's data in public forms. Product apps such as Maimai or ViMai Kids are described here; this hub does not collect their in-app health or learning records unless you type them into a form.",
     "useTitle": "3. Purposes",
@@ -190,7 +190,7 @@
     "legalBasisTitle": "4. Legal basis",
     "legalBasisBody": "For users in Japan, processing follows the Act on the Protection of Personal Information (APPI) where it applies. Bases include responding to your request, legitimate operation and security, and consent when you submit feedback for review. We do not use form data for automated legal decisions about you.",
     "shareTitle": "5. Sharing",
-    "shareBody": "ViMai does not sell personal data. Processors needed to run the Website currently include Cloudflare (network, DNS, Pages, D1, and media storage if enabled). CMS access is limited to authorised staff. We may disclose information if Japanese law requires it. Approved feedback shows only the display name and text you submitted.",
+    "shareBody": "ViMai does not sell personal data. Processors needed to run the Website currently include Cloudflare (network, DNS, Pages, D1, and media storage if enabled). CMS access is limited to authorised staff. We may disclose information if Vietnamese law requires it. Approved feedback shows only the display name and text you submitted.",
     "cookiesTitle": "6. Cookies and analytics",
     "cookiesBody": "The admin session cookie (vimai_session) is HttpOnly and is not an advertising cookie. If Cloudflare Web Analytics is enabled, it is privacy-oriented and does not use ad cookies. Dashboard figures may be approximate.",
     "adsTitle": "7. Advertising (including Google AdSense)",
@@ -206,7 +206,7 @@
     "rightsTitle": "12. Your rights",
     "rightsBody": "Depending on APPI and the law of your residence, you may ask what contact data we hold, and request correction, deletion or restriction where a basis exists. Email us from the address you used, and state the request. We may take reasonable steps to verify identity. Rights can be limited where law requires records or where others' rights are affected.",
     "contactUsTitle": "13. Privacy contact",
-    "contactUsBody": "Email: vimai.support@gmail.com. Orientation address: Osaka, Japan. We reply within a reasonable time after we have enough information to identify the request.",
+    "contactUsBody": "Email: vimai.support@gmail.com. Contact address: Ninh Binh, Vietnam. We reply within a reasonable time after we have enough information to identify the request.",
     "changesTitle": "14. Changes",
     "changesBody": "If processing changes (for example ads, payments, or a confirmed legal entity), we update this page and the effective date. Continued use after publication means you have had the chance to read the new version. The public website is the current text.",
     "termsTitle": "Terms of Service",
@@ -221,7 +221,7 @@
     "termsLiabilityTitle": "Limitation",
     "termsLiabilityBody": "The Website is provided as is. To the extent allowed by law, ViMai is not liable for indirect loss from relying on introductory copy or from network interruption. Fuller terms will be added when the operating entity is confirmed.",
     "termsLawTitle": "Governing law",
-    "termsLawBody": "To the extent permitted, these terms are interpreted under the laws of Japan. Please try to resolve disputes first by emailing vimai.support@gmail.com."
+    "termsLawBody": "To the extent permitted, these terms are interpreted under the laws of Vietnam. Please try to resolve disputes first by emailing vimai.support@gmail.com."
   },
   "floating": {
     "label": "Contact",

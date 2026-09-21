@@ -1,6 +1,21 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
+import { PrivacyPolicy } from "@/components/legal/PrivacyPolicy";
 
 export const runtime = "edge";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "legal" });
+  return {
+    title: t("privacyTitle"),
+    description: t("privacyIntro"),
+  };
+}
 
 export default async function PrivacyPage({
   params,
@@ -9,16 +24,5 @@ export default async function PrivacyPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("legal");
-
-  return (
-    <section className="container max-w-3xl py-16 lg:py-24">
-      <h1 className="text-3xl font-semibold tracking-tight">{t("privacyTitle")}</h1>
-      <p className="mt-6 leading-8 text-slate-600">{t("privacyBody")}</p>
-      <h2 className="mt-10 text-xl font-semibold">{t("analyticsTitle")}</h2>
-      <p className="mt-3 leading-8 text-slate-600">{t("analyticsBody")}</p>
-      <h2 className="mt-10 text-xl font-semibold">{t("feedbackTitle")}</h2>
-      <p className="mt-3 leading-8 text-slate-600">{t("feedbackBody")}</p>
-    </section>
-  );
+  return <PrivacyPolicy />;
 }

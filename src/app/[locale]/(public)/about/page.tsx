@@ -20,6 +20,9 @@ export default async function AboutPage({
 
       <h2 className="mt-14 text-xl font-semibold tracking-tight">{t("storyTitle")}</h2>
       <p className="mt-4 leading-8 text-slate-600">{t("storyBody")}</p>
+      <p className="mt-5 leading-8 text-slate-600">{t("missionP1")}</p>
+      <p className="mt-5 leading-8 text-slate-600">{t("missionP2")}</p>
+      <p className="mt-5 leading-8 text-slate-600">{t("missionP3")}</p>
 
       <h2 className="mt-14 text-xl font-semibold tracking-tight">{t("scopeTitle")}</h2>
       <ul className="mt-5 list-disc space-y-3 pl-5 leading-7 text-slate-600">

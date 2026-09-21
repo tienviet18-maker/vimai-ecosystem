@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
 import { getApprovedReviews } from "@/lib/reviews";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { SITE_URL } from "@/lib/utils";
 import type { Locale } from "@/types";
 
@@ -21,6 +22,7 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("home");
+  const about = await getTranslations("about");
   const products = await getLocalizedProducts(locale as Locale);
   const featured = products.filter((item) => item.featured);
   const reviews = await getApprovedReviews(locale as Locale);
@@ -40,6 +42,12 @@ export default async function HomePage({
           url: SITE_URL,
           logo: `${SITE_URL}/brand/vimai-logo-trim.png`,
           description: t("lead"),
+          email: CONTACT_EMAIL,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Osaka",
+            addressCountry: "JP",
+          },
           knowsAbout: [
             "Specified Skilled Worker",
             "Tokutei Gino",
@@ -58,10 +66,13 @@ export default async function HomePage({
           },
         }}
       />
-      <section className="border-b border-slate-200/80 bg-white">
+      <section aria-labelledby="hero-heading" className="border-b border-slate-200/80 bg-white">
         <div className="container py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
-            <h1 className="text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]">
+            <h1
+              id="hero-heading"
+              className="text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]"
+            >
               {t("title")}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
@@ -85,8 +96,23 @@ export default async function HomePage({
         </div>
       </section>
 
-      <section className="container py-16 lg:py-20">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
+      <section
+        id="about"
+        aria-labelledby="about-heading"
+        className="border-b border-slate-200/80 bg-white"
+      >
+        <div className="container max-w-3xl py-16 lg:py-20">
+          <h2 id="about-heading" className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
+            {about("title")}
+          </h2>
+          <p className="mt-6 text-base leading-8 text-slate-600">{about("missionP1")}</p>
+          <p className="mt-5 text-base leading-8 text-slate-600">{about("missionP2")}</p>
+          <p className="mt-5 text-base leading-8 text-slate-600">{about("missionP3")}</p>
+        </div>
+      </section>
+
+      <section id="products" aria-labelledby="products-heading" className="container py-16 lg:py-20">
+        <h2 id="products-heading" className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
           {t("ecosystemTitle")}
         </h2>
         <p className="mt-3 max-w-2xl leading-7 text-slate-500">{t("productsLead")}</p>

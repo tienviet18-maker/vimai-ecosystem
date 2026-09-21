@@ -11,10 +11,9 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/products", key: "products" },
-  { href: "/articles", key: "articles" },
+  { href: "/", key: "home" },
   { href: "/about", key: "about" },
-  { href: "/support", key: "support" },
+  { href: "/products", key: "products" },
 ] as const;
 
 export function Header() {

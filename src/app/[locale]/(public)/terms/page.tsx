@@ -1,6 +1,21 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
+import { TermsOfService } from "@/components/legal/TermsOfService";
 
 export const runtime = "edge";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "legal" });
+  return {
+    title: t("termsTitle"),
+    description: t("termsIntro"),
+  };
+}
 
 export default async function TermsPage({
   params,
@@ -9,12 +24,5 @@ export default async function TermsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("legal");
-
-  return (
-    <section className="container max-w-3xl py-16 lg:py-24">
-      <h1 className="text-3xl font-semibold tracking-tight">{t("termsTitle")}</h1>
-      <p className="mt-6 leading-8 text-slate-600">{t("termsBody")}</p>
-    </section>
-  );
+  return <TermsOfService />;
 }

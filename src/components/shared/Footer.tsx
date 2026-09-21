@@ -3,6 +3,7 @@ import { BrandMark } from "@/components/shared/BrandMark";
 import { ContactChannels } from "@/components/shared/ContactChannels";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/contact";
 import type { Locale } from "@/types";
 
 export async function Footer({ locale }: { locale: Locale }) {
@@ -23,7 +24,19 @@ export async function Footer({ locale }: { locale: Locale }) {
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
               {t("contact")}
             </p>
-            <ContactChannels className="mt-3" />
+            <ul className="mt-3 space-y-2 text-sm text-slate-600">
+              <li>
+                <span className="text-slate-400">{t("emailLabel")}: </span>
+                <a href={CONTACT_MAILTO} className="hover:text-primary">
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <span className="text-slate-400">{t("addressLabel")}: </span>
+                {t("address")}
+              </li>
+            </ul>
+            <ContactChannels className="mt-4" />
           </div>
         </div>
         <div>

@@ -135,15 +135,16 @@
     "direct": "Gửi email",
     "required": "Trường bắt buộc.",
     "zaloAria": "Liên hệ ViMai qua Zalo",
-    "messengerAria": "Liên hệ ViMai qua Messenger VietOsaka",
+    "facebookAria": "Mở Facebook Page ViMai",
+    "facebookMessageAria": "Nhắn tin cho ViMai trên Facebook",
     "emailAria": "Gửi email cho ViMai",
     "channelsTitle": "Kênh hỗ trợ",
     "zalo": "Zalo",
     "zaloHint": "Nhắn tin trực tiếp",
     "emailLabel": "Email",
-    "messenger": "Messenger VietOsaka",
-    "messengerHint": "Nhắn tin trên Messenger",
-    "messengerPending": "URL Messenger chưa được cấu hình"
+    "facebook": "Facebook",
+    "facebookHint": "Fanpage ViMai",
+    "facebookMessage": "Nhắn tin Facebook"
   },
   "footer": {
     "products": "Sản phẩm",
@@ -152,7 +153,9 @@
     "terms": "Điều khoản sử dụng (Terms of Service)",
     "contact": "Liên hệ",
     "address": "Ninh Bình, Việt Nam",
+    "websiteLabel": "Website",
     "emailLabel": "Email",
+    "facebookLabel": "Facebook",
     "addressLabel": "Địa chỉ",
     "legal": "© 2026 ViMai Ecosystem. All rights reserved."
   },
@@ -182,7 +185,7 @@
     "privacyIntro": "Chính sách này mô tả cách website vimai.jp (\"Website\") xử lý thông tin khi bạn truy cập trang giới thiệu hệ sinh thái ViMai, gửi liên hệ, gửi phản hồi, hoặc khi quản trị viên đăng nhập CMS. ViMai không bịa đặt thông tin pháp lý chưa xác nhận. Nếu có mâu thuẫn giữa bản tiếng Việt, tiếng Anh và tiếng Nhật, bản tiếng Việt trên vimai.jp được dùng cho người dùng mặc định; các bản dịch nhằm giúp đọc, không tạo cam kết khác.",
     "privacyContactLead": "Mọi yêu cầu liên quan đến dữ liệu cá nhân, xin gửi tới",
     "whoTitle": "1. Đơn vị vận hành",
-    "whoBody": "Website do dự án phần mềm độc lập ViMai vận hành. Địa chỉ liên hệ: Ninh Bình, Việt Nam. Email hỗ trợ: vimai.support@gmail.com. Mọi yêu cầu xin gửi qua email nêu trên.",
+    "whoBody": "Website do dự án phần mềm độc lập ViMai vận hành. Địa chỉ liên hệ: Ninh Bình, Việt Nam. Email hỗ trợ: support@vimai.jp. Mọi yêu cầu xin gửi qua email nêu trên.",
     "collectTitle": "2. Dữ liệu chúng tôi thu thập",
     "collectBody": "Dữ liệu bạn chủ động gửi: họ tên, email, tiêu đề và nội dung form Liên hệ; tên hiển thị, nội dung, đánh giá tùy chọn và quốc gia tùy chọn khi gửi phản hồi cộng đồng. Dữ liệu kỹ thuật tối thiểu: địa chỉ IP, user agent, thời điểm gửi, có thể được dùng để chống spam và bảo vệ form (giới hạn tần suất). Dữ liệu quản trị: email đăng nhập và phiên phiên bản cookie HttpOnly khi nhân sự được cấp quyền CMS. Chúng tôi không yêu cầu số thẻ tín dụng trên website công khai này. Chúng tôi không thu thập dữ liệu sức khỏe chi tiết từ Maimai hay dữ liệu học tập của trẻ từ ViMai Kids trên website vimai.jp trừ khi bạn tự viết chúng vào form — vui lòng không gửi thông tin y tế, giấy tờ tùy thân hoặc dữ liệu của trẻ vào form liên hệ.",
     "useTitle": "3. Mục đích sử dụng",
@@ -206,7 +209,7 @@
     "rightsTitle": "12. Quyền của bạn",
     "rightsBody": "Tùy phạm vi APPI và pháp luật nơi bạn cư trú, bạn có thể yêu cầu được biết dữ liệu liên hệ chúng tôi đang giữ, yêu cầu sửa, xóa, hoặc hạn chế xử lý khi có cơ sở. Gửi email từ địa chỉ đã dùng để liên hệ, nêu rõ yêu cầu. Chúng tôi có thể cần xác minh danh tính ở mức hợp lý. Quyền có thể bị giới hạn khi pháp luật yêu cầu lưu hồ sơ hoặc khi yêu cầu ảnh hưởng quyền của người khác.",
     "contactUsTitle": "13. Liên hệ về quyền riêng tư",
-    "contactUsBody": "Email: vimai.support@gmail.com. Địa chỉ liên hệ: Ninh Bình, Việt Nam. Chúng tôi phản hồi trong thời gian hợp lý sau khi nhận đủ thông tin để xác định yêu cầu.",
+    "contactUsBody": "Email: support@vimai.jp. Địa chỉ liên hệ: Ninh Bình, Việt Nam. Chúng tôi phản hồi trong thời gian hợp lý sau khi nhận đủ thông tin để xác định yêu cầu.",
     "changesTitle": "14. Thay đổi chính sách",
     "changesBody": "Khi phạm vi xử lý thay đổi (ví dụ bật quảng cáo, thêm thanh toán, hoặc công bố pháp nhân đầy đủ), chúng tôi cập nhật trang này và sửa ngày hiệu lực. Việc tiếp tục sử dụng Website sau khi chính sách được đăng tải đồng nghĩa bạn đã đọc phiên bản mới. Bản ghi trên git/website công khai là nguồn hiển thị hiện hành.",
     "termsTitle": "Điều khoản sử dụng (Terms of Service)",
@@ -221,7 +224,7 @@
     "termsLiabilityTitle": "Giới hạn trách nhiệm",
     "termsLiabilityBody": "Website được cung cấp \"nguyên trạng\". Trong phạm vi pháp luật cho phép, ViMai không chịu trách nhiệm cho thiệt hại gián tiếp phát sinh từ việc dựa vào nội dung giới thiệu hoặc từ gián đoạn mạng. Điều khoản chi tiết hơn sẽ được bổ sung khi thông tin pháp nhân được xác nhận.",
     "termsLawTitle": "Luật áp dụng",
-    "termsLawBody": "Trong phạm vi cho phép, điều khoản này được hiểu theo pháp luật Việt Nam. Tranh chấp ưu tiên thương lượng qua email vimai.support@gmail.com."
+    "termsLawBody": "Trong phạm vi cho phép, điều khoản này được hiểu theo pháp luật Việt Nam. Tranh chấp ưu tiên thương lượng qua email support@vimai.jp."
   },
   "floating": {
     "label": "Liên hệ",

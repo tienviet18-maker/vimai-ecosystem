@@ -135,15 +135,16 @@
     "direct": "メールで送る",
     "required": "必須項目です。",
     "zaloAria": "ZaloでViMaiに連絡",
-    "messengerAria": "Messenger VietOsakaでViMaiに連絡",
+    "facebookAria": "ViMaiのFacebookページを開く",
+    "facebookMessageAria": "FacebookでViMaiにメッセージを送る",
     "emailAria": "ViMaiにメールする",
     "channelsTitle": "サポート窓口",
     "zalo": "Zalo",
     "zaloHint": "直接メッセージ",
     "emailLabel": "メール",
-    "messenger": "Messenger VietOsaka",
-    "messengerHint": "Messengerで連絡",
-    "messengerPending": "MessengerのURLは未設定です"
+    "facebook": "Facebook",
+    "facebookHint": "ViMaiのFacebookページ",
+    "facebookMessage": "Facebookでメッセージ"
   },
   "footer": {
     "products": "製品",
@@ -152,7 +153,9 @@
     "terms": "利用規約（Terms of Service）",
     "contact": "お問い合わせ",
     "address": "Ninh Binh, Vietnam",
+    "websiteLabel": "ウェブサイト",
     "emailLabel": "メール",
+    "facebookLabel": "Facebook",
     "addressLabel": "所在地",
     "legal": "© 2026 ViMai Ecosystem. All rights reserved."
   },
@@ -182,7 +185,7 @@
     "privacyIntro": "本ポリシーは、vimai.jp（以下「本サイト」）を閲覧し、お問い合わせや任意のフィードバックを送り、または管理者がCMSにログインする際の情報の扱いを説明します。未確認の法人情報は記載しません。翻訳は理解のためのものであり、別契約を作りません。",
     "privacyContactLead": "個人データに関するご請求は",
     "whoTitle": "1. 運営者",
-    "whoBody": "本サイトは独立したソフトウェアプロジェクト ViMai が運営しています。連絡先住所: Ninh Binh, Vietnam。サポートメールは vimai.support@gmail.com です。ご連絡は上記メールへお願いします。",
+    "whoBody": "本サイトは独立したソフトウェアプロジェクト ViMai が運営しています。連絡先住所: Ninh Binh, Vietnam。サポートメールは support@vimai.jp です。ご連絡は上記メールへお願いします。",
     "collectTitle": "2. 取得するデータ",
     "collectBody": "ご自身が入力する情報：お問い合わせの氏名・メール・件名・本文、フィードバックの表示名・本文・任意の評価・任意の国。技術的最小限：IPアドレス、ユーザーエージェント、送信時刻は、フォームの乱用防止に使うことがあります。管理者データ：ログイン用メールと CMS 用の HttpOnly セッションCookie。公開サイトでクレジットカード番号は求めません。医療情報、身分証、子どものデータをフォームに書かないでください。Maimai や ViMai Kids のアプリ内記録は、フォームに自ら書かない限り本サイトでは収集しません。",
     "useTitle": "3. 利用目的",
@@ -206,7 +209,7 @@
     "rightsTitle": "12. あなたの権利",
     "rightsBody": "APPI および居住地の法令の範囲で、保有する連絡先データの開示、訂正、削除、利用停止を求められる場合があります。利用したメールアドレスから、内容を明記してご連絡ください。本人確認を求めることがあります。法令上の保存義務や第三者の権利により制限される場合があります。",
     "contactUsTitle": "13. プライバシーに関する連絡先",
-    "contactUsBody": "メール: vimai.support@gmail.com。連絡先住所: Ninh Binh, Vietnam。特定に足りる情報をいただいてから、合理的な期間内に回答します。",
+    "contactUsBody": "メール: support@vimai.jp。連絡先住所: Ninh Binh, Vietnam。特定に足りる情報をいただいてから、合理的な期間内に回答します。",
     "changesTitle": "14. 変更",
     "changesBody": "処理範囲が変わる場合（広告、決済、法人情報の確定など）はこのページと施行日を更新します。掲載後の継続利用は、新しい版を読む機会があったものとします。公開サイト上の文面が現行です。",
     "termsTitle": "利用規約（Terms of Service）",
@@ -221,7 +224,7 @@
     "termsLiabilityTitle": "責任の限定",
     "termsLiabilityBody": "本サイトは現状有姿で提供します。法令が許す範囲で、紹介文への依拠や通信障害による間接損害について ViMai は責任を負いません。運営主体の確認後に詳細を追加します。",
     "termsLawTitle": "準拠法",
-    "termsLawBody": "可能な範囲でベトナム法に従って解釈します。紛争はまず vimai.support@gmail.com での協議を優先します。"
+    "termsLawBody": "可能な範囲でベトナム法に従って解釈します。紛争はまず support@vimai.jp での協議を優先します。"
   },
   "floating": {
     "label": "お問い合わせ",

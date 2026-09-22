@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
 import { getApprovedReviews } from "@/lib/reviews";
-import { CONTACT_EMAIL } from "@/lib/contact";
+import { CONTACT_EMAIL, CONTACT_FACEBOOK_URL } from "@/lib/contact";
 import { SITE_URL } from "@/lib/utils";
 import type { Locale } from "@/types";
 
@@ -43,6 +43,13 @@ export default async function HomePage({
           logo: `${SITE_URL}/brand/vimai-logo-trim.png`,
           description: t("lead"),
           email: CONTACT_EMAIL,
+          sameAs: [CONTACT_FACEBOOK_URL],
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: CONTACT_EMAIL,
+            contactType: "customer support",
+            url: CONTACT_FACEBOOK_URL,
+          },
           address: {
             "@type": "PostalAddress",
             addressLocality: "Ninh Binh",

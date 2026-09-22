@@ -3,7 +3,12 @@ import { BrandMark } from "@/components/shared/BrandMark";
 import { ContactChannels } from "@/components/shared/ContactChannels";
 import { Link } from "@/lib/i18n/navigation";
 import { getLocalizedProducts } from "@/lib/products";
-import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/contact";
+import {
+  CONTACT_EMAIL,
+  CONTACT_FACEBOOK_URL,
+  CONTACT_MAILTO,
+  CONTACT_SITE_URL,
+} from "@/lib/contact";
 import type { Locale } from "@/types";
 
 export async function Footer({ locale }: { locale: Locale }) {
@@ -26,9 +31,31 @@ export async function Footer({ locale }: { locale: Locale }) {
             </p>
             <ul className="mt-3 space-y-2 text-sm text-slate-600">
               <li>
+                <span className="text-slate-400">{t("websiteLabel")}: </span>
+                <a
+                  href={CONTACT_SITE_URL}
+                  className="hover:text-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {CONTACT_SITE_URL}
+                </a>
+              </li>
+              <li>
                 <span className="text-slate-400">{t("emailLabel")}: </span>
                 <a href={CONTACT_MAILTO} className="hover:text-primary">
                   {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <span className="text-slate-400">{t("facebookLabel")}: </span>
+                <a
+                  href={CONTACT_FACEBOOK_URL}
+                  className="hover:text-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {CONTACT_FACEBOOK_URL}
                 </a>
               </li>
               <li>

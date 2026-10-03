@@ -26,12 +26,12 @@ export async function Footer({ locale }: { locale: Locale }) {
             {tBrand("tagline")}
           </p>
           <div className="mt-6">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
               {t("contact")}
             </p>
             <ul className="mt-3 space-y-2 text-sm text-slate-600">
               <li>
-                <span className="text-slate-400">{t("websiteLabel")}: </span>
+                <span className="text-slate-500">{t("websiteLabel")}: </span>
                 <a
                   href={CONTACT_SITE_URL}
                   className="hover:text-primary"
@@ -42,13 +42,13 @@ export async function Footer({ locale }: { locale: Locale }) {
                 </a>
               </li>
               <li>
-                <span className="text-slate-400">{t("emailLabel")}: </span>
+                <span className="text-slate-500">{t("emailLabel")}: </span>
                 <a href={CONTACT_MAILTO} className="hover:text-primary">
                   {CONTACT_EMAIL}
                 </a>
               </li>
               <li>
-                <span className="text-slate-400">{t("facebookLabel")}: </span>
+                <span className="text-slate-500">{t("facebookLabel")}: </span>
                 <a
                   href={CONTACT_FACEBOOK_URL}
                   className="hover:text-primary"
@@ -59,7 +59,7 @@ export async function Footer({ locale }: { locale: Locale }) {
                 </a>
               </li>
               <li>
-                <span className="text-slate-400">{t("addressLabel")}: </span>
+                <span className="text-slate-500">{t("addressLabel")}: </span>
                 {t("address")}
               </li>
             </ul>
@@ -67,7 +67,7 @@ export async function Footer({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div>
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+          <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
             {t("products")}
           </h2>
           <ul className="mt-5 space-y-3">
@@ -84,7 +84,7 @@ export async function Footer({ locale }: { locale: Locale }) {
           </ul>
         </div>
         <div>
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+          <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
             {t("company")}
           </h2>
           <ul className="mt-5 space-y-3">
@@ -123,8 +123,8 @@ export async function Footer({ locale }: { locale: Locale }) {
       </div>
       <div className="border-t border-slate-200/80">
         <div className="container flex flex-col items-center gap-1 py-6 text-center">
-          <p className="text-xs tracking-wide text-slate-400">{t("legal")}</p>
-          <p className="text-xs tracking-wide text-slate-400">{tBrand("tagline")}</p>
+          <p className="text-xs tracking-wide text-slate-500">{t("legal")}</p>
+          <p className="text-xs tracking-wide text-slate-500">{tBrand("tagline")}</p>
         </div>
       </div>
     </footer>

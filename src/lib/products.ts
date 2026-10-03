@@ -1,6 +1,11 @@
 import { localizeProduct, seedProducts } from "@/lib/seed";
 import { asBool, getDb, parseJson } from "@/lib/cloudflare";
-import { resolveProductLogo, resolveProductSite } from "@/lib/product-sites";
+import {
+  resolveProductLogo,
+  resolveProductOgImage,
+  resolveProductSite,
+  toOptimizedImage,
+} from "@/lib/product-sites";
 import type {
   Locale,
   LocalizedProduct,
@@ -66,9 +71,9 @@ function toProduct(
     featured: asBool(row.featured),
     sort_order: row.sort_order,
     logo_url: resolveProductLogo(row.slug, row.logo_url),
-    icon_url: row.icon_url ?? resolveProductLogo(row.slug, row.logo_url),
-    hero_image_url: row.hero_image_url ?? resolveProductLogo(row.slug, row.logo_url),
-    og_image_url: row.og_image_url ?? resolveProductLogo(row.slug, row.logo_url),
+    icon_url: toOptimizedImage(row.icon_url) ?? resolveProductLogo(row.slug, row.logo_url),
+    hero_image_url: toOptimizedImage(row.hero_image_url) ?? resolveProductLogo(row.slug, row.logo_url),
+    og_image_url: resolveProductOgImage(row.slug, row.og_image_url),
     seo_title: row.seo_title,
     seo_description: row.seo_description,
     target_audience: row.target_audience,

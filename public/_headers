@@ -1,0 +1,14 @@
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/products/*.v2.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/brand/*
+  Cache-Control: public, max-age=2592000
+
+/icons/*
+  Cache-Control: public, max-age=2592000

@@ -188,6 +188,10 @@ export default async function HomePage({
               <img
                 src={featured[0].hero_image_url || featured[0].logo_url}
                 alt={featured[0].name}
+                width={288}
+                height={288}
+                loading="lazy"
+                decoding="async"
                 className="mx-auto max-h-72 w-auto object-contain"
               />
             </div>

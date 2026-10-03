@@ -29,7 +29,7 @@ export default async function ArticlesPage({
               href={`/articles/${article.slug}`}
               className="rounded-2xl border border-slate-200/80 bg-white p-6 no-underline transition-colors hover:border-navy-200"
             >
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-500">
                 {article.category ?? t("title")}
               </p>
               <h2 className="mt-3 text-xl font-semibold">{article.title}</h2>

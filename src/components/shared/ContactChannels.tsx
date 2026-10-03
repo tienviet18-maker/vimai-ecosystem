@@ -17,6 +17,10 @@ function ZaloMark({ className }: { className?: string }) {
     <img
       src="https://page.widget.zalo.me/static/images/2.0/Logo.svg"
       alt="Zalo"
+      width={24}
+      height={24}
+      loading="lazy"
+      decoding="async"
       className={className}
       style={{ objectFit: "contain" }}
     />

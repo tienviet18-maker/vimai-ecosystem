@@ -19,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n/navigation";
 import { getFaqs } from "@/lib/faqs";
+import { resolveTrialUrl } from "@/lib/product-sites";
 import { getProductBySlug } from "@/lib/products";
 import { publicUrl, SITE_URL } from "@/lib/utils";
 import type { Locale } from "@/types";
@@ -70,6 +71,7 @@ export default async function ProductPage({
   const t = await getTranslations("products");
   const faqs = await getFaqs(locale as Locale, product.id);
   const siteUrl = product.website_url;
+  const trialUrl = resolveTrialUrl(product.status, siteUrl);
   const pageUrl = publicUrl(locale, `/products/${slug}`);
 
   return (
@@ -114,6 +116,14 @@ export default async function ProductPage({
             <StatusBadge status={product.status} />
           </div>
           <p className="mt-4 text-lg leading-8 text-slate-500">{product.tagline}</p>
+          {trialUrl ? (
+            <Button asChild variant="outline" className="mt-6 border-primary text-primary">
+              <a href={trialUrl} target="_blank" rel="noopener">
+                {t("tryFree")}
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </Button>
+          ) : null}
           <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600">{product.description}</p>
           {product.long_description ? (
             <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-500">

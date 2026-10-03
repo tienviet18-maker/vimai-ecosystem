@@ -1,3 +1,5 @@
+import type { ProductStatus } from "@/types";
+
 /** Canonical product subdomains on vimai.jp. Do not rename these hosts. */
 export const PRODUCT_SITES: Record<string, string> = {
   "tokutei-taxi": "https://tokutei-taxi.vimai.jp",
@@ -39,6 +41,17 @@ export function resolveProductSite(
   const fromRecord = websiteUrl?.trim();
   if (fromRecord) return fromRecord;
   return PRODUCT_SITES[slug] ?? null;
+}
+
+const TRIAL_STATUSES: ReadonlySet<ProductStatus> = new Set(["available", "launched"]);
+
+/** Free-trial destination, only for released products that have a website. */
+export function resolveTrialUrl(
+  status: ProductStatus,
+  websiteUrl?: string | null,
+): string | null {
+  const url = websiteUrl?.trim();
+  return url && TRIAL_STATUSES.has(status) ? url : null;
 }
 
 export function resolveProductLogo(

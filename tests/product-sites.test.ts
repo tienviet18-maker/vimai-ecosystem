@@ -7,6 +7,7 @@ import {
   PRODUCT_SITES,
   resolveProductLogo,
   resolveProductSite,
+  resolveTrialUrl,
 } from "../src/lib/product-sites.ts";
 
 test("each ViMai product has its own canonical site", () => {
@@ -39,6 +40,16 @@ test("legacy PNG logo paths from D1 are mapped to optimized WebP", () => {
   assert.equal(resolveProductLogo("kids", "/images/products/vimai_kids.png"), "/images/products/vimai_kids.v2.webp");
   assert.equal(toOptimizedImage("https://cdn.example.com/x.png"), "https://cdn.example.com/x.png");
   assert.equal(toOptimizedImage(null), null);
+});
+
+test("free trial link only for released products with a website", () => {
+  const site = "https://seibi.vimai.jp";
+  assert.equal(resolveTrialUrl("available", site), site);
+  assert.equal(resolveTrialUrl("launched", site), site);
+  assert.equal(resolveTrialUrl("coming_soon", site), null);
+  assert.equal(resolveTrialUrl("development", site), null);
+  assert.equal(resolveTrialUrl("available", null), null);
+  assert.equal(resolveTrialUrl("launched", "  "), null);
 });
 
 test("Open Graph image keeps the original PNG", () => {

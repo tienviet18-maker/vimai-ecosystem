@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Script from "next/script";
 import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
+import { InAppBrowserNotice } from "@/components/shared/InAppBrowserNotice";
 import { ContactFloatingButton } from "@/components/shared/ContactFloatingButton";
 import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/types";
@@ -25,6 +26,7 @@ export default async function PublicLayout({
       >
         {t("skipToContent")}
       </a>
+      <InAppBrowserNotice />
       <Header />
       <main id="main" className="flex-1 pb-24 sm:pb-12">
         {children}

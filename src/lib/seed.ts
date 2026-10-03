@@ -1,5 +1,5 @@
 import type { Faq, Locale, Product } from "@/types";
-import { resolveProductSite } from "@/lib/product-sites";
+import { resolveProductSite, toOptimizedImage } from "@/lib/product-sites";
 
 export const seedProducts: Product[] = [
   {
@@ -475,6 +475,9 @@ export function localizeProduct(product: Product, locale: Locale) {
   return {
     ...product,
     website_url: resolveProductSite(product.slug, product.website_url),
+    logo_url: toOptimizedImage(product.logo_url),
+    icon_url: toOptimizedImage(product.icon_url),
+    hero_image_url: toOptimizedImage(product.hero_image_url),
     name: translation?.name ?? product.slug,
     tagline: translation?.tagline ?? "",
     description: translation?.description ?? "",

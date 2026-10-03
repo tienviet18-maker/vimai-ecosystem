@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   PRODUCT_LOGOS,
+  resolveProductOgImage,
+  toOptimizedImage,
   PRODUCT_SITES,
   resolveProductLogo,
   resolveProductSite,
@@ -17,17 +19,29 @@ test("each ViMai product has its own canonical site", () => {
   assert.notEqual(resolveProductSite("tokutei-taxi"), "https://vimai.jp");
 });
 
-test("ViMai Transport always uses the clean tokutei_vantai logo", () => {
+test("ViMai Transport always uses the clean tokutei_vantai logo (optimized WebP)", () => {
   assert.equal(
     PRODUCT_LOGOS["tokutei-transport"],
-    "/images/products/tokutei_vantai.png",
+    "/images/products/tokutei_vantai.v2.webp",
   );
   assert.equal(
     resolveProductLogo("tokutei-transport"),
-    "/images/products/tokutei_vantai.png",
+    "/images/products/tokutei_vantai.v2.webp",
   );
   assert.equal(
     resolveProductLogo("tokutei-transport", "/images/products/transport.png"),
-    "/images/products/tokutei_vantai.png",
+    "/images/products/tokutei_vantai.v2.webp",
   );
+});
+
+test("legacy PNG logo paths from D1 are mapped to optimized WebP", () => {
+  assert.equal(toOptimizedImage("/images/products/tokutei_taxi.png"), "/images/products/tokutei_taxi.v2.webp");
+  assert.equal(resolveProductLogo("kids", "/images/products/vimai_kids.png"), "/images/products/vimai_kids.v2.webp");
+  assert.equal(toOptimizedImage("https://cdn.example.com/x.png"), "https://cdn.example.com/x.png");
+  assert.equal(toOptimizedImage(null), null);
+});
+
+test("Open Graph image keeps the original PNG", () => {
+  assert.equal(resolveProductOgImage("tokutei-taxi"), "/images/products/tokutei_taxi.png");
+  assert.equal(resolveProductOgImage("kids", "/custom/og.jpg"), "/custom/og.jpg");
 });

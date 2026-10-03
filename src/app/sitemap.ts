@@ -14,15 +14,14 @@ export default async function sitemap() {
     const prefix = locale === routing.defaultLocale ? "" : `/${locale}`;
     const pages = staticPaths.map((path) => ({
       url: `${SITE_URL}${prefix}${path || "/"}`,
-      lastModified: new Date(),
     }));
     const productPages = products.map((product) => ({
       url: `${SITE_URL}${prefix}/products/${product.slug}`,
-      lastModified: new Date(),
+      ...(product.updated_at ? { lastModified: new Date(product.updated_at) } : {}),
     }));
     const articlePages = articles.map((article) => ({
       url: `${SITE_URL}${prefix}/articles/${article.slug}`,
-      lastModified: new Date(),
+      ...(article.updated_at ? { lastModified: new Date(article.updated_at) } : {}),
     }));
     return [...pages, ...productPages, ...articlePages];
   });

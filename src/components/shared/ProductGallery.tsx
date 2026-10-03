@@ -38,7 +38,7 @@ export function ProductGallery({
         }}
       >
         {broken[currentIndex] ? (
-          <div className="flex h-64 items-center justify-center text-sm text-slate-400">{productName}</div>
+          <div className="flex h-64 items-center justify-center text-sm text-slate-500">{productName}</div>
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img

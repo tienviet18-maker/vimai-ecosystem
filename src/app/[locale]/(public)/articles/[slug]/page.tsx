@@ -40,7 +40,7 @@ export default async function ArticlePage({
 
   return (
     <article className="container max-w-3xl py-16 lg:py-24">
-      <p className="text-sm text-slate-400">{article.author_name}</p>
+      <p className="text-sm text-slate-500">{article.author_name}</p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{article.title}</h1>
       <p className="mt-6 text-lg leading-8 text-slate-500">{article.excerpt}</p>
       {article.cover_image_url ? (

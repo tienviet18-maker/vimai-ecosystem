@@ -44,6 +44,11 @@ export async function PwaInstallGuide() {
           </p>
         </div>
       </div>
+      <p className="mt-4 text-sm leading-7 text-slate-700">
+        <span className="mr-1 font-semibold">3.</span>
+        {t("installStep3")}
+      </p>
+      <p className="mt-2 text-sm leading-7 text-slate-600">{t("installNote")}</p>
     </section>
   );
 }

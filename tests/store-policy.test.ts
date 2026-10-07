@@ -6,18 +6,22 @@ import {
   usesAppStoreOnly,
 } from "../src/lib/store-policy.ts";
 
-test("EN and JA use the App Store for Taxi and Transport, VI keeps the web", () => {
-  for (const slug of ["tokutei-taxi", "tokutei-transport"]) {
+test("EN and JA use the App Store for Taxi, Transport and Menkyo, VI keeps the web", () => {
+  for (const slug of ["tokutei-taxi", "tokutei-transport", "menkyo"]) {
     assert.equal(usesAppStoreOnly(slug, "en"), true);
     assert.equal(usesAppStoreOnly(slug, "ja"), true);
     assert.equal(usesAppStoreOnly(slug, "vi"), false);
   }
-  assert.equal(usesAppStoreOnly("seibi", "en"), false);
+  for (const slug of ["seibi", "kids", "maimai"]) {
+    assert.equal(usesAppStoreOnly(slug, "en"), false);
+    assert.equal(usesAppStoreOnly(slug, "ja"), false);
+  }
 });
 
 test("Taxi has its App Store link; Transport has none yet (never invented)", () => {
   assert.equal(appStoreUrl("tokutei-taxi"), "https://apps.apple.com/app/id6819012544");
   assert.equal(appStoreUrl("tokutei-transport"), null);
+  assert.equal(appStoreUrl("menkyo"), null);
 });
 
 test("VND / VietQR lines are removed, other features stay", () => {

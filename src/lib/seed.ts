@@ -82,7 +82,7 @@ export const seedProducts: Product[] = [
     status: "coming_soon",
     app_store_url: null,
     google_play_url: null,
-    website_url: "https://tokutei-truck.vimai.jp",
+    website_url: "https://tokutei-transport.vimai.jp",
     featured: true,
     sort_order: 2,
     logo_url: "/images/products/tokutei_vantai.png",

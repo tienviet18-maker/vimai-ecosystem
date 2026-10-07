@@ -38,7 +38,7 @@ INSERT OR IGNORE INTO products (
       logo_url, published, created_at, updated_at
     ) VALUES (
       '00000000-0000-0000-0000-000000000002', 'tokutei-transport', 'coming_soon',
-      NULL, NULL, 'https://tokutei-truck.vimai.jp',
+      NULL, NULL, 'https://tokutei-transport.vimai.jp',
       1, 2, '/images/products/tokutei_vantai.png',
       1, strftime('%Y-%m-%dT%H:%M:%fZ','now'), strftime('%Y-%m-%dT%H:%M:%fZ','now')
     );

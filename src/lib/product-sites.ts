@@ -1,7 +1,7 @@
 /** Canonical product subdomains on vimai.jp. Do not rename these hosts. */
 export const PRODUCT_SITES: Record<string, string> = {
   "tokutei-taxi": "https://tokutei-taxi.vimai.jp",
-  "tokutei-transport": "https://tokutei-truck.vimai.jp",
+  "tokutei-transport": "https://tokutei-transport.vimai.jp",
   seibi: "https://seibi.vimai.jp",
   kids: "https://kids.vimai.jp",
   maimai: "https://maimai.vimai.jp",

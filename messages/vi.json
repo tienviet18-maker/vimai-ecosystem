@@ -2,8 +2,8 @@
   "meta": {
     "siteName": "ViMai",
     "title": "ViMai | Hệ sinh thái Giáo dục & Công nghệ",
-    "description": "Trung tâm hệ sinh thái ViMai: luyện thi Tokutei, Seibi 3kyu, giáo dục trẻ em và theo dõi lối sống. Giáo dục và công nghệ cho người sống tại Nhật.",
-    "keywords": "ViMai, Tokutei, Taxi, Vận tải, Seibi, giáo dục, sức khỏe"
+    "description": "Trung tâm hệ sinh thái ViMai: luyện thi Tokutei, Seibi 3kyu, lý thuyết bằng lái Nhật, giáo dục trẻ em và theo dõi lối sống. Giáo dục và công nghệ cho người sống tại Nhật.",
+    "keywords": "ViMai, Tokutei, Taxi, Vận tải, Seibi, Menkyo, bằng lái Nhật, giáo dục, sức khỏe"
   },
   "nav": {
     "home": "Trang chủ",
@@ -110,11 +110,11 @@
     "storyTitle": "Tầm nhìn",
     "storyBody": "Lấy tinh thần « Kiến tạo tương lai Việt » trên nhận diện thương hiệu, ViMai không chỉ hướng tới kỳ thi mà còn xây nền tảng học tập và sinh hoạt bền vững.",
     "missionP1": "ViMai là một dự án phát triển phần mềm độc lập, tập trung xây dựng hệ sinh thái ứng dụng cho học tập, sức khỏe và tiện ích đời sống. Sứ mệnh của chúng tôi là cung cấp các công cụ phần mềm rõ ràng, thực tiễn để giúp cộng đồng người dùng giải quyết những nhu cầu cụ thể: luyện thi chứng chỉ, hỗ trợ giáo dục trẻ em, và theo dõi sức khỏe hằng ngày. Chúng tôi không cam kết đậu kỳ thi hay hiệu quả y tế. Mỗi sản phẩm là công cụ hỗ trợ; trạng thái phát hành (ý tưởng, đang phát triển, sắp ra mắt, đã phát hành) luôn được ghi rõ trên website.",
-    "missionP2": "Mỗi ứng dụng xuất phát từ một vấn đề thực tiễn chứ không phải từ hiệu ứng thị giác. Tokutei Taxi và ViMai Transport phục vụ luyện thi 特定技能 trong lĩnh vực taxi và vận tải. ViMai Seibi hỗ trợ ôn thi 3級自動車整備士. ViMai Kids là nền tảng học tương tác cho trẻ, với góc nhìn dành cho phụ huynh. Maimai ghi nhận các chỉ số sinh hoạt cá nhân như giấc ngủ, nước, dinh dưỡng và chu kỳ. Giao diện được thiết kế tối giản: ưu tiên tốc độ tải, thứ tự thông tin và chữ dễ đọc trên điện thoại. Người dùng cần hiểu sản phẩm làm gì, dành cho ai, và giới hạn ở đâu ngay từ lần truy cập đầu tiên.",
+    "missionP2": "Mỗi ứng dụng xuất phát từ một vấn đề thực tiễn chứ không phải từ hiệu ứng thị giác. Tokutei Taxi và ViMai Transport phục vụ luyện thi 特定技能 trong lĩnh vực taxi và vận tải. ViMai Seibi hỗ trợ ôn thi 3級自動車整備士. ViMai Menkyo giúp người Việt và người dùng tiếng Anh học lý thuyết và thi thử bằng lái ô tô Nhật (Karimen, Honmen, đổi bằng). ViMai Kids là nền tảng học tương tác cho trẻ, với góc nhìn dành cho phụ huynh. Maimai ghi nhận các chỉ số sinh hoạt cá nhân như giấc ngủ, nước, dinh dưỡng và chu kỳ. Giao diện được thiết kế tối giản: ưu tiên tốc độ tải, thứ tự thông tin và chữ dễ đọc trên điện thoại. Người dùng cần hiểu sản phẩm làm gì, dành cho ai, và giới hạn ở đâu ngay từ lần truy cập đầu tiên.",
     "missionP3": "Cam kết bảo mật dữ liệu là điều kiện để vận hành lâu dài, không phải lớp trang trí. Website chỉ thu thập thông tin cần để trả lời liên hệ, vận hành CMS và (nếu bạn chủ động gửi) xét duyệt phản hồi. Email không được công khai. Chúng tôi không bán dữ liệu cá nhân. Hạ tầng công khai chạy trên Cloudflare. Chi tiết phạm vi xử lý, cookie, quyền của bạn và cách liên hệ được nêu trong Chính sách bảo mật. Khi dùng ứng dụng cho trẻ em, phụ huynh chịu trách nhiệm giám sát nội dung và thời gian sử dụng.",
     "scopeTitle": "Lĩnh vực",
     "scope1": "Luyện thi Tokutei Gino (Taxi / Vận tải)",
-    "scope2": "Luyện thi 3級自動車整備士",
+    "scope2": "Luyện thi 3級自動車整備士 và lý thuyết bằng lái ô tô Nhật",
     "scope3": "Ứng dụng giáo dục trẻ em có kiểm soát phụ huynh",
     "scope4": "Theo dõi sức khỏe, dinh dưỡng và calories",
     "qualityTitle": "Cam kết chất lượng",

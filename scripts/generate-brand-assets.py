@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections import deque
 from pathlib import Path
 
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 LOGO = ROOT / "public" / "brand" / "vimai-logo.jpg"
@@ -164,6 +164,23 @@ def clean_product_icons() -> None:
         print(f"cleaned {src_name} -> {dest_name}")
 
 
+# ViMai Menkyo: source is the 1024px app icon in "logo các app/".
+MENKYO_SOURCE = ROOT / "logo các app" / "vimai_menkyo.webp"
+
+
+def build_menkyo_logo() -> None:
+    src = Image.open(MENKYO_SOURCE).convert("RGB")
+    side = 640
+    if src.size != (side, side):
+        src = ImageOps.fit(src, (side, side), Image.Resampling.LANCZOS)
+        src = src.filter(ImageFilter.UnsharpMask(radius=1.2, percent=60, threshold=2))
+    src.save(PRODUCTS / "vimai_menkyo.png", "PNG", optimize=True)
+    # Same budget as the other product logos: 640px WebP, ~40 KB.
+    src.save(PRODUCTS / "vimai_menkyo.v2.webp", "WEBP", quality=82, method=6)
+    print("wrote vimai_menkyo.png / vimai_menkyo.v2.webp")
+
+
 if __name__ == "__main__":
     generate_brand_icons()
     clean_product_icons()
+    build_menkyo_logo()

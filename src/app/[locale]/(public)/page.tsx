@@ -58,6 +58,7 @@ export default async function HomePage({
           knowsAbout: [
             "Specified Skilled Worker",
             "Tokutei Gino",
+            "Japanese driving licence theory test",
             "education technology",
             "Japanese language study",
           ],

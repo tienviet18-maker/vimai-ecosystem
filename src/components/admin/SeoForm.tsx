@@ -67,7 +67,7 @@ export function SeoForm({
         />
         <p className="text-xs text-muted-foreground">
           Product pages use their own canonical URLs (tokutei-taxi.vimai.jp, tokutei-truck.vimai.jp,
-          seibi.vimai.jp, kids.vimai.jp, maimai.vimai.jp) and do not inherit this value.
+          seibi.vimai.jp, kids.vimai.jp, maimai.vimai.jp, menkyo.vimai.jp) and do not inherit this value.
         </p>
       </div>
       <div className="space-y-2">

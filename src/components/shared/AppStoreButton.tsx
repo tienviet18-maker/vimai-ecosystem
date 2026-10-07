@@ -5,10 +5,12 @@ import { cn } from "@/lib/utils";
 export function AppStoreButton({
   href,
   label,
+  linkLabel = "App Store",
   className,
 }: {
   href?: string | null;
   label: string;
+  linkLabel?: string;
   className?: string;
 }) {
   if (!href) {
@@ -24,7 +26,7 @@ export function AppStoreButton({
     <Button asChild variant="outline" className={cn("justify-start", className)}>
       <a href={href} target="_blank" rel="noopener noreferrer">
         <Apple className="h-4 w-4" />
-        App Store
+        {linkLabel}
       </a>
     </Button>
   );

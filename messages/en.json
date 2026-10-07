@@ -2,8 +2,8 @@
   "meta": {
     "siteName": "ViMai",
     "title": "ViMai | Education & Technology Ecosystem",
-    "description": "The ViMai ecosystem hub: Tokutei exam study, Seibi 3kyu, children's learning, and lifestyle tracking for people living in Japan.",
-    "keywords": "ViMai, Tokutei, taxi, transport, mechanic exam, kids education, health tracking"
+    "description": "The ViMai ecosystem hub: Tokutei exam study, Seibi 3kyu, Japanese driving theory, children's learning, and lifestyle tracking for people living in Japan.",
+    "keywords": "ViMai, Tokutei, taxi, transport, mechanic exam, Menkyo, Japanese driving licence, kids education, health tracking"
   },
   "nav": {
     "home": "Home",
@@ -110,11 +110,11 @@
     "storyTitle": "Vision",
     "storyBody": "Guided by “Building Vietnam's Future,” ViMai is not only about passing an exam. It is about durable learning and daily wellbeing.",
     "missionP1": "ViMai is an independent software project focused on building an application ecosystem for learning, health, and everyday utilities. Our mission is to provide clear, practical software tools that help users with specific needs: certification exam study, children's education, and daily health tracking. We do not promise exam passes or medical outcomes. Each product is a support tool, and its release status is stated on this website.",
-    "missionP2": "Each app starts from a practical problem, not from visual effects. Tokutei Taxi and ViMai Transport support Specified Skilled Worker study in taxi and transport. ViMai Seibi supports Class 3 automobile mechanic theory. ViMai Kids is an interactive learning platform designed for parents to follow. Maimai logs personal lifestyle metrics such as sleep, water, nutrition, and cycle tracking. The interface is intentionally calm: fast pages, readable type, and a clear order of information on mobile. Visitors should see what a product does, who it is for, and where its limits are on the first visit.",
+    "missionP2": "Each app starts from a practical problem, not from visual effects. Tokutei Taxi and ViMai Transport support Specified Skilled Worker study in taxi and transport. ViMai Seibi supports Class 3 automobile mechanic theory. ViMai Menkyo helps Vietnamese and English speakers study for the Japanese driving-licence theory test (Karimen, Honmen, licence conversion). ViMai Kids is an interactive learning platform designed for parents to follow. Maimai logs personal lifestyle metrics such as sleep, water, nutrition, and cycle tracking. The interface is intentionally calm: fast pages, readable type, and a clear order of information on mobile. Visitors should see what a product does, who it is for, and where its limits are on the first visit.",
     "missionP3": "Data protection is an operating requirement, not decoration. This website collects only what is needed to answer inquiries, run the CMS, and (if you choose to send feedback) moderate that feedback. Email addresses are not published. We do not sell personal data. The public site runs on Cloudflare. The Privacy Policy explains processing, cookies, your rights, and how to contact us. When a product is used by children, a parent or guardian is responsible for supervision.",
     "scopeTitle": "Focus areas",
     "scope1": "Tokutei Gino exam prep for taxi and transport",
-    "scope2": "Class 3 automobile mechanic exam prep",
+    "scope2": "Class 3 automobile mechanic and Japanese driving theory exam prep",
     "scope3": "Children's education with parent controls",
     "scope4": "Health, nutrition, and calorie tracking",
     "qualityTitle": "Quality bar",

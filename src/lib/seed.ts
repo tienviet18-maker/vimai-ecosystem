@@ -360,6 +360,83 @@ export const seedProducts: Product[] = [
       },
     ],
   },
+  {
+    id: "00000000-0000-0000-0000-000000000006",
+    slug: "menkyo",
+    status: "beta",
+    app_store_url: null,
+    google_play_url: null,
+    website_url: "https://menkyo.vimai.jp",
+    featured: true,
+    sort_order: 6,
+    logo_url: "/images/products/vimai_menkyo.png",
+    published: true,
+    translations: [
+      {
+        locale: "ja",
+        name: "ViMai Menkyo（日本の運転免許・学科）",
+        tagline: "日本の運転免許・学科試験の学習アプリ",
+        description:
+          "日本で運転免許の学科試験（仮免・本免）や外国免許からの切替に取り組む、ベトナム語・英語話者のための学習アプリ（スマートフォン・Web）です。30の単元、約2,350問の練習問題（イラスト付きの問題も多数）、ViMaiが描いた標識・標示209点、危険予測イラスト107点、模擬試験60回分を収録しています。模擬試験は仮免20回（50問・30分・45問以上で合格）、本免20回（95問：正誤90問とイラスト問題5問・50分・100点中90点以上で合格）、外免切替20回（50問・30分・45問以上で合格）です。内容は最新の日本の交通法規（2026年の改正など）に合わせて更新します。アプリの表示言語はベトナム語と英語で、日本語表示はありません。",
+        long_description:
+          "ルールを理解し、合格し、自信を持って運転しよう。学習を支えるツールであり、試験の合格を保証するものではありません。",
+        target_audience:
+          "日本で運転免許（仮免・本免）を教習所や試験場で取得する人、または外国免許を切り替える人のうち、ベトナム語・英語で学びたい在住者。雇用主や教習所の方が内容を把握する際にもご覧ください。",
+        features: [
+          "模擬試験60回（仮免・本免・外免切替 各20回）",
+          "最新の交通法規に対応（2026年の改正など）",
+          "約2,350問の練習問題（イラスト付き多数）",
+          "30の学習単元",
+          "ViMaiが描いた標識・標示209点",
+          "危険予測イラスト107点",
+          "すぐに解説が出る学習モードと、本番と同じ時間で解く試験モード",
+          "間違えた問題の間隔反復による復習と、分野別の練習",
+        ],
+      },
+      {
+        locale: "vi",
+        name: "ViMai Menkyo – Bằng lái Nhật",
+        tagline: "Thi lý thuyết Karimen, Honmen và đổi bằng lái Nhật",
+        description:
+          "Ứng dụng (điện thoại và web) giúp người Việt và người dùng tiếng Anh tại Nhật học và luyện thi lý thuyết bằng lái ô tô Nhật (学科試験). Có 30 bài học, khoảng 2.350 câu luyện tập (nhiều câu có hình), thư viện 209 biển báo và vạch kẻ đường do ViMai vẽ, 107 tranh tình huống nguy hiểm và 60 đề thi thử: 20 đề Karimen (仮免, 50 câu, 30 phút, đậu từ 45 câu), 20 đề Honmen (本免, 95 câu gồm 90 câu đúng/sai và 5 câu minh họa, 50 phút, đậu từ 90/100 điểm), 20 đề đổi bằng (外免切替, 50 câu, 30 phút, đậu từ 45 câu). Nội dung luôn cập nhật theo luật giao thông Nhật hiện hành, gồm các thay đổi năm 2026. Ngôn ngữ trong app: tiếng Việt và tiếng Anh.",
+        long_description:
+          "Hiểu luật. Đậu bằng. Tự tin cầm lái. Đây là công cụ học tập, không cam kết đậu kỳ thi.",
+        target_audience:
+          "Người Việt và người dùng tiếng Anh sống tại Nhật đang lấy bằng lái ô tô (Karimen, Honmen ở trường lái hoặc trung tâm sát hạch) hoặc đổi bằng nước ngoài sang bằng Nhật.",
+        features: [
+          "60 đề thi thử Karimen, Honmen, đổi bằng",
+          "Cập nhật theo luật giao thông Nhật mới nhất (2026)",
+          "Khoảng 2.350 câu, nhiều câu có hình",
+          "30 bài học lý thuyết",
+          "209 biển báo và vạch kẻ đường do ViMai vẽ",
+          "107 tranh tình huống nguy hiểm",
+          "Chế độ học giải thích ngay, chế độ thi tính giờ như thi thật",
+          "Ôn câu sai theo lịch lặp lại ngắt quãng, luyện theo chủ đề",
+        ],
+      },
+      {
+        locale: "en",
+        name: "ViMai Menkyo: Japan License",
+        tagline: "Japanese driving theory test practice: Karimen, Honmen, conversion",
+        description:
+          "An app (mobile and web) for Vietnamese and English speakers in Japan learning for the Japanese driving-licence theory test (学科試験). It includes 30 lesson units, about 2,350 practice questions (many with pictures), a library of 209 road signs and markings drawn by ViMai, 107 hazard-scene illustrations, and 60 mock exams: 20 Karimen (仮免, 50 questions, 30 minutes, pass at 45), 20 Honmen (本免, 95 questions: 90 true/false plus 5 illustration questions, 50 minutes, pass at 90/100), and 20 licence conversion (外免切替, 50 questions, 30 minutes, pass at 45). Content is kept up to date with current Japanese traffic law, including the 2026 changes. The app is in Vietnamese and English.",
+        long_description:
+          "Know the rules. Pass the test. Drive with confidence. A study tool; it does not guarantee a passing result.",
+        target_audience:
+          "Vietnamese and English-speaking residents in Japan getting a Japanese driving licence (Karimen and Honmen at a driving school or test centre) or converting a foreign licence.",
+        features: [
+          "60 mock exams: Karimen, Honmen, conversion",
+          "Updated to current Japanese traffic law (2026)",
+          "About 2,350 questions, many with pictures",
+          "30 lesson units",
+          "209 road signs and markings drawn by ViMai",
+          "107 hazard-scene illustrations",
+          "Learning mode with instant explanations; exam mode timed like the real test",
+          "Mistake review with spaced repetition, plus topic practice",
+        ],
+      },
+    ],
+  },
 ];
 
 export const seedFaqs: Array<
@@ -461,6 +538,78 @@ export const seedFaqs: Array<
         question: "What parent controls does ViMai Kids include?",
         answer:
           "Parents can monitor and manage study time and content. Detailed controls will be listed on the product page at launch.",
+      },
+    },
+  },
+  {
+    id: "faq-menkyo-1",
+    product_id: "00000000-0000-0000-0000-000000000006",
+    product_slug: "menkyo",
+    sort_order: 5,
+    published: true,
+    translations: {
+      ja: {
+        question: "ViMai Menkyoはどの試験に対応していますか？",
+        answer:
+          "日本の運転免許の学科試験です。仮免（50問・30分・45問以上で合格）、本免（95問：正誤90問とイラスト問題5問・50分・100点中90点以上で合格）、外免切替（50問・30分・45問以上で合格）の模擬試験を各20回、計60回収録しています。",
+      },
+      vi: {
+        question: "ViMai Menkyo luyện thi những kỳ thi nào?",
+        answer:
+          "Thi lý thuyết bằng lái ô tô Nhật (学科試験): Karimen (仮免, 50 câu, 30 phút, đậu từ 45 câu), Honmen (本免, 95 câu gồm 90 câu đúng/sai và 5 câu minh họa, 50 phút, đậu từ 90/100 điểm) và đổi bằng nước ngoài (外免切替, 50 câu, 30 phút, đậu từ 45 câu). Mỗi loại có 20 đề, tổng cộng 60 đề.",
+      },
+      en: {
+        question: "Which tests does ViMai Menkyo cover?",
+        answer:
+          "The Japanese driving-licence theory test (学科試験): Karimen (仮免, 50 questions, 30 minutes, pass at 45), Honmen (本免, 95 questions: 90 true/false plus 5 illustration questions, 50 minutes, pass at 90/100) and foreign licence conversion (外免切替, 50 questions, 30 minutes, pass at 45). There are 20 mock exams of each type, 60 in total.",
+      },
+    },
+  },
+  {
+    id: "faq-menkyo-2",
+    product_id: "00000000-0000-0000-0000-000000000006",
+    product_slug: "menkyo",
+    sort_order: 6,
+    published: true,
+    translations: {
+      ja: {
+        question: "アプリは何語で使えますか？",
+        answer:
+          "アプリの表示言語はベトナム語と英語です。日本語の画面はありません。日本の交通法規の内容を、ベトナム語・英語話者向けに説明しています。",
+      },
+      vi: {
+        question: "App dùng ngôn ngữ nào?",
+        answer:
+          "App có tiếng Việt và tiếng Anh. Nội dung bám luật giao thông Nhật hiện hành và được giải thích bằng ngôn ngữ bạn chọn.",
+      },
+      en: {
+        question: "Which languages does the app use?",
+        answer:
+          "The app is available in Vietnamese and English. It explains current Japanese traffic law in the language you choose.",
+      },
+    },
+  },
+  {
+    id: "faq-menkyo-3",
+    product_id: "00000000-0000-0000-0000-000000000006",
+    product_slug: "menkyo",
+    sort_order: 7,
+    published: true,
+    translations: {
+      ja: {
+        question: "無料でどこまで使えますか？",
+        answer:
+          "模擬試験は種類ごとに5回分が無料です。VIPで60回分すべてが使えます。料金体系は他のViMaiアプリと同じです。ログインは任意で、ログインすると学習の進み具合をすべての端末で引き継げます。",
+      },
+      vi: {
+        question: "Dùng miễn phí được những gì?",
+        answer:
+          "Mỗi loại thi có 5 đề thi thử miễn phí. VIP mở toàn bộ 60 đề, cùng hệ thống giá với các app ViMai khác. Đăng nhập là tùy chọn; khi đăng nhập, tiến độ học được giữ trên mọi thiết bị.",
+      },
+      en: {
+        question: "What can I use for free?",
+        answer:
+          "Five mock exams of each type are free. VIP unlocks all 60, on the same pricing system as the other ViMai apps. Sign-in is optional; signing in keeps your progress on all your devices.",
       },
     },
   },

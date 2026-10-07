@@ -26,7 +26,7 @@ export default async function SeoPage({
         <p>
           Product canonicals are per-product (https://tokutei-taxi.vimai.jp,
           https://tokutei-truck.vimai.jp, https://seibi.vimai.jp, https://kids.vimai.jp,
-          https://maimai.vimai.jp) and never inherit the homepage canonical.
+          https://maimai.vimai.jp, https://menkyo.vimai.jp) and never inherit the homepage canonical.
         </p>
       </div>
       <SeoForm

@@ -164,9 +164,7 @@ def clean_product_icons() -> None:
         print(f"cleaned {src_name} -> {dest_name}")
 
 
-# ViMai Menkyo: the only source is the app's 240px icon
-# (vimai-menkyo/assets/brand/app_icon.webp, copied to "logo các app/").
-# Replace that file with a larger original when one exists and re-run.
+# ViMai Menkyo: source is the 1024px app icon in "logo các app/".
 MENKYO_SOURCE = ROOT / "logo các app" / "vimai_menkyo.webp"
 
 

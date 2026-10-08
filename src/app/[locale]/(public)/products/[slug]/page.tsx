@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n/navigation";
 import { getFaqs } from "@/lib/faqs";
 import { getProductBySlug } from "@/lib/products";
+import { appStoreUrl, stripWebPaymentFeatures, usesAppStoreOnly } from "@/lib/store-policy";
 import { publicUrl, SITE_URL } from "@/lib/utils";
 import type { Locale } from "@/types";
 
@@ -71,6 +72,9 @@ export default async function ProductPage({
   const faqs = await getFaqs(locale as Locale, product.id);
   const siteUrl = product.website_url;
   const pageUrl = publicUrl(locale, `/products/${slug}`);
+  // EN/JA readers buy through Apple in the app, never on the web (see store-policy.ts).
+  const appStoreOnly = usesAppStoreOnly(slug, locale);
+  const features = appStoreOnly ? stripWebPaymentFeatures(product.features) : product.features;
 
   return (
     <article className="container py-16 lg:py-24">
@@ -115,7 +119,9 @@ export default async function ProductPage({
           </div>
           <p className="mt-4 text-lg leading-8 text-slate-500">{product.tagline}</p>
           <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600">{product.description}</p>
-          {product.long_description ? (
+          {appStoreOnly ? (
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-500">{t("appStoreNote")}</p>
+          ) : product.long_description ? (
             <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-500">
               {product.long_description}
             </p>
@@ -133,7 +139,7 @@ export default async function ProductPage({
           <div className="mt-10">
             <h2 className="text-lg font-semibold tracking-tight">{t("features")}</h2>
             <div className="mt-5">
-              <FeatureList features={product.features} />
+              <FeatureList features={features} />
             </div>
           </div>
 
@@ -141,10 +147,17 @@ export default async function ProductPage({
             <h2 className="text-lg font-semibold tracking-tight">{t("howToStart")}</h2>
             <ol className="mt-5 max-w-3xl list-decimal space-y-3 pl-5 text-sm leading-7 text-slate-600 sm:text-[0.95rem]">
               <li>{t("howToStartStep1")}</li>
-              <li>{t("howToStartStep2")}</li>
-              <li>{t("howToStartStep3")}</li>
+              <li>{t(appStoreOnly ? "appStoreStep2" : "howToStartStep2")}</li>
+              <li>{t(appStoreOnly ? "appStoreStep3" : "howToStartStep3")}</li>
             </ol>
-            {siteUrl ? (
+            {appStoreOnly ? (
+              <AppStoreButton
+                href={appStoreUrl(slug)}
+                label={t("comingSoon")}
+                linkLabel={t("downloadOnAppStore")}
+                className="mt-6 min-h-11"
+              />
+            ) : siteUrl ? (
               <Button asChild className="mt-6 min-h-11">
                 <a href={siteUrl} target="_blank" rel="noopener noreferrer">
                   {t("openSite")}
@@ -158,11 +171,15 @@ export default async function ProductPage({
             <div>
               <h2 className="text-lg font-semibold tracking-tight">{t("download")}</h2>
               <div className="mt-5 flex flex-wrap gap-3">
-                <AppStoreButton href={product.app_store_url} label={t("storeSoon")} />
+                <AppStoreButton
+                  href={appStoreOnly ? appStoreUrl(slug) : product.app_store_url}
+                  label={t(appStoreOnly ? "comingSoon" : "storeSoon")}
+                  linkLabel={appStoreOnly ? t("downloadOnAppStore") : undefined}
+                />
                 <PlayStoreButton href={product.google_play_url} label={t("storeSoon")} />
               </div>
             </div>
-            <PwaInstallGuide />
+            {appStoreOnly ? null : <PwaInstallGuide />}
           </div>
         </div>
       </div>

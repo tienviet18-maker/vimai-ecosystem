@@ -57,7 +57,7 @@ CREATE INDEX IF NOT EXISTS idx_admin_users_email ON admin_users (email);
 
 UPDATE products SET website_url = 'https://tokutei-taxi.vimai.jp'
   WHERE slug = 'tokutei-taxi' AND (website_url IS NULL OR website_url = '');
-UPDATE products SET website_url = 'https://tokutei-truck.vimai.jp'
+UPDATE products SET website_url = 'https://tokutei-transport.vimai.jp'
   WHERE slug = 'tokutei-transport' AND (website_url IS NULL OR website_url = '');
 UPDATE products SET website_url = 'https://seibi.vimai.jp'
   WHERE slug = 'seibi' AND (website_url IS NULL OR website_url = '');

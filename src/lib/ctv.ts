@@ -398,21 +398,36 @@ export type LeaderboardRow = { public_no: string; count: number };
 export async function leaderboard(periodKey: string, limit = 50): Promise<LeaderboardRow[]> {
   const db = getDb();
   if (!db) return [];
-  const { results } = await db
-    .prepare(
-      `SELECT p.public_no AS public_no, COUNT(r.id) AS count, MAX(r.created_at) AS last_at
-       FROM ctv_referrals r JOIN ctv_partners p ON p.id = r.partner_id
-       WHERE r.period_key = ? AND r.status != 'void' AND p.status != 'ended'
-       GROUP BY p.id ORDER BY count DESC, last_at ASC LIMIT ?`,
-    )
-    .bind(periodKey, limit)
-    .all<LeaderboardRow>();
-  return (results ?? []).map((row) => ({ public_no: row.public_no, count: Number(row.count) }));
+  try {
+    const { results } = await db
+      .prepare(
+        `SELECT p.public_no AS public_no, COUNT(r.id) AS count, MAX(r.created_at) AS last_at
+         FROM ctv_referrals r JOIN ctv_partners p ON p.id = r.partner_id
+         WHERE r.period_key = ? AND r.status != 'void' AND p.status != 'ended'
+         GROUP BY p.id ORDER BY count DESC, last_at ASC LIMIT ?`,
+      )
+      .bind(periodKey, limit)
+      .all<LeaderboardRow>();
+    return (results ?? []).map((row) => ({ public_no: row.public_no, count: Number(row.count) }));
+  } catch (error) {
+    // Bảng CTV chưa được tạo (chưa áp migration 0008): hiện bảng trống thay vì lỗi 500.
+    console.error("leaderboard failed", error);
+    return [];
+  }
 }
 
 export async function partnerByToken(token: string) {
   const db = getDb();
   if (!db || !/^[A-HJKMNP-Z2-9]{24}$/.test(token)) return null;
+  try {
+    return await loadPartnerPortal(db, token);
+  } catch (error) {
+    console.error("partnerByToken failed", error);
+    return null;
+  }
+}
+
+async function loadPartnerPortal(db: D1Database, token: string) {
   const partner = await db
     .prepare(`SELECT ${PARTNER_COLUMNS} FROM ctv_partners WHERE token_hash = ? AND status != 'ended'`)
     .bind(await sha256Hex(token))

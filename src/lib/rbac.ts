@@ -20,6 +20,7 @@ export const PERMISSIONS = [
   "settings",
   "users",
   "audit",
+  "ctv",
 ] as const;
 
 export type Permission = (typeof PERMISSIONS)[number];

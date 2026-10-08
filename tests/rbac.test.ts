@@ -38,3 +38,9 @@ test("EDITOR is limited to content", () => {
 test("protected emergency account email is the required super admin", () => {
   assert.equal(PROTECTED_SUPER_ADMIN_EMAIL, "vimai.support@gmail.com");
 });
+
+test("only SUPER_ADMIN can manage CTV money", () => {
+  assert.equal(can("SUPER_ADMIN", "ctv"), true);
+  assert.equal(can("ADMIN", "ctv"), false);
+  assert.equal(can("EDITOR", "ctv"), false);
+});

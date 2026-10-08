@@ -299,6 +299,7 @@
     "pages": "Trang",
     "translations": "Bản dịch",
     "users": "Tài khoản",
+    "ctv": "CTV",
     "audit": "Nhật ký",
     "title": "Tiêu đề"
   },
@@ -306,5 +307,36 @@
     "learnMore": "Xem chi tiết",
     "loading": "Đang tải…",
     "skipToContent": "Tới nội dung chính"
+  },
+  "duatop": {
+    "title": "Đua top CTV ViMai",
+    "intro": "Bảng xếp hạng cộng tác viên theo số đơn thành công trong kỳ hiện tại. Chỉ hiện số hiển thị của từng CTV, không hiện tên.",
+    "period": "Kỳ hiện tại",
+    "rank": "Hạng",
+    "number": "Số CTV",
+    "orders": "Số đơn",
+    "empty": "Kỳ này chưa có đơn nào. Hãy là người đầu tiên!",
+    "previousTitle": "Tổng kết kỳ trước",
+    "previousIntro": "Kết quả đã chốt của kỳ {period}.",
+    "previousEmpty": "Kỳ trước không có đơn nào.",
+    "cycle": "Mỗi kỳ kéo dài nửa tháng (ngày 1 đến 15 và ngày 16 đến hết tháng, giờ Việt Nam). Cuối mỗi kỳ ViMai chốt kết quả và thông báo ngay trên trang này."
+  },
+  "ctvPortal": {
+    "title": "Trang riêng của CTV",
+    "hello": "Số CTV của bạn",
+    "yourCode": "Mã giới thiệu của bạn",
+    "thisPeriod": "Đơn kỳ này",
+    "unpaid": "Hoa hồng chưa trả",
+    "history": "Lịch sử đơn",
+    "date": "Ngày",
+    "app": "App",
+    "commission": "Hoa hồng",
+    "status": "Trạng thái",
+    "pending": "Chưa trả",
+    "paid": "Đã trả",
+    "void": "Đã hủy (khách hoàn tiền)",
+    "empty": "Chưa có đơn nào.",
+    "secret": "Link này là riêng của bạn, đừng chia sẻ cho người khác.",
+    "rank": "Hạng kỳ này"
   }
 }

@@ -31,6 +31,7 @@ export type CmsBindings = {
   DB: D1Database;
   MEDIA: R2Bucket;
   AUTH_SECRET?: string;
+  OPS_HMAC_SECRET?: string;
 };
 
 export function getBindings(): Partial<CmsBindings> {
@@ -55,6 +56,10 @@ export function isCmsConfigured() {
 
 export function getAuthSecret() {
   return process.env.AUTH_SECRET || getBindings().AUTH_SECRET || "";
+}
+
+export function getOpsSecret() {
+  return process.env.OPS_HMAC_SECRET || getBindings().OPS_HMAC_SECRET || "";
 }
 
 export function isAuthConfigured() {

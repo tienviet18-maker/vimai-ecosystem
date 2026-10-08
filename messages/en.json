@@ -302,6 +302,7 @@
     "pages": "Pages",
     "translations": "Translations",
     "users": "Users",
+    "ctv": "Partners (CTV)",
     "audit": "Audit logs",
     "title": "Title"
   },
@@ -309,5 +310,36 @@
     "learnMore": "Learn more",
     "loading": "Loading…",
     "skipToContent": "Skip to content"
+  },
+  "duatop": {
+    "title": "ViMai Top Partners",
+    "intro": "Ranking of partners by successful orders in the current period. Only each partner's display number is shown, never a name.",
+    "period": "Current period",
+    "rank": "Rank",
+    "number": "Partner no.",
+    "orders": "Orders",
+    "empty": "No orders yet in this period. Be the first!",
+    "previousTitle": "Previous period results",
+    "previousIntro": "Final results for period {period}.",
+    "previousEmpty": "No orders in the previous period.",
+    "cycle": "Each period lasts half a month (the 1st to 15th and the 16th to month end, Vietnam time). At the end of each period ViMai announces the results on this page."
+  },
+  "ctvPortal": {
+    "title": "Partner page",
+    "hello": "Your partner number",
+    "yourCode": "Your referral code",
+    "thisPeriod": "Orders this period",
+    "unpaid": "Unpaid commission",
+    "history": "Order history",
+    "date": "Date",
+    "app": "App",
+    "commission": "Commission",
+    "status": "Status",
+    "pending": "Unpaid",
+    "paid": "Paid",
+    "void": "Cancelled (customer refunded)",
+    "empty": "No orders yet.",
+    "secret": "This link is private to you, do not share it.",
+    "rank": "Rank this period"
   }
 }

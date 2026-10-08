@@ -21,6 +21,7 @@ import {
   ScrollText,
   Search,
   Settings,
+  UserPlus,
   Users,
 } from "lucide-react";
 
@@ -36,6 +37,7 @@ const items: Array<{ href: string; key: string; icon: typeof LayoutDashboard; pe
   { href: "/admin/seo", key: "seo", icon: Search, permission: "seo" },
   { href: "/admin/messages", key: "messages", icon: Mail, permission: "messages" },
   { href: "/admin/reviews", key: "reviews", icon: MessageSquare, permission: "reviews" },
+  { href: "/admin/ctv", key: "ctv", icon: UserPlus, permission: "ctv" },
   { href: "/admin/users", key: "users", icon: Users, permission: "users" },
   { href: "/admin/audit", key: "audit", icon: ScrollText, permission: "audit" },
   { href: "/admin/analytics", key: "analytics", icon: BarChart3, permission: "analytics" },

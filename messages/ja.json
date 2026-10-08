@@ -302,6 +302,7 @@
     "pages": "ページ",
     "translations": "翻訳",
     "users": "管理者",
+    "ctv": "CTV",
     "audit": "監査ログ",
     "title": "タイトル"
   },
@@ -309,5 +310,36 @@
     "learnMore": "詳しく見る",
     "loading": "読み込み中…",
     "skipToContent": "本文へスキップ"
+  },
+  "duatop": {
+    "title": "ViMai CTVランキング",
+    "intro": "今期の成約件数によるパートナーのランキングです。表示番号のみで、名前は表示されません。",
+    "period": "今期",
+    "rank": "順位",
+    "number": "パートナー番号",
+    "orders": "件数",
+    "empty": "今期はまだ成約がありません。",
+    "previousTitle": "前期の結果",
+    "previousIntro": "{period}期の確定結果です。",
+    "previousEmpty": "前期は成約がありませんでした。",
+    "cycle": "1期は半月です（1日〜15日、16日〜月末。ベトナム時間）。各期の終わりに結果をこのページで発表します。"
+  },
+  "ctvPortal": {
+    "title": "パートナー専用ページ",
+    "hello": "あなたのパートナー番号",
+    "yourCode": "あなたの紹介コード",
+    "thisPeriod": "今期の件数",
+    "unpaid": "未払いの報酬",
+    "history": "成約履歴",
+    "date": "日付",
+    "app": "アプリ",
+    "commission": "報酬",
+    "status": "状態",
+    "pending": "未払い",
+    "paid": "支払い済み",
+    "void": "取消（返金）",
+    "empty": "まだ成約がありません。",
+    "secret": "このリンクはあなた専用です。他の人に共有しないでください。",
+    "rank": "今期の順位"
   }
 }

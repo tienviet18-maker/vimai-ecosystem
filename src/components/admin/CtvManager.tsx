@@ -90,8 +90,29 @@ export function CtvManager({
       toast.success("Đã lưu");
     });
 
+  const regenerate = (p: PartnerStats) => {
+    if (!confirm("Cấp lại link riêng? Link cũ sẽ hết hiệu lực ngay.")) return;
+    void run(
+      p.id,
+      async () => {
+        const json = await call("/api/admin/ctv", "PATCH", { id: p.id, regenerate_link: true });
+        setCreated({ code: p.code, public_no: p.public_no, link: String(json.link) });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      },
+      false,
+    );
+  };
+
+  const toggleVoid = (r: ReferralRow) => {
+    const makeVoid = r.status !== "void";
+    if (makeVoid && !confirm("Hủy hoa hồng của đơn này (khách hoàn tiền)?")) return;
+    void run(r.id, async () => {
+      await call("/api/admin/ctv/referral", "PATCH", { id: r.id, void: makeVoid });
+    });
+  };
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-8 md:space-y-10">
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Thêm CTV</h2>
         {created ? (
@@ -102,9 +123,12 @@ export function CtvManager({
               <b>{created.public_no}</b>
             </p>
             <p className="break-all font-mono text-xs">{created.link}</p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Button type="button" className="min-h-11" onClick={() => copy(created.link)}>
                 Copy link riêng
+              </Button>
+              <Button type="button" variant="outline" className="min-h-11" onClick={() => copy(created.code)}>
+                Copy mã khách
               </Button>
               <Button type="button" variant="outline" className="min-h-11" onClick={() => window.location.reload()}>
                 Xong
@@ -112,16 +136,16 @@ export function CtvManager({
             </div>
           </div>
         ) : (
-          <form onSubmit={createPartner} className="grid gap-3 rounded-2xl border bg-white p-4 sm:grid-cols-3">
-            <Input name="nickname" placeholder="Biệt danh (chỉ anh thấy)" required className="min-h-11" />
-            <Input name="contact" placeholder="Liên lạc (Zalo, FB...)" className="min-h-11" />
-            <Input name="note" placeholder="Ghi chú" className="min-h-11" />
-            <Input name="bank_name" placeholder="Ngân hàng" className="min-h-11" />
-            <Input name="bank_account_name" placeholder="Tên chủ tài khoản" className="min-h-11" />
-            <Input name="bank_account_no" placeholder="Số tài khoản" inputMode="numeric" className="min-h-11" />
-            <label className="flex items-center gap-2 text-sm">
+          <form onSubmit={createPartner} className="grid gap-3 rounded-2xl border bg-white p-4 md:grid-cols-3">
+            <Input name="nickname" placeholder="Biệt danh (chỉ anh thấy)" required className="min-h-11 text-base md:text-sm" />
+            <Input name="contact" placeholder="Liên lạc (Zalo, FB...)" className="min-h-11 text-base md:text-sm" />
+            <Input name="note" placeholder="Ghi chú" className="min-h-11 text-base md:text-sm" />
+            <Input name="bank_name" placeholder="Ngân hàng" className="min-h-11 text-base md:text-sm" />
+            <Input name="bank_account_name" placeholder="Tên chủ tài khoản" className="min-h-11 text-base md:text-sm" />
+            <Input name="bank_account_no" placeholder="Số tài khoản" inputMode="numeric" className="min-h-11 text-base md:text-sm" />
+            <label className="flex items-center justify-between gap-2 text-sm md:justify-start">
               Giảm cho khách
-              <select name="discount_percent" defaultValue={15} className="min-h-11 rounded-xl border px-3">
+              <select name="discount_percent" defaultValue={15} className="min-h-11 flex-1 rounded-xl border bg-white px-3 text-base md:flex-none md:text-sm">
                 {DISCOUNT_PERCENTS.map((p) => (
                   <option key={p} value={p}>
                     {p}%
@@ -129,7 +153,7 @@ export function CtvManager({
                 ))}
               </select>
             </label>
-            <label className="flex items-center gap-2 text-sm">
+            <label className="flex items-center justify-between gap-2 text-sm md:justify-start">
               Hoa hồng/đơn (đ)
               <Input
                 name="commission_vnd"
@@ -137,13 +161,13 @@ export function CtvManager({
                 min={0}
                 step={1000}
                 defaultValue={100000}
-                className="min-h-11 w-32"
+                className="min-h-11 w-32 text-base md:text-sm"
               />
             </label>
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" name="terms_accepted" className="h-5 w-5" /> CTV đã đồng ý điều khoản
             </label>
-            <Button type="submit" disabled={busy === "create"} className="min-h-11 sm:col-span-3">
+            <Button type="submit" disabled={busy === "create"} className="min-h-11 md:col-span-3">
               Tạo CTV và sinh mã
             </Button>
           </form>
@@ -152,7 +176,7 @@ export function CtvManager({
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Danh sách CTV ({partners.length})</h2>
-        <div className="overflow-x-auto rounded-2xl border bg-white">
+        <div className="hidden overflow-x-auto rounded-2xl border bg-white md:block">
           <table className="w-full min-w-[960px] text-left text-sm">
             <thead className="border-b bg-navy-50/80 text-slate-500">
               <tr>
@@ -230,18 +254,7 @@ export function CtvManager({
                         variant="outline"
                         className="min-h-11"
                         disabled={busy === p.id}
-                        onClick={() => {
-                          if (!confirm("Cấp lại link riêng? Link cũ sẽ hết hiệu lực ngay.")) return;
-                          void run(
-                            p.id,
-                            async () => {
-                              const json = await call("/api/admin/ctv", "PATCH", { id: p.id, regenerate_link: true });
-                              setCreated({ code: p.code, public_no: p.public_no, link: String(json.link) });
-                              window.scrollTo({ top: 0, behavior: "smooth" });
-                            },
-                            false,
-                          );
-                        }}
+                        onClick={() => regenerate(p)}
                       >
                         Cấp lại link
                       </Button>
@@ -252,18 +265,24 @@ export function CtvManager({
             </tbody>
           </table>
         </div>
+        <div className="space-y-3 md:hidden">
+          {partners.length === 0 ? <EmptyCard text="Chưa có CTV nào." /> : null}
+          {partners.map((p) => (
+            <PartnerCard key={p.id} p={p} busy={busy === p.id} patch={patch} regenerate={regenerate} />
+          ))}
+        </div>
       </section>
 
       <section className="space-y-3">
-        <div className="flex flex-wrap items-center gap-3">
-          <h2 className="text-lg font-semibold">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <h2 className="w-full text-lg font-semibold md:w-auto">
             Kỳ thanh toán {period.key} ({period.start} đến {period.end})
           </h2>
-          <a className="text-sm text-primary underline" href={`?period=${previous}`}>
+          <a className="inline-flex min-h-11 items-center text-sm text-primary underline" href={`?period=${previous}`}>
             Kỳ trước
           </a>
           {next ? (
-            <a className="text-sm text-primary underline" href={`?period=${next}`}>
+            <a className="inline-flex min-h-11 items-center text-sm text-primary underline" href={`?period=${next}`}>
               Kỳ sau
             </a>
           ) : null}
@@ -274,7 +293,7 @@ export function CtvManager({
             Tải file chuyển khoản (CSV)
           </a>
         </div>
-        <div className="overflow-x-auto rounded-2xl border bg-white">
+        <div className="hidden overflow-x-auto rounded-2xl border bg-white md:block">
           <table className="w-full min-w-[760px] text-left text-sm">
             <thead className="border-b bg-navy-50/80 text-slate-500">
               <tr>
@@ -300,11 +319,17 @@ export function CtvManager({
             </tbody>
           </table>
         </div>
+        <div className="space-y-3 md:hidden">
+          {payout.length === 0 ? <EmptyCard text="Kỳ này không còn khoản nào chưa trả." /> : null}
+          {payout.map((row) => (
+            <PayoutCard key={row.partner_id} row={row} period={period.key} busy={busy} run={run} />
+          ))}
+        </div>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Đơn có mã trong kỳ này ({referrals.length})</h2>
-        <div className="overflow-x-auto rounded-2xl border bg-white">
+        <div className="hidden overflow-x-auto rounded-2xl border bg-white md:block">
           <table className="w-full min-w-[760px] text-left text-sm">
             <thead className="border-b bg-navy-50/80 text-slate-500">
               <tr>
@@ -340,13 +365,7 @@ export function CtvManager({
                           variant="outline"
                           className="min-h-11"
                           disabled={busy === r.id}
-                          onClick={() => {
-                            const makeVoid = r.status !== "void";
-                            if (makeVoid && !confirm("Hủy hoa hồng của đơn này (khách hoàn tiền)?")) return;
-                            void run(r.id, async () => {
-                              await call("/api/admin/ctv/referral", "PATCH", { id: r.id, void: makeVoid });
-                            });
-                          }}
+                          onClick={() => toggleVoid(r)}
                         >
                           {r.status === "void" ? "Khôi phục" : "Hủy (hoàn tiền)"}
                         </Button>
@@ -357,6 +376,12 @@ export function CtvManager({
               )}
             </tbody>
           </table>
+        </div>
+        <div className="space-y-3 md:hidden">
+          {referrals.length === 0 ? <EmptyCard text="Chưa có đơn nào." /> : null}
+          {referrals.map((r) => (
+            <ReferralCard key={r.id} r={r} busy={busy === r.id} toggleVoid={toggleVoid} />
+          ))}
         </div>
       </section>
     </div>
@@ -410,5 +435,195 @@ function PayoutLine({
         </Button>
       </td>
     </tr>
+  );
+}
+
+const selectClass = "min-h-11 w-full rounded-xl border bg-white px-3 text-base";
+
+function EmptyCard({ text }: { text: string }) {
+  return <p className="rounded-2xl border bg-white px-4 py-8 text-center text-sm text-slate-500">{text}</p>;
+}
+
+function Stat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="rounded-xl bg-slate-50 px-3 py-2">
+      <p className="text-xs text-slate-500">{label}</p>
+      <p className="text-sm font-semibold">{value}</p>
+    </div>
+  );
+}
+
+function PartnerCard({
+  p,
+  busy,
+  patch,
+  regenerate,
+}: {
+  p: PartnerStats;
+  busy: boolean;
+  patch: (id: string, body: Record<string, unknown>) => Promise<void>;
+  regenerate: (p: PartnerStats) => void;
+}) {
+  return (
+    <article className="space-y-3 rounded-2xl border bg-white p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="font-semibold">
+            {p.public_no} · {p.nickname}
+          </p>
+          {p.contact ? <p className="break-words text-xs text-slate-500">{p.contact}</p> : null}
+        </div>
+        <button
+          type="button"
+          onClick={() => copy(p.code)}
+          className="inline-flex min-h-11 shrink-0 items-center rounded-xl border px-3 font-mono text-base"
+          aria-label={`Copy mã ${p.code}`}
+        >
+          {p.code}
+        </button>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <label className="space-y-1 text-xs text-slate-500">
+          Trạng thái
+          <select
+            defaultValue={p.status}
+            disabled={busy}
+            className={selectClass}
+            onChange={(e) => patch(p.id, { status: e.target.value })}
+          >
+            <option value="active">Đang chạy</option>
+            <option value="paused">Tạm dừng</option>
+            <option value="ended">Kết thúc</option>
+          </select>
+        </label>
+        <label className="space-y-1 text-xs text-slate-500">
+          Giảm cho khách
+          <select
+            defaultValue={p.discount_percent}
+            disabled={busy}
+            className={selectClass}
+            onChange={(e) => patch(p.id, { discount_percent: Number(e.target.value) })}
+          >
+            {DISCOUNT_PERCENTS.map((d) => (
+              <option key={d} value={d}>
+                {d}%
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <label className="block space-y-1 text-xs text-slate-500">
+        Hoa hồng mỗi đơn (đ)
+        <Input
+          type="number"
+          inputMode="numeric"
+          min={0}
+          step={1000}
+          defaultValue={p.commission_vnd}
+          className="min-h-11 text-base"
+          onBlur={(e) => {
+            const value = Number(e.target.value);
+            if (value !== p.commission_vnd) void patch(p.id, { commission_vnd: value });
+          }}
+        />
+      </label>
+      <div className="grid grid-cols-2 gap-2">
+        <Stat label="Đơn kỳ này" value={p.period_count} />
+        <Stat label="Chưa trả kỳ này" value={vnd(p.period_unpaid_vnd)} />
+        <Stat label="Tổng đơn" value={p.total_count} />
+        <Stat label="Tổng chưa trả" value={vnd(p.total_unpaid_vnd)} />
+      </div>
+      <Button type="button" variant="outline" className="min-h-11 w-full" disabled={busy} onClick={() => regenerate(p)}>
+        Cấp lại link
+      </Button>
+    </article>
+  );
+}
+
+function PayoutCard({
+  row,
+  period,
+  busy,
+  run,
+}: {
+  row: PayoutRow;
+  period: string;
+  busy: string | null;
+  run: (key: string, task: () => Promise<void>, reload?: boolean) => Promise<void>;
+}) {
+  const [ref, setRef] = useState("");
+  return (
+    <article className="space-y-3 rounded-2xl border bg-white p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="font-semibold">
+            {row.public_no} · {row.nickname}
+          </p>
+          <p className="text-xs text-slate-500">
+            {row.bank_name} · {row.bank_account_name}
+          </p>
+        </div>
+        <p className="shrink-0 text-right text-base font-semibold">{vnd(row.amount_vnd)}</p>
+      </div>
+      <button
+        type="button"
+        onClick={() => copy(row.bank_account_no ?? "")}
+        className="inline-flex min-h-11 w-full items-center justify-between rounded-xl border px-3 font-mono text-base"
+        aria-label="Copy số tài khoản"
+      >
+        {row.bank_account_no || "Chưa có số tài khoản"}
+        <span className="font-sans text-xs text-slate-500">Copy · {row.count} đơn</span>
+      </button>
+      <Input
+        value={ref}
+        onChange={(e) => setRef(e.target.value)}
+        placeholder="Mã giao dịch (tùy chọn)"
+        className="min-h-11 text-base"
+      />
+      <Button
+        type="button"
+        className="min-h-11 w-full"
+        disabled={busy === row.partner_id}
+        onClick={() => {
+          if (!confirm(`Đánh dấu đã chuyển ${vnd(row.amount_vnd)} cho ${row.public_no}?`)) return;
+          void run(row.partner_id, async () => {
+            await call("/api/admin/ctv/payout", "POST", { partner_id: row.partner_id, period, pay_ref: ref });
+          });
+        }}
+      >
+        Đã trả
+      </Button>
+    </article>
+  );
+}
+
+function ReferralCard({
+  r,
+  busy,
+  toggleVoid,
+}: {
+  r: ReferralRow;
+  busy: boolean;
+  toggleVoid: (r: ReferralRow) => void;
+}) {
+  const status = r.status === "pending" ? "Chưa trả" : r.status === "paid" ? "Đã trả" : "Đã hủy (hoàn tiền)";
+  return (
+    <article className="space-y-2 rounded-2xl border bg-white p-4 text-sm">
+      <div className="flex items-center justify-between gap-3">
+        <p className="font-semibold">
+          {r.public_no} · {r.product}
+        </p>
+        <p className="text-xs text-slate-500">{status}</p>
+      </div>
+      <p className="text-xs text-slate-500">{new Date(r.created_at).toLocaleString("vi-VN")}</p>
+      <p>
+        Khách trả {vnd(r.paid_vnd)} · Hoa hồng {vnd(r.commission_vnd)}
+      </p>
+      {r.status === "paid" ? null : (
+        <Button type="button" variant="outline" className="min-h-11 w-full" disabled={busy} onClick={() => toggleVoid(r)}>
+          {r.status === "void" ? "Khôi phục" : "Hủy (hoàn tiền)"}
+        </Button>
+      )}
+    </article>
   );
 }

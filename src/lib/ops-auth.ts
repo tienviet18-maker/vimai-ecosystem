@@ -6,7 +6,7 @@ import { rateLimit } from "@/lib/rate-limit";
 const BODY_LIMIT = 4096;
 
 /**
- * Lời gọi từ Worker của các app (taxi, transport, menkyo). Mỗi lời gọi ký
+ * Lời gọi từ Worker của các app (taxi, transport, menkyo, gino1). Mỗi lời gọi ký
  * HMAC-SHA256 trên `${x-ops-timestamp}.${body}` bằng OPS_HMAC_SECRET.
  * Trả về body đã parse, hoặc một response lỗi chỉ chứa mã lỗi.
  */

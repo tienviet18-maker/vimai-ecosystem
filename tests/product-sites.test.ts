@@ -17,6 +17,8 @@ test("each ViMai product has its own canonical site", () => {
   assert.equal(PRODUCT_SITES.kids, "https://kids.vimai.jp");
   assert.equal(PRODUCT_SITES.maimai, "https://maimai.vimai.jp");
   assert.equal(PRODUCT_SITES.menkyo, "https://menkyo.vimai.jp");
+  assert.equal(PRODUCT_SITES["gino1-seibi"], "https://gino1-seibi.vimai.jp");
+  assert.equal(PRODUCT_LOGOS["gino1-seibi"], "/images/products/gino1_seibi.v2.webp");
   assert.equal(resolveProductSite("tokutei-taxi"), "https://tokutei-taxi.vimai.jp");
   assert.notEqual(resolveProductSite("tokutei-taxi"), "https://vimai.jp");
 });

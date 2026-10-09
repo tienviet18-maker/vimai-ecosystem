@@ -442,3 +442,115 @@ async function loadPartnerPortal(db: D1Database, token: string) {
     .all<Referral>();
   return { partner, referrals: results ?? [] };
 }
+
+// ---------------------------------------------------------------------------
+// Đơn Worker không ghi nhận được: hiện ở /admin/ctv để anh xử lý.
+
+export type RecordFailure = {
+  id: string;
+  product: CtvProduct;
+  order_ref: string;
+  user_ref: string;
+  code: string;
+  paid_vnd: number;
+  reason: string;
+  attempts: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export async function upsertRecordFailure(input: {
+  product: CtvProduct;
+  orderRef: string;
+  userRef: string;
+  code: string;
+  paidVnd: number;
+  reason: string;
+  attempts: number;
+}) {
+  const db = getDb();
+  if (!db) return { error: "unconfigured" as const };
+  const now = nowIso();
+  try {
+    await db
+      .prepare(
+        `INSERT INTO ctv_record_failures
+           (id, product, order_ref, user_ref, code, paid_vnd, reason, attempts, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT (product, order_ref) DO UPDATE SET
+           reason = excluded.reason, attempts = excluded.attempts, updated_at = excluded.updated_at`,
+      )
+      .bind(
+        newId(),
+        input.product,
+        input.orderRef,
+        input.userRef,
+        input.code,
+        input.paidVnd,
+        input.reason,
+        input.attempts,
+        now,
+        now,
+      )
+      .run();
+    return { ok: true as const };
+  } catch (error) {
+    console.error("upsertRecordFailure failed", error);
+    return { error: "failed" as const };
+  }
+}
+
+/** Đơn đã ghi nhận được (hoặc đã có) thì xóa cảnh báo. Lỗi bảng thiếu bị bỏ qua. */
+export async function clearRecordFailure(product: CtvProduct, orderRef: string) {
+  const db = getDb();
+  if (!db) return;
+  try {
+    await db
+      .prepare(`DELETE FROM ctv_record_failures WHERE product = ? AND order_ref = ?`)
+      .bind(product, orderRef)
+      .run();
+  } catch {}
+}
+
+export async function listRecordFailures(): Promise<RecordFailure[]> {
+  const db = getDb();
+  if (!db) return [];
+  try {
+    const { results } = await db
+      .prepare(`SELECT * FROM ctv_record_failures ORDER BY updated_at DESC LIMIT 100`)
+      .all<RecordFailure>();
+    return results ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function dismissRecordFailure(id: string) {
+  const db = getDb();
+  if (!db) return { error: "unconfigured" as const };
+  await db.prepare(`DELETE FROM ctv_record_failures WHERE id = ?`).bind(id).run();
+  return { ok: true as const };
+}
+
+/** Anh bấm "Thử ghi lại": chạy lại đúng luồng ghi nhận ở server. */
+export async function retryRecordFailure(id: string) {
+  const db = getDb();
+  if (!db) return { error: "unconfigured" as const };
+  const row = await db
+    .prepare(`SELECT * FROM ctv_record_failures WHERE id = ?`)
+    .bind(id)
+    .first<RecordFailure>();
+  if (!row) return { error: "not_found" as const };
+  const result = await recordReferral({
+    product: row.product,
+    orderRef: row.order_ref,
+    userRef: row.user_ref,
+    code: row.code,
+    paidVnd: row.paid_vnd,
+  });
+  if (result.status === "recorded" || result.status === "duplicate") {
+    await clearRecordFailure(row.product, row.order_ref);
+    return { status: result.status };
+  }
+  return { status: result.status };
+}

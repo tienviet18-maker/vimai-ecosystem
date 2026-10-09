@@ -40,6 +40,7 @@ export type AdminTodo = {
   pendingOrders: number;
   pendingCommissionVnd: number;
   activePartners: number;
+  recordFailures: number;
 };
 
 /** What needs the owner's attention today. Missing tables or DB count as zero. */
@@ -49,6 +50,7 @@ export async function getAdminTodo(): Promise<AdminTodo> {
     pendingOrders: 0,
     pendingCommissionVnd: 0,
     activePartners: 0,
+    recordFailures: 0,
   };
   const db = getDb();
   if (!db) return todo;
@@ -73,6 +75,12 @@ export async function getAdminTodo(): Promise<AdminTodo> {
       .prepare(`SELECT COUNT(*) AS n FROM ctv_partners WHERE status = 'active'`)
       .first<{ n: number }>();
     todo.activePartners = row?.n ?? 0;
+  } catch {}
+  try {
+    const row = await db
+      .prepare(`SELECT COUNT(*) AS n FROM ctv_record_failures`)
+      .first<{ n: number }>();
+    todo.recordFailures = row?.n ?? 0;
   } catch {}
   return todo;
 }

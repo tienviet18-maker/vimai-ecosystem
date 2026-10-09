@@ -306,6 +306,7 @@
     "audit": "監査ログ",
     "todoTitle": "今日のタスク",
     "todoMessages": "未読のお問い合わせ",
+    "todoFailures": "CTV注文の記録に失敗（要対応）",
     "todoPayout": "報酬支払い待ちのCTV注文・合計",
     "todoPartners": "稼働中のCTV",
     "todoNone": "なし",

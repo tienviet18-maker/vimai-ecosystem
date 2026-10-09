@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isCtvProduct } from "@/lib/ctv-core";
-import { recordReferral } from "@/lib/ctv";
+import { clearRecordFailure, recordReferral } from "@/lib/ctv";
 import { readSignedOpsRequest } from "@/lib/ops-auth";
 
 export const runtime = "edge";
@@ -27,6 +27,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
   const result = await recordReferral({ product, orderRef, userRef, code, paidVnd });
+  if (result.status === "recorded" || result.status === "duplicate") {
+    await clearRecordFailure(product, orderRef);
+  }
   const status =
     result.status === "recorded" || result.status === "duplicate"
       ? 200

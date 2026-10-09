@@ -6,6 +6,7 @@ export const PRODUCT_SITES: Record<string, string> = {
   kids: "https://kids.vimai.jp",
   maimai: "https://maimai.vimai.jp",
   menkyo: "https://menkyo.vimai.jp",
+  "gino1-seibi": "https://gino1-seibi.vimai.jp",
 };
 
 /** Original full-size PNG logos (kept for Open Graph images). */
@@ -16,6 +17,7 @@ export const PRODUCT_LOGOS_PNG: Record<string, string> = {
   kids: "/images/products/vimai_kids.png",
   maimai: "/images/products/maimai.png",
   menkyo: "/images/products/vimai_menkyo.png",
+  "gino1-seibi": "/images/products/gino1_seibi.png",
 };
 
 /** Canonical product logos served from /public/images/products (640px WebP, ~40 KB). */

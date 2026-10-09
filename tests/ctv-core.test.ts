@@ -34,6 +34,10 @@ test("agreed prices", () => {
   assert.deepEqual(referralPrice("taxi", 15), { listVnd: 500_000, discountVnd: 75_000, payVnd: 425_000 });
   assert.equal(referralPrice("transport", 10).payVnd, 450_000);
   assert.equal(referralPrice("menkyo", 20).payVnd, 560_000);
+  assert.deepEqual(
+    [10, 15, 20].map((p) => referralPrice("gino1", p as 10 | 15 | 20).payVnd),
+    [630_000, 595_000, 560_000],
+  );
 });
 
 test("codes use the unambiguous alphabet", () => {

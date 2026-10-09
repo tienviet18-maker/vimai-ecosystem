@@ -19,7 +19,7 @@ export default async function AdminReviewsPage({
     <div className="space-y-6">
       <h1 className="text-2xl font-semibold">{t("reviews")}</h1>
       <AdminTable
-        columns={["Name", "Status", "Body", ""]}
+        columns={[t("fieldName"), t("status"), t("colBody"), ""]}
         empty={t("empty")}
         rows={reviews.map((review) => [
           review.display_name,

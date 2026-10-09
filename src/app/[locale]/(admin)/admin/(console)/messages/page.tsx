@@ -51,7 +51,7 @@ export default async function MessagesPage({
         </button>
       </form>
       <AdminTable
-        columns={["Time", "Name", "Email", "Subject", "Message", "Status", ""]}
+        columns={[t("colTime"), t("fieldName"), t("email"), t("colSubject"), t("colMessage"), t("status"), ""]}
         empty={t("empty")}
         rows={data.map((item) => [
           String(item.created_at ?? "—"),

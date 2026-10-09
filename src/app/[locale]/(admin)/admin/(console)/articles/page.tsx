@@ -45,7 +45,7 @@ export default async function AdminArticlesPage({
       <h1 className="text-2xl font-semibold">{t("articles")}</h1>
       <ArticleEditor article={editorArticle} />
       <AdminTable
-        columns={["Slug", t("status"), ""]}
+        columns={[t("fieldSlug"), t("status"), ""]}
         empty={t("empty")}
         rows={articles.map((article) => [
           article.slug,

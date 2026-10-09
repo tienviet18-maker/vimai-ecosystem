@@ -28,7 +28,7 @@ export default async function AdminProductsPage({
         </Button>
       </div>
       <AdminTable
-        columns={["Name", "Slug", "Status", "Published", ""]}
+        columns={[t("fieldName"), t("fieldSlug"), t("status"), t("published"), ""]}
         empty={t("empty")}
         rows={products.map((product) => {
           const localized = localizeProduct(product, locale as Locale);
@@ -39,7 +39,7 @@ export default async function AdminProductsPage({
             product.published ? t("published") : t("draft"),
             <span key={product.id} className="flex flex-wrap gap-3">
               <Link href={`/admin/products/${product.id}`} className="text-primary">
-                Edit
+                {t("edit")}
               </Link>
               <RecordDelete endpoint="/api/admin/products" id={product.id} />
             </span>,

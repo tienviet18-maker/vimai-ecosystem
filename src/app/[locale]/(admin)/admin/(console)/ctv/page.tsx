@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { CtvManager } from "@/components/admin/CtvManager";
 import { requirePagePermission } from "@/lib/admin-guard";
-import { listPartners, listReferrals, payoutRows } from "@/lib/ctv";
+import { listPartners, listRecordFailures, listReferrals, payoutRows } from "@/lib/ctv";
 import { periodFromKey, periodOf, previousPeriod } from "@/lib/ctv-core";
 
 export const runtime = "edge";
@@ -19,10 +19,11 @@ export default async function CtvPage({
   const { period: requested } = await searchParams;
   const current = periodOf(new Date());
   const period = (requested && periodFromKey(requested)) || current;
-  const [partners, referrals, payout] = await Promise.all([
+  const [partners, referrals, payout, failures] = await Promise.all([
     listPartners(period.key),
     listReferrals(period.key),
     payoutRows(period.key),
+    listRecordFailures(),
   ]);
   const previous = previousPeriod(period).key;
   // Kỳ sau chỉ có khi kỳ đang xem còn nằm trước kỳ hiện tại.
@@ -35,6 +36,7 @@ export default async function CtvPage({
         partners={partners}
         referrals={referrals}
         payout={payout}
+        failures={failures}
         period={period}
         previous={previous}
         next={next}

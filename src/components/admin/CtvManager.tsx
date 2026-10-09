@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DISCOUNT_PERCENTS, type Period } from "@/lib/ctv-core";
-import type { PartnerStats, PayoutRow, Referral } from "@/lib/ctv";
+import type { PartnerStats, PayoutRow, RecordFailure, Referral } from "@/lib/ctv";
 
 type ReferralRow = Referral & { nickname: string; public_no: string };
 
@@ -35,6 +35,7 @@ export function CtvManager({
   partners,
   referrals,
   payout,
+  failures,
   period,
   previous,
   next,
@@ -42,6 +43,7 @@ export function CtvManager({
   partners: PartnerStats[];
   referrals: ReferralRow[];
   payout: PayoutRow[];
+  failures: RecordFailure[];
   period: Period;
   previous: string;
   next: string | null;
@@ -103,6 +105,17 @@ export function CtvManager({
     );
   };
 
+  const handleFailure = (f: RecordFailure, action: "retry" | "dismiss") => {
+    if (action === "dismiss" && !confirm("Bỏ cảnh báo này? Đơn sẽ không được ghi hoa hồng nữa.")) return;
+    void run(f.id, async () => {
+      const json = await call("/api/admin/ctv/failure", "POST", { id: f.id, action });
+      if (action === "retry" && json.ok !== true) {
+        throw new Error(`Chưa ghi được (${String(json.status)}). Kiểm tra mã CTV và số tiền rồi thử lại, hoặc bấm Đã xử lý.`);
+      }
+      toast.success(action === "retry" ? "Đã ghi nhận đơn" : "Đã bỏ cảnh báo");
+    });
+  };
+
   const toggleVoid = (r: ReferralRow) => {
     const makeVoid = r.status !== "void";
     if (makeVoid && !confirm("Hủy hoa hồng của đơn này (khách hoàn tiền)?")) return;
@@ -113,6 +126,38 @@ export function CtvManager({
 
   return (
     <div className="space-y-8 md:space-y-10">
+      {failures.length > 0 && (
+        <section className="space-y-3 rounded-2xl border border-red-200 bg-red-50 p-4">
+          <h2 className="text-lg font-semibold text-red-800">
+            Đơn chưa ghi nhận được hoa hồng ({failures.length})
+          </h2>
+          <p className="text-sm text-red-900">
+            Khách đã được cấp VIP, nhưng Worker không ghi được đơn này về vimai.jp. Bấm &quot;Thử ghi lại&quot;; nếu vẫn lỗi
+            thì kiểm tra mã CTV, rồi trả tay (nếu cần) và bấm &quot;Đã xử lý&quot;.
+          </p>
+          <ul className="space-y-2">
+            {failures.map((f) => (
+              <li key={f.id} className="space-y-2 rounded-xl border bg-white p-3 text-sm">
+                <p>
+                  <b>{f.product}</b> · mã <span className="font-mono">{f.code}</span> · {vnd(f.paid_vnd)} ·{" "}
+                  {f.reason === "rejected" ? "vimai.jp từ chối" : "không kết nối được"} · {f.attempts} lần thử
+                </p>
+                <p className="break-all font-mono text-xs text-slate-500">
+                  {f.order_ref} · {f.updated_at.slice(0, 16).replace("T", " ")}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Button type="button" className="min-h-11" disabled={busy === f.id} onClick={() => handleFailure(f, "retry")}>
+                    Thử ghi lại
+                  </Button>
+                  <Button type="button" variant="outline" className="min-h-11" disabled={busy === f.id} onClick={() => handleFailure(f, "dismiss")}>
+                    Đã xử lý
+                  </Button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Thêm CTV</h2>
         {created ? (

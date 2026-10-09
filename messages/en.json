@@ -306,6 +306,7 @@
     "audit": "Audit logs",
     "todoTitle": "To do today",
     "todoMessages": "Unread contact messages",
+    "todoFailures": "CTV orders that failed to record (needs action)",
     "todoPayout": "CTV orders awaiting payout · total",
     "todoPartners": "Active CTV partners",
     "todoNone": "None",

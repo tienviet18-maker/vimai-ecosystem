@@ -303,6 +303,7 @@
     "audit": "Nhật ký",
     "todoTitle": "Việc cần làm hôm nay",
     "todoMessages": "Tin liên hệ chưa đọc",
+    "todoFailures": "Đơn CTV chưa ghi nhận được (cần xử lý)",
     "todoPayout": "Đơn CTV chờ trả hoa hồng · tổng tiền",
     "todoPartners": "CTV đang hoạt động",
     "todoNone": "Không có",

@@ -38,6 +38,14 @@ export default async function AdminDashboardPage({
             value={todo.unreadMessages > 0 ? String(todo.unreadMessages) : null}
             doneText={t("todoNone")}
           />
+          {todo.recordFailures > 0 && (
+            <TodoRow
+              href="/admin/ctv"
+              label={t("todoFailures")}
+              value={String(todo.recordFailures)}
+              doneText={t("todoNone")}
+            />
+          )}
           <TodoRow
             href="/admin/ctv"
             label={t("todoPayout")}

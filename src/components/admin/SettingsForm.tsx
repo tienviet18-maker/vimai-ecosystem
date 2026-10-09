@@ -21,6 +21,8 @@ export function SettingsForm({
 }) {
   const t = useTranslations("admin");
   const [saving, setSaving] = useState(false);
+  const [title, setTitle] = useState(seoTitle);
+  const [description, setDescription] = useState(seoDescription);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -48,14 +50,31 @@ export function SettingsForm({
     <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border bg-white p-6">
       <div className="space-y-2">
         <Label htmlFor="seo_title">{t("seoTitle")}</Label>
-        <Input id="seo_title" name="seo_title" defaultValue={seoTitle} className="min-h-11" />
+        <Input
+          id="seo_title"
+          name="seo_title"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          className="min-h-11"
+        />
+        <p className="text-xs text-muted-foreground">
+          {t("seoCount", { count: title.length, max: 60 })}
+        </p>
       </div>
       <div className="space-y-2">
         <Label htmlFor="seo_description">{t("seoDescription")}</Label>
-        <Textarea id="seo_description" name="seo_description" defaultValue={seoDescription} />
+        <Textarea
+          id="seo_description"
+          name="seo_description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+        <p className="text-xs text-muted-foreground">
+          {t("seoCount", { count: description.length, max: 160 })}
+        </p>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="og_image_url">OG</Label>
+        <Label htmlFor="og_image_url">{t("fieldOg")}</Label>
         <Input id="og_image_url" name="og_image_url" defaultValue={ogImageUrl} className="min-h-11" />
       </div>
       <div className="space-y-2">
@@ -68,6 +87,19 @@ export function SettingsForm({
           className="min-h-11"
         />
       </div>
+      {!title || !description ? (
+        <Button
+          type="button"
+          variant="outline"
+          className="min-h-11"
+          onClick={() => {
+            if (!title) setTitle(t("seoSuggestTitle"));
+            if (!description) setDescription(t("seoSuggestDescription"));
+          }}
+        >
+          {t("seoSuggestFill")}
+        </Button>
+      ) : null}
       <Button type="submit" className="min-h-11" disabled={saving}>
         {saving ? t("saving") : t("save")}
       </Button>

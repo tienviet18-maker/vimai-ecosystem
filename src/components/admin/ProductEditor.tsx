@@ -19,6 +19,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MediaUploader } from "@/components/admin/MediaUploader";
 import { useUnsavedChanges } from "@/components/admin/useUnsavedChanges";
+import { applyPriceLines, ctvProductForSlug, formatVnd, priceSummary } from "@/lib/product-pricing";
 import type { Product, ProductStatus } from "@/types";
 import { productStatuses } from "@/types";
 
@@ -49,6 +50,8 @@ export function ProductEditor({ product }: { product?: Product }) {
   const [status, setStatus] = useState<ProductStatus>(product?.status ?? "development");
   const [featured, setFeatured] = useState(product?.featured ?? false);
   const [published, setPublished] = useState(product?.published ?? false);
+  const ctvProduct = product ? ctvProductForSlug(product.slug) : null;
+  const prices = ctvProduct ? priceSummary(ctvProduct) : null;
   const [translations, setTranslations] = useState<Record<"ja" | "vi" | "en", TranslationDraft>>(
     {
       ja: fromProduct(product, "ja"),
@@ -107,15 +110,20 @@ export function ProductEditor({ product }: { product?: Product }) {
 
     toast.success(t("saved"));
     setDirty(false);
-    router.push("/admin/products");
-    router.refresh();
+    setSaving(false);
+    if (product?.id) {
+      router.refresh();
+    } else {
+      router.push("/admin/products");
+      router.refresh();
+    }
   }
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Slug" name="slug" defaultValue={product?.slug} required />
-        <Field label="Category" name="category" defaultValue={product?.category ?? ""} />
+        <Field label={t("fieldSlug")} name="slug" defaultValue={product?.slug} required />
+        <Field label={t("fieldCategory")} name="category" defaultValue={product?.category ?? ""} />
         <div className="space-y-2">
           <Label>{t("status")}</Label>
           <Select
@@ -145,28 +153,28 @@ export function ProductEditor({ product }: { product?: Product }) {
         />
         <Field label="Website URL" name="website_url" defaultValue={product?.website_url ?? ""} />
         <Field
-          label="Sort order"
+          label={t("fieldSortOrder")}
           name="sort_order"
           type="number"
           defaultValue={String(product?.sort_order ?? 0)}
         />
-        <Field label="SEO title" name="seo_title" defaultValue={product?.seo_title ?? ""} />
+        <Field label={t("seoTitle")} name="seo_title" defaultValue={product?.seo_title ?? ""} />
         <Field
-          label="SEO description"
+          label={t("seoDescription")}
           name="seo_description"
           defaultValue={product?.seo_description ?? ""}
         />
         <Field
-          label="Target audience"
+          label={t("fieldAudience")}
           name="target_audience"
           defaultValue={product?.target_audience ?? ""}
         />
       </div>
 
-      <AssetField label="Logo" value={logoUrl} onChange={setLogoUrl} folder="product" />
-      <AssetField label="Icon" value={iconUrl} onChange={setIconUrl} folder="product" />
-      <AssetField label="Hero image" value={heroUrl} onChange={setHeroUrl} folder="hero" />
-      <AssetField label="OG image" value={ogUrl} onChange={setOgUrl} folder="og" />
+      <AssetField label={t("fieldLogo")} value={logoUrl} onChange={setLogoUrl} folder="product" />
+      <AssetField label={t("fieldIcon")} value={iconUrl} onChange={setIconUrl} folder="product" />
+      <AssetField label={t("fieldHero")} value={heroUrl} onChange={setHeroUrl} folder="hero" />
+      <AssetField label={t("fieldOg")} value={ogUrl} onChange={setOgUrl} folder="og" />
 
       <div className="space-y-3 rounded-2xl border bg-white p-4">
         <Label>{t("screenshots")}</Label>
@@ -252,7 +260,7 @@ export function ProductEditor({ product }: { product?: Product }) {
         )}
       </div>
 
-      <div className="flex gap-6">
+      <div className="flex flex-wrap gap-x-6 gap-y-2">
         <label className="flex items-center gap-2 text-sm">
           <Checkbox
             checked={featured}
@@ -275,6 +283,45 @@ export function ProductEditor({ product }: { product?: Product }) {
         </label>
       </div>
 
+      {ctvProduct ? (
+        <div className="space-y-3 rounded-2xl border bg-white p-4" data-testid="price-block">
+          <Label>{t("priceTitle")}</Label>
+          <p className="text-sm text-muted-foreground">{t("priceHelp")}</p>
+          <ul className="space-y-1 text-sm">
+            <li>
+              {t("priceList")}: <strong>{formatVnd(prices!.listVnd)}</strong>
+            </li>
+            {prices!.referral.map((row) => (
+              <li key={row.percent}>
+                {t("priceReferral", { percent: row.percent })}:{" "}
+                <strong>{formatVnd(row.payVnd)}</strong>
+              </li>
+            ))}
+          </ul>
+          <Button
+            type="button"
+            variant="outline"
+            className="min-h-11"
+            onClick={() => {
+              setTranslations((current) => ({
+                ...current,
+                vi: {
+                  ...current.vi,
+                  features: applyPriceLines(
+                    current.vi.features.split("\n"),
+                    ctvProduct,
+                  ).join("\n"),
+                },
+              }));
+              setDirty(true);
+              toast.success(t("priceInserted"));
+            }}
+          >
+            {t("priceInsert")}
+          </Button>
+        </div>
+      ) : null}
+
       <Tabs defaultValue="vi">
         <TabsList>
           <TabsTrigger value="ja">日本語</TabsTrigger>
@@ -284,7 +331,7 @@ export function ProductEditor({ product }: { product?: Product }) {
         {(["ja", "vi", "en"] as const).map((locale) => (
           <TabsContent key={locale} value={locale} className="space-y-4">
             <div className="space-y-2">
-              <Label>Name</Label>
+              <Label>{t("fieldName")}</Label>
               <Input
                 value={translations[locale].name}
                 onChange={(event) =>
@@ -297,7 +344,7 @@ export function ProductEditor({ product }: { product?: Product }) {
               />
             </div>
             <div className="space-y-2">
-              <Label>Tagline</Label>
+              <Label>{t("fieldTagline")}</Label>
               <Input
                 value={translations[locale].tagline}
                 onChange={(event) =>
@@ -309,7 +356,7 @@ export function ProductEditor({ product }: { product?: Product }) {
               />
             </div>
             <div className="space-y-2">
-              <Label>Description</Label>
+              <Label>{t("fieldDescription")}</Label>
               <Textarea
                 value={translations[locale].description}
                 onChange={(event) =>
@@ -321,7 +368,7 @@ export function ProductEditor({ product }: { product?: Product }) {
               />
             </div>
             <div className="space-y-2">
-              <Label>Long description</Label>
+              <Label>{t("fieldLongDescription")}</Label>
               <Textarea
                 value={translations[locale].long_description}
                 onChange={(event) =>
@@ -333,7 +380,7 @@ export function ProductEditor({ product }: { product?: Product }) {
               />
             </div>
             <div className="space-y-2">
-              <Label>Features (one per line)</Label>
+              <Label>{t("fieldFeatures")}</Label>
               <Textarea
                 value={translations[locale].features}
                 onChange={(event) =>

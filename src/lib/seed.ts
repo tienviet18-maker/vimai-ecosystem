@@ -454,7 +454,7 @@ export const seedProducts: Product[] = [
         name: "ViMai Gino 1 Seibi（特定技能1号・自動車整備）",
         tagline: "特定技能1号 自動車整備分野の試験対策アプリ",
         description:
-          "JASPA（日本自動車整備振興会連合会）が実施する「特定技能1号評価試験 自動車整備分野」の試験対策Webアプリです。JASPAのサンプル問題と同じ形式の模擬試験を20回分収録しています。1回分は学科の○×問題30問と、実技の課題3つ（各課題は2択の問題3問）で、全部で780問です。アプリでは1回分を80分で通して解きます。実技ではマイクロメータやダイヤルゲージなどの読み取り、図を使った問題を練習できます。日本語の問題には振り仮名が付き、ベトナム語・英語の訳を表示できます。部品・用語辞典（800語以上）は無料で引けます。",
+          "JASPA（日本自動車整備振興会連合会）が実施する「特定技能1号評価試験 自動車整備分野」の試験対策Webアプリです。JASPAのサンプル問題と同じ形式の模擬試験を20回分収録しています。1回分は学科の○×問題30問と、実技の課題3つ（各課題は2択の問題3問）で、全部で780問です。アプリでは1回分を80分で通して解きます。実技ではマイクロメータやダイヤルゲージなどの読み取り、図を使った問題を練習できます。日本語の問題には振り仮名が付き、ベトナム語・英語の訳を表示できます。部品・用語辞典（2500語以上）は無料で引けます。",
         long_description:
           "問題はJASPAのサンプル問題と過去の3級自動車整備士試験の出題分野をもとにViMaiが書き直したもので、実際の試験問題ではありません。JASPAの公認・監修を受けたものではありません。学習を支えるツールであり、合格を保証するものではありません。",
         target_audience:
@@ -465,7 +465,7 @@ export const seedProducts: Product[] = [
           "マイクロメータ・ダイヤルゲージなどの読み取りと図の問題",
           "日本語の問題に振り仮名、ベトナム語・英語の訳を表示可能",
           "間違えるとその場で止まって解説を表示（VIPはAIチューター付き）",
-          "部品・用語辞典 800語以上（検索は無料）",
+          "部品・用語辞典 2500語以上（検索は無料）",
           "VIP向けの試験のコツ",
           "第1〜3回は無料",
         ],
@@ -478,7 +478,7 @@ export const seedProducts: Product[] = [
         name: "ViMai Gino 1 Seibi – Tokutei bảo dưỡng ô tô",
         tagline: "Luyện thi kỹ năng đặc định 1 ngành bảo dưỡng ô tô (特定技能1号 自動車整備)",
         description:
-          "Ứng dụng web luyện thi Tokutei Gino 1 ngành bảo dưỡng ô tô (特定技能1号評価試験 自動車整備分野), kỳ thi do JASPA tổ chức. Có 20 đề thi thử theo đúng dạng đề mẫu của JASPA: mỗi đề gồm 30 câu lý thuyết ○× (学科) và 3 bài thực hành (実技), mỗi bài 3 câu chọn 1 trong 2, tổng cộng 780 câu. Trong app, mỗi đề làm liền một lượt 80 phút. Phần thực hành luyện đọc hình vẽ và đọc số đo trên panme (micrometer), đồng hồ so (dial gauge) và các dụng cụ tương tự. Câu hỏi tiếng Nhật có furigana, bật được bản dịch tiếng Việt và tiếng Anh. Kèm từ điển phụ tùng và thuật ngữ hơn 800 mục, tra cứu miễn phí.",
+          "Ứng dụng web luyện thi Tokutei Gino 1 ngành bảo dưỡng ô tô (特定技能1号評価試験 自動車整備分野), kỳ thi do JASPA tổ chức. Có 20 đề thi thử theo đúng dạng đề mẫu của JASPA: mỗi đề gồm 30 câu lý thuyết ○× (学科) và 3 bài thực hành (実技), mỗi bài 3 câu chọn 1 trong 2, tổng cộng 780 câu. Trong app, mỗi đề làm liền một lượt 80 phút. Phần thực hành luyện đọc hình vẽ và đọc số đo trên panme (micrometer), đồng hồ so (dial gauge) và các dụng cụ tương tự. Câu hỏi tiếng Nhật có furigana, bật được bản dịch tiếng Việt và tiếng Anh. Kèm từ điển phụ tùng và thuật ngữ hơn 2.500 mục, tra cứu miễn phí.",
         long_description:
           "Câu hỏi do ViMai viết lại dựa trên đề mẫu của JASPA và các chủ đề từng ra trong kỳ thi 3級 整備士; đây không phải đề thi thật và không được JASPA bảo trợ. Công cụ học tập, không cam kết đậu kỳ thi.",
         target_audience:
@@ -489,7 +489,7 @@ export const seedProducts: Product[] = [
           "Câu thực hành có hình, đọc số đo panme, đồng hồ so",
           "Tiếng Nhật có furigana, bật dịch tiếng Việt hoặc tiếng Anh",
           "Chọn sai là dừng lại và giải thích ngay; VIP có thêm gia sư AI",
-          "Từ điển phụ tùng và thuật ngữ hơn 800 mục, tra cứu miễn phí",
+          "Từ điển phụ tùng và thuật ngữ hơn 2.500 mục, tra cứu miễn phí",
           "Mẹo làm bài dành cho VIP",
           "Đề 1–3 miễn phí; VIP 3 tháng 700.000đ, thanh toán VietQR",
         ],
@@ -502,7 +502,7 @@ export const seedProducts: Product[] = [
         name: "ViMai Gino 1 Seibi: Automobile Maintenance",
         tagline: "Tokutei Ginou (SSW i) automobile maintenance test practice",
         description:
-          "A web app for practising the Tokutei Ginou automobile maintenance test (特定技能1号評価試験 自動車整備分野, Specified Skilled Worker (i)), which is run by JASPA. It has 20 mock exams in the JASPA sample format: each has 30 true/false (○×) theory questions (学科) and 3 practical tasks (実技) of 3 two-choice questions, 780 questions in total. In the app, each exam is taken in one 80-minute sitting. Practical questions use figures and gauge readings such as micrometers and dial gauges. Japanese questions have furigana, and Vietnamese and English translations can be turned on. A parts and terms dictionary with over 800 entries is free to search.",
+          "A web app for practising the Tokutei Ginou automobile maintenance test (特定技能1号評価試験 自動車整備分野, Specified Skilled Worker (i)), which is run by JASPA. It has 20 mock exams in the JASPA sample format: each has 30 true/false (○×) theory questions (学科) and 3 practical tasks (実技) of 3 two-choice questions, 780 questions in total. In the app, each exam is taken in one 80-minute sitting. Practical questions use figures and gauge readings such as micrometers and dial gauges. Japanese questions have furigana, and Vietnamese and English translations can be turned on. A parts and terms dictionary with over 2,500 entries is free to search.",
         long_description:
           "Questions are written by ViMai, based on the JASPA sample exam and topics from past Class 3 mechanic (3級 整備士) exams. They are not real exam questions, and the app is not endorsed by JASPA. A study tool; it does not guarantee a passing result.",
         target_audience:
@@ -513,7 +513,7 @@ export const seedProducts: Product[] = [
           "Practical questions with figures and micrometer and dial-gauge readings",
           "Furigana on Japanese text; Vietnamese or English translation on demand",
           "A wrong answer stops and shows the explanation; VIP adds an AI tutor",
-          "Parts and terms dictionary with over 800 entries, free to search",
+          "Parts and terms dictionary with over 2,500 entries, free to search",
           "Exam tips for VIP members",
           "Exams 1–3 are free",
         ],
@@ -757,17 +757,17 @@ export const seedFaqs: Array<
       ja: {
         question: "無料でどこまで使えますか？",
         answer:
-          "模擬試験の第1〜3回は無料です。部品・用語辞典（800語以上）は、単語・読み方・短い意味の検索が無料です。第4〜20回、辞典の詳しい解説・図・フラッシュカード、試験のコツ、AIチューターはVIPで使えます。",
+          "模擬試験の第1〜3回は無料です。部品・用語辞典（2500語以上）は、単語・読み方・短い意味の検索が無料です。第4〜20回、辞典の詳しい解説・図・フラッシュカード、試験のコツ、AIチューターはVIPで使えます。",
       },
       vi: {
         question: "Dùng miễn phí được những gì?",
         answer:
-          "Đề 1–3 miễn phí. Từ điển phụ tùng và thuật ngữ (hơn 800 mục) tra cứu miễn phí: từ tiếng Nhật, cách đọc và nghĩa ngắn. VIP mở đề 4–20, giải thích chi tiết, hình và flashcard trong từ điển, mẹo làm bài và gia sư AI giải thích câu sai.",
+          "Đề 1–3 miễn phí. Từ điển phụ tùng và thuật ngữ (hơn 2.500 mục) tra cứu miễn phí: từ tiếng Nhật, cách đọc và nghĩa ngắn. VIP mở đề 4–20, giải thích chi tiết, hình và flashcard trong từ điển, mẹo làm bài và gia sư AI giải thích câu sai.",
       },
       en: {
         question: "What can I use for free?",
         answer:
-          "Mock exams 1–3 are free. The parts and terms dictionary (over 800 entries) is free to search: the Japanese term, its reading and a short meaning. VIP unlocks exams 4–20, the dictionary's detailed explanations, figures and flashcards, the exam tips and the AI tutor.",
+          "Mock exams 1–3 are free. The parts and terms dictionary (over 2,500 entries) is free to search: the Japanese term, its reading and a short meaning. VIP unlocks exams 4–20, the dictionary's detailed explanations, figures and flashcards, the exam tips and the AI tutor.",
       },
     },
   },

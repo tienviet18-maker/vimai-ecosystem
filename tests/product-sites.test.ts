@@ -153,9 +153,10 @@ test("product ids, slugs and sort orders are unique across seed and migrations",
     read("d1/seed.sql"),
     read("d1/migrations/0005_add_menkyo_product.sql"),
     read("d1/migrations/0010_add_gino1_product.sql"),
+    read("d1/migrations/0012_add_vicare_product.sql"),
   ].join("\n");
   const rows = [
-    ...sql.matchAll(/'(00000000-0000-0000-0000-0000000000\d\d)', '([a-z0-9-]+)', '[a-z_]+',\s*\S+, \S+, \S+,\s*[01], (\d+),/g),
+    ...sql.matchAll(/'(00000000-0000-0000-0000-0000000000\d\d)', '([a-z0-9-]+)', '[a-z_]+',(?: '[a-z]+',)?\s*\S+, \S+, \S+,\s*[01], (\d+),/g),
   ];
   const bySlug = new Map<string, { id: string; sort: string }>();
   for (const [, id, slug, sort] of rows) {
@@ -166,6 +167,7 @@ test("product ids, slugs and sort orders are unique across seed and migrations",
     bySlug.set(slug, { id, sort });
   }
   assert.ok(bySlug.has("gino1-seibi"));
+  assert.ok(bySlug.has("vicare"));
   const ids = [...bySlug.values()].map((item) => item.id);
   const sorts = [...bySlug.values()].map((item) => item.sort);
   assert.equal(new Set(ids).size, ids.length, "duplicate product id");

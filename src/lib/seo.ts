@@ -186,19 +186,111 @@ export function productJsonLd(options: {
     },
   };
   const graph: Record<string, unknown>[] = [app];
-  if (faqs.length > 0) {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${pageUrl}#faq`,
-      inLanguage: locale,
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    });
-  }
+  if (faqs.length > 0) graph.push(faqPageJsonLd(pageUrl, locale, faqs));
   return { "@context": "https://schema.org", "@graph": graph };
+}
+
+/** FAQPage node for a page that shows these questions and answers. */
+export function faqPageJsonLd(
+  pageUrl: string,
+  locale: string,
+  faqs: Array<{ question: string; answer: string }>,
+): Record<string, unknown> {
+  return {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    inLanguage: locale,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
+/** BreadcrumbList node; `items` go from the home page to the current page. */
+export function breadcrumbJsonLd(
+  pageUrl: string,
+  items: Array<{ name: string; url: string }>,
+): Record<string, unknown> {
+  return {
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+/**
+ * MobileApplication node for a free app. `operatingSystem` names the platforms
+ * the app is built for; store URLs go in `sameAs` only once they exist.
+ */
+export function freeMobileAppJsonLd(options: {
+  name: string;
+  description: string;
+  image: string;
+  siteUrl: string;
+  pageUrl: string;
+  locale: string;
+  operatingSystem: string;
+  applicationCategory: string;
+  availableLanguage: string[];
+  storeUrls?: Array<string | null | undefined>;
+}): Record<string, unknown> {
+  const { siteUrl, pageUrl } = options;
+  const image = /^https?:\/\//.test(options.image) ? options.image : `${siteUrl}${options.image}`;
+  const sameAs = (options.storeUrls ?? []).filter((url): url is string => Boolean(url));
+  return {
+    "@type": ["MobileApplication", "SoftwareApplication"],
+    "@id": `${pageUrl}#app`,
+    name: options.name,
+    description: options.description,
+    image,
+    url: pageUrl,
+    inLanguage: options.locale,
+    applicationCategory: options.applicationCategory,
+    operatingSystem: options.operatingSystem,
+    availableLanguage: options.availableLanguage,
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
+    ...(sameAs.length ? { sameAs } : {}),
+    publisher: { "@type": "Organization", name: "ViMai", url: siteUrl },
+    isPartOf: { "@type": "WebSite", name: "ViMai", url: siteUrl },
+  };
+}
+
+/** Article node for a guide page published by ViMai. */
+export function articleJsonLd(options: {
+  headline: string;
+  description: string;
+  siteUrl: string;
+  pageUrl: string;
+  locale: string;
+  image: string;
+  dateModified: string;
+  about?: string;
+}): Record<string, unknown> {
+  const { siteUrl, pageUrl } = options;
+  const image = /^https?:\/\//.test(options.image) ? options.image : `${siteUrl}${options.image}`;
+  const org = { "@type": "Organization", name: "ViMai", url: siteUrl };
+  return {
+    "@type": "Article",
+    "@id": `${pageUrl}#article`,
+    headline: options.headline,
+    description: options.description,
+    inLanguage: options.locale,
+    image,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    dateModified: options.dateModified,
+    author: org,
+    publisher: { ...org, logo: { "@type": "ImageObject", url: `${siteUrl}/brand/vimai-logo-trim.png` } },
+    ...(options.about ? { about: { "@id": options.about } } : {}),
+  };
 }
 
 /**

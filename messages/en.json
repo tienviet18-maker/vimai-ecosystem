@@ -70,6 +70,8 @@
     "appStoreStep2": "Download the app from the App Store.",
     "appStoreStep3": "Try the free exams, then buy VIP inside the app when you are ready.",
     "openSite": "Open product site",
+    "tryFreeOnWeb": "Try the {count} free mock exams on the web",
+    "tryFreeOnWebGeneric": "Try the free mock exams on the web",
     "features": "Key features",
     "download": "Download",
     "installTitle": "Or install the Web App now",

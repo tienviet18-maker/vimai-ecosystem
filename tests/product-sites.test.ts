@@ -201,7 +201,11 @@ test("Transport launch: migration 0013 matches the seed and only rewrites placeh
   assert.equal(updates.length, 3);
   for (const sql of updates) {
     assert.match(sql, /product_id = \(SELECT id FROM products WHERE slug = 'tokutei-transport'\)/);
-    assert.match(sql, /AND description LIKE '%[^']+%';$/);
+    assert.match(sql, /AND instr\(description, '[^']+'\) > 0;$/);
+  }
+  // D1 rejects LIKE/GLOB patterns over 50 bytes ("pattern too complex").
+  for (const m of migration.matchAll(/(?:LIKE|GLOB)\s+'([^']*)'/g)) {
+    assert.ok(Buffer.byteLength(m[1]) <= 50, `pattern too long for D1: ${m[1]}`);
   }
 
   for (const locale of ["vi", "en", "ja"]) {

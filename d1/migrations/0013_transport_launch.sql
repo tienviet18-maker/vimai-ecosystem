@@ -27,7 +27,7 @@ SET name = 'ViMai Tokutei Transport（特定技能1号・トラック）',
     seo_description = '自動車運送業分野特定技能1号評価試験（トラック）の対策アプリ。CBT形式の模擬試験20回（各50問・80分）、振り仮名、ベトナム語・英語訳、用語510語。第1〜3回は無料。'
 WHERE locale = 'ja'
   AND product_id = (SELECT id FROM products WHERE slug = 'tokutei-transport')
-  AND description LIKE '%対象者、学習の目的、模擬試験、日本語サポート%';
+  AND instr(description, '対象者、学習の目的、模擬試験、日本語サポート') > 0;
 
 UPDATE product_translations
 SET name = 'ViMai Tokutei Transport – Tokutei xe tải',
@@ -40,7 +40,7 @@ SET name = 'ViMai Tokutei Transport – Tokutei xe tải',
     seo_description = 'Đề thi Tokutei Ginou 1 xe tải (特定技能1号 トラック): 20 đề thi thử CBT 50 câu, 80 phút, có furigana, dịch tiếng Việt và 510 từ vựng. Đề 1–3 miễn phí.'
 WHERE locale = 'vi'
   AND product_id = (SELECT id FROM products WHERE slug = 'tokutei-transport')
-  AND description LIKE '%Nêu rõ đối tượng, mục đích học, đề thi thử%';
+  AND instr(description, 'Nêu rõ đối tượng, mục đích học, đề thi thử') > 0;
 
 UPDATE product_translations
 SET name = 'ViMai Tokutei Transport: Truck Driver',
@@ -53,7 +53,7 @@ SET name = 'ViMai Tokutei Transport: Truck Driver',
     seo_description = 'Practise for the Tokutei Ginou truck test (ClassNK): 20 CBT mock exams of 50 questions, furigana, Vietnamese and English translations. Exams 1–3 are free.'
 WHERE locale = 'en'
   AND product_id = (SELECT id FROM products WHERE slug = 'tokutei-transport')
-  AND description LIKE '%It highlights the audience, study purpose, practice exams%';
+  AND instr(description, 'It highlights the audience, study purpose, practice exams') > 0;
 
 INSERT OR IGNORE INTO faqs (id, product_id, sort_order, published, created_at, updated_at)
 VALUES ('faq-transport-1', (SELECT id FROM products WHERE slug = 'tokutei-transport'), 14, 1, strftime('%Y-%m-%dT%H:%M:%fZ','now'), strftime('%Y-%m-%dT%H:%M:%fZ','now'));

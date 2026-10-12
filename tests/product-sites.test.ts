@@ -133,6 +133,21 @@ test("Gino 1 Seibi is in the seed fallback and in the D1 SQL for all three local
   assert.match(read("d1/seed.sql"), /'gino1-seibi', 'beta'/);
 });
 
+test("gino1 dictionary count update only rewrites the 800 phrase on gino1 rows", () => {
+  const migration = read("d1/migrations/0011_gino1_dictionary_2500.sql");
+  assert.doesNotMatch(migration, /\b(DELETE|DROP|INSERT)\b/);
+  for (const m of migration.matchAll(/^UPDATE[\s\S]*?;$/gm)) {
+    assert.match(m[0], /slug = 'gino1-seibi'/, "every UPDATE must be scoped to gino1-seibi");
+  }
+  for (const phrase of ["2500語以上", "hơn 2.500 mục", "over 2,500 entries"]) {
+    assert.match(migration, new RegExp(phrase));
+    assert.match(read("src/lib/seed.ts"), new RegExp(phrase));
+  }
+  for (const file of ["src/lib/seed.ts", "d1/seed.sql", "d1/migrations/0010_add_gino1_product.sql"]) {
+    assert.doesNotMatch(read(file), /800語以上|hơn 800 mục|over 800 entries/, file);
+  }
+});
+
 test("product ids, slugs and sort orders are unique across seed and migrations", () => {
   const sql = [
     read("d1/seed.sql"),

@@ -155,8 +155,13 @@ test("ViCare routes exist and use self canonical metadata", () => {
   assert.match(read("src/app/[locale]/(public)/products/[slug]/page.tsx"), /EcosystemLinks/);
 });
 
-test("ViCare logo and record: page on vimai.jp, no subdomain, optimized logo", () => {
-  assert.equal(resolveProductSite("vicare"), null);
+test("ViCare logo and record: web app on vicare.vimai.jp, optimized logo", () => {
+  assert.equal(resolveProductSite("vicare"), "https://vicare.vimai.jp");
+  const page = read("src/app/[locale]/(public)/products/vicare/page.tsx");
+  assert.match(page, /copy\.webCta/);
+  for (const locale of LOCALES) {
+    assert.ok(getVicarePageCopy(locale).webCta && getVicarePageCopy(locale).webNote, `${locale}: web CTA copy`);
+  }
   assert.equal(PRODUCT_LOGOS.vicare, "/images/products/vicare.v2.webp");
   assert.equal(resolveProductLogo("vicare", "/images/products/vicare.png"), "/images/products/vicare.v2.webp");
 

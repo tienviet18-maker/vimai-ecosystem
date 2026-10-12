@@ -18,6 +18,8 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     lead:
       "ViCare là app miễn phí, phi lợi nhuận của ViMai, giúp người Việt tại Nhật đi khám bệnh tự tin hơn: hiểu bác sĩ nói gì, đọc được giấy tờ bệnh viện và túi thuốc, biết nên khám khoa nào, và biết gọi cấp cứu thế nào. Không quảng cáo, không cần tài khoản; dữ liệu cá nhân chỉ nằm trên điện thoại của bạn.",
     badges: ["Miễn phí", "Phi lợi nhuận", "Không cần tài khoản", "Dữ liệu chỉ trên điện thoại", "Tiếng Việt · 日本語 · English"],
+    webCta: "Dùng thử bản web ngay",
+    webNote: "Mở trên trình duyệt, không cần cài đặt. Phiên dịch bằng micro và đọc giấy tờ bằng camera chỉ có trong app điện thoại.",
     storeTitle: "Tải ViCare",
     appStoreSoon: "Sắp có trên App Store",
     googlePlaySoon: "Sắp có trên Google Play",
@@ -225,6 +227,8 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     lead:
       "ViCare is a free, non-profit ViMai app that helps Vietnamese people in Japan see a doctor with confidence: understand what the doctor says, read hospital papers and medicine bags, find the right department and know how to call an ambulance. No ads and no account; your personal data stays on your phone.",
     badges: ["Free", "Non-profit", "No account", "Data stays on your phone", "Tiếng Việt · 日本語 · English"],
+    webCta: "Try the web app now",
+    webNote: "Opens in your browser, nothing to install. Listening through the microphone and reading papers with the camera are in the phone app only.",
     storeTitle: "Get ViCare",
     appStoreSoon: "Coming soon to the App Store",
     googlePlaySoon: "Coming soon to Google Play",
@@ -430,6 +434,8 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     lead:
       "ViCareは、日本に住むベトナム人が安心して病院・クリニックを受診できるよう支える、ViMaiの無料・非営利アプリです。医師の説明を理解する、病院の書類や薬袋を読む、受診する診療科を選ぶ、救急車を呼ぶ。広告もアカウントもなく、個人のデータは利用者のスマートフォンの中だけに保存されます。",
     badges: ["無料", "非営利", "アカウント不要", "データは端末内のみ", "Tiếng Việt · 日本語 · English"],
+    webCta: "Web版を今すぐ使う",
+    webNote: "ブラウザで開くだけ、インストール不要です。マイクでの通訳とカメラでの書類読み取りはスマホアプリのみの機能です。",
     storeTitle: "ViCareを入手",
     appStoreSoon: "App Storeで近日公開",
     googlePlaySoon: "Google Playで近日公開",

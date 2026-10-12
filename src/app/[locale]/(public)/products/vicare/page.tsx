@@ -38,6 +38,7 @@ import {
   localizedUrl,
   staticPageMetadata,
 } from "@/lib/seo";
+import { PRODUCT_SITES } from "@/lib/product-sites";
 import { SITE_URL } from "@/lib/utils";
 import {
   VICARE_LOGO,
@@ -51,6 +52,8 @@ import {
 import { getVicareContext } from "@/lib/vicare/data";
 import type { VicareFeature } from "@/lib/vicare/types";
 import type { Locale } from "@/types";
+
+const VICARE_WEB_URL = PRODUCT_SITES.vicare;
 
 export const runtime = "edge";
 
@@ -153,6 +156,16 @@ export default async function VicarePage({
               </li>
             ))}
           </ul>
+
+          <div className="mt-8">
+            <Button asChild size="lg" className="min-h-12">
+              <a href={VICARE_WEB_URL} target="_blank" rel="noopener">
+                {copy.webCta}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">{copy.webNote}</p>
+          </div>
 
           <div className="mt-8">
             <h2 className="text-lg font-semibold tracking-tight">{copy.storeTitle}</h2>

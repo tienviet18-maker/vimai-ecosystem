@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n/navigation";
 import { getFaqs } from "@/lib/faqs";
 import { getProductBySlug } from "@/lib/products";
+import { ctvProductForSlug, priceSummary } from "@/lib/product-pricing";
 import { PRODUCT_LOGOS_PNG } from "@/lib/product-sites";
 import { appStoreUrl, stripWebPaymentFeatures, usesAppStoreOnly } from "@/lib/store-policy";
 import { publicUrl, SITE_URL } from "@/lib/utils";
@@ -87,6 +88,11 @@ export default async function ProductPage({
   // EN/JA readers buy through Apple in the app, never on the web (see store-policy.ts).
   const appStoreOnly = usesAppStoreOnly(slug, locale);
   const features = appStoreOnly ? stripWebPaymentFeatures(product.features) : product.features;
+  // Known web price (single source: ctv-core). VND is never quoted where the page sends readers to Apple.
+  const ctvProduct = ctvProductForSlug(slug);
+  const pricing = ctvProduct
+    ? { vipVnd: priceSummary(ctvProduct).listVnd, showVnd: !appStoreOnly }
+    : null;
 
   return (
     <article className="container py-16 lg:py-24">
@@ -98,6 +104,7 @@ export default async function ProductPage({
           locale,
           iosUrl: appStoreUrl(slug),
           faqs,
+          pricing,
         })}
       />
 

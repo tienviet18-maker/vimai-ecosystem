@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { leaderboard } from "@/lib/ctv";
 import { periodOf, previousPeriod } from "@/lib/ctv-core";
@@ -13,7 +15,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "duatop" });
-  return { title: t("title"), description: t("intro"), robots: { index: false, follow: false } };
+  return {
+    ...staticPageMetadata({
+      siteUrl: SITE_URL,
+      locale,
+      path: "/duatop",
+      title: t("title"),
+      description: t("intro"),
+    }),
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function DuaTopPage({ params }: { params: Promise<{ locale: string }> }) {

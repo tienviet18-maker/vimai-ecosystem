@@ -1,5 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 import { PrivacyPolicy } from "@/components/legal/PrivacyPolicy";
 
 export const runtime = "edge";
@@ -12,8 +14,13 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "legal" });
   return {
-    title: t("privacyTitle"),
-    description: t("privacyIntro"),
+    ...staticPageMetadata({
+      siteUrl: SITE_URL,
+      locale,
+      path: "/privacy",
+      title: t("privacyTitle"),
+      description: t("privacyIntro"),
+    }),
   };
 }
 

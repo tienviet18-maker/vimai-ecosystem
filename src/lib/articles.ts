@@ -56,6 +56,7 @@ function localize(
     content: translation.content ?? "",
     seo_title: translation.seo_title ?? undefined,
     seo_description: translation.seo_description ?? undefined,
+    locales: translations.map((item) => item.locale),
   };
 }
 

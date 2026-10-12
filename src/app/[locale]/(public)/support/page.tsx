@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   Accordion,
@@ -11,6 +14,24 @@ import { getSupportFaqs } from "@/lib/faqs";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "support" });
+  return {
+    ...staticPageMetadata({
+      siteUrl: SITE_URL,
+      locale,
+      path: "/support",
+      title: t("title"),
+      description: t("lead"),
+    }),
+  };
+}
 
 export default async function SupportPage({
   params,

@@ -10,6 +10,7 @@ import { getLocalizedProducts } from "@/lib/products";
 import { getApprovedReviews } from "@/lib/reviews";
 import { CONTACT_EMAIL, CONTACT_FACEBOOK_URL } from "@/lib/contact";
 import { SITE_URL } from "@/lib/utils";
+import { localizedUrl } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -69,7 +70,7 @@ export default async function HomePage({
               "@type": "ListItem",
               position: index + 1,
               name: product.name,
-              url: `${SITE_URL}/products/${product.slug}`,
+              url: localizedUrl(SITE_URL, locale, `/products/${product.slug}`),
             })),
           },
         }}

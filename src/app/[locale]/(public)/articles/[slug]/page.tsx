@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { getArticleBySlug } from "@/lib/articles";
-import { publicUrl } from "@/lib/utils";
+import { SITE_URL } from "@/lib/utils";
+import { openGraphLocale, partialLocaleAlternates } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -15,13 +16,25 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const article = await getArticleBySlug(slug, locale as Locale);
   if (!article) return {};
+  // hreflang only for locales with their own translation; a fallback copy
+  // canonicalises to the original.
+  const alternates = partialLocaleAlternates(
+    SITE_URL,
+    `/articles/${slug}`,
+    locale,
+    article.locales ?? [locale],
+  );
   return {
     title: article.seo_title || article.title,
     description: article.seo_description || article.excerpt,
-    alternates: { canonical: publicUrl(locale, `/articles/${slug}`) },
+    alternates,
     openGraph: {
       title: article.seo_title || article.title,
       description: article.seo_description || article.excerpt,
+      url: alternates.canonical,
+      siteName: "ViMai",
+      locale: openGraphLocale(locale),
+      type: "article",
       images: article.cover_image_url ? [article.cover_image_url] : ["/brand/og/og-default.jpg"],
     },
   };

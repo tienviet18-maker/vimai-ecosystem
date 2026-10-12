@@ -20,8 +20,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n/navigation";
 import { getFaqs } from "@/lib/faqs";
 import { getProductBySlug } from "@/lib/products";
+import { ctvProductForSlug, priceSummary } from "@/lib/product-pricing";
+import { PRODUCT_LOGOS_PNG } from "@/lib/product-sites";
 import { appStoreUrl, stripWebPaymentFeatures, usesAppStoreOnly } from "@/lib/store-policy";
 import { publicUrl, SITE_URL } from "@/lib/utils";
+import { hreflangAlternates, openGraphLocale, productJsonLd } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -36,24 +39,34 @@ export async function generateMetadata({
   if (!product) return {};
   const title = product.seo_title || product.name;
   const description = product.seo_description || product.description;
-  const canonical = product.website_url || publicUrl(locale, `/products/${slug}`);
+  // This page is the canonical, indexable description of the product in each
+  // locale. The product's own site (often a Flutter web app) is linked from it.
+  const path = `/products/${slug}`;
+  const canonical = publicUrl(locale, path);
+  // Original PNG for crawlers, also when the page renders from the seed fallback.
+  const ogImage =
+    product.og_image_url ||
+    PRODUCT_LOGOS_PNG[product.slug] ||
+    product.logo_url ||
+    "/brand/og/og-default.jpg";
   return {
     title,
     description,
-    alternates: { canonical },
+    alternates: { canonical, languages: hreflangAlternates(SITE_URL, path) },
     openGraph: {
       title: `${title} | ViMai`,
       description,
       url: canonical,
       siteName: "ViMai",
+      locale: openGraphLocale(locale),
       type: "website",
-      images: [product.og_image_url || product.logo_url || "/brand/og/og-default.jpg"],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ViMai`,
       description,
-      images: [product.og_image_url || product.logo_url || "/brand/og/og-default.jpg"],
+      images: [ogImage],
     },
   };
 }
@@ -75,32 +88,24 @@ export default async function ProductPage({
   // EN/JA readers buy through Apple in the app, never on the web (see store-policy.ts).
   const appStoreOnly = usesAppStoreOnly(slug, locale);
   const features = appStoreOnly ? stripWebPaymentFeatures(product.features) : product.features;
+  // Known web price (single source: ctv-core). VND is never quoted where the page sends readers to Apple.
+  const ctvProduct = ctvProductForSlug(slug);
+  const pricing = ctvProduct
+    ? { vipVnd: priceSummary(ctvProduct).listVnd, showVnd: !appStoreOnly }
+    : null;
 
   return (
     <article className="container py-16 lg:py-24">
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: product.name,
-          applicationCategory: "EducationalApplication",
-          operatingSystem: "iOS, Android, Web",
-          description: product.description,
-          image: `${SITE_URL}${product.logo_url}`,
-          url: pageUrl,
-          sameAs: siteUrl ? [siteUrl] : undefined,
-          offers: {
-            "@type": "Offer",
-            availability: "https://schema.org/PreOrder",
-            price: "0",
-            priceCurrency: "JPY",
-          },
-          isPartOf: {
-            "@type": "WebSite",
-            name: "ViMai",
-            url: SITE_URL,
-          },
-        }}
+        data={productJsonLd({
+          product,
+          siteUrl: SITE_URL,
+          pageUrl,
+          locale,
+          iosUrl: appStoreUrl(slug),
+          faqs,
+          pricing,
+        })}
       />
 
       <Button asChild variant="ghost" className="mb-10 -ml-2 min-h-11 px-2">

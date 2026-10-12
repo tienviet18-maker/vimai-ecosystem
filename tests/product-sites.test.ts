@@ -94,3 +94,65 @@ test("Menkyo is in the seed fallback and in the D1 SQL for all three locales", (
 
   assert.match(read("d1/seed.sql"), /'menkyo', 'beta'/);
 });
+
+test("Gino 1 Seibi resolves to its subdomain and logo", () => {
+  assert.equal(resolveProductSite("gino1-seibi"), "https://gino1-seibi.vimai.jp");
+  assert.equal(resolveProductLogo("gino1-seibi"), "/images/products/gino1_seibi.v2.webp");
+  assert.equal(
+    resolveProductLogo("gino1-seibi", "/images/products/gino1_seibi.png"),
+    "/images/products/gino1_seibi.v2.webp",
+  );
+  assert.equal(resolveProductOgImage("gino1-seibi"), "/images/products/gino1_seibi.png");
+});
+
+test("Gino 1 Seibi is in the seed fallback and in the D1 SQL for all three locales", () => {
+  const seed = read("src/lib/seed.ts");
+  assert.match(seed, /slug: "gino1-seibi"/);
+  assert.match(seed, /name: "ViMai Gino 1 Seibi – Tokutei bảo dưỡng ô tô"/);
+  assert.match(seed, /name: "ViMai Gino 1 Seibi: Automobile Maintenance"/);
+  assert.match(seed, /name: "ViMai Gino 1 Seibi（特定技能1号・自動車整備）"/);
+
+  const migration = read("d1/migrations/0010_add_gino1_product.sql");
+  assert.match(migration, /INSERT OR IGNORE INTO products/);
+  assert.doesNotMatch(migration, /\b(UPDATE|DELETE|DROP)\b/);
+  assert.doesNotMatch(migration, /^\s*INSERT INTO/m, "every insert must be OR IGNORE");
+  assert.match(migration, /'00000000-0000-0000-0000-000000000007', 'gino1-seibi', 'beta'/);
+  assert.match(migration, /'https:\/\/gino1-seibi\.vimai\.jp'/);
+  assert.match(migration, /'\/images\/products\/gino1_seibi\.png'/);
+  for (const locale of ["vi", "en", "ja"]) {
+    assert.match(migration, new RegExp(`000000000007-${locale}', id, '${locale}'`));
+    for (let n = 1; n <= 6; n += 1) {
+      assert.match(migration, new RegExp(`'faq-gino1-${n}-${locale}'`));
+    }
+  }
+  // Facts that must stay true: free exams, price, no "real past questions" claim.
+  assert.match(migration, /700\.000đ/);
+  assert.match(migration, /không phải đề thi thật/);
+  assert.match(migration, /not real exam questions/);
+
+  assert.match(read("d1/seed.sql"), /'gino1-seibi', 'beta'/);
+});
+
+test("product ids, slugs and sort orders are unique across seed and migrations", () => {
+  const sql = [
+    read("d1/seed.sql"),
+    read("d1/migrations/0005_add_menkyo_product.sql"),
+    read("d1/migrations/0010_add_gino1_product.sql"),
+  ].join("\n");
+  const rows = [
+    ...sql.matchAll(/'(00000000-0000-0000-0000-0000000000\d\d)', '([a-z0-9-]+)', '[a-z_]+',\s*\S+, \S+, \S+,\s*[01], (\d+),/g),
+  ];
+  const bySlug = new Map<string, { id: string; sort: string }>();
+  for (const [, id, slug, sort] of rows) {
+    const seen = bySlug.get(slug);
+    if (seen) {
+      assert.deepEqual(seen, { id, sort }, `${slug} defined twice with different id/sort`);
+    }
+    bySlug.set(slug, { id, sort });
+  }
+  assert.ok(bySlug.has("gino1-seibi"));
+  const ids = [...bySlug.values()].map((item) => item.id);
+  const sorts = [...bySlug.values()].map((item) => item.sort);
+  assert.equal(new Set(ids).size, ids.length, "duplicate product id");
+  assert.equal(new Set(sorts).size, sorts.length, "duplicate sort order");
+});

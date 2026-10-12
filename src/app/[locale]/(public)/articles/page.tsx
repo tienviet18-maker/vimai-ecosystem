@@ -1,9 +1,30 @@
+import type { Metadata } from "next";
+import { staticPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
 import { getPublishedArticles } from "@/lib/articles";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "articles" });
+  return {
+    ...staticPageMetadata({
+      siteUrl: SITE_URL,
+      locale,
+      path: "/articles",
+      title: t("title"),
+      description: t("lead"),
+    }),
+  };
+}
 
 export default async function ArticlesPage({
   params,

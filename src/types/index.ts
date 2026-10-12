@@ -159,6 +159,8 @@ export type LocalizedArticle = {
   content: string;
   seo_title?: string;
   seo_description?: string;
+  /** Locales that have their own translation (others fall back to Vietnamese). */
+  locales?: Locale[];
 };
 
 export type ReviewStatus = "pending" | "approved" | "rejected" | "archived";

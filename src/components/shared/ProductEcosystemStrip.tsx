@@ -10,7 +10,9 @@ export function ProductEcosystemStrip({
   products: LocalizedProduct[];
   label: string;
 }) {
-  const five = products.length === 5;
+  // Three per row on large screens, two on small: centre an incomplete last row.
+  const count = products.length;
+  const lgRemainder = count % 3;
 
   return (
     <div
@@ -23,9 +25,10 @@ export function ProductEcosystemStrip({
             key={product.slug}
             className={cn(
               "lg:col-span-2",
-              five && index === 3 && "lg:col-start-2",
-              five &&
-                index === 4 &&
+              lgRemainder === 2 && index === count - 2 && "lg:col-start-2",
+              lgRemainder === 1 && index === count - 1 && "lg:col-start-3",
+              count % 2 === 1 &&
+                index === count - 1 &&
                 "col-span-2 max-w-[12rem] justify-self-center sm:col-span-1 sm:max-w-none sm:justify-self-stretch lg:col-span-2",
             )}
           >

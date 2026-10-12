@@ -7,6 +7,7 @@ import { PlayStoreButton } from "@/components/shared/PlayStoreButton";
 import { ProductGallery } from "@/components/shared/ProductGallery";
 import { PwaInstallGuide } from "@/components/shared/PwaInstallGuide";
 import { FeatureList } from "@/components/shared/FeatureList";
+import { EcosystemLinks } from "@/components/shared/EcosystemLinks";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import { ProductMark } from "@/components/shared/ProductMark";
 import { JsonLd } from "@/components/shared/JsonLd";
@@ -19,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n/navigation";
 import { getFaqs } from "@/lib/faqs";
-import { getProductBySlug } from "@/lib/products";
+import { getLocalizedProducts, getProductBySlug } from "@/lib/products";
 import { ctvProductForSlug, priceSummary } from "@/lib/product-pricing";
 import { PRODUCT_LOGOS_PNG } from "@/lib/product-sites";
 import { appStoreUrl, stripWebPaymentFeatures, usesAppStoreOnly } from "@/lib/store-policy";
@@ -83,6 +84,8 @@ export default async function ProductPage({
 
   const t = await getTranslations("products");
   const faqs = await getFaqs(locale as Locale, product.id);
+  // Every other ViMai app, so each product page links to the whole ecosystem.
+  const ecosystem = (await getLocalizedProducts(locale as Locale)).filter((item) => item.slug !== slug);
   const siteUrl = product.website_url;
   const pageUrl = publicUrl(locale, `/products/${slug}`);
   // EN/JA readers buy through Apple in the app, never on the web (see store-policy.ts).
@@ -204,6 +207,8 @@ export default async function ProductPage({
           </Accordion>
         </section>
       ) : null}
+
+      <EcosystemLinks products={ecosystem} title={t("ecosystemTitle")} lead={t("ecosystemLead")} />
     </article>
   );
 }

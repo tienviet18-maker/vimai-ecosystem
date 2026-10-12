@@ -94,6 +94,8 @@
     "inAppCopied": "Copied",
     "inAppClose": "Close",
     "relatedFaq": "FAQ",
+    "ecosystemTitle": "The ViMai ecosystem",
+    "ecosystemLead": "More ViMai apps for people living, studying and working in Japan.",
     "back": "Back to products",
     "notFound": "Product not found.",
     "status": {
@@ -115,7 +117,7 @@
     "storyTitle": "Vision",
     "storyBody": "Guided by “Building Vietnam's Future,” ViMai is not only about passing an exam. It is about durable learning and daily wellbeing.",
     "missionP1": "ViMai is an independent software project focused on building an application ecosystem for learning, health, and everyday utilities. Our mission is to provide clear, practical software tools that help users with specific needs: certification exam study, children's education, and daily health tracking. We do not promise exam passes or medical outcomes. Each product is a support tool, and its release status is stated on this website.",
-    "missionP2": "Each app starts from a practical problem, not from visual effects. Tokutei Taxi and ViMai Transport support Specified Skilled Worker study in taxi and transport. ViMai Seibi supports Class 3 automobile mechanic theory. ViMai Menkyo helps Vietnamese and English speakers study for the Japanese driving-licence theory test (Karimen, Honmen, licence conversion). ViMai Kids is an interactive learning platform designed for parents to follow. Maimai logs personal lifestyle metrics such as sleep, water, nutrition, and cycle tracking. The interface is intentionally calm: fast pages, readable type, and a clear order of information on mobile. Visitors should see what a product does, who it is for, and where its limits are on the first visit.",
+    "missionP2": "Each app starts from a practical problem, not from visual effects. Tokutei Taxi and ViMai Transport support Specified Skilled Worker study in taxi and transport. ViMai Seibi supports Class 3 automobile mechanic theory. ViMai Menkyo helps Vietnamese and English speakers study for the Japanese driving-licence theory test (Karimen, Honmen, licence conversion). ViMai Kids is an interactive learning platform designed for parents to follow. Maimai logs personal lifestyle metrics such as sleep, water, nutrition, and cycle tracking. ViCare is a free, non-profit app that helps Vietnamese people see a doctor in Japan: an interpreter for the visit, reading papers and medicine bags, choosing a department and calling an ambulance. The interface is intentionally calm: fast pages, readable type, and a clear order of information on mobile. Visitors should see what a product does, who it is for, and where its limits are on the first visit.",
     "missionP3": "Data protection is an operating requirement, not decoration. This website collects only what is needed to answer inquiries, run the CMS, and (if you choose to send feedback) moderate that feedback. Email addresses are not published. We do not sell personal data. The public site runs on Cloudflare. The Privacy Policy explains processing, cookies, your rights, and how to contact us. When a product is used by children, a parent or guardian is responsible for supervision.",
     "scopeTitle": "Focus areas",
     "scope1": "Tokutei Gino exam prep for taxi and transport",

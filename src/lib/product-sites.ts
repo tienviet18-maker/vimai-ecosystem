@@ -1,4 +1,7 @@
-/** Canonical product subdomains on vimai.jp. Do not rename these hosts. */
+/**
+ * Canonical product subdomains on vimai.jp. Do not rename these hosts.
+ * ViCare has no subdomain yet: its page is /products/vicare on vimai.jp.
+ */
 export const PRODUCT_SITES: Record<string, string> = {
   "tokutei-taxi": "https://tokutei-taxi.vimai.jp",
   "tokutei-transport": "https://tokutei-transport.vimai.jp",
@@ -18,6 +21,7 @@ export const PRODUCT_LOGOS_PNG: Record<string, string> = {
   maimai: "/images/products/maimai.png",
   menkyo: "/images/products/vimai_menkyo.png",
   "gino1-seibi": "/images/products/gino1_seibi.png",
+  vicare: "/images/products/vicare.png",
 };
 
 /** Canonical product logos served from /public/images/products (640px WebP, ~40 KB). */

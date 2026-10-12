@@ -126,6 +126,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       ],
       ["Phiên dịch bằng micro", "Chưa (chỉ xem câu mẫu)", "Có"],
       ["Đọc giấy tờ, túi thuốc bằng camera", "Không (chỉ xem ví dụ)", "Có, đọc ngay trên máy"],
+      ["Nhắc uống thuốc, nhắc tái khám", "Không", "Có, thông báo ngay trên điện thoại"],
     ],
     webAppNote:
       "Bản web của ViCare đang được chuẩn bị; đường dẫn sẽ được thêm vào trang này khi mở. Với phiên dịch và đọc giấy tờ, hãy dùng app trên điện thoại.",
@@ -331,6 +332,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       ],
       ["Microphone interpreter", "Not yet (sample phrases only)", "Yes"],
       ["Camera reading of papers and medicine bags", "No (examples only)", "Yes, read on the phone"],
+      ["Medicine and follow-up visit reminders", "No", "Yes, notifications on the phone"],
     ],
     webAppNote:
       "The ViCare web version is being prepared; its link will be added here when it opens. For the interpreter and document reader, use the phone app.",
@@ -534,6 +536,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       ],
       ["マイクによる診察通訳", "未対応（例文のみ）", "○"],
       ["カメラによる書類・薬袋の読み取り", "×（例のみ）", "○（端末内で読み取り）"],
+      ["服薬・再診のリマインダー", "×", "○（端末内の通知）"],
     ],
     webAppNote: "ViCareのWeb版は準備中です。公開したらこのページにリンクを追加します。通訳と書類の読み取りはスマートフォンのアプリをお使いください。",
     privacyTitle: "データは端末の中だけに",

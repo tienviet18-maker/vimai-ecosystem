@@ -70,6 +70,8 @@
     "appStoreStep2": "App Storeからアプリをダウンロードします。",
     "appStoreStep3": "無料の試験を試してから、準備ができたらアプリ内でVIPを購入します。",
     "openSite": "製品サイトを開く",
+    "tryFreeOnWeb": "無料の模擬試験{count}回をWebで試す",
+    "tryFreeOnWebGeneric": "無料の模擬試験をWebで試す",
     "features": "主な機能",
     "download": "ダウンロード",
     "installTitle": "またはWebアプリをすぐに追加",

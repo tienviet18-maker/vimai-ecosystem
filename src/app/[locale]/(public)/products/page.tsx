@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProductGrid } from "@/components/shared/ProductGrid";
 import { getLocalizedProducts } from "@/lib/products";
-import { publicUrl } from "@/lib/utils";
+import { publicUrl, SITE_URL } from "@/lib/utils";
+import { hreflangAlternates } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 export const runtime = "edge";
@@ -18,7 +19,10 @@ export async function generateMetadata({
   return {
     title: t("indexTitle"),
     description: t("indexLead"),
-    alternates: { canonical: publicUrl(locale, "/products") },
+    alternates: {
+      canonical: publicUrl(locale, "/products"),
+      languages: hreflangAlternates(SITE_URL, "/products"),
+    },
   };
 }
 

@@ -27,12 +27,14 @@ for (const product of seedProducts) {
   for (const translation of product.translations) {
     lines.push(
       `INSERT OR IGNORE INTO product_translations (
-        id, product_id, locale, name, tagline, description, long_description, target_audience, features
+        id, product_id, locale, name, tagline, description, long_description, target_audience, features,
+        seo_title, seo_description
       ) VALUES (
         ${esc(`${product.id}-${translation.locale}`)}, ${esc(product.id)}, ${esc(translation.locale)},
         ${esc(translation.name)}, ${esc(translation.tagline)}, ${esc(translation.description)},
         ${esc(translation.long_description)}, ${esc(translation.target_audience)},
-        ${esc(JSON.stringify(translation.features))}
+        ${esc(JSON.stringify(translation.features))},
+        ${esc(translation.seo_title)}, ${esc(translation.seo_description)}
       );`,
     );
   }

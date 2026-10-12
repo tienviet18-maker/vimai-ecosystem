@@ -12,7 +12,7 @@ test("EN and JA use the App Store for Taxi, Transport and Menkyo, VI keeps the w
     assert.equal(usesAppStoreOnly(slug, "ja"), true);
     assert.equal(usesAppStoreOnly(slug, "vi"), false);
   }
-  for (const slug of ["seibi", "kids", "maimai"]) {
+  for (const slug of ["seibi", "kids", "maimai", "gino1-seibi"]) {
     assert.equal(usesAppStoreOnly(slug, "en"), false);
     assert.equal(usesAppStoreOnly(slug, "ja"), false);
   }

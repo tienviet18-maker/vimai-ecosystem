@@ -174,7 +174,25 @@ test("ViCare logo and record: web app on vicare.vimai.jp, optimized logo", () =>
   for (const locale of LOCALES) {
     assert.match(migration, new RegExp(`000000000008-${locale}', id, '${locale}'`));
   }
-  assert.match(read("d1/seed.sql"), /'vicare', 'coming_soon'/);
+  assert.match(read("d1/seed.sql"), /'vicare', 'available',\s*NULL, NULL, 'https:\/\/vicare\.vimai\.jp'/);
+  assert.match(seed, /slug: "vicare",\s*status: "available"/);
+  assert.match(seed, /website_url: "https:\/\/vicare\.vimai\.jp"/);
+
+  // 0014: web launch. Every UPDATE is scoped to ViCare and guarded, no deletes.
+  const launch = read("d1/migrations/0014_vicare_web_launch.sql");
+  assert.doesNotMatch(launch, /\b(DELETE|DROP|INSERT)\b/);
+  const updates = launch.split(/;\n/).filter((sql) => /^\s*UPDATE/m.test(sql.replace(/^--.*$/gm, "")));
+  assert.equal(updates.length, 5);
+  for (const sql of updates) {
+    assert.match(sql, /slug = 'vicare'/, "scoped to ViCare");
+  }
+  assert.match(launch, /SET status = 'available'[\s\S]*AND status = 'coming_soon'/);
+  assert.match(launch, /website_url = 'https:\/\/vicare\.vimai\.jp'/);
+  for (const text of [launch, read("d1/seed.sql"), seed]) {
+    const body = text.replace(/^--.*$/gm, "").replace(/instr\([^)]*\)/g, "");
+    assert.doesNotMatch(body, /確認待ち|chờ chuyên gia duyệt|awaiting expert review/, "no pending-review wording");
+    assert.doesNotMatch(body, /bác sĩ đã duyệt|doctor-reviewed|reviewed by a doctor|医師が監修/);
+  }
 });
 
 test("JSON-LD: free app, FAQ, breadcrumbs and article", () => {

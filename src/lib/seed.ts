@@ -541,11 +541,11 @@ export const seedProducts: Product[] = [
   {
     id: "00000000-0000-0000-0000-000000000008",
     slug: "vicare",
-    status: "coming_soon",
+    status: "available",
     category: "health",
     app_store_url: null,
     google_play_url: null,
-    website_url: null,
+    website_url: "https://vicare.vimai.jp",
     featured: true,
     sort_order: 8,
     logo_url: "/images/products/vicare.png",
@@ -558,7 +558,7 @@ export const seedProducts: Product[] = [
         description:
           "日本に住むベトナム人が安心して受診できるよう支える、ViMaiの無料・非営利アプリです。診察時の通訳（マイク、端末内の音声認識を優先）、病院の書類や薬袋のカメラ読み取り（端末内で処理）、症状から診療科を選ぶガイドと危険なサイン、診療科別にGoogleマップで医療機関を探す機能、119・110・#7119・#8000の伝え方、緊急医療情報・受診記録・服用中の薬を備えています。",
         long_description:
-          "参考情報とコミュニケーション支援のためのアプリで、診断ではありません。医療情報は専門家の確認待ちです。アカウント不要で、個人のデータは端末内だけに保存されます。",
+          "受診時のコミュニケーションを助ける参考情報のアプリで、医師の助言に代わるものではありません。内容はViCareチームが作成・確認しています。アカウント不要で、個人のデータは端末内だけに保存されます。",
         target_audience:
           "日本で病院・クリニックを受診するベトナム人と、その受診を支える家族、会社、学校、支援機関の方。",
         features: [
@@ -582,7 +582,7 @@ export const seedProducts: Product[] = [
         description:
           "ViCare là app miễn phí, phi lợi nhuận của ViMai, giúp người Việt tại Nhật đi khám bệnh: phiên dịch khi khám (micro, ưu tiên nhận dạng giọng nói trên máy), đọc giấy tờ bệnh viện và túi thuốc bằng camera (xử lý ngay trên điện thoại), “Tôi bị ốm” chọn đúng khoa kèm dấu hiệu nguy hiểm, tìm phòng khám theo khoa trên Google Maps, câu nói khi gọi 119, 110, #7119, #8000 và hồ sơ sức khoẻ (thông tin khẩn cấp, nhật ký khám, thuốc đang uống).",
         long_description:
-          "Thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán. Nội dung y khoa đang chờ chuyên gia duyệt. Không cần tài khoản; dữ liệu cá nhân chỉ lưu trên điện thoại.",
+          "Thông tin tham khảo và công cụ hỗ trợ giao tiếp khi đi khám, không thay thế lời khuyên của bác sĩ. Nội dung do đội ViCare biên soạn và kiểm tra. Không cần tài khoản; dữ liệu cá nhân chỉ lưu trên điện thoại.",
         target_audience:
           "Người Việt sống tại Nhật cần đi khám bệnh, và gia đình, công ty, trường học, nghiệp đoàn hỗ trợ họ.",
         features: [
@@ -606,7 +606,7 @@ export const seedProducts: Product[] = [
         description:
           "ViCare is a free, non-profit ViMai app that helps Vietnamese people in Japan see a doctor: a doctor-visit interpreter (microphone, on-device speech recognition first), camera reading of hospital papers and medicine bags (processed on the phone), an “I feel sick” symptom-to-department guide with warning signs, clinic search by department on Google Maps, scripts for 119, 110, #7119 and #8000, and health records (emergency info, visit diary, current medicines).",
         long_description:
-          "Reference information and a communication aid, not a diagnosis. Medical content is awaiting expert review. No account; personal data stays on your phone.",
+          "Reference information and a communication aid for doctor visits; it does not replace a doctor's advice. Content is written and checked by the ViCare team. No account; personal data stays on your phone.",
         target_audience:
           "Vietnamese people living in Japan who need to see a doctor, and the family, employers, schools and support organisations who help them.",
         features: [

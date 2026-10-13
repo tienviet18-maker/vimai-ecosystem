@@ -26,6 +26,11 @@ export default async function HomePage({
   const about = await getTranslations("about");
   const products = await getLocalizedProducts(locale as Locale);
   const featured = products.filter((item) => item.featured);
+  const principles = [
+    { title: t("pillar1Title"), body: t("pillar1Body") },
+    { title: t("pillar2Title"), body: t("pillar2Body") },
+    { title: t("pillar3Title"), body: t("pillar3Body") },
+  ];
   const reviews = await getApprovedReviews(locale as Locale);
   const pillars = [
     { icon: BookOpen, title: t("learnTitle"), body: t("learnBody") },
@@ -105,21 +110,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      <section
-        id="about"
-        aria-labelledby="about-heading"
-        className="border-b border-slate-200/80 bg-white"
-      >
-        <div className="container max-w-3xl py-16 lg:py-20">
-          <h2 id="about-heading" className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
-            {about("title")}
-          </h2>
-          <p className="mt-6 text-base leading-8 text-slate-600">{about("missionP1")}</p>
-          <p className="mt-5 text-base leading-8 text-slate-600">{about("missionP2")}</p>
-          <p className="mt-5 text-base leading-8 text-slate-600">{about("missionP3")}</p>
-        </div>
-      </section>
-
       <section id="products" aria-labelledby="products-heading" className="container py-16 lg:py-20">
         <h2 id="products-heading" className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
           {t("ecosystemTitle")}
@@ -150,22 +140,33 @@ export default async function HomePage({
         </div>
       </section>
 
-      <section className="container py-16 lg:py-20">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
-          {t("pillarsTitle")}
-        </h2>
-        <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+      <section id="about" aria-labelledby="about-heading" className="container py-16 lg:py-20">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           <div>
-            <h3 className="text-lg font-semibold">{t("pillar1Title")}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar1Body")}</p>
+            <h2 id="about-heading" className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
+              {about("title")}
+            </h2>
+            <p className="mt-5 leading-8 text-slate-600">{t("aboutLead")}</p>
+            <Link
+              href="/about"
+              className="mt-6 inline-flex items-center gap-2 font-medium text-primary hover:underline"
+            >
+              {t("aboutMore")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
           <div>
-            <h3 className="text-lg font-semibold">{t("pillar2Title")}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar2Body")}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">{t("pillar3Title")}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-500">{t("pillar3Body")}</p>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+              {t("pillarsTitle")}
+            </h3>
+            <dl className="mt-4 divide-y divide-slate-200/80 border-y border-slate-200/80">
+              {principles.map((item) => (
+                <div key={item.title} className="py-5 sm:grid sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+                  <dt className="font-semibold text-slate-900">{item.title}</dt>
+                  <dd className="mt-1 leading-7 text-slate-600 sm:mt-0">{item.body}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>

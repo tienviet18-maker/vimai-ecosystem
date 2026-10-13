@@ -51,7 +51,9 @@
     "feedbackEmpty": "Be one of the first to share your experience.",
     "feedbackCta": "Share feedback",
     "ctaTitle": "Launch timing or partnership",
-    "ctaBody": "Contact us about store release dates, deployment, or press."
+    "ctaBody": "Contact us about store release dates, deployment, or press.",
+    "aboutLead": "ViMai is an independent software project building apps for learning, health and everyday life, mostly for Vietnamese people in Japan. Every product shows its release status, never promises exam or medical results, and never sells personal data.",
+    "aboutMore": "More about ViMai"
   },
   "products": {
     "indexTitle": "Products",

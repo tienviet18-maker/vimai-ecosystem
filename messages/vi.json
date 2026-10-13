@@ -51,7 +51,9 @@
     "feedbackEmpty": "Hãy là người đầu tiên chia sẻ trải nghiệm của bạn.",
     "feedbackCta": "Gửi phản hồi",
     "ctaTitle": "Cần thông tin phát hành hoặc hợp tác?",
-    "ctaBody": "Liên hệ với chúng tôi về lịch mở trên store, triển khai hoặc truyền thông."
+    "ctaBody": "Liên hệ với chúng tôi về lịch mở trên store, triển khai hoặc truyền thông.",
+    "aboutLead": "ViMai là dự án phần mềm độc lập, làm ứng dụng học tập, sức khỏe và tiện ích đời sống, phần lớn dành cho người Việt tại Nhật. Mỗi sản phẩm ghi rõ trạng thái phát hành, không hứa hẹn kết quả thi hay hiệu quả y tế, và không bán dữ liệu cá nhân.",
+    "aboutMore": "Đọc thêm về ViMai"
   },
   "products": {
     "indexTitle": "Sản phẩm",

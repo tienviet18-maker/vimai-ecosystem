@@ -53,7 +53,14 @@
     "ctaTitle": "Launch timing or partnership",
     "ctaBody": "Contact us about store release dates, deployment, or press.",
     "aboutLead": "ViMai is an independent software project building apps for learning, health and everyday life, mostly for Vietnamese people in Japan. Every product shows its release status, never promises exam or medical results, and never sells personal data.",
-    "aboutMore": "More about ViMai"
+    "aboutMore": "More about ViMai",
+    "heroEyebrow": "The ViMai app ecosystem",
+    "heroTitle": "Practical apps for Vietnamese people who study, work and live in Japan.",
+    "heroLead": "Prepare for Tokutei Ginou, driving and trade exams. See a doctor with confidence. Help children learn and look after your health every day. Each app does one job and does it well.",
+    "factApps": "apps",
+    "factLanguages": "languages: Vietnamese, Japanese, English",
+    "factPlatformsValue": "Web, App",
+    "factPlatforms": "on any phone"
   },
   "products": {
     "indexTitle": "Products",
@@ -129,7 +136,17 @@
     "scope3": "Children's education with parent controls",
     "scope4": "Health, nutrition, and calorie tracking",
     "qualityTitle": "Quality bar",
-    "qualityBody": "Facts only where confirmed, readable Japanese, and a calm interface. Unreleased products are labeled clearly; missing details are marked for CMS update."
+    "qualityBody": "Facts only where confirmed, readable Japanese, and a calm interface. Unreleased products are labeled clearly; missing details are marked for CMS update.",
+    "scope5": "Helping Vietnamese people see a doctor in Japan (ViCare, free and non-profit)",
+    "vicareEyebrow": "Community project",
+    "vicareTitle": "ViCare: no one should see a doctor in Japan alone",
+    "vicareBody": "ViCare is ViMai's free, non-profit app for Vietnamese people living in Japan. From feeling unwell to choosing a department, finding a clinic, talking with the doctor and taking your medicine home, ViCare goes with you in Vietnamese, Japanese with furigana, and English.",
+    "vicarePoint1": "An interpreter for the visit, with thousands of Japanese–Vietnamese phrases and furigana you can read straight to the doctor",
+    "vicarePoint2": "Clinics by department on Google Maps, with data for all 47 prefectures from Japan's official 医療情報ネット",
+    "vicarePoint3": "What to say when calling 119, #7119 or #8000, and an emergency medical card to show doctors and nurses",
+    "vicarePoint4": "No account and no ads; your health records stay on your phone",
+    "vicareWebCta": "Try the web app now",
+    "vicareMore": "More about ViCare"
   },
   "support": {
     "title": "Support",

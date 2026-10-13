@@ -53,7 +53,14 @@
     "ctaTitle": "Cần thông tin phát hành hoặc hợp tác?",
     "ctaBody": "Liên hệ với chúng tôi về lịch mở trên store, triển khai hoặc truyền thông.",
     "aboutLead": "ViMai là dự án phần mềm độc lập, làm ứng dụng học tập, sức khỏe và tiện ích đời sống, phần lớn dành cho người Việt tại Nhật. Mỗi sản phẩm ghi rõ trạng thái phát hành, không hứa hẹn kết quả thi hay hiệu quả y tế, và không bán dữ liệu cá nhân.",
-    "aboutMore": "Đọc thêm về ViMai"
+    "aboutMore": "Đọc thêm về ViMai",
+    "heroEyebrow": "Hệ sinh thái ứng dụng ViMai",
+    "heroTitle": "Ứng dụng thiết thực cho người Việt học tập, làm việc và sống tại Nhật.",
+    "heroLead": "Luyện thi Tokutei, bằng lái và chứng chỉ nghề. Đi khám bệnh không còn bỡ ngỡ. Học cho trẻ và chăm sóc sức khỏe mỗi ngày. Mỗi ứng dụng làm một việc, làm thật kỹ.",
+    "factApps": "ứng dụng",
+    "factLanguages": "ngôn ngữ: Việt, Nhật, Anh",
+    "factPlatformsValue": "Web, App",
+    "factPlatforms": "dùng trên điện thoại"
   },
   "products": {
     "indexTitle": "Sản phẩm",
@@ -126,7 +133,17 @@
     "scope3": "Ứng dụng giáo dục trẻ em có kiểm soát phụ huynh",
     "scope4": "Theo dõi sức khỏe, dinh dưỡng và calories",
     "qualityTitle": "Cam kết chất lượng",
-    "qualityBody": "Thông tin dựa trên sự thật đã xác nhận, tiếng Nhật dễ đọc, giao diện không phô trương. Sản phẩm chưa ra mắt được ghi rõ trạng thái; chi tiết còn thiếu sẽ cập nhật qua CMS."
+    "qualityBody": "Thông tin dựa trên sự thật đã xác nhận, tiếng Nhật dễ đọc, giao diện không phô trương. Sản phẩm chưa ra mắt được ghi rõ trạng thái; chi tiết còn thiếu sẽ cập nhật qua CMS.",
+    "scope5": "Hỗ trợ người Việt đi khám bệnh ở Nhật (ViCare, miễn phí, phi lợi nhuận)",
+    "vicareEyebrow": "Dự án cộng đồng",
+    "vicareTitle": "ViCare: đi khám bệnh ở Nhật không còn một mình",
+    "vicareBody": "ViCare là app miễn phí, phi lợi nhuận của ViMai, làm cho người Việt đang sống tại Nhật. Từ lúc thấy mệt, chọn khoa, tìm phòng khám, nói chuyện với bác sĩ đến khi cầm túi thuốc về, ViCare đi cùng bạn bằng tiếng Việt, tiếng Nhật có furigana và tiếng Anh.",
+    "vicarePoint1": "Phiên dịch khi khám với hàng nghìn câu mẫu Nhật – Việt, có furigana để đọc thẳng cho bác sĩ",
+    "vicarePoint2": "Tìm phòng khám theo khoa trên Google Maps, dữ liệu 47 tỉnh thành từ 医療情報ネット của Bộ Y tế Nhật",
+    "vicarePoint3": "Câu nói khi gọi 119, #7119, #8000 và thẻ thông tin y tế khẩn cấp đưa cho bác sĩ, y tá",
+    "vicarePoint4": "Không cần tài khoản, không quảng cáo; hồ sơ sức khỏe chỉ lưu trên điện thoại của bạn",
+    "vicareWebCta": "Dùng thử bản web ngay",
+    "vicareMore": "Xem chi tiết ViCare"
   },
   "support": {
     "title": "Hỗ trợ",

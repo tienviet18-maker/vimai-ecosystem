@@ -1,7 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, BookOpen, HeartPulse, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductEcosystemStrip } from "@/components/shared/ProductEcosystemStrip";
 import { ProductGrid } from "@/components/shared/ProductGrid";
 import { FeedbackForm } from "@/components/shared/FeedbackForm";
 import { JsonLd } from "@/components/shared/JsonLd";
@@ -32,6 +31,11 @@ export default async function HomePage({
     { title: t("pillar3Title"), body: t("pillar3Body") },
   ];
   const reviews = await getApprovedReviews(locale as Locale);
+  const heroFacts = [
+    { value: String(products.length), label: t("factApps") },
+    { value: "3", label: t("factLanguages") },
+    { value: t("factPlatformsValue"), label: t("factPlatforms") },
+  ];
   const pillars = [
     { icon: BookOpen, title: t("learnTitle"), body: t("learnBody") },
     { icon: Briefcase, title: t("workTitle"), body: t("workBody") },
@@ -81,16 +85,19 @@ export default async function HomePage({
         }}
       />
       <section aria-labelledby="hero-heading" className="border-b border-slate-200/80 bg-white">
-        <div className="container py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl">
+        <div className="container grid gap-12 py-14 sm:py-16 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-16 lg:py-24">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+              {t("heroEyebrow")}
+            </p>
             <h1
               id="hero-heading"
-              className="text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]"
+              className="mt-4 max-w-[34rem] text-[2rem] [word-break:auto-phrase] font-semibold leading-[1.2] tracking-tight text-slate-900 sm:text-[2.5rem] lg:text-[2.75rem]"
             >
-              {t("title")}
+              {t("heroTitle")}
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
-              {t("lead")}
+            <p className="mt-5 max-w-[34rem] text-base leading-8 text-slate-600 sm:text-[1.0625rem]">
+              {t("heroLead")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -103,10 +110,50 @@ export default async function HomePage({
                 <Link href="/contact">{t("ctaContact")}</Link>
               </Button>
             </div>
+            <dl className="mt-10 grid max-w-[34rem] grid-cols-3 divide-x divide-slate-200/80 border-y border-slate-200/80 py-4">
+              {heroFacts.map((fact) => (
+                <div key={fact.label} className="px-3 first:pl-0 sm:px-4">
+                  <dt className="sr-only">{fact.label}</dt>
+                  <dd className="whitespace-nowrap text-base font-semibold tracking-tight text-slate-900 sm:text-lg">{fact.value}</dd>
+                  <dd className="mt-0.5 text-[13px] leading-5 text-slate-500">{fact.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <div className="mt-10 lg:mt-14">
-            <ProductEcosystemStrip products={products} label={t("ecosystemTitle")} />
-          </div>
+          <nav aria-label={t("ecosystemTitle")}>
+            <ul className="grid grid-cols-3 gap-3 sm:gap-4">
+              {products.map((product) => (
+                <li key={product.slug}>
+                  <Link
+                    href={`/products/${product.slug}`}
+                    className="group flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200/80 bg-navy-50/50 p-3 text-center no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-lift"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={product.logo_url}
+                      alt=""
+                      width={64}
+                      height={64}
+                      decoding="async"
+                      className="h-12 w-12 rounded-xl object-contain sm:h-16 sm:w-16"
+                    />
+                    <span className="line-clamp-2 text-[12px] font-medium leading-4 text-slate-700 sm:text-[13px]">
+                      {product.name.split(/\s*[（(]| [–-] /)[0]}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/products"
+                  className="flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 p-3 text-center text-[13px] font-medium text-primary no-underline transition-colors hover:bg-navy-50/50"
+                >
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                  {t("viewAll")}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </section>
 

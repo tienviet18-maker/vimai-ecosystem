@@ -8,7 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { CONTACT_MAILTO } from "@/lib/contact";
 
-export function ContactForm() {
+export function ContactForm({
+  defaultSubject,
+  messagePlaceholder,
+}: {
+  defaultSubject?: string;
+  messagePlaceholder?: string;
+} = {}) {
   const t = useTranslations("contact");
   const locale = useLocale();
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "unconfigured">(
@@ -61,11 +67,11 @@ export function ContactForm() {
       </div>
       <div className="space-y-2">
         <Label htmlFor="subject">{t("subject")}</Label>
-        <Input id="subject" name="subject" />
+        <Input id="subject" name="subject" defaultValue={defaultSubject} />
       </div>
       <div className="space-y-2">
         <Label htmlFor="message">{t("message")}</Label>
-        <Textarea id="message" name="message" required />
+        <Textarea id="message" name="message" required placeholder={messagePlaceholder} />
       </div>
       {status === "success" ? (
         <p className="text-sm text-emerald-700">{t("success")}</p>

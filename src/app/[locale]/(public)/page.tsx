@@ -23,6 +23,7 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const about = await getTranslations("about");
+  const ctv = await getTranslations("ctvJoin");
   const products = await getLocalizedProducts(locale as Locale);
   const featured = products.filter((item) => item.featured);
   const principles = [
@@ -31,11 +32,6 @@ export default async function HomePage({
     { title: t("pillar3Title"), body: t("pillar3Body") },
   ];
   const reviews = await getApprovedReviews(locale as Locale);
-  const heroFacts = [
-    { value: String(products.length), label: t("factApps") },
-    { value: "3", label: t("factLanguages") },
-    { value: t("factPlatformsValue"), label: t("factPlatforms") },
-  ];
   const pillars = [
     { icon: BookOpen, title: t("learnTitle"), body: t("learnBody") },
     { icon: Briefcase, title: t("workTitle"), body: t("workBody") },
@@ -110,15 +106,6 @@ export default async function HomePage({
                 <Link href="/contact">{t("ctaContact")}</Link>
               </Button>
             </div>
-            <dl className="mt-10 grid max-w-[34rem] grid-cols-3 divide-x divide-slate-200/80 border-y border-slate-200/80 py-4">
-              {heroFacts.map((fact) => (
-                <div key={fact.label} className="px-3 first:pl-0 sm:px-4">
-                  <dt className="sr-only">{fact.label}</dt>
-                  <dd className="whitespace-nowrap text-base font-semibold tracking-tight text-slate-900 sm:text-lg">{fact.value}</dd>
-                  <dd className="mt-0.5 text-[13px] leading-5 text-slate-500">{fact.label}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
           <nav aria-label={t("ecosystemTitle")} className="w-full max-w-[30rem] md:max-w-none">
             <ul className="grid auto-rows-fr grid-cols-3 gap-3 sm:gap-4">
@@ -248,6 +235,31 @@ export default async function HomePage({
           </div>
         </section>
       ) : null}
+
+      <section aria-labelledby="ctv-heading" className="border-b border-slate-200/80 bg-white">
+        <div className="container py-16 lg:py-20">
+          <div className="grid gap-8 rounded-[1.75rem] bg-primary px-6 py-10 text-white sm:px-10 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:items-center lg:px-14 lg:py-14">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+                {ctv("eyebrow")}
+              </p>
+              <h2 id="ctv-heading" className="mt-3 text-2xl text-white font-semibold tracking-tight sm:text-[1.75rem]">
+                {ctv("title")}
+              </h2>
+              <p className="mt-4 max-w-xl leading-8 text-white/85">{ctv("homeLead")}</p>
+            </div>
+            <div className="flex flex-col gap-3 md:items-end">
+              <Button asChild size="lg" variant="outline">
+                <Link href="/ctv">
+                  {ctv("homeCta")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <p className="text-sm text-white/70">{ctv("homeNote")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="container py-16 lg:py-20">
         <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">

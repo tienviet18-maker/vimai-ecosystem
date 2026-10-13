@@ -14,7 +14,8 @@
     "contact": "Liên hệ",
     "openMenu": "Mở menu",
     "closeMenu": "Đóng menu",
-    "language": "Ngôn ngữ"
+    "language": "Ngôn ngữ",
+    "ctv": "Tuyển CTV"
   },
   "brand": {
     "name": "ViMai",
@@ -56,11 +57,7 @@
     "aboutMore": "Đọc thêm về ViMai",
     "heroEyebrow": "Hệ sinh thái ứng dụng ViMai",
     "heroTitle": "Ứng dụng thiết thực cho người Việt học tập, làm việc và sống tại Nhật.",
-    "heroLead": "Luyện thi Tokutei, bằng lái và chứng chỉ nghề. Đi khám bệnh không còn bỡ ngỡ. Học cho trẻ và chăm sóc sức khỏe mỗi ngày. Mỗi ứng dụng làm một việc, làm thật kỹ.",
-    "factApps": "ứng dụng",
-    "factLanguages": "ngôn ngữ: Việt, Nhật, Anh",
-    "factPlatformsValue": "Web, App",
-    "factPlatforms": "dùng trên điện thoại"
+    "heroLead": "Từ ôn thi Tokutei, bằng lái và chứng chỉ nghề, đến đi khám bệnh, học cho trẻ và chăm sóc sức khỏe mỗi ngày, ViMai làm những ứng dụng gọn gàng, dễ dùng, có tiếng Việt, tiếng Nhật và tiếng Anh. Mỗi ứng dụng tập trung giải quyết một nhu cầu cụ thể của người Việt tại Nhật, và làm thật kỹ việc đó."
   },
   "products": {
     "indexTitle": "Sản phẩm",
@@ -402,5 +399,48 @@
     "empty": "Chưa có đơn nào.",
     "secret": "Link này là riêng của bạn, đừng chia sẻ cho người khác.",
     "rank": "Hạng kỳ này"
+  },
+  "ctvJoin": {
+    "eyebrow": "Tuyển cộng tác viên",
+    "title": "Tuyển cộng tác viên marketing ViMai",
+    "lead": "Giới thiệu các app luyện thi của ViMai cho bạn bè, nhóm học và cộng đồng người Việt tại Nhật. Khách mua VIP bằng mã của bạn được giảm giá, còn bạn nhận hoa hồng cho mỗi đơn thành công. Làm online, không cần vốn.",
+    "ctaApply": "Đăng ký làm CTV",
+    "ctaBoard": "Xem bảng xếp hạng CTV",
+    "stepsTitle": "Cách làm CTV",
+    "step1Title": "Đăng ký",
+    "step1Body": "Điền form cuối trang. ViMai liên hệ lại và cấp cho bạn một mã giới thiệu riêng cùng một trang cá nhân để theo dõi đơn.",
+    "step2Title": "Chia sẻ mã",
+    "step2Body": "Giới thiệu app kèm mã của bạn trên Facebook, Zalo, TikTok, nhóm học hay lớp tiếng Nhật. Một mã dùng được cho mọi app có bán VIP trên web.",
+    "step3Title": "Khách được giảm giá",
+    "step3Body": "Khách nhập mã khi mua VIP trên web và được giảm 10–20% (thường là 15%), thanh toán bằng chuyển khoản VietQR.",
+    "step4Title": "Nhận hoa hồng",
+    "step4Body": "Mỗi đơn thành công bạn nhận hoa hồng cố định. ViMai chuyển khoản 2 lần mỗi tháng: kỳ ngày 1–15 và kỳ ngày 16 đến cuối tháng.",
+    "perksTitle": "Quyền lợi",
+    "perk1Title": "Hoa hồng mỗi đơn",
+    "perk1Body": "Mức chung là 100.000 đ cho mỗi đơn VIP thành công, không giới hạn số đơn. Mức cụ thể ghi rõ khi ViMai cấp mã cho bạn.",
+    "perk2Title": "Sản phẩm dễ giới thiệu",
+    "perk2Body": "Tokutei Taxi, Tokutei Transport và ViMai Menkyo: đề thi thử có furigana, giải thích tiếng Việt, cho học thử miễn phí trước khi mua.",
+    "perk3Title": "Theo dõi minh bạch",
+    "perk3Body": "Trang cá nhân riêng cho biết mã của bạn, các đơn đã ghi nhận và hoa hồng chưa trả. Bảng xếp hạng mỗi kỳ chỉ hiện số hiệu CTV, không hiện tên.",
+    "perk4Title": "Tự do thời gian",
+    "perk4Body": "Làm online ở Nhật hay ở Việt Nam, không cần vốn, không cần kinh nghiệm bán hàng. ViMai hỗ trợ nội dung và hình ảnh để bạn đăng bài.",
+    "fitTitle": "Phù hợp với",
+    "fit1": "Thực tập sinh, du học sinh, người lao động đang ở Nhật",
+    "fit2": "Người quản lý nhóm, trang Facebook, kênh TikTok về cuộc sống ở Nhật",
+    "fit3": "Giáo viên tiếng Nhật, trung tâm và nghiệp đoàn đưa người sang Nhật",
+    "fit4": "Người đã thi đỗ Tokutei hoặc bằng lái và muốn giới thiệu cách mình ôn",
+    "rulesTitle": "Lưu ý",
+    "rule1": "Mã chỉ áp dụng khi mua VIP trên web bằng chuyển khoản VND. Mua trong app iOS không dùng mã.",
+    "rule2": "Mỗi khách dùng mã một lần cho mỗi app. Đơn bị hoàn tiền sẽ không tính hoa hồng.",
+    "rule3": "Giới thiệu trung thực: không hứa chắc chắn thi đỗ, không spam, không dùng tên hay logo của cơ quan thi.",
+    "rule4": "ViMai có thể tạm dừng mã nếu vi phạm các điều trên.",
+    "applyTitle": "Đăng ký làm CTV",
+    "applyLead": "Gửi thông tin ở form dưới. ViMai trả lời qua email, thường trong vài ngày.",
+    "applySubject": "Đăng ký CTV marketing",
+    "applyPlaceholder": "Bạn đang ở Nhật hay Việt Nam, bạn sẽ chia sẻ ở đâu (link Facebook, Zalo, TikTok...), khoảng bao nhiêu người theo dõi.",
+    "applyChannels": "Hoặc nhắn trực tiếp cho ViMai:",
+    "homeLead": "Giới thiệu app ViMai cho cộng đồng người Việt tại Nhật. Khách được giảm giá, bạn nhận hoa hồng cho mỗi đơn VIP thành công.",
+    "homeCta": "Tìm hiểu và đăng ký",
+    "homeNote": "Làm online, không cần vốn"
   }
 }

@@ -5,7 +5,7 @@ export const seedProducts: Product[] = [
   {
     id: "00000000-0000-0000-0000-000000000001",
     slug: "tokutei-taxi",
-    status: "coming_soon",
+    status: "launched",
     app_store_url: null,
     google_play_url: null,
     website_url: "https://tokutei-taxi.vimai.jp",
@@ -79,7 +79,7 @@ export const seedProducts: Product[] = [
   {
     id: "00000000-0000-0000-0000-000000000002",
     slug: "tokutei-transport",
-    status: "coming_soon",
+    status: "launched",
     app_store_url: null,
     google_play_url: null,
     website_url: "https://tokutei-transport.vimai.jp",
@@ -90,60 +90,75 @@ export const seedProducts: Product[] = [
     translations: [
       {
         locale: "ja",
-        name: "ViMai Transport",
-        tagline: "特定技能（自動車運送・トラック）の学習アプリ",
+        name: "ViMai Tokutei Transport（特定技能1号・トラック）",
+        tagline: "特定技能1号 自動車運送業分野（トラック）の試験対策アプリ",
         description:
-          "特定技能の運送・トラック分野に取り組む外国人向けの学習アプリです。対象者、学習の目的、模擬試験、日本語サポート、振り仮名、わかりやすい解説、日本での就労の方向性を整理して学べます。",
+          "ClassNK（一般財団法人日本海事協会）が実施する「自動車運送業分野特定技能1号評価試験」のトラック区分に向けた試験対策アプリです。CBT形式の模擬試験を20回分収録しています。1回分は50問（学科の○×問題30問と、実技の3択問題20問）、試験時間は80分で、学科・実技それぞれ60%以上の正答で合格という本番と同じ基準で採点します。実技は運転の判断、荷の積み付け・固縛、危険予知（KYT）などで、図を使った問題も多くあります。問題は「トラック運転者をめざす人のための学習用テキスト」に沿って作っています。日本語の問題には振り仮名が付き、ベトナム語・英語の訳を切り替えて表示できます。試験によく出る用語510語の単語帳も付いています。",
         long_description:
-          "試験や就労の結果を保証するものではありません。学習範囲と出題形式を把握するためのツールです。",
+          "問題は学習用テキストをもとにViMaiが作成したもので、実際の試験問題ではありません。ClassNKの公認・監修を受けたものではありません。学習を支えるツールであり、合格を保証するものではありません。",
         target_audience:
-          "日本の特定技能・自動車運送業（トラック等）を目指す外国人学習者。",
+          "日本でトラック運転者として働くために、特定技能1号（自動車運送業分野・トラック）の評価試験を受ける外国人、特にベトナム語や英語で解説を読みながら日本語の問題に慣れたい人。受け入れ企業や登録支援機関が学習内容を確認する際にもご覧ください。",
         features: [
-          "運送分野の学習目的が明確",
-          "模擬試験",
-          "日本語サポート",
-          "振り仮名",
-          "わかりやすい解説",
-          "日本での就労に向けた方向づけ",
+          "CBT形式の模擬試験20回・1,000問",
+          "1回分：学科○×30問＋実技3択20問、80分、各60%以上で合格",
+          "実技は運転の判断、積み付け・固縛、危険予知（KYT）。図の問題も多数",
+          "日本語の問題に振り仮名、ベトナム語・英語の訳を表示可能",
+          "間違えるとその場で止まって解説を表示（VIPはAIが解説）",
+          "トラック用語510語の単語帳（最初の100語は無料）",
+          "VIP向け：問題ごとの解き方のヒントと試験のコツ",
+          "第1〜3回は無料",
         ],
+        seo_title: "特定技能1号 トラック 試験対策｜模擬試験20回・振り仮名付き",
+        seo_description:
+          "自動車運送業分野特定技能1号評価試験（トラック）の対策アプリ。CBT形式の模擬試験20回（各50問・80分）、振り仮名、ベトナム語・英語訳、用語510語。第1〜3回は無料。",
       },
       {
         locale: "vi",
-        name: "ViMai Transport",
-        tagline: "Ứng dụng luyện thi 特定技能 ngành vận tải / xe tải",
+        name: "ViMai Tokutei Transport – Tokutei xe tải",
+        tagline: "Luyện thi kỹ năng đặc định 1 ngành vận tải ô tô, hạng mục xe tải (特定技能1号 トラック)",
         description:
-          "Ứng dụng cho người học lĩnh vực 特定技能 vận tải / xe tải. Nêu rõ đối tượng, mục đích học, đề thi thử, hỗ trợ tiếng Nhật, Furigana, giải thích dễ hiểu và định hướng nghề nghiệp tại Nhật.",
+          "Ứng dụng web luyện thi Tokutei Ginou 1 ngành vận tải ô tô, hạng mục xe tải (自動車運送業分野特定技能1号評価試験 トラック), kỳ thi do ClassNK (日本海事協会) tổ chức. Có 20 đề thi thử dạng CBT, mỗi đề 50 câu: 30 câu lý thuyết ○× và 20 câu thực hành chọn 1 trong 3, làm trong 80 phút, đậu khi mỗi phần đúng từ 60%, giống cách chấm của kỳ thi thật. Phần thực hành gồm phán đoán khi lái xe, xếp và chằng buộc hàng, dự đoán nguy hiểm (KYT), nhiều câu có hình. Câu hỏi bám giáo trình 「トラック運転者をめざす人のための学習用テキスト」. Câu hỏi tiếng Nhật có furigana, bật được bản dịch tiếng Việt và tiếng Anh. Kèm sổ từ vựng 510 từ hay gặp trong đề.",
         long_description:
-          "Công cụ nắm phạm vi học và dạng đề. Không cam kết kết quả thi hay việc làm.",
+          "Câu hỏi do ViMai soạn dựa trên giáo trình; đây không phải đề thi thật và không được ClassNK bảo trợ. Công cụ học tập, không cam kết đậu kỳ thi.",
         target_audience:
-          "Người nước ngoài chuẩn bị thi và làm việc trong ngành vận tải / xe tải tại Nhật.",
+          "Người Việt và người nước ngoài muốn làm tài xế xe tải tại Nhật, đang chuẩn bị thi kỹ năng đặc định 1 (Tokutei Ginou 1) ngành vận tải ô tô hạng mục xe tải, muốn làm quen đề tiếng Nhật có furigana và đọc giải thích bằng tiếng Việt.",
         features: [
-          "Mục tiêu học rõ ràng theo ngành vận tải",
-          "Đề thi thử",
-          "Hỗ trợ tiếng Nhật",
-          "Furigana",
-          "Giải thích dễ hiểu",
-          "Định hướng nghề nghiệp tại Nhật",
+          "20 đề thi thử dạng CBT, 1.000 câu",
+          "Mỗi đề: 30 câu ○× lý thuyết + 20 câu thực hành chọn 1 trong 3, 80 phút, mỗi phần từ 60% là đậu",
+          "Thực hành: phán đoán khi lái, xếp và chằng buộc hàng, dự đoán nguy hiểm (KYT), nhiều câu có hình",
+          "Tiếng Nhật có furigana, bật dịch tiếng Việt hoặc tiếng Anh",
+          "Chọn sai là dừng lại và giải thích ngay; VIP có thêm AI giải thích",
+          "Sổ từ vựng xe tải 510 từ (100 từ đầu miễn phí)",
+          "VIP: mẹo nhận ra đáp án cho từng câu và cẩm nang mẹo thi",
+          "Đề 1–3 miễn phí; VIP 3 tháng 500.000đ, thanh toán VietQR",
         ],
+        seo_title: "Luyện thi Tokutei xe tải (vận tải) – 20 đề thi thử CBT",
+        seo_description:
+          "Đề thi Tokutei Ginou 1 xe tải (特定技能1号 トラック): 20 đề thi thử CBT 50 câu, 80 phút, có furigana, dịch tiếng Việt và 510 từ vựng. Đề 1–3 miễn phí.",
       },
       {
         locale: "en",
-        name: "ViMai Transport",
-        tagline: "Study app for Specified Skilled Worker transport / trucking",
+        name: "ViMai Tokutei Transport: Truck Driver",
+        tagline: "Tokutei Ginou (SSW i) automobile transport test practice, truck category",
         description:
-          "An app for foreigners studying the Specified Skilled Worker transport and trucking field. It highlights the audience, study purpose, practice exams, Japanese support, furigana, clear explanations, and career orientation in Japan.",
+          "A study app for the Tokutei Ginou automobile transport test, truck category (自動車運送業分野特定技能1号評価試験 トラック, Specified Skilled Worker (i)), which is run by ClassNK (Nippon Kaiji Kyokai). It has 20 CBT-style mock exams of 50 questions each: 30 true/false (○×) theory questions and 20 three-choice practical questions, 80 minutes, and you pass with at least 60% in each part, the same rule as the real test. Practical questions cover driving judgement, loading and securing cargo and hazard prediction (KYT), many of them with pictures. Questions follow the truck driver study textbook (トラック運転者をめざす人のための学習用テキスト). Japanese questions have furigana, and Vietnamese and English translations can be turned on. A trucking vocabulary book of 510 words is included.",
         long_description:
-          "A tool for understanding the study scope and exam format. It does not guarantee exam or employment outcomes.",
+          "Questions are written by ViMai, based on the study textbook. They are not real exam questions, and the app is not endorsed by ClassNK. A study tool; it does not guarantee a passing result.",
         target_audience:
-          "Foreign learners preparing for Specified Skilled Worker automobile transport / trucking in Japan.",
+          "Foreign learners who want to work as truck drivers in Japan and are preparing for the Specified Skilled Worker (i) automobile transport test (truck), especially those who want to get used to Japanese questions with furigana while reading explanations in Vietnamese or English.",
         features: [
-          "Clear study purpose for transport work",
-          "Practice exams",
-          "Japanese-language support",
-          "Furigana",
-          "Clear explanations",
-          "Career orientation in Japan",
+          "20 CBT-style mock exams, 1,000 questions",
+          "Each exam: 30 true/false theory + 20 three-choice practical questions, 80 minutes, pass with 60% in each part",
+          "Practical: driving judgement, loading and securing cargo, hazard prediction (KYT), many with pictures",
+          "Furigana on Japanese text; Vietnamese or English translation on demand",
+          "A wrong answer stops and shows the explanation; VIP adds AI explanations",
+          "Trucking vocabulary book of 510 words (first 100 free)",
+          "For VIP: a tip for spotting the answer on every question, plus an exam tips guide",
+          "Exams 1–3 are free",
         ],
+        seo_title: "Tokutei Ginou Truck Driver Practice Tests (SSW i)",
+        seo_description:
+          "Practise for the Tokutei Ginou truck test (ClassNK): 20 CBT mock exams of 50 questions, furigana, Vietnamese and English translations. Exams 1–3 are free.",
       },
     ],
   },
@@ -927,6 +942,174 @@ export const seedFaqs: Array<
         question: "How is this different from the Class 3 mechanic (3級 整備士) exam?",
         answer:
           "They are different exams. This app follows the format of the Tokutei Ginou automobile maintenance test (true/false theory and two-choice practical questions). Its questions draw on topics from past 3級 整備士 exams, but it is not a prep app for the 3級 exam itself, and the questions are not real past questions.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-1",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 14,
+    published: true,
+    translations: {
+      ja: {
+        question: "ViMai Tokutei Transportはどの試験の対策アプリですか？",
+        answer:
+          "「自動車運送業分野特定技能1号評価試験」のトラック区分の対策アプリです。試験はClassNK（一般財団法人日本海事協会）が実施し、CBT方式で行われます。",
+      },
+      vi: {
+        question: "ViMai Tokutei Transport luyện thi kỳ thi nào?",
+        answer:
+          "App luyện thi kỹ năng đặc định 1 ngành vận tải ô tô, hạng mục xe tải (自動車運送業分野特定技能1号評価試験 トラック), thường gọi là thi Tokutei xe tải hay Tokutei vận tải. Kỳ thi do ClassNK (日本海事協会) tổ chức, thi trên máy tính (CBT) bằng tiếng Nhật.",
+      },
+      en: {
+        question: "Which exam does ViMai Tokutei Transport prepare for?",
+        answer:
+          "The Tokutei Ginou (Specified Skilled Worker (i)) skills test for automobile transport, truck category (自動車運送業分野特定技能1号評価試験 トラック). The test is run by ClassNK (Nippon Kaiji Kyokai) as a computer-based test (CBT) in Japanese.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-2",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 15,
+    published: true,
+    translations: {
+      ja: {
+        question: "試験の形式と合格基準は？",
+        answer:
+          "全50問で、学科の○×問題30問と実技の3択問題20問を80分で解きます。学科・実技それぞれ60%以上（学科18問以上、実技12問以上）の正答で合格です。合計点が高くても、どちらかが60%未満なら不合格です。アプリの模擬試験も同じ構成と採点方法です。",
+      },
+      vi: {
+        question: "Đề thi gồm những phần nào, bao nhiêu điểm thì đậu?",
+        answer:
+          "Mỗi đề có 50 câu: 30 câu lý thuyết ○× và 20 câu thực hành chọn 1 trong 3, làm trong 80 phút. Phải đúng từ 60% ở CẢ HAI phần (từ 18/30 câu lý thuyết và từ 12/20 câu thực hành); tổng điểm cao mà một phần dưới 60% vẫn trượt. Đề thi thử trong app có cùng cấu trúc và cách chấm này.",
+      },
+      en: {
+        question: "What is the test format and the pass mark?",
+        answer:
+          "Each test has 50 questions: 30 true/false theory questions and 20 three-choice practical questions, in 80 minutes. You need at least 60% in BOTH parts (18 of 30 theory and 12 of 20 practical); a high total with one part under 60% is still a fail. The app's mock exams use the same structure and scoring.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-3",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 16,
+    published: true,
+    translations: {
+      ja: {
+        question: "無料でどこまで使えますか？",
+        answer:
+          "模擬試験の第1〜3回は無料で、振り仮名と翻訳も使え、アカウント登録は不要です。単語帳の最初の100語、試験の案内とClassNKの申込ガイドも無料です。第4〜20回、単語帳の全510語、問題ごとの解き方のヒント、試験のコツ、AIによる誤答の解説はVIPで使えます。",
+      },
+      vi: {
+        question: "Dùng miễn phí được những gì?",
+        answer:
+          "Đề 1–3 miễn phí, có furigana và bản dịch, không cần tài khoản. Sổ từ vựng mở miễn phí 100 từ đầu, hướng dẫn kỳ thi và đăng ký thi ClassNK cũng miễn phí. VIP mở đề 4–20, đủ 510 từ vựng, mẹo nhận ra đáp án cho từng câu, cẩm nang mẹo thi và AI giải thích câu sai.",
+      },
+      en: {
+        question: "What can I use for free?",
+        answer:
+          "Mock exams 1–3 are free, with furigana and translations, and need no account. The first 100 words of the vocabulary book and the exam and ClassNK registration guides are free too. VIP unlocks exams 4–20, all 510 words, a tip for spotting the answer on every question, the exam tips guide and AI explanations of wrong answers.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-4",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 17,
+    published: true,
+    translations: {
+      ja: {
+        question: "VIPはどこで購入できますか？",
+        answer:
+          "VIPはiOSアプリ内でAppleの決済により購入します。価格はAppleの画面に表示されます。App Store版は近日公開予定で、無料の模擬試験は今すぐWebで試せます。",
+      },
+      vi: {
+        question: "VIP giá bao nhiêu?",
+        answer:
+          "Trên web, VIP 3 tháng giá 500.000đ, thanh toán bằng chuyển khoản VietQR, VIP tự mở sau khi chuyển khoản. Nhập mã giới thiệu của cộng tác viên (CTV) ViMai được giảm 10%, 15% hoặc 20% (còn 450.000đ, 425.000đ hoặc 400.000đ). Mỗi gói VIP dùng tối đa 2 thiết bị.",
+      },
+      en: {
+        question: "How do I buy VIP?",
+        answer:
+          "VIP is bought inside the iOS app with Apple payment, and Apple shows the price. The App Store version is coming soon; the free exams can be tried on the web now.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-5",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 18,
+    published: true,
+    translations: {
+      ja: {
+        question: "どの端末・言語で使えますか？",
+        answer:
+          "無料の模擬試験は、iPhone・Android・パソコンのブラウザで使え、ホーム画面に追加することもできます。iOSアプリはApp Storeで近日公開予定です。アプリの表示言語はベトナム語・英語・日本語です。",
+      },
+      vi: {
+        question: "Dùng trên thiết bị nào, ngôn ngữ gì?",
+        answer:
+          "App chạy trên trình duyệt: mở tokutei-transport.vimai.jp trên điện thoại (iPhone, Android) hoặc máy tính là làm được ngay, và có thể thêm ra màn hình chính như một ứng dụng. Giao diện app có tiếng Việt, tiếng Anh và tiếng Nhật.",
+      },
+      en: {
+        question: "Which devices and languages are supported?",
+        answer:
+          "The free exams run in the browser on iPhone, Android or a computer, and the web app can be added to the home screen. An iOS app is coming to the App Store. The app interface is available in Vietnamese, English and Japanese.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-6",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 19,
+    published: true,
+    translations: {
+      ja: {
+        question: "実際の試験問題ですか？",
+        answer:
+          "いいえ。模擬試験は本番の構成（50問・80分・各60%以上で合格）に合わせていますが、問題は「トラック運転者をめざす人のための学習用テキスト」をもとにViMaiが作成したもので、すべてに解説が付いています。ClassNKの公認・監修を受けたものではありません。",
+      },
+      vi: {
+        question: "Câu hỏi trong app có phải đề thi thật không?",
+        answer:
+          "Không. Đề thi thử mô phỏng cấu trúc của kỳ thi (50 câu, 80 phút, mỗi phần từ 60%), còn câu hỏi do ViMai soạn bám giáo trình 「トラック運転者をめざす人のための学習用テキスト」, mỗi câu có giải thích. App không được ClassNK bảo trợ.",
+      },
+      en: {
+        question: "Are these real exam questions?",
+        answer:
+          "No. The mock exams follow the structure of the test (50 questions, 80 minutes, 60% in each part), and the questions are written by ViMai from the truck driver study textbook, each with an explanation. The app is not endorsed by ClassNK.",
+      },
+    },
+  },
+  {
+    id: "faq-transport-7",
+    product_id: "00000000-0000-0000-0000-000000000002",
+    product_slug: "tokutei-transport",
+    sort_order: 20,
+    published: true,
+    translations: {
+      ja: {
+        question: "タクシーの試験を受ける場合は？",
+        answer:
+          "トラックとタクシーは別の試験です。タクシー区分を受ける場合は、ViMai Tokutei Taxiをご利用ください。",
+      },
+      vi: {
+        question: "Tôi thi ngành Taxi thì dùng app nào?",
+        answer:
+          "Đề xe tải khác đề taxi. Nếu thi hạng mục taxi, hãy dùng ViMai Tokutei Taxi (tokutei-taxi.vimai.jp).",
+      },
+      en: {
+        question: "I am taking the taxi test. Which app should I use?",
+        answer:
+          "The truck test is different from the taxi test. For the taxi category, use ViMai Tokutei Taxi.",
       },
     },
   },

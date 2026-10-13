@@ -23,7 +23,13 @@ import { getFaqs } from "@/lib/faqs";
 import { getLocalizedProducts, getProductBySlug } from "@/lib/products";
 import { ctvProductForSlug, priceSummary } from "@/lib/product-pricing";
 import { PRODUCT_LOGOS_PNG } from "@/lib/product-sites";
-import { appStoreUrl, stripWebPaymentFeatures, usesAppStoreOnly } from "@/lib/store-policy";
+import {
+  appStoreUrl,
+  freeWebExamCount,
+  stripWebPaymentFeatures,
+  usesAppStoreOnly,
+  webTrialUrl,
+} from "@/lib/store-policy";
 import { publicUrl, SITE_URL } from "@/lib/utils";
 import { hreflangAlternates, openGraphLocale, productJsonLd } from "@/lib/seo";
 import type { Locale } from "@/types";
@@ -91,6 +97,10 @@ export default async function ProductPage({
   // EN/JA readers buy through Apple in the app, never on the web (see store-policy.ts).
   const appStoreOnly = usesAppStoreOnly(slug, locale);
   const features = appStoreOnly ? stripWebPaymentFeatures(product.features) : product.features;
+  // Until the App Store listing is live, EN/JA readers can still try the free
+  // exams on the product site. The link never mentions price, payment or VIP.
+  const trialUrl = webTrialUrl(slug, locale, siteUrl);
+  const freeExams = freeWebExamCount(slug);
   // Known web price (single source: ctv-core). VND is never quoted where the page sends readers to Apple.
   const ctvProduct = ctvProductForSlug(slug);
   const pricing = ctvProduct
@@ -159,12 +169,24 @@ export default async function ProductPage({
               <li>{t(appStoreOnly ? "appStoreStep3" : "howToStartStep3")}</li>
             </ol>
             {appStoreOnly ? (
-              <AppStoreButton
-                href={appStoreUrl(slug)}
-                label={t("comingSoon")}
-                linkLabel={t("downloadOnAppStore")}
-                className="mt-6 min-h-11"
-              />
+              <div className="mt-6 flex flex-wrap gap-3">
+                <AppStoreButton
+                  href={appStoreUrl(slug)}
+                  label={t("comingSoon")}
+                  linkLabel={t("downloadOnAppStore")}
+                  className="min-h-11"
+                />
+                {trialUrl ? (
+                  <Button asChild className="min-h-11">
+                    <a href={trialUrl} target="_blank" rel="noopener noreferrer">
+                      {freeExams
+                        ? t("tryFreeOnWeb", { count: freeExams })
+                        : t("tryFreeOnWebGeneric")}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                ) : null}
+              </div>
             ) : siteUrl ? (
               <Button asChild className="mt-6 min-h-11">
                 <a href={siteUrl} target="_blank" rel="noopener noreferrer">

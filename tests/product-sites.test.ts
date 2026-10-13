@@ -173,3 +173,82 @@ test("product ids, slugs and sort orders are unique across seed and migrations",
   assert.equal(new Set(ids).size, ids.length, "duplicate product id");
   assert.equal(new Set(sorts).size, sorts.length, "duplicate sort order");
 });
+
+test("Transport launch: migration 0013 matches the seed and only rewrites placeholder rows", () => {
+  const migration = read("d1/migrations/0013_transport_launch.sql");
+  const seed = read("src/lib/seed.ts");
+  const seedSql = read("d1/seed.sql");
+
+  assert.doesNotMatch(migration, /\b(DELETE|DROP)\b/);
+  assert.doesNotMatch(migration, /^\s*INSERT INTO/m, "every insert must be OR IGNORE");
+  // Status: Taxi and Transport only, and only while still coming_soon. Gino 1 stays beta.
+  assert.match(
+    migration,
+    /UPDATE products\nSET status = 'launched',[\s\S]*?WHERE slug IN \('tokutei-taxi', 'tokutei-transport'\)\n {2}AND status = 'coming_soon';/,
+  );
+  assert.doesNotMatch(migration, /gino1-seibi/);
+  for (const slug of ["tokutei-taxi", "tokutei-transport"]) {
+    assert.match(seed, new RegExp(`slug: "${slug}",\\n    status: "launched",`));
+    assert.match(seedSql, new RegExp(`'${slug}', 'launched'`));
+  }
+  assert.match(seed, /slug: "gino1-seibi",\n    status: "beta",/);
+
+  // Every translation UPDATE is scoped to Transport and to the old placeholder text.
+  const updates = migration
+    .split(/;\n/)
+    .map((sql) => `${sql.trim()};`)
+    .filter((sql) => sql.startsWith("UPDATE product_translations"));
+  assert.equal(updates.length, 3);
+  for (const sql of updates) {
+    assert.match(sql, /product_id = \(SELECT id FROM products WHERE slug = 'tokutei-transport'\)/);
+    assert.match(sql, /AND instr\(description, '[^']+'\) > 0;$/);
+  }
+  // D1 rejects LIKE/GLOB patterns over 50 bytes ("pattern too complex").
+  for (const m of migration.matchAll(/(?:LIKE|GLOB)\s+'([^']*)'/g)) {
+    assert.ok(Buffer.byteLength(m[1]) <= 50, `pattern too long for D1: ${m[1]}`);
+  }
+
+  for (const locale of ["vi", "en", "ja"]) {
+    for (let n = 1; n <= 7; n += 1) {
+      const id = `faq-transport-${n}-${locale}`;
+      assert.match(migration, new RegExp(`'${id}'`));
+      assert.match(seedSql, new RegExp(`'${id}'`));
+    }
+  }
+  for (let n = 1; n <= 7; n += 1) assert.match(seed, new RegExp(`id: "faq-transport-${n}"`));
+
+  // The same SEO texts in the migration, the seed fallback and seed.sql.
+  const titles = [...migration.matchAll(/seo_title = '([^']+)'/g)].map((m) => m[1]);
+  const descriptions = [...migration.matchAll(/seo_description = '([^']+)'/g)].map((m) => m[1]);
+  assert.equal(titles.length, 3);
+  assert.equal(descriptions.length, 3);
+  for (const title of titles) {
+    assert.ok([...title].length <= 60, `seo_title too long: ${title}`);
+    assert.ok(seed.includes(`seo_title: "${title}"`), `seed.ts lacks ${title}`);
+    assert.ok(seedSql.includes(`'${title}'`), `seed.sql lacks ${title}`);
+  }
+  for (const description of descriptions) {
+    assert.ok([...description].length <= 160, `seo_description too long: ${description}`);
+    assert.ok(seed.includes(`"${description}"`), `seed.ts lacks ${description}`);
+    assert.ok(seedSql.includes(`'${description}'`), `seed.sql lacks ${description}`);
+  }
+
+  // Facts: 20 exams x 50 questions, 80 minutes, 60% per part, exams 1-3 free, 510 words.
+  for (const phrase of ["20 đề thi thử", "80 phút", "60%", "Đề 1–3 miễn phí", "510 từ", "không phải đề thi thật"]) {
+    assert.match(migration, new RegExp(phrase));
+  }
+  // VND price (from ctv-core: 500,000 and 10/15/20% off) only in Vietnamese rows.
+  assert.match(migration, /500\.000đ/);
+  assert.match(migration, /450\.000đ, 425\.000đ hoặc 400\.000đ/);
+  // Statements end with ";" at the end of a line (texts may contain "; ").
+  const statements = migration.split(/;\n/);
+  const enJaBlocks = statements.filter(
+    (sql) =>
+      /^UPDATE product_translations[\s\S]*WHERE locale = '(en|ja)'/.test(sql.trim()) ||
+      /^INSERT OR IGNORE INTO faq_translations[\s\S]*VALUES \('[^']+-(en|ja)',/.test(sql.trim()),
+  );
+  assert.equal(enJaBlocks.length, 2 + 7 * 2);
+  for (const block of enJaBlocks) {
+    assert.doesNotMatch(block, /VND|ドン|₫|VietQR|500[.,]000/, block.slice(0, 120));
+  }
+});

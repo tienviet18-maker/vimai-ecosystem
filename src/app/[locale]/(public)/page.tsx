@@ -85,7 +85,7 @@ export default async function HomePage({
         }}
       />
       <section aria-labelledby="hero-heading" className="border-b border-slate-200/80 bg-white">
-        <div className="container grid gap-12 py-14 sm:py-16 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-16 lg:py-24">
+        <div className="container grid gap-12 py-14 sm:py-16 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:gap-16 lg:py-24">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
               {t("heroEyebrow")}
@@ -120,13 +120,13 @@ export default async function HomePage({
               ))}
             </dl>
           </div>
-          <nav aria-label={t("ecosystemTitle")}>
-            <ul className="grid grid-cols-3 gap-3 sm:gap-4">
+          <nav aria-label={t("ecosystemTitle")} className="w-full max-w-[30rem] md:max-w-none">
+            <ul className="grid auto-rows-fr grid-cols-3 gap-3 sm:gap-4">
               {products.map((product) => (
-                <li key={product.slug}>
+                <li key={product.slug} className="h-full">
                   <Link
                     href={`/products/${product.slug}`}
-                    className="group flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200/80 bg-navy-50/50 p-3 text-center no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-lift"
+                    className="group flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200/80 bg-navy-50/50 p-3 text-center no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-lift"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -143,10 +143,10 @@ export default async function HomePage({
                   </Link>
                 </li>
               ))}
-              <li>
+              <li className="h-full">
                 <Link
                   href="/products"
-                  className="flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 p-3 text-center text-[13px] font-medium text-primary no-underline transition-colors hover:bg-navy-50/50"
+                  className="flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 p-3 text-center text-[13px] font-medium text-primary no-underline transition-colors hover:bg-navy-50/50"
                 >
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   {t("viewAll")}

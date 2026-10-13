@@ -403,7 +403,7 @@
   "ctvJoin": {
     "eyebrow": "Tuyển cộng tác viên",
     "title": "Tuyển cộng tác viên marketing ViMai",
-    "lead": "Giới thiệu các app luyện thi của ViMai cho bạn bè, nhóm học và cộng đồng người Việt tại Nhật. Khách mua VIP bằng mã của bạn được giảm giá, còn bạn nhận hoa hồng cho mỗi đơn thành công. Làm online, không cần vốn.",
+    "lead": "Giới thiệu các app luyện thi của ViMai cho bạn bè, nhóm học và cộng đồng người Việt tại Nhật. Khách mua VIP bằng mã của bạn được giảm giá, còn bạn nhận hoa hồng cho mỗi đơn thành công, không giới hạn thu nhập. Làm online, không cần vốn.",
     "ctaApply": "Đăng ký làm CTV",
     "ctaBoard": "Xem bảng xếp hạng CTV",
     "stepsTitle": "Cách làm CTV",
@@ -416,12 +416,12 @@
     "step4Title": "Nhận hoa hồng",
     "step4Body": "Mỗi đơn thành công bạn nhận hoa hồng cố định. ViMai chuyển khoản 2 lần mỗi tháng: kỳ ngày 1–15 và kỳ ngày 16 đến cuối tháng.",
     "perksTitle": "Quyền lợi",
-    "perk1Title": "Hoa hồng mỗi đơn",
-    "perk1Body": "Mức chung là 100.000 đ cho mỗi đơn VIP thành công, không giới hạn số đơn. Mức cụ thể ghi rõ khi ViMai cấp mã cho bạn.",
+    "perk1Title": "Thu nhập không giới hạn",
+    "perk1Body": "Mỗi đơn VIP thành công bằng mã của bạn đều có hoa hồng, không giới hạn số đơn. Bạn càng giới thiệu được nhiều người, thu nhập càng cao. Mức hoa hồng cụ thể ViMai trao đổi riêng khi cấp mã.",
     "perk2Title": "Sản phẩm dễ giới thiệu",
     "perk2Body": "Tokutei Taxi, Tokutei Transport và ViMai Menkyo: đề thi thử có furigana, giải thích tiếng Việt, cho học thử miễn phí trước khi mua.",
-    "perk3Title": "Theo dõi minh bạch",
-    "perk3Body": "Trang cá nhân riêng cho biết mã của bạn, các đơn đã ghi nhận và hoa hồng chưa trả. Bảng xếp hạng mỗi kỳ chỉ hiện số hiệu CTV, không hiện tên.",
+    "perk3Title": "Trang quản lý riêng",
+    "perk3Body": "Mỗi CTV có một trang riêng, chỉ mình bạn xem được: mã của bạn, từng lượt khách dùng mã, số đơn trong kỳ, thứ hạng và hoa hồng chưa nhận. Số liệu tự cập nhật sau khi khách thanh toán.",
     "perk4Title": "Tự do thời gian",
     "perk4Body": "Làm online ở Nhật hay ở Việt Nam, không cần vốn, không cần kinh nghiệm bán hàng. ViMai hỗ trợ nội dung và hình ảnh để bạn đăng bài.",
     "fitTitle": "Phù hợp với",
@@ -439,8 +439,10 @@
     "applySubject": "Đăng ký CTV marketing",
     "applyPlaceholder": "Bạn đang ở Nhật hay Việt Nam, bạn sẽ chia sẻ ở đâu (link Facebook, Zalo, TikTok...), khoảng bao nhiêu người theo dõi.",
     "applyChannels": "Hoặc nhắn trực tiếp cho ViMai:",
-    "homeLead": "Giới thiệu app ViMai cho cộng đồng người Việt tại Nhật. Khách được giảm giá, bạn nhận hoa hồng cho mỗi đơn VIP thành công.",
+    "homeLead": "Giới thiệu app ViMai cho cộng đồng người Việt tại Nhật. Khách được giảm giá, bạn nhận hoa hồng cho mỗi đơn VIP thành công, không giới hạn thu nhập. Có trang quản lý riêng và bảng đua top mỗi kỳ.",
     "homeCta": "Tìm hiểu và đăng ký",
-    "homeNote": "Làm online, không cần vốn"
+    "homeNote": "Làm online, không cần vốn",
+    "perk5Title": "Đua top mỗi kỳ",
+    "perk5Body": "Bảng xếp hạng công khai cập nhật theo từng nửa tháng, cho bạn thấy mình đang đứng ở đâu. Bảng chỉ hiện số hiệu CTV, không hiện tên hay thu nhập."
   }
 }

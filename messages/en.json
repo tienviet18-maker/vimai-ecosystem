@@ -406,7 +406,7 @@
   "ctvJoin": {
     "eyebrow": "Now recruiting",
     "title": "Become a ViMai marketing partner",
-    "lead": "Introduce ViMai's exam-prep apps to friends, study groups and the Vietnamese community in Japan. Customers who buy VIP with your code get a discount, and you earn a commission on every successful order. Work online, no upfront cost.",
+    "lead": "Introduce ViMai's exam-prep apps to friends, study groups and the Vietnamese community in Japan. Customers who buy VIP with your code get a discount, and you earn a commission on every successful order, with no cap. Work online, no upfront cost.",
     "ctaApply": "Apply now",
     "ctaBoard": "See the partner leaderboard",
     "stepsTitle": "How it works",
@@ -419,12 +419,12 @@
     "step4Title": "Get paid",
     "step4Body": "You earn a fixed commission per successful order. ViMai pays by bank transfer twice a month: for the 1st–15th and for the 16th to month end.",
     "perksTitle": "What you get",
-    "perk1Title": "Commission per order",
-    "perk1Body": "The standard rate is 100,000 VND per successful VIP order, with no cap. Your exact rate is confirmed when ViMai issues your code.",
+    "perk1Title": "No cap on earnings",
+    "perk1Body": "Every successful VIP order with your code earns a commission, with no limit on orders. The more people you bring, the more you earn. ViMai agrees your exact rate with you when issuing your code.",
     "perk2Title": "Easy to recommend",
     "perk2Body": "Tokutei Taxi, Tokutei Transport and ViMai Menkyo: mock exams with furigana and Vietnamese explanations, with a free trial before buying.",
-    "perk3Title": "Clear tracking",
-    "perk3Body": "Your private page shows your code, recorded orders and unpaid commission. The leaderboard for each period shows partner numbers only, never names.",
+    "perk3Title": "Your own dashboard",
+    "perk3Body": "Each partner gets a private page only they can see: your code, every use of it, orders this period, your rank and unpaid commission. It updates automatically after each customer pays.",
     "perk4Title": "Work your own hours",
     "perk4Body": "Work online from Japan or Vietnam, with no upfront cost or sales experience needed. ViMai provides text and images for your posts.",
     "fitTitle": "A good fit for",
@@ -442,8 +442,10 @@
     "applySubject": "Marketing partner application",
     "applyPlaceholder": "Are you in Japan or Vietnam, where will you share (Facebook, Zalo, TikTok links...), and roughly how many followers do you have?",
     "applyChannels": "Or message ViMai directly:",
-    "homeLead": "Introduce ViMai apps to the Vietnamese community in Japan. Customers get a discount, and you earn a commission on every successful VIP order.",
+    "homeLead": "Introduce ViMai apps to the Vietnamese community in Japan. Customers get a discount and you earn a commission on every VIP order, with no cap. Track it all on your own dashboard and the period leaderboard.",
     "homeCta": "Learn more and apply",
-    "homeNote": "Online, no upfront cost"
+    "homeNote": "Online, no upfront cost",
+    "perk5Title": "Leaderboard every period",
+    "perk5Body": "A public leaderboard for each half month shows where you stand. It lists partner numbers only, never names or earnings."
   }
 }

@@ -36,7 +36,7 @@ export default async function CtvJoinPage({
   const t = await getTranslations("ctvJoin");
 
   const steps = [1, 2, 3, 4].map((n) => ({ title: t(`step${n}Title`), body: t(`step${n}Body`) }));
-  const perks = [1, 2, 3, 4].map((n) => ({ title: t(`perk${n}Title`), body: t(`perk${n}Body`) }));
+  const perks = [1, 3, 5, 2, 4].map((n) => ({ title: t(`perk${n}Title`), body: t(`perk${n}Body`) }));
   const fits = [t("fit1"), t("fit2"), t("fit3"), t("fit4")];
   const rules = [t("rule1"), t("rule2"), t("rule3"), t("rule4")];
 

@@ -64,6 +64,8 @@ export type VicarePageCopy = {
   tagline: string;
   lead: string;
   badges: string[];
+  webCta: string;
+  webNote: string;
   storeTitle: string;
   appStoreSoon: string;
   googlePlaySoon: string;

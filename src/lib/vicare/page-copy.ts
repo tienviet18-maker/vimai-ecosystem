@@ -18,6 +18,8 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     lead:
       "ViCare là app miễn phí, phi lợi nhuận của ViMai, giúp người Việt tại Nhật đi khám bệnh tự tin hơn: hiểu bác sĩ nói gì, đọc được giấy tờ bệnh viện và túi thuốc, biết nên khám khoa nào, và biết gọi cấp cứu thế nào. Không quảng cáo, không cần tài khoản; dữ liệu cá nhân chỉ nằm trên điện thoại của bạn.",
     badges: ["Miễn phí", "Phi lợi nhuận", "Không cần tài khoản", "Dữ liệu chỉ trên điện thoại", "Tiếng Việt · 日本語 · English"],
+    webCta: "Dùng thử bản web ngay",
+    webNote: "Mở trên trình duyệt, không cần cài đặt. Phiên dịch bằng micro và đọc giấy tờ bằng camera chỉ có trong app điện thoại.",
     storeTitle: "Tải ViCare",
     appStoreSoon: "Sắp có trên App Store",
     googlePlaySoon: "Sắp có trên Google Play",
@@ -190,7 +192,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "Nội dung y khoa trong ViCare đã được bác sĩ duyệt chưa?",
         answer:
-          "Chưa. Bản dịch và nội dung y khoa là bản nháp đang chờ chuyên gia duyệt và được ghi rõ trong app. ViCare là thông tin tham khảo, không phải chẩn đoán. Nếu thấy sai, hãy dùng nút “Báo lỗi nội dung” trong app hoặc liên hệ ViMai.",
+          "Chưa có bác sĩ duyệt. Nội dung do đội ngũ ViCare biên soạn từ nguồn y tế công khai của Nhật và đã được rà soát, chỉ mang tính tham khảo, không phải chẩn đoán. Điều quan trọng như thuốc, liều dùng, dị ứng, hãy hỏi lại bác sĩ hoặc dược sĩ. Nếu thấy sai, hãy liên hệ ViMai.",
       },
       {
         question: "Khi nguy cấp tôi nên làm gì?",
@@ -200,7 +202,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     ],
     disclaimerTitle: "Lưu ý y tế",
     disclaimer:
-      "ViCare là thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán hay lời khuyên điều trị. Bản dịch và nội dung y khoa đang chờ chuyên gia duyệt và có thể còn sai. Luôn làm theo bác sĩ và dược sĩ. Khi nguy cấp, gọi 119.",
+      "ViCare là thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán hay lời khuyên điều trị. Bản dịch và nội dung y khoa do ViCare biên soạn để tham khảo, không thay thế lời khuyên của bác sĩ. Luôn làm theo bác sĩ và dược sĩ. Khi nguy cấp, gọi 119.",
     ecosystemTitle: "Hệ sinh thái ViMai",
     ecosystemLead: "ViCare là một phần của ViMai. Các ứng dụng khác cho người Việt sống và làm việc tại Nhật:",
     breadcrumbLabel: "Đường dẫn",
@@ -225,6 +227,8 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     lead:
       "ViCare is a free, non-profit ViMai app that helps Vietnamese people in Japan see a doctor with confidence: understand what the doctor says, read hospital papers and medicine bags, find the right department and know how to call an ambulance. No ads and no account; your personal data stays on your phone.",
     badges: ["Free", "Non-profit", "No account", "Data stays on your phone", "Tiếng Việt · 日本語 · English"],
+    webCta: "Try the web app now",
+    webNote: "Opens in your browser, nothing to install. Listening through the microphone and reading papers with the camera are in the phone app only.",
     storeTitle: "Get ViCare",
     appStoreSoon: "Coming soon to the App Store",
     googlePlaySoon: "Coming soon to Google Play",
@@ -395,7 +399,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "Has a doctor reviewed the medical content?",
         answer:
-          "Not yet. Translations and medical content are drafts awaiting expert review, and the app labels them as such. ViCare is reference information, not a diagnosis. If you find a mistake, use “Report a content error” in the app or contact ViMai.",
+          "No doctor has reviewed it. The ViCare team wrote the content from public Japanese health sources and checked it; it is for reference only, not a diagnosis. For anything important (medicines, doses, allergies), ask your doctor or pharmacist. If you find a mistake, contact ViMai.",
       },
       {
         question: "What should I do in an emergency?",
@@ -405,7 +409,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     ],
     disclaimerTitle: "Medical disclaimer",
     disclaimer:
-      "ViCare is reference information and a communication aid, not a diagnosis or treatment advice. Translations and medical content are awaiting expert review and may contain errors. Always follow your doctor and pharmacist. In an emergency, call 119.",
+      "ViCare is reference information and a communication aid, not a diagnosis or treatment advice. Translations and medical content are written by ViCare for reference and do not replace medical advice. Always follow your doctor and pharmacist. In an emergency, call 119.",
     ecosystemTitle: "The ViMai ecosystem",
     ecosystemLead: "ViCare is part of ViMai. More apps for Vietnamese people living and working in Japan:",
     breadcrumbLabel: "Breadcrumb",
@@ -430,6 +434,8 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     lead:
       "ViCareは、日本に住むベトナム人が安心して病院・クリニックを受診できるよう支える、ViMaiの無料・非営利アプリです。医師の説明を理解する、病院の書類や薬袋を読む、受診する診療科を選ぶ、救急車を呼ぶ。広告もアカウントもなく、個人のデータは利用者のスマートフォンの中だけに保存されます。",
     badges: ["無料", "非営利", "アカウント不要", "データは端末内のみ", "Tiếng Việt · 日本語 · English"],
+    webCta: "Web版を今すぐ使う",
+    webNote: "ブラウザで開くだけ、インストール不要です。マイクでの通訳とカメラでの書類読み取りはスマホアプリのみの機能です。",
     storeTitle: "ViCareを入手",
     appStoreSoon: "App Storeで近日公開",
     googlePlaySoon: "Google Playで近日公開",
@@ -596,7 +602,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "医療の内容は医師が確認していますか？",
         answer:
-          "まだです。翻訳と医療情報は専門家の確認待ちの下書きで、アプリ内にもその旨を表示しています。ViCareは参考情報であり、診断ではありません。誤りを見つけた場合は、アプリの「内容の誤りを報告」またはViMaiへの連絡でお知らせください。",
+          "医師の確認は受けていません。日本の公的な医療情報をもとにViCareチームが作成・確認した参考情報で、診断ではありません。薬・用量・アレルギーなど大切なことは医師・薬剤師に確認してください。誤りを見つけた場合はViMaiまでお知らせください。",
       },
       {
         question: "緊急のときはどうすればいいですか？",
@@ -606,7 +612,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     ],
     disclaimerTitle: "医療に関する注意",
     disclaimer:
-      "ViCareは参考情報とコミュニケーションの支援を目的としたもので、診断や治療の助言ではありません。翻訳と医療情報は専門家の確認待ちで、誤りを含む可能性があります。医師・薬剤師の指示に従ってください。緊急時は119番へ。",
+      "ViCareは参考情報とコミュニケーションの支援を目的としたもので、診断や治療の助言ではありません。翻訳と医療情報はViCareが参考用に作成したもので、医師の判断に代わるものではありません。医師・薬剤師の指示に従ってください。緊急時は119番へ。",
     ecosystemTitle: "ViMaiのエコシステム",
     ecosystemLead: "ViCareはViMaiのアプリのひとつです。日本で暮らし、働く人のためのほかのアプリ：",
     breadcrumbLabel: "パンくずリスト",

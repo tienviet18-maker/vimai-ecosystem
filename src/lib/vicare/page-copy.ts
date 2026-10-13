@@ -202,7 +202,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     ],
     disclaimerTitle: "Lưu ý y tế",
     disclaimer:
-      "ViCare là thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán hay lời khuyên điều trị. Bản dịch và nội dung y khoa do ViCare biên soạn để tham khảo, chưa được bác sĩ duyệt và có thể còn sai. Luôn làm theo bác sĩ và dược sĩ. Khi nguy cấp, gọi 119.",
+      "ViCare là thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán hay lời khuyên điều trị. Bản dịch và nội dung y khoa do ViCare biên soạn để tham khảo, không thay thế lời khuyên của bác sĩ. Luôn làm theo bác sĩ và dược sĩ. Khi nguy cấp, gọi 119.",
     ecosystemTitle: "Hệ sinh thái ViMai",
     ecosystemLead: "ViCare là một phần của ViMai. Các ứng dụng khác cho người Việt sống và làm việc tại Nhật:",
     breadcrumbLabel: "Đường dẫn",
@@ -409,7 +409,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     ],
     disclaimerTitle: "Medical disclaimer",
     disclaimer:
-      "ViCare is reference information and a communication aid, not a diagnosis or treatment advice. Translations and medical content are written by ViCare for reference, have not been reviewed by a doctor, and may contain errors. Always follow your doctor and pharmacist. In an emergency, call 119.",
+      "ViCare is reference information and a communication aid, not a diagnosis or treatment advice. Translations and medical content are written by ViCare for reference and do not replace medical advice. Always follow your doctor and pharmacist. In an emergency, call 119.",
     ecosystemTitle: "The ViMai ecosystem",
     ecosystemLead: "ViCare is part of ViMai. More apps for Vietnamese people living and working in Japan:",
     breadcrumbLabel: "Breadcrumb",
@@ -612,7 +612,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
     ],
     disclaimerTitle: "医療に関する注意",
     disclaimer:
-      "ViCareは参考情報とコミュニケーションの支援を目的としたもので、診断や治療の助言ではありません。翻訳と医療情報はViCareが参考用に作成したもので、医師の確認は受けておらず、誤りを含む可能性があります。医師・薬剤師の指示に従ってください。緊急時は119番へ。",
+      "ViCareは参考情報とコミュニケーションの支援を目的としたもので、診断や治療の助言ではありません。翻訳と医療情報はViCareが参考用に作成したもので、医師の判断に代わるものではありません。医師・薬剤師の指示に従ってください。緊急時は119番へ。",
     ecosystemTitle: "ViMaiのエコシステム",
     ecosystemLead: "ViCareはViMaiのアプリのひとつです。日本で暮らし、働く人のためのほかのアプリ：",
     breadcrumbLabel: "パンくずリスト",

@@ -85,7 +85,7 @@ export const VICARE_PRIVACY: Record<VicareLocale, VicarePrivacyCopy> = {
         id: "medical",
         heading: "9. Lưu ý y tế",
         paragraphs: [
-          "ViCare là thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán hay lời khuyên điều trị. Nội dung y khoa do ViCare biên soạn để tham khảo, chưa được bác sĩ duyệt và có thể còn sai. Khi nguy cấp, gọi 119.",
+          "ViCare là thông tin tham khảo và công cụ hỗ trợ giao tiếp, không phải chẩn đoán hay lời khuyên điều trị. Nội dung y khoa do ViCare biên soạn để tham khảo, không thay thế lời khuyên của bác sĩ. Khi nguy cấp, gọi 119.",
         ],
       },
       {
@@ -174,7 +174,7 @@ export const VICARE_PRIVACY: Record<VicareLocale, VicarePrivacyCopy> = {
         id: "medical",
         heading: "9. Medical disclaimer",
         paragraphs: [
-          "ViCare is reference information and a communication aid, not a diagnosis or treatment advice. Medical content is written by ViCare for reference, has not been reviewed by a doctor, and may contain errors. In an emergency, call 119.",
+          "ViCare is reference information and a communication aid, not a diagnosis or treatment advice. Medical content is written by ViCare for reference and does not replace medical advice. In an emergency, call 119.",
         ],
       },
       {
@@ -261,7 +261,7 @@ export const VICARE_PRIVACY: Record<VicareLocale, VicarePrivacyCopy> = {
         id: "medical",
         heading: "9. 医療に関する注意",
         paragraphs: [
-          "ViCareは参考情報とコミュニケーションの支援を目的としたもので、診断や治療の助言ではありません。医療情報はViCareが参考用に作成したもので、医師の確認は受けておらず、誤りを含む可能性があります。緊急時は119番へ。",
+          "ViCareは参考情報とコミュニケーションの支援を目的としたもので、診断や治療の助言ではありません。医療情報はViCareが参考用に作成したもので、医師の判断に代わるものではありません。緊急時は119番へ。",
         ],
       },
       {

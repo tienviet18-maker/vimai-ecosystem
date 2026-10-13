@@ -14,7 +14,8 @@
     "contact": "Contact",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "language": "Language"
+    "language": "Language",
+    "ctv": "Partners"
   },
   "brand": {
     "name": "ViMai",
@@ -53,7 +54,10 @@
     "ctaTitle": "Launch timing or partnership",
     "ctaBody": "Contact us about store release dates, deployment, or press.",
     "aboutLead": "ViMai is an independent software project building apps for learning, health and everyday life, mostly for Vietnamese people in Japan. Every product shows its release status, never promises exam or medical results, and never sells personal data.",
-    "aboutMore": "More about ViMai"
+    "aboutMore": "More about ViMai",
+    "heroEyebrow": "The ViMai app ecosystem",
+    "heroTitle": "Practical apps for Vietnamese people who study, work and live in Japan.",
+    "heroLead": "From Tokutei Ginou, driving and trade exams to seeing a doctor, helping children learn and everyday health, ViMai builds focused, easy-to-use apps in Vietnamese, Japanese and English. Each app solves one real need of Vietnamese people in Japan, and does it thoroughly."
   },
   "products": {
     "indexTitle": "Products",
@@ -129,7 +133,17 @@
     "scope3": "Children's education with parent controls",
     "scope4": "Health, nutrition, and calorie tracking",
     "qualityTitle": "Quality bar",
-    "qualityBody": "Facts only where confirmed, readable Japanese, and a calm interface. Unreleased products are labeled clearly; missing details are marked for CMS update."
+    "qualityBody": "Facts only where confirmed, readable Japanese, and a calm interface. Unreleased products are labeled clearly; missing details are marked for CMS update.",
+    "scope5": "Helping Vietnamese people see a doctor in Japan (ViCare, free and non-profit)",
+    "vicareEyebrow": "Community project",
+    "vicareTitle": "ViCare: no one should see a doctor in Japan alone",
+    "vicareBody": "ViCare is ViMai's free, non-profit app for Vietnamese people living in Japan. From feeling unwell to choosing a department, finding a clinic, talking with the doctor and taking your medicine home, ViCare goes with you in Vietnamese, Japanese with furigana, and English.",
+    "vicarePoint1": "An interpreter for the visit, with thousands of Japanese–Vietnamese phrases and furigana you can read straight to the doctor",
+    "vicarePoint2": "Clinics by department on Google Maps, with data for all 47 prefectures from Japan's official 医療情報ネット",
+    "vicarePoint3": "What to say when calling 119, #7119 or #8000, and an emergency medical card to show doctors and nurses",
+    "vicarePoint4": "No account and no ads; your health records stay on your phone",
+    "vicareWebCta": "Try the web app now",
+    "vicareMore": "More about ViCare"
   },
   "support": {
     "title": "Support",
@@ -388,5 +402,50 @@
     "empty": "No orders yet.",
     "secret": "This link is private to you, do not share it.",
     "rank": "Rank this period"
+  },
+  "ctvJoin": {
+    "eyebrow": "Now recruiting",
+    "title": "Become a ViMai marketing partner",
+    "lead": "Introduce ViMai's exam-prep apps to friends, study groups and the Vietnamese community in Japan. Customers who buy VIP with your code get a discount, and you earn a commission on every successful order, with no cap. Work online, no upfront cost.",
+    "ctaApply": "Apply now",
+    "ctaBoard": "See the partner leaderboard",
+    "stepsTitle": "How it works",
+    "step1Title": "Apply",
+    "step1Body": "Fill in the form at the bottom of this page. ViMai gets back to you with your own referral code and a private page to track your orders.",
+    "step2Title": "Share your code",
+    "step2Body": "Recommend the apps with your code on Facebook, Zalo, TikTok, study groups or Japanese classes. One code works for every app that sells VIP on the web.",
+    "step3Title": "Customers save",
+    "step3Body": "Customers enter your code when they buy VIP on the web and get 10–20% off (usually 15%), paying by VietQR bank transfer.",
+    "step4Title": "Get paid",
+    "step4Body": "You earn a fixed commission per successful order. ViMai pays by bank transfer twice a month: for the 1st–15th and for the 16th to month end.",
+    "perksTitle": "What you get",
+    "perk1Title": "No cap on earnings",
+    "perk1Body": "Every successful VIP order with your code earns a commission, with no limit on orders. The more people you bring, the more you earn. ViMai agrees your exact rate with you when issuing your code.",
+    "perk2Title": "Easy to recommend",
+    "perk2Body": "Tokutei Taxi, Tokutei Transport and ViMai Menkyo: mock exams with furigana and Vietnamese explanations, with a free trial before buying.",
+    "perk3Title": "Your own dashboard",
+    "perk3Body": "Each partner gets a private page only they can see: your code, every use of it, orders this period, your rank and unpaid commission. It updates automatically after each customer pays.",
+    "perk4Title": "Work your own hours",
+    "perk4Body": "Work online from Japan or Vietnam, with no upfront cost or sales experience needed. ViMai provides text and images for your posts.",
+    "fitTitle": "A good fit for",
+    "fit1": "Technical interns, students and workers living in Japan",
+    "fit2": "Admins of groups, Facebook pages or TikTok channels about life in Japan",
+    "fit3": "Japanese teachers, language centres and agencies sending people to Japan",
+    "fit4": "People who passed Tokutei or the driving test and want to share how they studied",
+    "rulesTitle": "Ground rules",
+    "rule1": "Codes apply only to VIP bought on the web by VND bank transfer. Purchases in the iOS app do not use codes.",
+    "rule2": "Each customer can use a code once per app. Refunded orders earn no commission.",
+    "rule3": "Be honest: never promise a pass, no spam, and no use of exam bodies' names or logos.",
+    "rule4": "ViMai may pause a code that breaks these rules.",
+    "applyTitle": "Apply to become a partner",
+    "applyLead": "Send your details with the form below. ViMai replies by email, usually within a few days.",
+    "applySubject": "Marketing partner application",
+    "applyPlaceholder": "Are you in Japan or Vietnam, where will you share (Facebook, Zalo, TikTok links...), and roughly how many followers do you have?",
+    "applyChannels": "Or message ViMai directly:",
+    "homeLead": "Introduce ViMai apps to the Vietnamese community in Japan. Customers get a discount and you earn a commission on every VIP order, with no cap. Track it all on your own dashboard and the period leaderboard.",
+    "homeCta": "Learn more and apply",
+    "homeNote": "Online, no upfront cost",
+    "perk5Title": "Leaderboard every period",
+    "perk5Body": "A public leaderboard for each half month shows where you stand. It lists partner numbers only, never names or earnings."
   }
 }

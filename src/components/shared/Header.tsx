@@ -14,6 +14,7 @@ const links = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
   { href: "/products", key: "products" },
+  { href: "/ctv", key: "ctv" },
 ] as const;
 
 export function Header() {

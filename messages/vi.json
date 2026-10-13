@@ -14,7 +14,8 @@
     "contact": "Liên hệ",
     "openMenu": "Mở menu",
     "closeMenu": "Đóng menu",
-    "language": "Ngôn ngữ"
+    "language": "Ngôn ngữ",
+    "ctv": "Tuyển CTV"
   },
   "brand": {
     "name": "ViMai",
@@ -53,7 +54,10 @@
     "ctaTitle": "Cần thông tin phát hành hoặc hợp tác?",
     "ctaBody": "Liên hệ với chúng tôi về lịch mở trên store, triển khai hoặc truyền thông.",
     "aboutLead": "ViMai là dự án phần mềm độc lập, làm ứng dụng học tập, sức khỏe và tiện ích đời sống, phần lớn dành cho người Việt tại Nhật. Mỗi sản phẩm ghi rõ trạng thái phát hành, không hứa hẹn kết quả thi hay hiệu quả y tế, và không bán dữ liệu cá nhân.",
-    "aboutMore": "Đọc thêm về ViMai"
+    "aboutMore": "Đọc thêm về ViMai",
+    "heroEyebrow": "Hệ sinh thái ứng dụng ViMai",
+    "heroTitle": "Ứng dụng thiết thực cho người Việt học tập, làm việc và sống tại Nhật.",
+    "heroLead": "Từ ôn thi Tokutei, bằng lái và chứng chỉ nghề, đến đi khám bệnh, học cho trẻ và chăm sóc sức khỏe mỗi ngày, ViMai làm những ứng dụng gọn gàng, dễ dùng, có tiếng Việt, tiếng Nhật và tiếng Anh. Mỗi ứng dụng tập trung giải quyết một nhu cầu cụ thể của người Việt tại Nhật, và làm thật kỹ việc đó."
   },
   "products": {
     "indexTitle": "Sản phẩm",
@@ -126,7 +130,17 @@
     "scope3": "Ứng dụng giáo dục trẻ em có kiểm soát phụ huynh",
     "scope4": "Theo dõi sức khỏe, dinh dưỡng và calories",
     "qualityTitle": "Cam kết chất lượng",
-    "qualityBody": "Thông tin dựa trên sự thật đã xác nhận, tiếng Nhật dễ đọc, giao diện không phô trương. Sản phẩm chưa ra mắt được ghi rõ trạng thái; chi tiết còn thiếu sẽ cập nhật qua CMS."
+    "qualityBody": "Thông tin dựa trên sự thật đã xác nhận, tiếng Nhật dễ đọc, giao diện không phô trương. Sản phẩm chưa ra mắt được ghi rõ trạng thái; chi tiết còn thiếu sẽ cập nhật qua CMS.",
+    "scope5": "Hỗ trợ người Việt đi khám bệnh ở Nhật (ViCare, miễn phí, phi lợi nhuận)",
+    "vicareEyebrow": "Dự án cộng đồng",
+    "vicareTitle": "ViCare: đi khám bệnh ở Nhật không còn một mình",
+    "vicareBody": "ViCare là app miễn phí, phi lợi nhuận của ViMai, làm cho người Việt đang sống tại Nhật. Từ lúc thấy mệt, chọn khoa, tìm phòng khám, nói chuyện với bác sĩ đến khi cầm túi thuốc về, ViCare đi cùng bạn bằng tiếng Việt, tiếng Nhật có furigana và tiếng Anh.",
+    "vicarePoint1": "Phiên dịch khi khám với hàng nghìn câu mẫu Nhật – Việt, có furigana để đọc thẳng cho bác sĩ",
+    "vicarePoint2": "Tìm phòng khám theo khoa trên Google Maps, dữ liệu 47 tỉnh thành từ 医療情報ネット của Bộ Y tế Nhật",
+    "vicarePoint3": "Câu nói khi gọi 119, #7119, #8000 và thẻ thông tin y tế khẩn cấp đưa cho bác sĩ, y tá",
+    "vicarePoint4": "Không cần tài khoản, không quảng cáo; hồ sơ sức khỏe chỉ lưu trên điện thoại của bạn",
+    "vicareWebCta": "Dùng thử bản web ngay",
+    "vicareMore": "Xem chi tiết ViCare"
   },
   "support": {
     "title": "Hỗ trợ",
@@ -385,5 +399,50 @@
     "empty": "Chưa có đơn nào.",
     "secret": "Link này là riêng của bạn, đừng chia sẻ cho người khác.",
     "rank": "Hạng kỳ này"
+  },
+  "ctvJoin": {
+    "eyebrow": "Tuyển cộng tác viên",
+    "title": "Tuyển cộng tác viên marketing ViMai",
+    "lead": "Giới thiệu các app luyện thi của ViMai cho bạn bè, nhóm học và cộng đồng người Việt tại Nhật. Khách mua VIP bằng mã của bạn được giảm giá, còn bạn nhận hoa hồng cho mỗi đơn thành công, không giới hạn thu nhập. Làm online, không cần vốn.",
+    "ctaApply": "Đăng ký làm CTV",
+    "ctaBoard": "Xem bảng xếp hạng CTV",
+    "stepsTitle": "Cách làm CTV",
+    "step1Title": "Đăng ký",
+    "step1Body": "Điền form cuối trang. ViMai liên hệ lại và cấp cho bạn một mã giới thiệu riêng cùng một trang cá nhân để theo dõi đơn.",
+    "step2Title": "Chia sẻ mã",
+    "step2Body": "Giới thiệu app kèm mã của bạn trên Facebook, Zalo, TikTok, nhóm học hay lớp tiếng Nhật. Một mã dùng được cho mọi app có bán VIP trên web.",
+    "step3Title": "Khách được giảm giá",
+    "step3Body": "Khách nhập mã khi mua VIP trên web và được giảm 10–20% (thường là 15%), thanh toán bằng chuyển khoản VietQR.",
+    "step4Title": "Nhận hoa hồng",
+    "step4Body": "Mỗi đơn thành công bạn nhận hoa hồng cố định. ViMai chuyển khoản 2 lần mỗi tháng: kỳ ngày 1–15 và kỳ ngày 16 đến cuối tháng.",
+    "perksTitle": "Quyền lợi",
+    "perk1Title": "Thu nhập không giới hạn",
+    "perk1Body": "Mỗi đơn VIP thành công bằng mã của bạn đều có hoa hồng, không giới hạn số đơn. Bạn càng giới thiệu được nhiều người, thu nhập càng cao. Mức hoa hồng cụ thể ViMai trao đổi riêng khi cấp mã.",
+    "perk2Title": "Sản phẩm dễ giới thiệu",
+    "perk2Body": "Tokutei Taxi, Tokutei Transport và ViMai Menkyo: đề thi thử có furigana, giải thích tiếng Việt, cho học thử miễn phí trước khi mua.",
+    "perk3Title": "Trang quản lý riêng",
+    "perk3Body": "Mỗi CTV có một trang riêng, chỉ mình bạn xem được: mã của bạn, từng lượt khách dùng mã, số đơn trong kỳ, thứ hạng và hoa hồng chưa nhận. Số liệu tự cập nhật sau khi khách thanh toán.",
+    "perk4Title": "Tự do thời gian",
+    "perk4Body": "Làm online ở Nhật hay ở Việt Nam, không cần vốn, không cần kinh nghiệm bán hàng. ViMai hỗ trợ nội dung và hình ảnh để bạn đăng bài.",
+    "fitTitle": "Phù hợp với",
+    "fit1": "Thực tập sinh, du học sinh, người lao động đang ở Nhật",
+    "fit2": "Người quản lý nhóm, trang Facebook, kênh TikTok về cuộc sống ở Nhật",
+    "fit3": "Giáo viên tiếng Nhật, trung tâm và nghiệp đoàn đưa người sang Nhật",
+    "fit4": "Người đã thi đỗ Tokutei hoặc bằng lái và muốn giới thiệu cách mình ôn",
+    "rulesTitle": "Lưu ý",
+    "rule1": "Mã chỉ áp dụng khi mua VIP trên web bằng chuyển khoản VND. Mua trong app iOS không dùng mã.",
+    "rule2": "Mỗi khách dùng mã một lần cho mỗi app. Đơn bị hoàn tiền sẽ không tính hoa hồng.",
+    "rule3": "Giới thiệu trung thực: không hứa chắc chắn thi đỗ, không spam, không dùng tên hay logo của cơ quan thi.",
+    "rule4": "ViMai có thể tạm dừng mã nếu vi phạm các điều trên.",
+    "applyTitle": "Đăng ký làm CTV",
+    "applyLead": "Gửi thông tin ở form dưới. ViMai trả lời qua email, thường trong vài ngày.",
+    "applySubject": "Đăng ký CTV marketing",
+    "applyPlaceholder": "Bạn đang ở Nhật hay Việt Nam, bạn sẽ chia sẻ ở đâu (link Facebook, Zalo, TikTok...), khoảng bao nhiêu người theo dõi.",
+    "applyChannels": "Hoặc nhắn trực tiếp cho ViMai:",
+    "homeLead": "Giới thiệu app ViMai cho cộng đồng người Việt tại Nhật. Khách được giảm giá, bạn nhận hoa hồng cho mỗi đơn VIP thành công, không giới hạn thu nhập. Có trang quản lý riêng và bảng đua top mỗi kỳ.",
+    "homeCta": "Tìm hiểu và đăng ký",
+    "homeNote": "Làm online, không cần vốn",
+    "perk5Title": "Đua top mỗi kỳ",
+    "perk5Body": "Bảng xếp hạng công khai cập nhật theo từng nửa tháng, cho bạn thấy mình đang đứng ở đâu. Bảng chỉ hiện số hiệu CTV, không hiện tên hay thu nhập."
   }
 }

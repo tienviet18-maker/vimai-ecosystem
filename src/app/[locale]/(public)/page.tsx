@@ -1,7 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, BookOpen, HeartPulse, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductEcosystemStrip } from "@/components/shared/ProductEcosystemStrip";
 import { ProductGrid } from "@/components/shared/ProductGrid";
 import { FeedbackForm } from "@/components/shared/FeedbackForm";
 import { JsonLd } from "@/components/shared/JsonLd";
@@ -24,6 +23,7 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const about = await getTranslations("about");
+  const ctv = await getTranslations("ctvJoin");
   const products = await getLocalizedProducts(locale as Locale);
   const featured = products.filter((item) => item.featured);
   const principles = [
@@ -81,16 +81,19 @@ export default async function HomePage({
         }}
       />
       <section aria-labelledby="hero-heading" className="border-b border-slate-200/80 bg-white">
-        <div className="container py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl">
+        <div className="container grid gap-12 py-14 sm:py-16 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:gap-16 lg:py-24">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+              {t("heroEyebrow")}
+            </p>
             <h1
               id="hero-heading"
-              className="text-[1.85rem] font-semibold leading-[1.28] text-slate-900 sm:text-[2.25rem] lg:text-[2.5rem]"
+              className="mt-4 max-w-[34rem] text-[2rem] [word-break:auto-phrase] font-semibold leading-[1.2] tracking-tight text-slate-900 sm:text-[2.5rem] lg:text-[2.75rem]"
             >
-              {t("title")}
+              {t("heroTitle")}
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
-              {t("lead")}
+            <p className="mt-5 max-w-[34rem] text-base leading-8 text-slate-600 sm:text-[1.0625rem]">
+              {t("heroLead")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -104,9 +107,40 @@ export default async function HomePage({
               </Button>
             </div>
           </div>
-          <div className="mt-10 lg:mt-14">
-            <ProductEcosystemStrip products={products} label={t("ecosystemTitle")} />
-          </div>
+          <nav aria-label={t("ecosystemTitle")} className="w-full max-w-[30rem] md:max-w-none">
+            <ul className="grid auto-rows-fr grid-cols-3 gap-3 sm:gap-4">
+              {products.map((product) => (
+                <li key={product.slug} className="h-full">
+                  <Link
+                    href={`/products/${product.slug}`}
+                    className="group flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200/80 bg-navy-50/50 p-3 text-center no-underline transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-lift"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={product.logo_url}
+                      alt=""
+                      width={64}
+                      height={64}
+                      decoding="async"
+                      className="h-12 w-12 rounded-xl object-contain sm:h-16 sm:w-16"
+                    />
+                    <span className="line-clamp-2 text-[12px] font-medium leading-4 text-slate-700 sm:text-[13px]">
+                      {product.name.split(/\s*[（(]| [–-] /)[0]}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+              <li className="h-full">
+                <Link
+                  href="/products"
+                  className="flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 p-3 text-center text-[13px] font-medium text-primary no-underline transition-colors hover:bg-navy-50/50"
+                >
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                  {t("viewAll")}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </section>
 
@@ -201,6 +235,31 @@ export default async function HomePage({
           </div>
         </section>
       ) : null}
+
+      <section aria-labelledby="ctv-heading" className="border-b border-slate-200/80 bg-white">
+        <div className="container py-16 lg:py-20">
+          <div className="grid gap-8 rounded-[1.75rem] bg-primary px-6 py-10 text-white sm:px-10 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:items-center lg:px-14 lg:py-14">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+                {ctv("eyebrow")}
+              </p>
+              <h2 id="ctv-heading" className="mt-3 text-2xl text-white font-semibold tracking-tight sm:text-[1.75rem]">
+                {ctv("title")}
+              </h2>
+              <p className="mt-4 max-w-xl leading-8 text-white/85">{ctv("homeLead")}</p>
+            </div>
+            <div className="flex flex-col gap-3 md:items-end">
+              <Button asChild size="lg" variant="outline">
+                <Link href="/ctv">
+                  {ctv("homeCta")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <p className="text-sm text-white/70">{ctv("homeNote")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="container py-16 lg:py-20">
         <h2 className="text-2xl font-semibold tracking-tight sm:text-[1.75rem]">

@@ -11,7 +11,7 @@ export const runtime = "edge";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getProducts();
   const articles = await getPublishedArticles("vi");
-  const staticPaths = ["", "/products", "/about", "/support", "/contact", "/articles", "/privacy", "/terms"];
+  const staticPaths = ["", "/products", "/about", "/support", "/contact", "/ctv", "/articles", "/privacy", "/terms"];
   const locales = routing.locales;
 
   return [

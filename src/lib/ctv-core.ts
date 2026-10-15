@@ -10,6 +10,8 @@ export const CTV_PRODUCTS = {
   menkyo: { listVnd: 700_000 },
   /** Gino 1 Seibi (特定技能1号 自動車整備). Chủ dự án chốt 2026-10-09. */
   gino1: { listVnd: 700_000 },
+  /** Tokutei Kaigo (特定技能1号 介護). Chủ dự án chốt 2026-10-15. */
+  kaigo: { listVnd: 500_000 },
 } as const;
 
 export type CtvProduct = keyof typeof CTV_PRODUCTS;

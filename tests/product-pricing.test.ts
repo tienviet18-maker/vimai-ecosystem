@@ -13,6 +13,7 @@ test("slugs map to referral products", () => {
   assert.equal(ctvProductForSlug("tokutei-transport"), "transport");
   assert.equal(ctvProductForSlug("menkyo"), "menkyo");
   assert.equal(ctvProductForSlug("gino1-seibi"), "gino1");
+  assert.equal(ctvProductForSlug("tokutei-kaigo"), "kaigo");
   assert.equal(ctvProductForSlug("kids"), null);
 });
 

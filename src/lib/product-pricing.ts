@@ -13,6 +13,7 @@ const SLUG_TO_PRODUCT: Record<string, CtvProduct> = {
   "tokutei-transport": "transport",
   menkyo: "menkyo",
   "gino1-seibi": "gino1",
+  "tokutei-kaigo": "kaigo",
 };
 
 export function ctvProductForSlug(slug: string): CtvProduct | null {

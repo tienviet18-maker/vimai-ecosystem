@@ -199,7 +199,7 @@ export function CtvManager({
               </select>
             </label>
             <label className="flex items-center justify-between gap-2 text-sm md:justify-start">
-              Hoa hồng/đơn (đ)
+              Hoa hồng/đơn 3 tháng (đ), gói 1 tháng nhận một nửa
               <Input
                 name="commission_vnd"
                 type="number"

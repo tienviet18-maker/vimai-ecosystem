@@ -28,6 +28,14 @@ test("price summary follows the single price source", () => {
   assert.equal(priceSummary("transport").listVnd, 500000);
 });
 
+test("Menkyo also lists the 1-month plan; other products do not", () => {
+  assert.equal(priceSummary("menkyo").oneMonthListVnd, 450000);
+  assert.deepEqual(priceSummary("menkyo").oneMonthReferral.map((r) => r.payVnd), [405000, 382500, 360000]);
+  assert.equal(priceSummary("taxi").oneMonthListVnd, null);
+  assert.match(buildPriceLines("menkyo")[1], /1 tháng: 450\.000đ/);
+  assert.equal(buildPriceLines("taxi").some((l) => /1 tháng/.test(l)), false);
+});
+
 test("price lines carry the list price and the referral rule", () => {
   const lines = buildPriceLines("menkyo");
   assert.match(lines[0], /700\.000đ/);

@@ -2,6 +2,9 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   CTV_PRODUCTS,
+  commissionForPlan,
+  planForPaid,
+  planListVnd,
   DISCOUNT_PERCENTS,
   generatePartnerToken,
   generatePublicNo,
@@ -97,4 +100,38 @@ test("sha256Hex matches a known vector", async () => {
 test("csv escapes quotes, commas and spreadsheet formulas", () => {
   const csv = toCsv([["a,b", 'x"y', "=SUM(A1)", 100000]]);
   assert.equal(csv, '﻿"a,b","x""y",\'=SUM(A1),100000\r\n');
+});
+
+test("Menkyo 1-month plan: 450,000 list, 10/15/20% off", () => {
+  assert.equal(planListVnd("menkyo", "1m"), 450_000);
+  assert.deepEqual(
+    [10, 15, 20].map((p) => referralPrice("menkyo", p as 10 | 15 | 20, "1m").payVnd),
+    [405_000, 382_500, 360_000],
+  );
+  // 3-month prices are unchanged and still the default plan.
+  assert.equal(referralPrice("menkyo", 15).payVnd, 595_000);
+  assert.equal(referralPrice("menkyo", 15, "3m").payVnd, 595_000);
+});
+
+test("only Menkyo sells a 1-month plan for now", () => {
+  for (const product of ["taxi", "transport", "gino1", "kaigo"] as CtvProduct[]) {
+    assert.equal(planListVnd(product, "1m"), null);
+    assert.throws(() => referralPrice(product, 15, "1m"));
+  }
+});
+
+test("commission: 3 months keeps the partner's amount, 1 month gets half", () => {
+  assert.equal(commissionForPlan(100_000, "3m"), 100_000);
+  assert.equal(commissionForPlan(100_000, "1m"), 50_000);
+  assert.equal(commissionForPlan(120_000, "1m"), 60_000);
+  assert.equal(commissionForPlan(0, "1m"), 0);
+});
+
+test("the plan is recovered from the amount a customer paid", () => {
+  assert.equal(planForPaid("menkyo", 15, 595_000), "3m");
+  assert.equal(planForPaid("menkyo", 15, 382_500), "1m");
+  assert.equal(planForPaid("menkyo", 10, 405_000), "1m");
+  assert.equal(planForPaid("menkyo", 15, 405_000), null);
+  assert.equal(planForPaid("taxi", 15, 425_000), "3m");
+  assert.equal(planForPaid("taxi", 15, 382_500), null);
 });

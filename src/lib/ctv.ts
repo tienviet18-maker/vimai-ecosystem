@@ -10,6 +10,10 @@ import {
   normalizeCode,
   periodOf,
   referralPrice,
+  planForPaid,
+  planListVnd,
+  commissionForPlan,
+  type CtvPlan,
   sha256Hex,
   type CtvProduct,
   type DiscountPercent,
@@ -313,12 +317,13 @@ export async function findActivePartnerByCode(db: D1Database, rawCode: unknown) 
     .first<Partner>();
 }
 
-export async function validateCode(rawCode: unknown, product: CtvProduct) {
+export async function validateCode(rawCode: unknown, product: CtvProduct, plan: CtvPlan = "3m") {
   const db = getDb();
   if (!db) return { error: "unconfigured" as const };
+  if (planListVnd(product, plan) === null) return { valid: false as const };
   const partner = await findActivePartnerByCode(db, rawCode);
   if (!partner) return { valid: false as const };
-  const price = referralPrice(product, partner.discount_percent);
+  const price = referralPrice(product, partner.discount_percent, plan);
   return {
     valid: true as const,
     discountPercent: partner.discount_percent,
@@ -338,6 +343,8 @@ export async function recordReferral(input: {
   userRef: string;
   code: unknown;
   paidVnd: number;
+  /** Bỏ trống thì suy ra từ số tiền đã trả (Worker cũ không gửi gói). */
+  plan?: CtvPlan;
 }): Promise<RecordResult> {
   const db = getDb();
   if (!db) return { status: "unconfigured" };
@@ -349,7 +356,9 @@ export async function recordReferral(input: {
 
   const partner = await findActivePartnerByCode(db, input.code);
   if (!partner) return { status: "invalid_code" };
-  const price = referralPrice(input.product, partner.discount_percent);
+  const plan = input.plan ?? planForPaid(input.product, partner.discount_percent, input.paidVnd);
+  if (!plan || planListVnd(input.product, plan) === null) return { status: "amount_mismatch" };
+  const price = referralPrice(input.product, partner.discount_percent, plan);
   if (price.payVnd !== input.paidVnd) return { status: "amount_mismatch" };
 
   const usedBefore = await db
@@ -377,7 +386,7 @@ export async function recordReferral(input: {
         price.listVnd,
         price.payVnd,
         price.discountVnd,
-        partner.commission_vnd,
+        commissionForPlan(partner.commission_vnd, plan),
         periodOf(now).key,
         now.toISOString(),
       )

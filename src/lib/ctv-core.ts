@@ -3,11 +3,18 @@
  * framework imports, so they can be unit-tested with `node --test`.
  */
 
-/** Gói 3 tháng, giá gốc (VND). Quyết định của chủ dự án 2026-10-08. */
-export const CTV_PRODUCTS = {
+/**
+ * Gói 3 tháng, giá gốc (VND). Quyết định của chủ dự án 2026-10-08.
+ * `oneMonthListVnd` có mặt khi app bán thêm gói 1 tháng (Menkyo 450.000đ, chủ
+ * dự án chốt 2026-10-16). App nào chưa có thì không nhận mã giảm cho gói 1 tháng.
+ */
+export const CTV_PRODUCTS: Record<
+  "taxi" | "transport" | "menkyo" | "gino1" | "kaigo",
+  { listVnd: number; oneMonthListVnd?: number }
+> = {
   taxi: { listVnd: 500_000 },
   transport: { listVnd: 500_000 },
-  menkyo: { listVnd: 700_000 },
+  menkyo: { listVnd: 700_000, oneMonthListVnd: 450_000 },
   /** Gino 1 Seibi (特定技能1号 自動車整備). Chủ dự án chốt 2026-10-09. */
   gino1: { listVnd: 700_000 },
   /** Tokutei Kaigo (特定技能1号 介護). Chủ dự án chốt 2026-10-15. */
@@ -15,6 +22,16 @@ export const CTV_PRODUCTS = {
 } as const;
 
 export type CtvProduct = keyof typeof CTV_PRODUCTS;
+
+/** Gói bán: 3 tháng (mặc định) hoặc 1 tháng. */
+export type CtvPlan = "3m" | "1m";
+
+export function isCtvPlan(value: unknown): value is CtvPlan {
+  return value === "3m" || value === "1m";
+}
+
+/** Gói 1 tháng nhận một nửa hoa hồng gói 3 tháng (100.000đ -> 50.000đ), làm tròn nghìn. */
+export const ONE_MONTH_COMMISSION_RATIO = 0.5;
 
 export const DISCOUNT_PERCENTS = [10, 15, 20] as const;
 export type DiscountPercent = (typeof DISCOUNT_PERCENTS)[number];
@@ -36,14 +53,44 @@ export type ReferralPrice = {
   payVnd: number;
 };
 
+/** Giá gốc của gói, hoặc null khi app chưa bán gói đó. */
+export function planListVnd(product: CtvProduct, plan: CtvPlan = "3m"): number | null {
+  const entry = CTV_PRODUCTS[product];
+  return plan === "1m" ? (entry.oneMonthListVnd ?? null) : entry.listVnd;
+}
+
+/** Hoa hồng của một đơn: `commissionVnd` là mức gói 3 tháng của CTV. */
+export function commissionForPlan(commissionVnd: number, plan: CtvPlan): number {
+  if (plan === "3m") return commissionVnd;
+  return Math.round((commissionVnd * ONE_MONTH_COMMISSION_RATIO) / 1000) * 1000;
+}
+
 /** Số tiền khách trả sau khi giảm. Luôn là số nguyên, tròn nghìn với giá gốc hiện tại. */
-export function referralPrice(product: CtvProduct, percent: DiscountPercent): ReferralPrice {
-  const listVnd = CTV_PRODUCTS[product].listVnd;
+export function referralPrice(
+  product: CtvProduct,
+  percent: DiscountPercent,
+  plan: CtvPlan = "3m",
+): ReferralPrice {
+  const listVnd = planListVnd(product, plan);
+  if (listVnd === null) throw new Error("product has no such plan");
   const discountVnd = (listVnd * percent) / 100;
   if (!Number.isInteger(discountVnd)) {
     throw new Error("discount is not a whole number of VND");
   }
   return { listVnd, discountVnd, payVnd: listVnd - discountVnd };
+}
+
+/** Gói mà số tiền đã trả khớp với giá giảm của CTV (3 tháng xét trước), hoặc null. */
+export function planForPaid(
+  product: CtvProduct,
+  percent: DiscountPercent,
+  paidVnd: number,
+): CtvPlan | null {
+  for (const plan of ["3m", "1m"] as const) {
+    if (planListVnd(product, plan) === null) continue;
+    if (referralPrice(product, percent, plan).payVnd === paidVnd) return plan;
+  }
+  return null;
 }
 
 // Không có I, L, O, 0, 1 để tránh nhầm khi đọc hoặc gõ.

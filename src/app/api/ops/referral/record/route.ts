@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isCtvProduct } from "@/lib/ctv-core";
+import { isCtvPlan, isCtvProduct } from "@/lib/ctv-core";
 import { clearRecordFailure, recordReferral } from "@/lib/ctv";
 import { readSignedOpsRequest } from "@/lib/ops-auth";
 
@@ -12,7 +12,7 @@ export const runtime = "edge";
 export async function POST(request: Request) {
   const parsed = await readSignedOpsRequest(request);
   if ("response" in parsed) return parsed.response;
-  const { product, orderRef, userRef, code, paidVnd } = parsed.body;
+  const { product, orderRef, userRef, code, paidVnd, plan } = parsed.body;
   if (
     !isCtvProduct(product) ||
     typeof orderRef !== "string" ||
@@ -22,11 +22,12 @@ export async function POST(request: Request) {
     !userRef ||
     userRef.length > 120 ||
     typeof paidVnd !== "number" ||
-    !Number.isInteger(paidVnd)
+    !Number.isInteger(paidVnd) ||
+    (plan !== undefined && !isCtvPlan(plan))
   ) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
-  const result = await recordReferral({ product, orderRef, userRef, code, paidVnd });
+  const result = await recordReferral({ product, orderRef, userRef, code, paidVnd, plan });
   if (result.status === "recorded" || result.status === "duplicate") {
     await clearRecordFailure(product, orderRef);
   }

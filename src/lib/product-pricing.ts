@@ -27,20 +27,30 @@ export function formatVnd(amount: number): string {
 
 /** Price table shown in the editor, from the single source of truth (ctv-core). */
 export function priceSummary(product: CtvProduct) {
+  const oneMonthListVnd = CTV_PRODUCTS[product].oneMonthListVnd ?? null;
   return {
     listVnd: CTV_PRODUCTS[product].listVnd,
     referral: DISCOUNT_PERCENTS.map((percent) => ({
       percent,
       payVnd: referralPrice(product, percent).payVnd,
     })),
+    oneMonthListVnd,
+    oneMonthReferral:
+      oneMonthListVnd === null
+        ? []
+        : DISCOUNT_PERCENTS.map((percent) => ({
+            percent,
+            payVnd: referralPrice(product, percent, "1m").payVnd,
+          })),
   };
 }
 
 /** Vietnamese feature lines for the web payment (VIP 3 months, VietQR, referral). */
 export function buildPriceLines(product: CtvProduct): string[] {
-  const { listVnd } = priceSummary(product);
+  const { listVnd, oneMonthListVnd } = priceSummary(product);
   return [
     `VIP 3 tháng: ${formatVnd(listVnd)}, thanh toán VietQR, tự kích hoạt sau 1–2 phút`,
+    ...(oneMonthListVnd === null ? [] : [`VIP 1 tháng: ${formatVnd(oneMonthListVnd)}`]),
     "Dùng trên tối đa 2 thiết bị với cùng một tài khoản",
     `Có mã giới thiệu: nhập mã được giảm 10–20% (mặc định ${DEFAULT_DISCOUNT_PERCENT}%)`,
   ];

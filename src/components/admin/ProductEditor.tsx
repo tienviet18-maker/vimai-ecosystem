@@ -297,6 +297,17 @@ export function ProductEditor({ product }: { product?: Product }) {
                 <strong>{formatVnd(row.payVnd)}</strong>
               </li>
             ))}
+            {prices!.oneMonthListVnd !== null ? (
+              <li>
+                Gói 1 tháng: <strong>{formatVnd(prices!.oneMonthListVnd)}</strong>
+                {prices!.oneMonthReferral.map((row) => (
+                  <span key={row.percent}>
+                    {" "}
+                    · {row.percent}%: <strong>{formatVnd(row.payVnd)}</strong>
+                  </span>
+                ))}
+              </li>
+            ) : null}
           </ul>
           <Button
             type="button"

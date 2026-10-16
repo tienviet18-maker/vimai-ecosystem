@@ -4,6 +4,7 @@ import {
   CTV_PRODUCTS,
   commissionForPlan,
   planForPaid,
+  planOfOrder,
   planListVnd,
   DISCOUNT_PERCENTS,
   generatePartnerToken,
@@ -134,4 +135,12 @@ test("the plan is recovered from the amount a customer paid", () => {
   assert.equal(planForPaid("menkyo", 15, 405_000), null);
   assert.equal(planForPaid("taxi", 15, 425_000), "3m");
   assert.equal(planForPaid("taxi", 15, 382_500), null);
+});
+
+test("the plan of a recorded order comes from the list price it was recorded with", () => {
+  assert.equal(planOfOrder("menkyo", 450_000), "1m");
+  assert.equal(planOfOrder("menkyo", 700_000), "3m");
+  assert.equal(planOfOrder("menkyo", null), "3m");
+  assert.equal(planOfOrder("taxi", 500_000), "3m");
+  assert.equal(planOfOrder("unknown-app", 450_000), "3m");
 });

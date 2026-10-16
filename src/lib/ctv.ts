@@ -50,6 +50,7 @@ export type Referral = {
   id: string;
   partner_id: string;
   product: string;
+  list_price_vnd: number | null;
   paid_vnd: number;
   commission_vnd: number;
   status: ReferralStatus;
@@ -237,7 +238,7 @@ export async function listReferrals(periodKey: string): Promise<(Referral & { ni
   if (!db) return [];
   const { results } = await db
     .prepare(
-      `SELECT r.id, r.partner_id, r.product, r.paid_vnd, r.commission_vnd, r.status, r.period_key,
+      `SELECT r.id, r.partner_id, r.product, r.list_price_vnd, r.paid_vnd, r.commission_vnd, r.status, r.period_key,
               r.created_at, r.paid_at, r.pay_ref, p.nickname, p.public_no
        FROM ctv_referrals r JOIN ctv_partners p ON p.id = r.partner_id
        WHERE r.period_key = ? ORDER BY r.created_at DESC LIMIT 500`,
@@ -444,7 +445,7 @@ async function loadPartnerPortal(db: D1Database, token: string) {
   if (!partner) return null;
   const { results } = await db
     .prepare(
-      `SELECT id, partner_id, product, paid_vnd, commission_vnd, status, period_key, created_at, paid_at, pay_ref
+      `SELECT id, partner_id, product, list_price_vnd, paid_vnd, commission_vnd, status, period_key, created_at, paid_at, pay_ref
        FROM ctv_referrals WHERE partner_id = ? ORDER BY created_at DESC LIMIT 200`,
     )
     .bind(partner.id)

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { leaderboard, partnerByToken } from "@/lib/ctv";
-import { periodOf } from "@/lib/ctv-core";
+import { periodOf, planOfOrder } from "@/lib/ctv-core";
 
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -54,11 +54,12 @@ export default async function CtvPortalPage({
           <p className="rounded-2xl border bg-white p-6 text-center text-slate-500">{t("empty")}</p>
         ) : (
           <div className="overflow-x-auto rounded-2xl border bg-white">
-            <table className="w-full min-w-[480px] text-left text-sm">
+            <table className="w-full min-w-[560px] text-left text-sm">
               <thead className="border-b bg-navy-50/80 text-slate-500">
                 <tr>
                   <th className="px-4 py-3 font-medium">{t("date")}</th>
                   <th className="px-4 py-3 font-medium">{t("app")}</th>
+                  <th className="px-4 py-3 font-medium">{t("plan")}</th>
                   <th className="px-4 py-3 font-medium">{t("commission")}</th>
                   <th className="px-4 py-3 font-medium">{t("status")}</th>
                 </tr>
@@ -68,6 +69,7 @@ export default async function CtvPortalPage({
                   <tr key={r.id} className="border-b last:border-0">
                     <td className="px-4 py-3">{r.created_at.slice(0, 10)}</td>
                     <td className="px-4 py-3">{r.product}</td>
+                    <td className="px-4 py-3">{t(`plan${planOfOrder(r.product, r.list_price_vnd)}`)}</td>
                     <td className="px-4 py-3">{vnd(r.commission_vnd)}</td>
                     <td className="px-4 py-3">{t(r.status)}</td>
                   </tr>

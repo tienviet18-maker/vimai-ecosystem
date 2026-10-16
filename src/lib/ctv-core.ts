@@ -59,6 +59,15 @@ export function planListVnd(product: CtvProduct, plan: CtvPlan = "3m"): number |
   return plan === "1m" ? (entry.oneMonthListVnd ?? null) : entry.listVnd;
 }
 
+/** Gói của một đơn đã ghi: so giá gốc lúc ghi với giá gốc từng gói. Dữ liệu cũ (không có giá gốc) là 3 tháng. */
+export function planOfOrder(product: string, listPriceVnd: number | null | undefined): CtvPlan {
+  if (!Object.hasOwn(CTV_PRODUCTS, product)) return "3m";
+  const oneMonth = CTV_PRODUCTS[product as CtvProduct].oneMonthListVnd;
+  return oneMonth !== undefined && listPriceVnd === oneMonth ? "1m" : "3m";
+}
+
+export const PLAN_LABEL_VI: Record<CtvPlan, string> = { "3m": "3 tháng", "1m": "1 tháng" };
+
 /** Hoa hồng của một đơn: `commissionVnd` là mức gói 3 tháng của CTV. */
 export function commissionForPlan(commissionVnd: number, plan: CtvPlan): number {
   if (plan === "3m") return commissionVnd;

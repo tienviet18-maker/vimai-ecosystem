@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DISCOUNT_PERCENTS, type Period } from "@/lib/ctv-core";
+import { DISCOUNT_PERCENTS, PLAN_LABEL_VI, planOfOrder, type Period } from "@/lib/ctv-core";
 import type { PartnerStats, PayoutRow, RecordFailure, Referral } from "@/lib/ctv";
 
 type ReferralRow = Referral & { nickname: string; public_no: string };
@@ -378,7 +378,7 @@ export function CtvManager({
           <table className="w-full min-w-[760px] text-left text-sm">
             <thead className="border-b bg-navy-50/80 text-slate-500">
               <tr>
-                {["Giờ", "Số CTV", "App", "Khách trả", "Hoa hồng", "Trạng thái", ""].map((head) => (
+                {["Giờ", "Số CTV", "App", "Gói", "Khách trả", "Hoa hồng", "Trạng thái", ""].map((head) => (
                   <th key={head} className="px-3 py-3 font-medium">
                     {head}
                   </th>
@@ -388,7 +388,7 @@ export function CtvManager({
             <tbody>
               {referrals.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-slate-500">
+                  <td colSpan={8} className="px-4 py-8 text-center text-slate-500">
                     Chưa có đơn nào.
                   </td>
                 </tr>
@@ -398,6 +398,7 @@ export function CtvManager({
                     <td className="px-3 py-3">{new Date(r.created_at).toLocaleString("vi-VN")}</td>
                     <td className="px-3 py-3 font-semibold">{r.public_no}</td>
                     <td className="px-3 py-3">{r.product}</td>
+                    <td className="px-3 py-3">{PLAN_LABEL_VI[planOfOrder(r.product, r.list_price_vnd)]}</td>
                     <td className="px-3 py-3">{vnd(r.paid_vnd)}</td>
                     <td className="px-3 py-3">{vnd(r.commission_vnd)}</td>
                     <td className="px-3 py-3">
@@ -656,7 +657,7 @@ function ReferralCard({
     <article className="space-y-2 rounded-2xl border bg-white p-4 text-sm">
       <div className="flex items-center justify-between gap-3">
         <p className="font-semibold">
-          {r.public_no} · {r.product}
+          {r.public_no} · {r.product} · {PLAN_LABEL_VI[planOfOrder(r.product, r.list_price_vnd)]}
         </p>
         <p className="text-xs text-slate-500">{status}</p>
       </div>

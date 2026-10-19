@@ -63,7 +63,7 @@ test("web trial link is general: only App Store-only products, root when no loca
   assert.equal(freeWebExamCount("menkyo"), null);
   // Products sold on the web in every locale keep their normal "open site" button.
   assert.equal(webTrialUrl("gino1-seibi", "en", "https://gino1-seibi.vimai.jp"), null);
-  assert.equal(webTrialUrl("seibi", "ja", "https://seibi.vimai.jp"), null);
+  assert.equal(webTrialUrl("seibi", "ja", "https://seibishi3.vimai.jp"), null);
 });
 
 test("web trial labels never mention price, payment or VIP", () => {

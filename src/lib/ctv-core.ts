@@ -9,7 +9,7 @@
  * dự án chốt 2026-10-16). App nào chưa có thì không nhận mã giảm cho gói 1 tháng.
  */
 export const CTV_PRODUCTS: Record<
-  "taxi" | "transport" | "menkyo" | "gino1" | "kaigo",
+  "taxi" | "transport" | "menkyo" | "gino1" | "kaigo" | "seibi3",
   { listVnd: number; oneMonthListVnd?: number }
 > = {
   taxi: { listVnd: 500_000 },
@@ -19,6 +19,8 @@ export const CTV_PRODUCTS: Record<
   gino1: { listVnd: 700_000 },
   /** Tokutei Kaigo (特定技能1号 介護). Chủ dự án chốt 2026-10-15. */
   kaigo: { listVnd: 500_000 },
+  /** Seibishi 3kyu (3級自動車整備士). Chủ dự án chốt 2026-10-14. */
+  seibi3: { listVnd: 700_000 },
 } as const;
 
 export type CtvProduct = keyof typeof CTV_PRODUCTS;

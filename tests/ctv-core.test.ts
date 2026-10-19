@@ -46,6 +46,10 @@ test("agreed prices", () => {
     [10, 15, 20].map((p) => referralPrice("kaigo", p as 10 | 15 | 20).payVnd),
     [450_000, 425_000, 400_000],
   );
+  assert.deepEqual(
+    [10, 15, 20].map((p) => referralPrice("seibi3", p as 10 | 15 | 20).payVnd),
+    [630_000, 595_000, 560_000],
+  );
 });
 
 test("codes use the unambiguous alphabet", () => {
@@ -115,7 +119,7 @@ test("Menkyo 1-month plan: 450,000 list, 10/15/20% off", () => {
 });
 
 test("only Menkyo sells a 1-month plan for now", () => {
-  for (const product of ["taxi", "transport", "gino1", "kaigo"] as CtvProduct[]) {
+  for (const product of ["taxi", "transport", "gino1", "kaigo", "seibi3"] as CtvProduct[]) {
     assert.equal(planListVnd(product, "1m"), null);
     assert.throws(() => referralPrice(product, 15, "1m"));
   }

@@ -35,8 +35,8 @@ test("every product and discount gives a whole 1,000 VND price", () => {
 
 test("agreed prices", () => {
   assert.deepEqual(referralPrice("menkyo", 15), { listVnd: 700_000, discountVnd: 105_000, payVnd: 595_000 });
-  assert.deepEqual(referralPrice("taxi", 15), { listVnd: 500_000, discountVnd: 75_000, payVnd: 425_000 });
-  assert.equal(referralPrice("transport", 10).payVnd, 450_000);
+  assert.deepEqual(referralPrice("taxi", 15), { listVnd: 700_000, discountVnd: 105_000, payVnd: 595_000 });
+  assert.equal(referralPrice("transport", 10).payVnd, 630_000);
   assert.equal(referralPrice("menkyo", 20).payVnd, 560_000);
   assert.deepEqual(
     [10, 15, 20].map((p) => referralPrice("gino1", p as 10 | 15 | 20).payVnd),
@@ -44,7 +44,7 @@ test("agreed prices", () => {
   );
   assert.deepEqual(
     [10, 15, 20].map((p) => referralPrice("kaigo", p as 10 | 15 | 20).payVnd),
-    [450_000, 425_000, 400_000],
+    [630_000, 595_000, 560_000],
   );
   assert.deepEqual(
     [10, 15, 20].map((p) => referralPrice("seibi3", p as 10 | 15 | 20).payVnd),
@@ -118,10 +118,15 @@ test("Menkyo 1-month plan: 450,000 list, 10/15/20% off", () => {
   assert.equal(referralPrice("menkyo", 15, "3m").payVnd, 595_000);
 });
 
-test("only Menkyo sells a 1-month plan for now", () => {
-  for (const product of ["taxi", "transport", "gino1", "kaigo", "seibi3"] as CtvProduct[]) {
-    assert.equal(planListVnd(product, "1m"), null);
-    assert.throws(() => referralPrice(product, 15, "1m"));
+test("every app sells 700,000 / 3 months and 450,000 / 1 month (owner, 2026-10-19)", () => {
+  for (const product of Object.keys(CTV_PRODUCTS) as CtvProduct[]) {
+    assert.equal(planListVnd(product, "3m"), 700_000, product);
+    assert.equal(planListVnd(product, "1m"), 450_000, product);
+    assert.deepEqual(
+      [10, 15, 20].map((p) => referralPrice(product, p as 10 | 15 | 20, "1m").payVnd),
+      [405_000, 382_500, 360_000],
+      product,
+    );
   }
 });
 
@@ -137,14 +142,18 @@ test("the plan is recovered from the amount a customer paid", () => {
   assert.equal(planForPaid("menkyo", 15, 382_500), "1m");
   assert.equal(planForPaid("menkyo", 10, 405_000), "1m");
   assert.equal(planForPaid("menkyo", 15, 405_000), null);
-  assert.equal(planForPaid("taxi", 15, 425_000), "3m");
-  assert.equal(planForPaid("taxi", 15, 382_500), null);
+  assert.equal(planForPaid("taxi", 15, 595_000), "3m");
+  assert.equal(planForPaid("taxi", 15, 382_500), "1m");
+  // The old 500,000 list price no longer matches a plan.
+  assert.equal(planForPaid("taxi", 15, 425_000), null);
 });
 
 test("the plan of a recorded order comes from the list price it was recorded with", () => {
   assert.equal(planOfOrder("menkyo", 450_000), "1m");
   assert.equal(planOfOrder("menkyo", 700_000), "3m");
   assert.equal(planOfOrder("menkyo", null), "3m");
+  // Orders recorded at the old 500,000 list price stay 3-month orders.
   assert.equal(planOfOrder("taxi", 500_000), "3m");
+  assert.equal(planOfOrder("taxi", 450_000), "1m");
   assert.equal(planOfOrder("unknown-app", 450_000), "3m");
 });

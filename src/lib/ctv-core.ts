@@ -4,23 +4,24 @@
  */
 
 /**
- * Gói 3 tháng, giá gốc (VND). Quyết định của chủ dự án 2026-10-08.
- * `oneMonthListVnd` có mặt khi app bán thêm gói 1 tháng (Menkyo 450.000đ, chủ
- * dự án chốt 2026-10-16). App nào chưa có thì không nhận mã giảm cho gói 1 tháng.
+ * Giá gốc (VND): gói 3 tháng `listVnd` và gói 1 tháng `oneMonthListVnd`.
+ * Chủ dự án chốt 2026-10-19: mọi app 700.000đ / 3 tháng và 450.000đ / 1 tháng
+ * (trước đó Taxi, Transport, Kaigo 500.000đ và chỉ Menkyo có gói 1 tháng).
+ * Một app chưa bán gói 1 tháng thì bỏ `oneMonthListVnd` và không nhận mã giảm cho gói đó.
  */
 export const CTV_PRODUCTS: Record<
   "taxi" | "transport" | "menkyo" | "gino1" | "kaigo" | "seibi3",
   { listVnd: number; oneMonthListVnd?: number }
 > = {
-  taxi: { listVnd: 500_000 },
-  transport: { listVnd: 500_000 },
+  taxi: { listVnd: 700_000, oneMonthListVnd: 450_000 },
+  transport: { listVnd: 700_000, oneMonthListVnd: 450_000 },
   menkyo: { listVnd: 700_000, oneMonthListVnd: 450_000 },
-  /** Gino 1 Seibi (特定技能1号 自動車整備). Chủ dự án chốt 2026-10-09. */
-  gino1: { listVnd: 700_000 },
-  /** Tokutei Kaigo (特定技能1号 介護). Chủ dự án chốt 2026-10-15. */
-  kaigo: { listVnd: 500_000 },
-  /** Seibishi 3kyu (3級自動車整備士). Chủ dự án chốt 2026-10-14. */
-  seibi3: { listVnd: 700_000 },
+  /** Gino 1 Seibi (特定技能1号 自動車整備). */
+  gino1: { listVnd: 700_000, oneMonthListVnd: 450_000 },
+  /** Tokutei Kaigo (特定技能1号 介護). */
+  kaigo: { listVnd: 700_000, oneMonthListVnd: 450_000 },
+  /** Seibishi 3kyu (3級自動車整備士). */
+  seibi3: { listVnd: 700_000, oneMonthListVnd: 450_000 },
 } as const;
 
 export type CtvProduct = keyof typeof CTV_PRODUCTS;

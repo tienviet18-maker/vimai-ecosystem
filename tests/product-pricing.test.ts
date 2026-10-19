@@ -24,17 +24,17 @@ test("VND is formatted with dots", () => {
 });
 
 test("price summary follows the single price source", () => {
-  assert.deepEqual(priceSummary("taxi").referral.map((r) => r.payVnd), [450000, 425000, 400000]);
+  assert.deepEqual(priceSummary("taxi").referral.map((r) => r.payVnd), [630000, 595000, 560000]);
   assert.deepEqual(priceSummary("menkyo").referral.map((r) => r.payVnd), [630000, 595000, 560000]);
-  assert.equal(priceSummary("transport").listVnd, 500000);
+  assert.equal(priceSummary("transport").listVnd, 700000);
 });
 
-test("Menkyo also lists the 1-month plan; other products do not", () => {
+test("every product lists the 1-month plan at 450,000", () => {
   assert.equal(priceSummary("menkyo").oneMonthListVnd, 450000);
   assert.deepEqual(priceSummary("menkyo").oneMonthReferral.map((r) => r.payVnd), [405000, 382500, 360000]);
-  assert.equal(priceSummary("taxi").oneMonthListVnd, null);
+  assert.equal(priceSummary("taxi").oneMonthListVnd, 450000);
   assert.match(buildPriceLines("menkyo")[1], /1 tháng: 450\.000đ/);
-  assert.equal(buildPriceLines("taxi").some((l) => /1 tháng/.test(l)), false);
+  assert.match(buildPriceLines("taxi")[1], /1 tháng: 450\.000đ/);
 });
 
 test("price lines carry the list price and the referral rule", () => {
@@ -52,8 +52,9 @@ test("old price lines are replaced, other features stay, and it is idempotent", 
     "Miễn phí 3 đề đầu",
   ];
   const once = applyPriceLines(old, "taxi");
-  assert.deepEqual(once.slice(3), ["20 đề thi thử CBT", "Miễn phí 3 đề đầu"]);
-  assert.match(once[0], /500\.000đ/);
+  assert.deepEqual(once.slice(4), ["20 đề thi thử CBT", "Miễn phí 3 đề đầu"]);
+  assert.match(once[0], /700\.000đ/);
+  assert.match(once[1], /450\.000đ/);
   assert.equal(once.join("\n").includes("1.199.000"), false);
   assert.deepEqual(applyPriceLines(once, "taxi"), once);
 });

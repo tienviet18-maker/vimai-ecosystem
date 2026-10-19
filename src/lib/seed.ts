@@ -130,7 +130,7 @@ export const seedProducts: Product[] = [
           "Chọn sai là dừng lại và giải thích ngay; VIP có thêm AI giải thích",
           "Sổ từ vựng xe tải 510 từ (100 từ đầu miễn phí)",
           "VIP: mẹo nhận ra đáp án cho từng câu và cẩm nang mẹo thi",
-          "Đề 1–3 miễn phí; VIP 3 tháng 500.000đ, thanh toán VietQR",
+          "Đề 1–3 miễn phí; VIP 3 tháng 700.000đ, 1 tháng 450.000đ, thanh toán VietQR",
         ],
         seo_title: "Luyện thi Tokutei xe tải (vận tải) – 20 đề thi thử CBT",
         seo_description:
@@ -216,7 +216,7 @@ export const seedProducts: Product[] = [
           "Câu hỏi về luật được đối chiếu với 保安基準 và 細目告示 hiện hành",
           "Từ điển phụ tùng và thuật ngữ 2.520 mục, tra cứu miễn phí (giải thích chi tiết và flashcard dành cho VIP)",
           "Bí kíp đọc đề 4 lựa chọn: cách nhận kiểu câu và một số dấu hiệu miễn phí; phần còn lại và mẹo từng câu dành cho VIP",
-          "Đề 1–3 của mỗi môn miễn phí (9 đề); VIP 3 tháng 700.000đ, thanh toán VietQR",
+          "Đề 1–3 của mỗi môn miễn phí (9 đề); VIP 3 tháng 700.000đ, 1 tháng 450.000đ, thanh toán VietQR",
         ],
         seo_title: "Luyện thi 3級 自動車整備士 – 60 đề thi thử lý thuyết",
         seo_description:
@@ -527,7 +527,7 @@ export const seedProducts: Product[] = [
           "Chọn sai là dừng lại và giải thích ngay; VIP có thêm gia sư AI",
           "Từ điển phụ tùng và thuật ngữ hơn 2.500 mục, tra cứu miễn phí",
           "Mẹo làm bài dành cho VIP",
-          "Đề 1–3 miễn phí; VIP 3 tháng 700.000đ, thanh toán VietQR",
+          "Đề 1–3 miễn phí; VIP 3 tháng 700.000đ, 1 tháng 450.000đ, thanh toán VietQR",
         ],
         seo_title: "Luyện thi Tokutei bảo dưỡng ô tô – 20 đề kỹ năng đặc định 1",
         seo_description:
@@ -909,7 +909,7 @@ export const seedFaqs: Array<
       vi: {
         question: "VIP giá bao nhiêu?",
         answer:
-          "Trên web, VIP 3 tháng giá 700.000đ, thanh toán bằng chuyển khoản VietQR. Nhập mã giới thiệu của cộng tác viên (CTV) ViMai được giảm 10%, 15% hoặc 20%.",
+          "Trên web, VIP 3 tháng giá 700.000đ, 1 tháng giá 450.000đ, thanh toán bằng chuyển khoản VietQR. Nhập mã giới thiệu của cộng tác viên (CTV) ViMai được giảm 10%, 15% hoặc 20%.",
       },
       en: {
         question: "How much is VIP?",
@@ -1053,7 +1053,7 @@ export const seedFaqs: Array<
       vi: {
         question: "VIP giá bao nhiêu?",
         answer:
-          "Trên web, VIP 3 tháng giá 500.000đ, thanh toán bằng chuyển khoản VietQR, VIP tự mở sau khi chuyển khoản. Nhập mã giới thiệu của cộng tác viên (CTV) ViMai được giảm 10%, 15% hoặc 20% (còn 450.000đ, 425.000đ hoặc 400.000đ). Mỗi gói VIP dùng tối đa 2 thiết bị.",
+          "Trên web, VIP 3 tháng giá 700.000đ, 1 tháng giá 450.000đ, thanh toán bằng chuyển khoản VietQR, VIP tự mở sau khi chuyển khoản. Nhập mã giới thiệu của cộng tác viên (CTV) ViMai được giảm 10%, 15% hoặc 20% (gói 3 tháng còn 630.000đ, 595.000đ hoặc 560.000đ). Mỗi gói VIP dùng tối đa 2 thiết bị.",
       },
       en: {
         question: "How do I buy VIP?",
@@ -1197,7 +1197,7 @@ export const seedFaqs: Array<
       vi: {
         question: "Dùng miễn phí được những gì?",
         answer:
-          "Đề 1–3 của mỗi môn miễn phí (tổng 9 đề), có furigana và bản dịch. Từ điển phụ tùng và thuật ngữ 2.520 mục tra cứu miễn phí. Bí kíp đọc đề 4 lựa chọn có phần miễn phí: cách nhận ra kiểu câu và một số dấu hiệu (chỉ phần chữ). VIP mở đề 4–20 của mỗi môn, giải thích chi tiết và flashcard trong từ điển, phần còn lại của bí kíp, mẹo cho từng câu và AI giải thích câu sai. VIP 3 tháng giá 700.000đ, thanh toán bằng chuyển khoản VietQR.",
+          "Đề 1–3 của mỗi môn miễn phí (tổng 9 đề), có furigana và bản dịch. Từ điển phụ tùng và thuật ngữ 2.520 mục tra cứu miễn phí. Bí kíp đọc đề 4 lựa chọn có phần miễn phí: cách nhận ra kiểu câu và một số dấu hiệu (chỉ phần chữ). VIP mở đề 4–20 của mỗi môn, giải thích chi tiết và flashcard trong từ điển, phần còn lại của bí kíp, mẹo cho từng câu và AI giải thích câu sai. VIP 3 tháng giá 700.000đ, 1 tháng giá 450.000đ, thanh toán bằng chuyển khoản VietQR.",
       },
       en: {
         question: "What can I use for free?",

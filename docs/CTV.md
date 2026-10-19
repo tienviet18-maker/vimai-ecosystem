@@ -4,7 +4,7 @@ Collaborators (CTV) promote the ViMai apps on the web. Each CTV has one referral
 
 ## Rules (decided by the project owner, 2026-10-08)
 
-- List prices (3-month VIP): Taxi 500,000 đ, Transport 500,000 đ, Menkyo 700,000 đ, Gino 1 Seibi 700,000 đ, Tokutei Kaigo 500,000 đ (2026-10-15), Seibishi 3kyu 700,000 đ (seibi3, 2026-10-14). Defined in `src/lib/ctv-core.ts` (`CTV_PRODUCTS`).
+- List prices (owner, 2026-10-19): every app 700,000 đ for 3 months and 450,000 đ for 1 month (Taxi, Transport, Menkyo, Gino 1 Seibi, Tokutei Kaigo, Seibishi 3kyu). Defined in `src/lib/ctv-core.ts` (`CTV_PRODUCTS`).
 - Discount per CTV: 10%, 15% (default) or 20%. All results are whole thousands of VND (tested).
 - Commission per successful order: set per CTV, default 100,000 đ.
 - Web only, VND only. The iOS app has no referral code (Apple In-App Purchase, full price).

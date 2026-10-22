@@ -9,6 +9,7 @@ export const PRODUCT_SITES: Record<string, string> = {
   maimai: "https://maimai.vimai.jp",
   menkyo: "https://menkyo.vimai.jp",
   "gino1-seibi": "https://gino1-seibi.vimai.jp",
+  "tokutei-kaigo": "https://kaigo.vimai.jp",
   vicare: "https://vicare.vimai.jp",
 };
 
@@ -21,6 +22,7 @@ export const PRODUCT_LOGOS_PNG: Record<string, string> = {
   maimai: "/images/products/maimai.png",
   menkyo: "/images/products/vimai_menkyo.png",
   "gino1-seibi": "/images/products/gino1_seibi.png",
+  "tokutei-kaigo": "/images/products/tokutei_kaigo.png",
   vicare: "/images/products/vicare.png",
 };
 
@@ -67,4 +69,19 @@ export function resolveProductOgImage(slug: string, ogUrl?: string | null): stri
   const fromRecord = ogUrl?.trim();
   if (fromRecord) return fromRecord;
   return PRODUCT_LOGOS_PNG[slug] ?? PRODUCT_LOGOS_PNG["tokutei-taxi"];
+}
+
+/**
+ * New products whose D1 row comes from a migration that may not have run on
+ * production yet. Public pages show the seed copy until the row exists; after
+ * that the D1 row (and any CMS edits) wins. Admin pages only see D1 rows.
+ */
+export const SEED_FALLBACK_SLUGS: readonly string[] = ["tokutei-kaigo"];
+
+export function withSeedFallback<T extends { slug: string }>(remote: T[], seed: T[]): T[] {
+  const present = new Set(remote.map((item) => item.slug));
+  const missing = seed.filter(
+    (item) => SEED_FALLBACK_SLUGS.includes(item.slug) && !present.has(item.slug),
+  );
+  return missing.length ? [...remote, ...missing] : remote;
 }

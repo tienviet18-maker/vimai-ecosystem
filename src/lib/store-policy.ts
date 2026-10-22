@@ -37,6 +37,7 @@ export const PRODUCT_SITE_LOCALES: Record<string, readonly string[]> = {
   "tokutei-transport": ["vi", "en", "ja"],
   menkyo: ["vi", "en"],
   "gino1-seibi": ["vi", "en", "ja"],
+  "tokutei-kaigo": ["vi", "en", "ja"],
   seibi: ["vi", "en", "ja"],
 };
 

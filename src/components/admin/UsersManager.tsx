@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PROTECTED_SUPER_ADMIN_EMAIL, type AdminRole, type AdminStatus } from "@/lib/rbac";
+import type { AdminRole, AdminStatus } from "@/lib/rbac";
 
 type AdminRow = {
   id: string;
@@ -12,6 +12,8 @@ type AdminRow = {
   role: AdminRole;
   status: AdminStatus;
   created_at: string;
+  /** Set by the server from SUPER_ADMIN_EMAIL; the email itself never reaches the client bundle. */
+  protected?: boolean;
 };
 
 export function UsersManager({ users }: { users: AdminRow[] }) {
@@ -79,7 +81,7 @@ export function UsersManager({ users }: { users: AdminRow[] }) {
     <div className="space-y-6">
       <form onSubmit={createUser} className="grid gap-3 rounded-2xl border bg-white p-6 sm:grid-cols-4">
         <Input name="email" type="email" placeholder="Email" required className="min-h-11" />
-        <Input name="password" type="password" placeholder="Temporary password" minLength={6} required className="min-h-11" />
+        <Input name="password" type="password" placeholder="Temporary password" minLength={12} required className="min-h-11" />
         <select name="role" className="min-h-11 rounded-xl border px-3 text-sm" defaultValue="EDITOR">
           <option value="EDITOR">EDITOR</option>
           <option value="ADMIN">ADMIN</option>
@@ -104,7 +106,7 @@ export function UsersManager({ users }: { users: AdminRow[] }) {
               <tr key={user.id} className="border-b last:border-0">
                 <td className="px-4 py-3">
                   {user.email}
-                  {user.email === PROTECTED_SUPER_ADMIN_EMAIL ? (
+                  {user.protected ? (
                     <span className="ml-2 text-[11px] uppercase text-primary">protected</span>
                   ) : null}
                 </td>
@@ -138,7 +140,7 @@ export function UsersManager({ users }: { users: AdminRow[] }) {
                       type="button"
                       variant="outline"
                       onClick={() => {
-                        const password = prompt("New password (min 6 characters)");
+                        const password = prompt("New password (min 12 characters)");
                         if (password) patch(user.id, { password });
                       }}
                     >

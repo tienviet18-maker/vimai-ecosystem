@@ -1,4 +1,5 @@
 import { getRequestContext } from "@cloudflare/next-on-pages";
+import { normalizeProtectedEmail } from "@/lib/rbac";
 
 type D1PreparedStatement = {
   bind(...values: unknown[]): D1PreparedStatement;
@@ -32,6 +33,7 @@ export type CmsBindings = {
   MEDIA: R2Bucket;
   AUTH_SECRET?: string;
   OPS_HMAC_SECRET?: string;
+  SUPER_ADMIN_EMAIL?: string;
 };
 
 export function getBindings(): Partial<CmsBindings> {
@@ -60,6 +62,11 @@ export function getAuthSecret() {
 
 export function getOpsSecret() {
   return process.env.OPS_HMAC_SECRET || getBindings().OPS_HMAC_SECRET || "";
+}
+
+/** Email of the protected emergency SUPER_ADMIN (env SUPER_ADMIN_EMAIL). "" when unset. */
+export function getProtectedSuperAdminEmail() {
+  return normalizeProtectedEmail(process.env.SUPER_ADMIN_EMAIL || getBindings().SUPER_ADMIN_EMAIL);
 }
 
 export function isAuthConfigured() {

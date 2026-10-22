@@ -47,3 +47,29 @@ export async function verifyPassword(password: string, stored: string) {
   for (let i = 0; i < actual.length; i += 1) diff |= actual[i] ^ expected[i];
   return diff === 0;
 }
+
+/** Minimum length for new or changed admin passwords. Existing hashes are unaffected. */
+export const ADMIN_PASSWORD_MIN_LENGTH = 12;
+
+/**
+ * A valid PBKDF2 hash of a random, discarded password. Login verifies against it when the
+ * email is unknown so that "no such user" costs the same time as "wrong password".
+ */
+export const DUMMY_PASSWORD_HASH =
+  "pbkdf2:100000:BCjlEpIxOeLdBJlAtMsvJQ:GFPH-YjcSYlQJW3EiLs7jxz7hmg76cB_bZDpxFzazDk";
+
+/**
+ * Constant-time string comparison. Both sides are hashed first, so neither the content nor
+ * the length of the secret leaks through timing.
+ */
+export async function timingSafeEqualString(a: string, b: string) {
+  const [ha, hb] = await Promise.all([
+    crypto.subtle.digest("SHA-256", encoder.encode(a)),
+    crypto.subtle.digest("SHA-256", encoder.encode(b)),
+  ]);
+  const x = new Uint8Array(ha);
+  const y = new Uint8Array(hb);
+  let diff = 0;
+  for (let i = 0; i < x.length; i += 1) diff |= x[i] ^ y[i];
+  return diff === 0;
+}

@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { insertContactMessage } from "@/lib/contact-messages";
-import { isCmsConfigured } from "@/lib/cloudflare";
+import { getDb, isCmsConfigured } from "@/lib/cloudflare";
 import { rateLimit } from "@/lib/rate-limit";
+import { RATE_LIMITS, clientIp, consumeRateLimit } from "@/lib/d1-rate-limit";
 
 export const runtime = "edge";
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get("cf-connecting-ip") ?? request.headers.get("x-forwarded-for") ?? "unknown";
+  const ip = clientIp(request);
   if (!rateLimit(`contact:${ip}`, 8)) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
@@ -18,6 +19,10 @@ export async function POST(request: NextRequest) {
 
   if (!isCmsConfigured()) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 });
+  }
+
+  if (!(await consumeRateLimit(getDb(), RATE_LIMITS.contact, ip))) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
   const result = await insertContactMessage({

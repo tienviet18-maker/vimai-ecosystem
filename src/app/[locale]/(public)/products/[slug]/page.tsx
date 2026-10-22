@@ -11,6 +11,7 @@ import { EcosystemLinks } from "@/components/shared/EcosystemLinks";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import { ProductMark } from "@/components/shared/ProductMark";
 import { JsonLd } from "@/components/shared/JsonLd";
+import { safeHref } from "@/lib/safe-url";
 import {
   Accordion,
   AccordionContent,
@@ -92,7 +93,7 @@ export default async function ProductPage({
   const faqs = await getFaqs(locale as Locale, product.id);
   // Every other ViMai app, so each product page links to the whole ecosystem.
   const ecosystem = (await getLocalizedProducts(locale as Locale)).filter((item) => item.slug !== slug);
-  const siteUrl = product.website_url;
+  const siteUrl = safeHref(product.website_url);
   const pageUrl = publicUrl(locale, `/products/${slug}`);
   // EN/JA readers buy through Apple in the app, never on the web (see store-policy.ts).
   const appStoreOnly = usesAppStoreOnly(slug, locale);

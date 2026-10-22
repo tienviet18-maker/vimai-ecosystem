@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authorizeAdmin } from "@/lib/admin-api";
 import { writeAudit } from "@/lib/auth";
-import { getDb, newId, nowIso } from "@/lib/cloudflare";
+import { getDb, getProtectedSuperAdminEmail, newId, nowIso } from "@/lib/cloudflare";
+import { ADMIN_PASSWORD_MIN_LENGTH } from "@/lib/password";
 import { hashPassword } from "@/lib/session";
 import {
   ADMIN_STATUSES,
-  PROTECTED_SUPER_ADMIN_EMAIL,
   isAdminRole,
+  isProtectedSuperAdmin,
   type AdminRole,
   type AdminStatus,
 } from "@/lib/rbac";
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
     .toLowerCase();
   const password = String(body?.password ?? "");
   const role: AdminRole = isAdminRole(body?.role) ? body.role : "EDITOR";
-  if (!email || !password || password.length < 6) {
+  if (!email || !password || password.length < ADMIN_PASSWORD_MIN_LENGTH) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
   const id = newId();
@@ -98,7 +99,7 @@ export async function PATCH(request: NextRequest) {
       ? (body.status as AdminStatus)
       : (current.status as AdminStatus);
 
-  if (current.email === PROTECTED_SUPER_ADMIN_EMAIL) {
+  if (isProtectedSuperAdmin(current.email, getProtectedSuperAdminEmail())) {
     if (nextRole !== "SUPER_ADMIN" || nextStatus !== "ACTIVE") {
       return NextResponse.json({ error: "protected_account" }, { status: 403 });
     }
@@ -116,7 +117,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   if (body.password) {
-    if (body.password.length < 6) {
+    if (body.password.length < ADMIN_PASSWORD_MIN_LENGTH) {
       return NextResponse.json({ error: "invalid" }, { status: 400 });
     }
     const passwordHash = await hashPassword(body.password);
@@ -164,7 +165,7 @@ export async function DELETE(request: NextRequest) {
     .bind(body.id)
     .first<{ id: string; email: string; role: string; status: string }>();
   if (!current) return NextResponse.json({ error: "not_found" }, { status: 404 });
-  if (current.email === PROTECTED_SUPER_ADMIN_EMAIL) {
+  if (isProtectedSuperAdmin(current.email, getProtectedSuperAdminEmail())) {
     return NextResponse.json({ error: "protected_account" }, { status: 403 });
   }
   if (current.role === "SUPER_ADMIN" && current.status === "ACTIVE") {

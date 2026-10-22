@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { authorizeAdmin } from "@/lib/admin-api";
 import { writeAudit } from "@/lib/auth";
 import { getDb, newId, nowIso } from "@/lib/cloudflare";
+import { parseHttpsUrl } from "@/lib/safe-url";
 import { productStatuses, type ProductStatus } from "@/types";
 
 export const runtime = "edge";
@@ -50,6 +51,20 @@ export async function POST(request: NextRequest) {
   if (body.status && !productStatuses.includes(body.status)) {
     return NextResponse.json({ error: "Invalid status" }, { status: 400 });
   }
+
+  const storeUrls = {
+    app_store_url: parseHttpsUrl(body.app_store_url),
+    google_play_url: parseHttpsUrl(body.google_play_url),
+    website_url: parseHttpsUrl(body.website_url),
+  };
+  for (const [field, value] of Object.entries(storeUrls)) {
+    if (value === "invalid") {
+      return NextResponse.json({ error: "invalid_url", field }, { status: 400 });
+    }
+  }
+  body.app_store_url = storeUrls.app_store_url;
+  body.google_play_url = storeUrls.google_play_url;
+  body.website_url = storeUrls.website_url;
 
   const id = body.id || newId();
   const isUpdate = Boolean(body.id);

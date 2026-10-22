@@ -1,5 +1,6 @@
 import { Apple } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { safeHref } from "@/lib/safe-url";
 import { cn } from "@/lib/utils";
 
 export function AppStoreButton({
@@ -13,7 +14,8 @@ export function AppStoreButton({
   linkLabel?: string;
   className?: string;
 }) {
-  if (!href) {
+  const url = safeHref(href);
+  if (!url) {
     return (
       <Button variant="outline" disabled className={cn("justify-start", className)}>
         <Apple className="h-4 w-4" />
@@ -24,7 +26,7 @@ export function AppStoreButton({
 
   return (
     <Button asChild variant="outline" className={cn("justify-start", className)}>
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <a href={url} target="_blank" rel="noopener noreferrer">
         <Apple className="h-4 w-4" />
         {linkLabel}
       </a>

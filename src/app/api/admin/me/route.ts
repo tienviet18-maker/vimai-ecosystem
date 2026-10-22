@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, writeAudit } from "@/lib/auth";
 import { assertSameOrigin, hashPassword } from "@/lib/session";
 import { getDb, nowIso } from "@/lib/cloudflare";
+import { ADMIN_PASSWORD_MIN_LENGTH } from "@/lib/password";
 
 export const runtime = "edge";
 
@@ -25,7 +26,7 @@ export async function PATCH(request: NextRequest) {
   if (!db) return NextResponse.json({ error: "unconfigured" }, { status: 503 });
   const body = (await request.json().catch(() => null)) as { password?: string } | null;
   const password = String(body?.password ?? "");
-  if (password.length < 6) {
+  if (password.length < ADMIN_PASSWORD_MIN_LENGTH) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
   const passwordHash = await hashPassword(password);

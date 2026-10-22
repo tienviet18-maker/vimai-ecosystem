@@ -18,9 +18,9 @@ test("session cookie flags are production-safe", () => {
 
 test("signed session round-trip and rejection of tampering", async () => {
   process.env.AUTH_SECRET = "a".repeat(32);
-  const token = await signSession({ id: "user-1", email: "vimai.support@gmail.com" });
+  const token = await signSession({ id: "user-1", email: "admin@example.com" });
   const session = await readSession(token);
-  assert.deepEqual(session, { id: "user-1", email: "vimai.support@gmail.com" });
+  assert.deepEqual(session, { id: "user-1", email: "admin@example.com" });
   assert.equal(await readSession(`${token}x`), null);
   assert.equal(await readSession("not-a-token"), null);
   assert.equal(await readSession(""), null);

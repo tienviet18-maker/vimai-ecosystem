@@ -38,11 +38,11 @@ export function PasswordForm() {
       <h2 className="text-sm font-semibold">Change your password</h2>
       <div className="space-y-2">
         <Label htmlFor="password">New password</Label>
-        <Input id="password" name="password" type="password" minLength={6} required className="min-h-11" />
+        <Input id="password" name="password" type="password" minLength={12} required className="min-h-11" />
       </div>
       <div className="space-y-2">
         <Label htmlFor="confirm">Confirm</Label>
-        <Input id="confirm" name="confirm" type="password" minLength={6} required className="min-h-11" />
+        <Input id="confirm" name="confirm" type="password" minLength={12} required className="min-h-11" />
       </div>
       <Button type="submit" disabled={loading} className="min-h-11">
         {loading ? "Saving…" : "Update password"}

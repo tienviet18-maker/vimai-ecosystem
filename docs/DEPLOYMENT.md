@@ -17,12 +17,18 @@ Do not create another Pages project. Do not change DNS blindly.
 
 Schema: `npx wrangler d1 execute vimai-cms --remote --file=d1/schema.sql`  
 Idempotent product seed: `npx wrangler d1 execute vimai-cms --remote --file=d1/seed.sql`
+Migrations: `npx wrangler d1 migrations apply vimai-cms --remote` (e.g. `0017_rate_limits.sql`, the shared rate-limit table for contact, feedback and admin login; until it is applied the limiter fails open and login falls back to the old `auth_events` check).
+
+## Security headers
+
+`public/_headers` (static assets) and `headers()` in `next.config.mjs` (SSR pages and API routes) send the same baseline set: `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options: DENY`, HSTS (1 year, includeSubDomains) and a minimal `Permissions-Policy`. There is no CSP yet; add one only after testing JSON-LD, the Cloudflare beacon and admin pages.
 
 ## Secrets / env vars (Pages Settings)
 
 - `NEXT_PUBLIC_SITE_URL=https://vimai.jp` (also in wrangler `[vars]`)
 - `AUTH_SECRET` (secret, ≥32 characters)
 - `ADMIN_BOOTSTRAP_EMAIL` / `ADMIN_BOOTSTRAP_PASSWORD` (first admin only; delete after first successful login)
+- `SUPER_ADMIN_EMAIL` (protected emergency SUPER_ADMIN: cannot be demoted, disabled or deleted; only protects, never grants a role; unset = no account protected)
 - Optional: `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_CF_BEACON_TOKEN`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`, `PUBLIC_MEDIA_BASE_URL`
 
 www → apex: middleware 301.

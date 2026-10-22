@@ -189,3 +189,13 @@ CREATE TABLE IF NOT EXISTS ctv_record_failures (
   updated_at TEXT NOT NULL,
   UNIQUE (product, order_ref)
 );
+
+-- Shared fixed-window rate limiter (migration 0017, src/lib/d1-rate-limit.ts).
+CREATE TABLE IF NOT EXISTS rate_limits (
+  key TEXT NOT NULL,
+  window_start INTEGER NOT NULL,
+  count INTEGER NOT NULL DEFAULT 0,
+  expires_at INTEGER NOT NULL,
+  PRIMARY KEY (key, window_start)
+);
+CREATE INDEX IF NOT EXISTS idx_rate_limits_expires ON rate_limits (expires_at);

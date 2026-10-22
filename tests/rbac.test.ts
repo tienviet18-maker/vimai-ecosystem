@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { can, isAdminRole, PROTECTED_SUPER_ADMIN_EMAIL } from "../src/lib/rbac.ts";
+import { readFileSync } from "node:fs";
+import { can, isAdminRole, isProtectedSuperAdmin, normalizeProtectedEmail } from "../src/lib/rbac.ts";
 
 test("role parser", () => {
   assert.equal(isAdminRole("SUPER_ADMIN"), true);
@@ -35,8 +36,24 @@ test("EDITOR is limited to content", () => {
   assert.equal(can("EDITOR", "categories"), false);
 });
 
-test("protected emergency account email is the required super admin", () => {
-  assert.equal(PROTECTED_SUPER_ADMIN_EMAIL, "vimai.support@gmail.com");
+test("protected emergency account comes from env, matched case-insensitively", () => {
+  assert.equal(isProtectedSuperAdmin("Owner@Example.com", " owner@example.com "), true);
+  assert.equal(isProtectedSuperAdmin("other@example.com", "owner@example.com"), false);
+});
+
+test("unset or blank SUPER_ADMIN_EMAIL protects nobody", () => {
+  for (const unset of [undefined, null, "", "   ", "not-an-email"]) {
+    assert.equal(normalizeProtectedEmail(unset), "");
+    assert.equal(isProtectedSuperAdmin("", unset), false);
+    assert.equal(isProtectedSuperAdmin("owner@example.com", unset), false);
+    assert.equal(isProtectedSuperAdmin(undefined, unset), false);
+  }
+});
+
+test("protected email is not hard-coded in source", () => {
+  for (const file of ["src/lib/rbac.ts", "src/components/admin/UsersManager.tsx", "src/app/api/admin/users/route.ts"]) {
+    assert.doesNotMatch(readFileSync(file, "utf8"), /PROTECTED_SUPER_ADMIN_EMAIL|@gmail\.com/);
+  }
 });
 
 test("only SUPER_ADMIN can manage CTV money", () => {

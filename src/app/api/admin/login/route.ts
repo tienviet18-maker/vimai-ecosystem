@@ -9,6 +9,13 @@ import {
 } from "@/lib/session";
 import { writeAudit } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import {
+  RATE_LIMITS,
+  clientIp,
+  isRateLimited,
+  recordRateLimitEvent,
+} from "@/lib/d1-rate-limit";
+import { DUMMY_PASSWORD_HASH, timingSafeEqualString } from "@/lib/password";
 
 export const runtime = "edge";
 
@@ -27,7 +34,9 @@ async function recordAuthEvent(ip: string, email: string, action: string) {
   }
 }
 
-async function d1RateLimited(ip: string) {
+/** Legacy per-IP check on auth_events (migration 0003). Kept so the limit still holds
+ * before migration 0017 (rate_limits) is applied; the shared limiter is the primary check. */
+async function authEventsRateLimited(ip: string) {
   try {
     const db = getDb();
     if (!db) return false;
@@ -45,15 +54,22 @@ async function d1RateLimited(ip: string) {
   }
 }
 
+async function d1RateLimited(ip: string) {
+  return (await isRateLimited(getDb(), RATE_LIMITS.loginIp, ip)) || (await authEventsRateLimited(ip));
+}
+
+async function recordLoginFailure(ip: string, email: string) {
+  const db = getDb();
+  await recordRateLimitEvent(db, RATE_LIMITS.loginIp, ip);
+  if (email) await recordRateLimitEvent(db, RATE_LIMITS.loginEmail, email);
+}
+
 export async function POST(request: NextRequest) {
   if (!assertSameOrigin(request)) {
     return NextResponse.json({ error: "forbidden" }, { status: 403 });
   }
 
-  const ip =
-    request.headers.get("cf-connecting-ip") ??
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    "unknown";
+  const ip = clientIp(request);
   if (!rateLimit(`login:${ip}`, 8) || (await d1RateLimited(ip))) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
@@ -76,6 +92,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
 
+  // Per-email lockout (10 failures / 15 min), on top of the per-IP limit, so a botnet
+  // cannot spread guesses for one account across many IPs.
+  if (await isRateLimited(db, RATE_LIMITS.loginEmail, email)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   let user = await db
     .prepare("SELECT id, email, password_hash, role, status FROM admin_users WHERE email = ?")
     .bind(email)
@@ -95,7 +117,7 @@ export async function POST(request: NextRequest) {
       BOOTSTRAP_EMAIL &&
       email === BOOTSTRAP_EMAIL &&
       bootstrapPassword &&
-      password === bootstrapPassword
+      (await timingSafeEqualString(password, bootstrapPassword))
     ) {
       const id = newId();
       const passwordHash = await hashPassword(password);
@@ -111,8 +133,12 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  if (!user || user.status === "DISABLED" || !(await verifyPassword(password, user.password_hash))) {
+  // Always run one PBKDF2 verification, even for unknown emails, so response time does not
+  // reveal which admin emails exist.
+  const passwordOk = await verifyPassword(password, user?.password_hash ?? DUMMY_PASSWORD_HASH);
+  if (!user || user.status === "DISABLED" || !passwordOk) {
     await recordAuthEvent(ip, email, "login_failed");
+    await recordLoginFailure(ip, email);
     await writeAudit("login_failed", "admin", null, { email, ip }, null);
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }

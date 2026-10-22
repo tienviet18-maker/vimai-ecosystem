@@ -4,7 +4,7 @@ Production website for [https://vimai.jp](https://vimai.jp) — education and te
 
 ## Stack
 
-- Next.js App Router (pinned to 15.5.2 for `@cloudflare/next-on-pages`)
+- Next.js App Router (pinned to the latest patched 15.5.x; see below)
 - Cloudflare Pages project `vimai-ecosystem`
 - Cloudflare D1 (CMS) + R2 (media)
 - Tailwind CSS + shadcn/ui
@@ -35,7 +35,7 @@ Dashboard settings:
 - Compatibility flags: `nodejs_compat`
 - Bindings: D1 `DB` → `vimai-cms`, R2 `MEDIA` → `vimai-media`
 
-`@cloudflare/next-on-pages` currently requires Next.js `<= 15.5.2`.
+`@cloudflare/next-on-pages` (deprecated upstream) declares a peer range of Next.js `<= 15.5.2`. That release predates the React Server Components RCE fix (CVE-2025-55182 / CVE-2025-66478) and later security releases, so `package.json` pins the latest patched 15.5.x and uses an npm `overrides` entry to satisfy the adapter's peer range. Stay on the 15.5 line; longer term, migrate off next-on-pages (Cloudflare points to vinext / OpenNext).
 
 ## Footer
 

@@ -646,6 +646,92 @@ export const seedProducts: Product[] = [
       },
     ],
   },
+  {
+    id: "00000000-0000-0000-0000-000000000009",
+    slug: "tokutei-kaigo",
+    status: "beta",
+    app_store_url: null,
+    google_play_url: null,
+    website_url: "https://kaigo.vimai.jp",
+    featured: true,
+    sort_order: 9,
+    logo_url: "/images/products/tokutei_kaigo.png",
+    published: true,
+    translations: [
+      {
+        locale: "ja",
+        name: "ViMai Tokutei Kaigo（特定技能1号・介護）",
+        tagline: "特定技能1号「介護」の介護技能評価試験・介護日本語評価試験の対策アプリ",
+        description:
+          "特定技能1号「介護」の2つの試験、介護技能評価試験と介護日本語評価試験を練習するWebアプリです。公式の出題構成に合わせて、45問の技能試験20回分と15問の日本語試験30回分、合わせて1,350問を収録しています。本番と同じ60分・30分の時間配分で解き、正解するとすぐ次へ進み、間違えると止まって解説を表示します。漢字にはふりがなが付き、ベトナム語・英語の訳を表示できます。37の介護場面の声かけフレーズ（日本語の読み上げ付き）、記録・申し送りのページ、介護の単語帳500語、無料の試験ガイドも使えます。",
+        long_description:
+          "問題は公式の出題構成に合わせてViMaiが練習用に作成したもので、実際の試験問題ではありません。厚生労働省やプロメトリックの公認・監修を受けたものではありません。試験の日程・受験料・ルールは変わることがあるため、申し込む前に必ず公式ページを確認してください。学習を支えるツールであり、合格を保証するものではありません。",
+        target_audience:
+          "日本で介護の仕事を目指し、特定技能1号「介護」の試験を受ける外国人、特にベトナム語や英語で解説を読みながら日本語の問題に慣れたい人。受け入れ施設や登録支援機関が学習内容を確認する際にもご覧ください。",
+        features: [
+          "介護技能評価試験の模擬試験20回（各45問・60分）",
+          "介護日本語評価試験の模擬試験30回（各15問・30分）",
+          "正解すると次へ、間違えると止まって解説（VIPはAI解説付き）",
+          "漢字にふりがな、ベトナム語・英語の訳を表示可能",
+          "37の介護場面の声かけフレーズ（日本語の読み上げ付き）と記録・申し送り（無料）",
+          "介護の単語帳500語（最初の100語は無料）",
+          "構成・合格基準・申し込み方法をまとめた無料の試験ガイド",
+          "技能・日本語とも最初の3回は無料、アカウント登録不要",
+        ],
+        seo_title: "特定技能 介護 試験対策アプリ｜介護技能評価試験・日本語評価試験の模擬試験",
+        seo_description:
+          "特定技能1号「介護」の試験対策アプリ。介護技能評価試験（45問・60分）20回分と介護日本語評価試験（15問・30分）30回分、ふりがな、ベトナム語・英語訳、37場面の声かけフレーズ、単語帳500語。最初の3回は無料。",
+      },
+      {
+        locale: "vi",
+        name: "ViMai Tokutei Kaigo – Luyện thi kỹ năng đặc định ngành điều dưỡng",
+        tagline: "Luyện thi Tokutei Ginou 1 ngành Kaigo (特定技能1号 介護): đề kỹ năng và đề tiếng Nhật",
+        description:
+          "Ứng dụng web luyện hai bài thi Tokutei Ginou 1 ngành chăm sóc điều dưỡng (Kaigo): 介護技能評価試験 (kỹ năng) và 介護日本語評価試験 (tiếng Nhật Kaigo). Có 20 đề kỹ năng 45 câu và 30 đề tiếng Nhật 15 câu theo đúng cấu trúc chính thức, tổng cộng 1.350 câu. Làm bài bấm giờ 60 phút và 30 phút như thi thật: chọn đúng tự sang câu sau, chọn sai thì dừng lại giải thích ngay. Chữ Hán có furigana, bật được bản dịch tiếng Việt và tiếng Anh. Kèm câu giao tiếp cho 37 bối cảnh chăm sóc (có giọng đọc tiếng Nhật), phần ghi chép và giao ca, sổ 500 từ vựng Kaigo và hướng dẫn thi miễn phí.",
+        long_description:
+          "Đề do ViMai biên soạn theo cấu trúc chính thức để luyện tập; đây không phải đề thi thật và không được Bộ Y tế, Lao động và Phúc lợi Nhật Bản hay Prometric bảo trợ. Lịch thi, lệ phí và quy định có thể thay đổi, hãy kiểm tra trang chính thức trước khi đăng ký. Công cụ học tập, không cam kết đậu kỳ thi.",
+        target_audience:
+          "Người Việt và người nước ngoài muốn làm ngành chăm sóc điều dưỡng (介護) tại Nhật, đang chuẩn bị thi Tokutei Ginou 1 ngành Kaigo và muốn làm quen đề tiếng Nhật có furigana, đọc giải thích bằng tiếng Việt.",
+        features: [
+          "20 đề kỹ năng 介護技能評価試験, mỗi đề 45 câu, bấm giờ 60 phút",
+          "30 đề tiếng Nhật 介護日本語評価試験, mỗi đề 15 câu, bấm giờ 30 phút",
+          "Chọn đúng tự sang câu sau; chọn sai dừng lại giải thích, VIP có thêm AI giải thích",
+          "Chữ Hán có furigana, bật dịch tiếng Việt hoặc tiếng Anh",
+          "Câu giao tiếp 37 bối cảnh chăm sóc có giọng đọc tiếng Nhật, kèm ghi chép và giao ca, miễn phí",
+          "Sổ 500 từ vựng Kaigo, 100 từ đầu miễn phí",
+          "Hướng dẫn thi miễn phí: cấu trúc đề, điểm đỗ, cách đăng ký, link chính thức",
+          "Mỗi phần 3 đề đầu miễn phí, không cần tạo tài khoản; VIP 3 tháng 700.000đ, 1 tháng 450.000đ, thanh toán VietQR",
+        ],
+        seo_title: "Luyện thi Tokutei Kaigo – 20 đề kỹ năng, 30 đề tiếng Nhật Kaigo",
+        seo_description:
+          "Đề thi Tokutei Kaigo (特定技能 介護): 20 đề kỹ năng 45 câu, 30 đề tiếng Nhật 15 câu, bấm giờ như thật, furigana, dịch tiếng Việt, câu giao tiếp 37 bối cảnh. Mỗi phần 3 đề đầu miễn phí.",
+      },
+      {
+        locale: "en",
+        name: "ViMai Tokutei Kaigo: Care Worker Exam Practice",
+        tagline: "Tokutei Ginou (SSW i) care worker (介護) skills and Japanese test practice",
+        description:
+          "A web app for practising the two Specified Skilled Worker (i) care exams, the care skills test (介護技能評価試験) and the care Japanese test (介護日本語評価試験). It has 20 skills tests of 45 questions and 30 Japanese tests of 15 questions that follow the official test structure, 1,350 questions in total. Tests are timed at 60 and 30 minutes like the real ones: a correct answer moves on by itself, and a wrong answer stops to show the explanation. Kanji have furigana, and Vietnamese and English translations can be turned on. It also has care phrases for 37 care situations with Japanese audio, a records and shift handover section, a 500-word care vocabulary book and a free exam guide.",
+        long_description:
+          "Questions are written by ViMai to follow the official structure for practice. They are not real exam questions, and the app is not endorsed by the Ministry of Health, Labour and Welfare or Prometric. Dates, fees and rules can change, so always check the official page before you apply. A study tool; it does not guarantee a passing result.",
+        target_audience:
+          "Foreign learners who want to work in care (介護) in Japan and are preparing for the Specified Skilled Worker (i) care exams, especially those who want to get used to Japanese questions with furigana while reading explanations in Vietnamese or English.",
+        features: [
+          "20 care skills mock tests (介護技能評価試験), 45 questions in 60 minutes each",
+          "30 care Japanese mock tests (介護日本語評価試験), 15 questions in 30 minutes each",
+          "A correct answer moves on; a wrong answer stops for the explanation, and VIP adds AI explanations",
+          "Furigana on kanji; Vietnamese or English translation on demand",
+          "Care phrases for 37 situations with Japanese audio, plus records and shift handovers, free",
+          "Care vocabulary book of 500 words, the first 100 free",
+          "Free exam guide: structure, pass marks, registration and official links",
+          "The first 3 tests of each part are free, no account needed",
+        ],
+        seo_title: "Tokutei Kaigo Practice Tests: Care Skills and Japanese (SSW i)",
+        seo_description:
+          "Practise for the Tokutei Ginou care exams: 20 care skills tests (45 questions, 60 min) and 30 care Japanese tests (15 questions, 30 min), furigana, Vietnamese and English translations, care phrases for 37 situations. The first 3 tests of each part are free.",
+      },
+    ],
+  },
 ];
 
 export const seedFaqs: Array<
@@ -1275,6 +1361,150 @@ export const seedFaqs: Array<
         question: "Which devices and languages are supported?",
         answer:
           "It is a web app: open seibishi3.vimai.jp in the browser on your phone or computer, and you can add it to the home screen. There is no App Store or Google Play version yet. The app interface is available in Vietnamese, English and Japanese.",
+      },
+    },
+  },
+  {
+    id: "faq-kaigo-1",
+    product_id: "00000000-0000-0000-0000-000000000009",
+    product_slug: "tokutei-kaigo",
+    sort_order: 31,
+    published: true,
+    translations: {
+      ja: {
+        question: "ViMai Tokutei Kaigoはどの試験の対策アプリですか？",
+        answer:
+          "特定技能1号「介護」の2つの試験、介護技能評価試験と介護日本語評価試験の対策アプリです。どちらもプロメトリックのコンピューター試験（CBT）で、国内・海外でほぼ毎月実施されています。特定技能「介護」で働くには、両方の合格が必要です。",
+      },
+      vi: {
+        question: "ViMai Tokutei Kaigo luyện thi kỳ thi nào?",
+        answer:
+          "App luyện hai bài thi Tokutei Ginou 1 ngành chăm sóc điều dưỡng (特定技能1号 介護): 介護技能評価試験 (bài kỹ năng) và 介護日本語評価試験 (bài tiếng Nhật Kaigo). Cả hai đều thi trên máy (CBT) tại Prometric, tổ chức gần như hằng tháng ở Nhật và ở nước ngoài. Muốn làm Tokutei ngành Kaigo thì phải đỗ cả hai bài.",
+      },
+      en: {
+        question: "Which exams does ViMai Tokutei Kaigo prepare for?",
+        answer:
+          "The two Specified Skilled Worker (i) care exams: the care skills test (介護技能評価試験) and the care Japanese test (介護日本語評価試験). Both are computer-based tests (CBT) at Prometric, held almost every month in Japan and overseas. You must pass both to work in care under Tokutei Ginou.",
+      },
+    },
+  },
+  {
+    id: "faq-kaigo-2",
+    product_id: "00000000-0000-0000-0000-000000000009",
+    product_slug: "tokutei-kaigo",
+    sort_order: 32,
+    published: true,
+    translations: {
+      ja: {
+        question: "試験の形式と合格基準は？",
+        answer:
+          "介護技能評価試験は45問・60分で、60％以上の正答で合格です。介護日本語評価試験は15問・30分で、73％以上の正答で合格です。両方の試験に合格し、さらにJFT-BasicかJLPT N4以上の日本語能力が必要です。基準は変わることがあるため、申し込む前に厚生労働省の公式ページを確認してください。",
+      },
+      vi: {
+        question: "Đề thi gồm những gì, bao nhiêu điểm thì đỗ?",
+        answer:
+          "Bài kỹ năng (介護技能評価試験) có 45 câu, làm trong 60 phút, đỗ khi đúng từ 60%. Bài tiếng Nhật Kaigo (介護日本語評価試験) có 15 câu, làm trong 30 phút, đỗ khi đúng từ 73%. Phải đỗ cả hai bài, và cần thêm JFT-Basic hoặc JLPT N4 trở lên. Quy định có thể thay đổi, hãy kiểm tra trang chính thức của Bộ Y tế, Lao động và Phúc lợi Nhật Bản trước khi đăng ký.",
+      },
+      en: {
+        question: "What is the test format and the pass mark?",
+        answer:
+          "The care skills test has 45 questions in 60 minutes; you pass with 60% correct. The care Japanese test has 15 questions in 30 minutes; you pass with 73% correct. You must pass both, and you also need JFT-Basic or JLPT N4 or higher. Rules can change, so check the Ministry of Health, Labour and Welfare page before you apply.",
+      },
+    },
+  },
+  {
+    id: "faq-kaigo-3",
+    product_id: "00000000-0000-0000-0000-000000000009",
+    product_slug: "tokutei-kaigo",
+    sort_order: 33,
+    published: true,
+    translations: {
+      ja: {
+        question: "無料でどこまで使えますか？",
+        answer:
+          "技能試験・日本語試験とも最初の3回の模擬試験（合計6回）が無料です。試験ガイド、37場面の声かけフレーズ、記録・申し送りのページ、単語帳の最初の100語も無料です。VIPでは残りの模擬試験、残りの単語、VIP向けの試験のコツ、間違えた問題のAI解説が使えます。",
+      },
+      vi: {
+        question: "Dùng miễn phí được những gì?",
+        answer:
+          "Mỗi phần 3 đề đầu miễn phí (3 đề kỹ năng và 3 đề tiếng Nhật, tổng 6 đề), có furigana. Hướng dẫn thi, câu giao tiếp 37 bối cảnh, phần ghi chép và giao ca, 100 từ vựng đầu cũng miễn phí. VIP mở các đề còn lại, toàn bộ 500 từ vựng, mẹo thi VIP và AI giải thích câu sai.",
+      },
+      en: {
+        question: "What can I use for free?",
+        answer:
+          "The first 3 tests of each part are free (3 skills and 3 Japanese tests, 6 in total), with furigana. The exam guide, care phrases for 37 situations, the records and shift handover section and the first 100 vocabulary words are free too. VIP unlocks the remaining tests, all 500 words, VIP exam tips and AI explanations of wrong answers.",
+      },
+    },
+  },
+  {
+    id: "faq-kaigo-4",
+    product_id: "00000000-0000-0000-0000-000000000009",
+    product_slug: "tokutei-kaigo",
+    sort_order: 34,
+    published: true,
+    translations: {
+      ja: {
+        question: "VIPの料金はいくらですか？",
+        answer:
+          "Webでは3か月のVIPが700,000ドン、1か月のVIPが450,000ドンで、VietQR（ベトナムの銀行振込）で支払います。ViMaiの紹介者（CTV）のコードを使うと10%・15%・20%の割引になります。",
+      },
+      vi: {
+        question: "VIP giá bao nhiêu?",
+        answer:
+          "Trên web, VIP 3 tháng giá 700.000đ và VIP 1 tháng giá 450.000đ, thanh toán bằng chuyển khoản VietQR, tự kích hoạt sau 1–2 phút. Nhập mã giới thiệu của cộng tác viên (CTV) ViMai được giảm 10%, 15% hoặc 20%.",
+      },
+      en: {
+        question: "How much is VIP?",
+        answer:
+          "On the web, 3 months of VIP costs 700,000 VND and 1 month costs 450,000 VND, paid by VietQR bank transfer. A ViMai collaborator (CTV) referral code gives 10%, 15% or 20% off.",
+      },
+    },
+  },
+  {
+    id: "faq-kaigo-5",
+    product_id: "00000000-0000-0000-0000-000000000009",
+    product_slug: "tokutei-kaigo",
+    sort_order: 35,
+    published: true,
+    translations: {
+      ja: {
+        question: "どの端末・言語で使えますか？アカウントは必要ですか？",
+        answer:
+          "Webアプリです。スマートフォンやパソコンのブラウザで kaigo.vimai.jp を開けばすぐに使え、ホーム画面に追加することもできます。アカウント登録は不要です。アプリの表示言語はベトナム語・日本語・英語です。",
+      },
+      vi: {
+        question: "Dùng trên thiết bị nào, ngôn ngữ gì, có cần tài khoản không?",
+        answer:
+          "App chạy trên trình duyệt (web app): mở kaigo.vimai.jp trên điện thoại hoặc máy tính là dùng được ngay, có thể thêm ra màn hình chính như một ứng dụng. Không cần tạo tài khoản; khi mua VIP, app cấp mã khôi phục để dùng trên máy thứ hai. Giao diện app có tiếng Việt, tiếng Nhật và tiếng Anh.",
+      },
+      en: {
+        question: "Which devices and languages are supported? Do I need an account?",
+        answer:
+          "It is a web app: open kaigo.vimai.jp in the browser on your phone or computer, and you can add it to the home screen. No account is needed. The app interface is available in Vietnamese, Japanese and English.",
+      },
+    },
+  },
+  {
+    id: "faq-kaigo-6",
+    product_id: "00000000-0000-0000-0000-000000000009",
+    product_slug: "tokutei-kaigo",
+    sort_order: 36,
+    published: true,
+    translations: {
+      ja: {
+        question: "アプリの問題は本番の試験問題ですか？",
+        answer:
+          "いいえ。公式の出題構成に合わせてViMaiが練習用に作成した問題で、本番の試験問題ではありません。厚生労働省やプロメトリックの公認・監修も受けていません。合格を保証するものではありません。",
+      },
+      vi: {
+        question: "Đề trong app có phải đề thi thật không?",
+        answer:
+          "Không. Đề do ViMai biên soạn theo cấu trúc chính thức để luyện tập, không phải đề thi thật và không được Bộ Y tế, Lao động và Phúc lợi Nhật Bản hay Prometric bảo trợ. App không cam kết kết quả thi.",
+      },
+      en: {
+        question: "Are the app's questions the real exam?",
+        answer:
+          "No. ViMai writes them to follow the official structure for practice. They are not real exam questions, and the app is not endorsed by the Ministry of Health, Labour and Welfare or Prometric. The app does not promise a result.",
       },
     },
   },

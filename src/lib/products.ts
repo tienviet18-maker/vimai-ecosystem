@@ -5,6 +5,7 @@ import {
   resolveProductOgImage,
   resolveProductSite,
   toOptimizedImage,
+  withSeedFallback,
 } from "@/lib/product-sites";
 import type {
   Locale,
@@ -124,7 +125,7 @@ export async function getProducts(options?: {
   try {
     const remote = await fetchFromD1();
     if (remote && remote.length > 0) {
-      return publishedOnly ? remote.filter((item) => item.published) : remote;
+      return publishedOnly ? withSeedFallback(remote, seedProducts).filter((item) => item.published) : remote;
     }
   } catch {
     /* fall back to seed data */

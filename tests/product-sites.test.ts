@@ -3,6 +3,8 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { test } from "node:test";
 import {
   PRODUCT_LOGOS,
+  SEED_FALLBACK_SLUGS,
+  withSeedFallback,
   resolveProductOgImage,
   toOptimizedImage,
   PRODUCT_SITES,
@@ -19,6 +21,8 @@ test("each ViMai product has its own canonical site", () => {
   assert.equal(PRODUCT_SITES.menkyo, "https://menkyo.vimai.jp");
   assert.equal(PRODUCT_SITES["gino1-seibi"], "https://gino1-seibi.vimai.jp");
   assert.equal(PRODUCT_LOGOS["gino1-seibi"], "/images/products/gino1_seibi.v2.webp");
+  assert.equal(PRODUCT_SITES["tokutei-kaigo"], "https://kaigo.vimai.jp");
+  assert.equal(PRODUCT_LOGOS["tokutei-kaigo"], "/images/products/tokutei_kaigo.v2.webp");
   assert.equal(resolveProductSite("tokutei-taxi"), "https://tokutei-taxi.vimai.jp");
   assert.notEqual(resolveProductSite("tokutei-taxi"), "https://vimai.jp");
 });
@@ -154,6 +158,7 @@ test("product ids, slugs and sort orders are unique across seed and migrations",
     read("d1/migrations/0005_add_menkyo_product.sql"),
     read("d1/migrations/0010_add_gino1_product.sql"),
     read("d1/migrations/0012_add_vicare_product.sql"),
+    read("d1/migrations/0018_add_kaigo_product.sql"),
   ].join("\n");
   const rows = [
     ...sql.matchAll(/'(00000000-0000-0000-0000-0000000000\d\d)', '([a-z0-9-]+)', '[a-z_]+',(?: '[a-z]+',)?\s*\S+, \S+, \S+,\s*[01], (\d+),/g),
@@ -168,6 +173,7 @@ test("product ids, slugs and sort orders are unique across seed and migrations",
   }
   assert.ok(bySlug.has("gino1-seibi"));
   assert.ok(bySlug.has("vicare"));
+  assert.ok(bySlug.has("tokutei-kaigo"));
   const ids = [...bySlug.values()].map((item) => item.id);
   const sorts = [...bySlug.values()].map((item) => item.sort);
   assert.equal(new Set(ids).size, ids.length, "duplicate product id");
@@ -370,4 +376,56 @@ test("Seibishi 3kyu: migration 0015 matches the seed and only rewrites placehold
   for (const block of enJaBlocks) {
     assert.doesNotMatch(block, /VND|ドン|₫|VietQR|700[.,]000/, block.slice(0, 120));
   }
+});
+
+test("Tokutei Kaigo resolves to kaigo.vimai.jp and its logo", () => {
+  assert.equal(resolveProductSite("tokutei-kaigo"), "https://kaigo.vimai.jp");
+  assert.equal(resolveProductLogo("tokutei-kaigo"), "/images/products/tokutei_kaigo.v2.webp");
+  assert.equal(
+    resolveProductLogo("tokutei-kaigo", "/images/products/tokutei_kaigo.png"),
+    "/images/products/tokutei_kaigo.v2.webp",
+  );
+  assert.equal(resolveProductOgImage("tokutei-kaigo"), "/images/products/tokutei_kaigo.png");
+});
+
+test("Tokutei Kaigo is in the seed fallback and in the D1 SQL for all three locales", () => {
+  const seed = read("src/lib/seed.ts");
+  assert.match(seed, /slug: "tokutei-kaigo",\n    status: "beta",/);
+  assert.match(seed, /website_url: "https:\/\/kaigo\.vimai\.jp"/);
+
+  const migration = read("d1/migrations/0018_add_kaigo_product.sql");
+  assert.match(migration, /INSERT OR IGNORE INTO products/);
+  assert.doesNotMatch(migration, /\b(UPDATE|DELETE|DROP)\b/);
+  assert.doesNotMatch(migration, /^\s*INSERT INTO/m, "every insert must be OR IGNORE");
+  assert.match(migration, /'00000000-0000-0000-0000-000000000009', 'tokutei-kaigo', 'beta'/);
+  assert.match(migration, /'https:\/\/kaigo\.vimai\.jp'/);
+  assert.match(migration, /'\/images\/products\/tokutei_kaigo\.png'/);
+  for (const locale of ["vi", "en", "ja"]) {
+    assert.match(migration, new RegExp(`000000000009-${locale}', id, '${locale}'`));
+    for (let n = 1; n <= 6; n += 1) {
+      assert.match(migration, new RegExp(`'faq-kaigo-${n}-${locale}'`));
+    }
+  }
+  assert.match(migration, /700\.000đ/);
+  assert.match(migration, /không phải đề thi thật/);
+  assert.match(migration, /not real exam questions/);
+  // Exam facts must match the app (tokutei-kaigo CLAUDE.md, checked 2026-10-15).
+  assert.match(migration, /45 câu/);
+  assert.match(migration, /73%/);
+
+  assert.match(read("d1/seed.sql"), /'tokutei-kaigo', 'beta'/);
+});
+
+test("public pages show a seed-only product until its D1 row exists", () => {
+  const remote = [{ slug: "tokutei-taxi" }, { slug: "gino1-seibi" }];
+  const seed = [{ slug: "tokutei-taxi" }, { slug: "tokutei-kaigo" }, { slug: "kids" }];
+  assert.ok(SEED_FALLBACK_SLUGS.includes("tokutei-kaigo"));
+  // Only listed slugs are added, never other seed rows (e.g. ones removed in the CMS).
+  assert.deepEqual(
+    withSeedFallback(remote, seed).map((item) => item.slug),
+    ["tokutei-taxi", "gino1-seibi", "tokutei-kaigo"],
+  );
+  // Once the migration ran, the D1 row wins and nothing is duplicated.
+  const migrated = [...remote, { slug: "tokutei-kaigo" }];
+  assert.equal(withSeedFallback(migrated, seed), migrated);
 });

@@ -18,6 +18,7 @@ Do not create another Pages project. Do not change DNS blindly.
 Schema: `npx wrangler d1 execute vimai-cms --remote --file=d1/schema.sql`  
 Idempotent product seed: `npx wrangler d1 execute vimai-cms --remote --file=d1/seed.sql`
 Migrations: `npx wrangler d1 migrations apply vimai-cms --remote` (e.g. `0017_rate_limits.sql`, the shared rate-limit table for contact, feedback and admin login; until it is applied the limiter fails open and login falls back to the old `auth_events` check).
+`0018_add_kaigo_product.sql` adds ViMai Tokutei Kaigo (`tokutei-kaigo`, kaigo.vimai.jp). Until it is applied, public pages show Kaigo from `src/lib/seed.ts` (`SEED_FALLBACK_SLUGS` in `src/lib/product-sites.ts`); it only appears in the admin CMS after the migration.
 
 ## Security headers
 

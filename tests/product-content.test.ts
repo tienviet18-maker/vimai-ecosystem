@@ -91,10 +91,10 @@ test("0019 keeps the honest wording and the payment rules", () => {
     const sql = rows.get(`vicare/${locale}`)!;
     assert.doesNotMatch(sql, /bác sĩ đã duyệt|doctor-reviewed|reviewed by a doctor|医師が監修|確認待ち|awaiting expert review/);
   }
-  assert.match(field(rows.get("vicare/vi")!, "features"), /Sắp phát hành trên app iPhone\/Android: dịch đúng lời người nói/);
-  assert.match(field(rows.get("vicare/en")!, "features"), /Coming in the iPhone\/Android app/);
-  assert.match(field(rows.get("vicare/ja")!, "features"), /iPhone\/Androidアプリで公開予定/);
-  assert.match(field(rows.get("vicare/vi")!, "features"), /hơn 3\.100 mẫu câu/);
+  assert.match(field(rows.get("vicare/vi")!, "features"), /Dịch đúng lời người nói, kể cả câu không có trong kho mẫu/);
+  assert.match(field(rows.get("vicare/en")!, "features"), /Translates what was actually said/);
+  assert.match(field(rows.get("vicare/ja")!, "features"), /話した言葉をそのまま翻訳/);
+  assert.match(field(rows.get("vicare/vi")!, "features"), /hơn 3\.700 mẫu câu/);
   // Only Taxi and Transport are on the App Store.
   for (const slug of ["seibi", "kids", "maimai", "menkyo", "gino1-seibi", "vicare", "tokutei-kaigo"]) {
     for (const locale of LOCALES) {

@@ -117,7 +117,12 @@
       "maintenance": "一時停止",
       "discontinued": "提供終了",
       "archived": "アーカイブ"
-    }
+    },
+    "iosVipNoteTitle": "iPhoneのVIPについて",
+    "iosVipNoteAuto": "アプリ内で1か月または3か月のプランを選び、Appleアカウントで支払います。Appleの確認後すぐにVIPが有効になり、「VIPが有効になりました」と表示されます。アクティベーションコードは不要です。",
+    "iosVipNoteRenew": "自動更新はありません。期限が切れたら必要なときに再購入してください。Appleが自動で請求することはありません。",
+    "iosVipNoteRestore": "アプリの再インストールや機種変更のときは、同じAppleアカウントでアプリ内の「購入を復元」をタップしてください。",
+    "iosVipNoteWeb": "Webで購入したVIPはWeb版でのみ使えます。Web版のVIPとiPhoneアプリ内のVIPは別のもので、移行はできません。"
   },
   "about": {
     "title": "私たちについて",

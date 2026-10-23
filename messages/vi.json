@@ -114,7 +114,12 @@
       "maintenance": "Tạm dừng",
       "discontinued": "Ngừng cung cấp",
       "archived": "Lưu trữ"
-    }
+    },
+    "iosVipNoteTitle": "Lưu ý khi mua VIP trên iPhone",
+    "iosVipNoteAuto": "Mua trong app: chọn gói 1 tháng hoặc 3 tháng, thanh toán bằng tài khoản Apple. VIP tự mở ngay khi Apple xác nhận, app hiện thông báo “VIP đã được mở”. Không cần mã kích hoạt.",
+    "iosVipNoteRenew": "Gói không tự gia hạn: hết hạn thì mua lại khi cần, Apple không tự trừ tiền.",
+    "iosVipNoteRestore": "Cài lại app hoặc đổi máy: bấm “Khôi phục giao dịch đã mua” trong app, dùng cùng tài khoản Apple.",
+    "iosVipNoteWeb": "VIP mua trên web (chuyển khoản, có mã khôi phục) chỉ dùng trên bản web, mở bằng trình duyệt trên điện thoại hoặc máy tính. VIP web và VIP trong app iPhone là hai gói riêng, không chuyển qua lại được."
   },
   "about": {
     "title": "Về chúng tôi",

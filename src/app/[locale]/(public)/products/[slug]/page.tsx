@@ -203,9 +203,9 @@ export default async function ProductPage({
               <h2 className="text-lg font-semibold tracking-tight">{t("download")}</h2>
               <div className="mt-5 flex flex-wrap gap-3">
                 <AppStoreButton
-                  href={appStoreOnly ? appStoreUrl(slug) : product.app_store_url}
+                  href={appStoreUrl(slug) ?? (appStoreOnly ? null : product.app_store_url)}
                   label={t(appStoreOnly ? "comingSoon" : "storeSoon")}
-                  linkLabel={appStoreOnly ? t("downloadOnAppStore") : undefined}
+                  linkLabel={appStoreUrl(slug) ? t("downloadOnAppStore") : undefined}
                 />
                 <PlayStoreButton href={product.google_play_url} label={t("storeSoon")} />
               </div>

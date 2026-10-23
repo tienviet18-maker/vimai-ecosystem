@@ -13,8 +13,7 @@
 /** App Store links. `null` = not published yet (button shows "Coming soon"). */
 export const APP_STORE_URLS: Record<string, string | null> = {
   "tokutei-taxi": "https://apps.apple.com/app/id6819012544",
-  // TODO(owner): set the real link once Apple approves the app (submitted 2026-10-07).
-  "tokutei-transport": null,
+  "tokutei-transport": "https://apps.apple.com/app/id6819710696",
   // TODO(owner): set the real link once the ViMai Menkyo app is on the App Store.
   menkyo: null,
 };

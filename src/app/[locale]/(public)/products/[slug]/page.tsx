@@ -210,6 +210,20 @@ export default async function ProductPage({
                 <PlayStoreButton href={product.google_play_url} label={t("storeSoon")} />
               </div>
             </div>
+            {appStoreUrl(slug) ? (
+              <div
+                data-testid="ios-vip-note"
+                className="rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 text-sm leading-relaxed text-amber-950"
+              >
+                <h3 className="font-bold text-red-700">⚠️ {t("iosVipNoteTitle")}</h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5">
+                  <li>{t("iosVipNoteAuto")}</li>
+                  <li>{t("iosVipNoteRenew")}</li>
+                  <li>{t("iosVipNoteRestore")}</li>
+                  <li className="font-semibold text-red-700">{t("iosVipNoteWeb")}</li>
+                </ul>
+              </div>
+            ) : null}
             {appStoreOnly ? null : <PwaInstallGuide />}
           </div>
         </div>

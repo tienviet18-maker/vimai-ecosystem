@@ -117,7 +117,12 @@
       "maintenance": "Paused",
       "discontinued": "Discontinued",
       "archived": "Archived"
-    }
+    },
+    "iosVipNoteTitle": "About VIP on iPhone",
+    "iosVipNoteAuto": "In the app: choose 1 month or 3 months and pay with your Apple account. VIP turns on as soon as Apple confirms, and the app shows “VIP is unlocked”. No activation code is needed.",
+    "iosVipNoteRenew": "Plans do not renew automatically: buy again when you need it; Apple never charges you on its own.",
+    "iosVipNoteRestore": "Reinstalled the app or changed phone: tap “Restore purchases” in the app with the same Apple account.",
+    "iosVipNoteWeb": "VIP bought on the web works only in the web version. Web VIP and iPhone in-app VIP are separate and cannot be transferred."
   },
   "about": {
     "title": "About",

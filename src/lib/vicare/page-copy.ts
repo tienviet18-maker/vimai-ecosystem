@@ -33,7 +33,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
         key: "interpreter",
         title: "Phiên dịch khi khám bệnh",
         body:
-          "Đặt điện thoại lên bàn giữa bạn và bác sĩ. Bác sĩ thấy lời xin phép bằng tiếng Nhật trước khi bắt đầu. App nghe qua micro bằng bộ nhận dạng giọng nói của điện thoại (ưu tiên chạy ngay trên máy), so với kho hàng nghìn câu bác sĩ – bệnh nhân và hiện nghĩa tiếng Việt. Con số (liều thuốc, số ngày) luôn được nhắc kiểm tra lại. Không ghi âm. Có thể lưu buổi khám vào nhật ký.",
+          "Đặt điện thoại lên bàn giữa bạn và bác sĩ. Bác sĩ thấy lời xin phép bằng tiếng Nhật trước khi bắt đầu. App nghe qua micro bằng bộ nhận dạng giọng nói của điện thoại (ưu tiên chạy ngay trên máy), so với kho hơn 3.100 mẫu câu bác sĩ – bệnh nhân và hiện nghĩa tiếng Việt. Con số (liều thuốc, số ngày) luôn được nhắc kiểm tra lại. Không ghi âm. Có thể lưu buổi khám vào nhật ký.",
       },
       {
         key: "scanner",
@@ -53,7 +53,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         key: "clinics",
         title: "Phòng khám gần đây",
-        body: "Chọn khoa (14 khoa), mở Google Maps tìm phòng khám khoa đó gần vị trí của bạn. Kèm tên khoa tiếng Nhật trên biển hiệu và câu nói khi gọi điện đặt hẹn.",
+        body: "Chọn khoa, xem danh sách hơn 140.000 cơ sở y tế ở 47 tỉnh từ dữ liệu mở của Bộ Y tế Nhật (ưu tiên nơi đang mở), hoặc mở Google Maps tìm phòng khám khoa đó gần bạn. Kèm tên khoa tiếng Nhật trên biển hiệu và câu nói khi gọi điện đặt hẹn.",
       },
       {
         key: "emergency",
@@ -73,12 +73,12 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         key: "diseases",
         title: "Cẩm nang bệnh",
-        body: "Hơn 100 bệnh thường gặp: dấu hiệu nguy hiểm, khám khoa nào, tự chăm sóc, câu nói ở phòng khám.",
+        body: "Hơn 170 bệnh thường gặp: dấu hiệu nguy hiểm, khám khoa nào, tự chăm sóc, câu nói ở phòng khám.",
       },
       {
         key: "procedures",
         title: "Thủ tục & bảo hiểm",
-        body: "Hơn 40 bài: bảo hiểm y tế, tiền khám, 高額療養費, 労災, gia đình và công việc, kèm nguồn chính thức.",
+        body: "70 bài: bảo hiểm y tế, tiền khám, 高額療養費, 労災, gia đình và công việc, kèm nguồn chính thức.",
       },
       {
         key: "dictionary",
@@ -162,7 +162,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "Phiên dịch khi khám bệnh hoạt động thế nào?",
         answer:
-          "App nghe bác sĩ qua micro bằng bộ nhận dạng giọng nói của điện thoại, rồi so với kho hàng nghìn câu thường gặp khi khám để hiện nghĩa tiếng Việt. Câu không có trong kho sẽ được báo rõ để bạn nhờ bác sĩ nói lại hoặc viết ra giấy. Con số luôn được nhắc kiểm tra lại. Âm thanh không được ghi lại.",
+          "App nghe bác sĩ qua micro bằng bộ nhận dạng giọng nói của điện thoại, rồi so với kho hơn 3.100 mẫu câu thường gặp khi khám để hiện nghĩa tiếng Việt. Câu không có trong kho sẽ được báo rõ để bạn nhờ bác sĩ nói lại hoặc viết ra giấy. Con số luôn được nhắc kiểm tra lại. Âm thanh không được ghi lại.",
       },
       {
         question: "ViCare có thay được phiên dịch viên y tế không?",
@@ -242,7 +242,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
         key: "interpreter",
         title: "Doctor-visit interpreter",
         body:
-          "Lay the phone on the desk between you and the doctor. The doctor first sees a consent request in Japanese. The app listens through the microphone using the phone's own speech recogniser (on-device when available), matches what it hears against thousands of doctor–patient sentences and shows the meaning in Vietnamese. Numbers such as doses and days are always flagged for you to double-check. Audio is never recorded. You can save the visit to your diary.",
+          "Lay the phone on the desk between you and the doctor. The doctor first sees a consent request in Japanese. The app listens through the microphone using the phone's own speech recogniser (on-device when available), matches what it hears against over 3,100 doctor–patient sentences and shows the meaning in Vietnamese. Numbers such as doses and days are always flagged for you to double-check. Audio is never recorded. You can save the visit to your diary.",
       },
       {
         key: "scanner",
@@ -262,7 +262,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         key: "clinics",
         title: "Nearby clinics",
-        body: "Choose a department (14 of them) and open Google Maps to find one near you, with the Japanese name on the signboard and phrases for booking by phone.",
+        body: "Choose a department, browse over 140,000 medical facilities in 47 prefectures from the Ministry of Health's open data (open ones first), or open Google Maps to find one near you, with the Japanese name on the signboard and phrases for booking by phone.",
       },
       {
         key: "emergency",
@@ -282,12 +282,12 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         key: "diseases",
         title: "Illness guide",
-        body: "More than 100 common illnesses: warning signs, which department, self-care and what to say at the clinic.",
+        body: "More than 170 common illnesses: warning signs, which department, self-care and what to say at the clinic.",
       },
       {
         key: "procedures",
         title: "Insurance & procedures",
-        body: "More than 40 articles on health insurance, costs, 高額療養費, 労災, family and work, with official sources.",
+        body: "70 articles on health insurance, costs, 高額療養費, 労災, family and work, with official sources.",
       },
       {
         key: "dictionary",
@@ -369,7 +369,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "How does the doctor-visit interpreter work?",
         answer:
-          "It listens through the microphone with the phone's speech recogniser and matches what it hears against thousands of sentences used at clinics to show the Vietnamese meaning. A sentence that is not in the phrase bank is clearly marked so you can ask the doctor to repeat it or write it down. Numbers are always flagged for checking. Audio is never recorded.",
+          "It listens through the microphone with the phone's speech recogniser and matches what it hears against over 3,100 sentences used at clinics to show the Vietnamese meaning. A sentence that is not in the phrase bank is clearly marked so you can ask the doctor to repeat it or write it down. Numbers are always flagged for checking. Audio is never recorded.",
       },
       {
         question: "Does ViCare replace a medical interpreter?",
@@ -448,7 +448,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
         key: "interpreter",
         title: "診察通訳",
         body:
-          "患者さんと医師の間の机にスマートフォンを置いて使います。最初に、医師には日本語で利用の許可をお願いする画面が表示されます。端末の音声認識（可能な限り端末内で処理）で医師の言葉を聞き取り、数千の診察会話の例文と照合してベトナム語の意味を表示します。薬の量や日数などの数字は必ず確認を促します。録音はしません。診察の内容は受診記録に保存できます。",
+          "患者さんと医師の間の机にスマートフォンを置いて使います。最初に、医師には日本語で利用の許可をお願いする画面が表示されます。端末の音声認識（可能な限り端末内で処理）で医師の言葉を聞き取り、3,100以上の診察会話の例文と照合してベトナム語の意味を表示します。薬の量や日数などの数字は必ず確認を促します。録音はしません。診察の内容は受診記録に保存できます。",
       },
       {
         key: "scanner",
@@ -468,7 +468,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         key: "clinics",
         title: "近くのクリニック",
-        body: "14の診療科から選び、Googleマップで近くの医療機関を探します。看板の表記と、電話で予約するときのフレーズ付きです。",
+        body: "診療科を選び、厚生労働省のオープンデータによる47都道府県・14万以上の医療機関の一覧（診療中の施設を優先）か、Googleマップで近くの医療機関を探します。看板の表記と、電話で予約するときのフレーズ付きです。",
       },
       {
         key: "emergency",
@@ -488,12 +488,12 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         key: "diseases",
         title: "病気ガイド",
-        body: "よくある病気100以上について、危険なサイン、受診する科、セルフケア、診察で使う言葉をまとめています。",
+        body: "よくある病気170以上について、危険なサイン、受診する科、セルフケア、診察で使う言葉をまとめています。",
       },
       {
         key: "procedures",
         title: "手続き・保険",
-        body: "健康保険、医療費、高額療養費、労災、家族や仕事に関する40以上の記事。公的な情報源へのリンク付き。",
+        body: "健康保険、医療費、高額療養費、労災、家族や仕事に関する70本の記事。公的な情報源へのリンク付き。",
       },
       {
         key: "dictionary",
@@ -574,7 +574,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "診察通訳はどのように動きますか？",
         answer:
-          "端末の音声認識で医師の言葉を聞き取り、受診でよく使う数千の例文と照合してベトナム語の意味を表示します。例文にない文はその旨をはっきり表示するので、言い直しや筆談をお願いできます。数字は必ず確認を促します。録音はしません。",
+          "端末の音声認識で医師の言葉を聞き取り、受診でよく使う3,100以上の例文と照合してベトナム語の意味を表示します。例文にない文はその旨をはっきり表示するので、言い直しや筆談をお願いできます。数字は必ず確認を促します。録音はしません。",
       },
       {
         question: "医療通訳者の代わりになりますか？",

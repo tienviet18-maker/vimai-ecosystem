@@ -33,7 +33,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
         key: "interpreter",
         title: "Phiên dịch khi khám bệnh",
         body:
-          "Đặt điện thoại lên bàn giữa bạn và bác sĩ. Bác sĩ thấy lời xin phép bằng tiếng Nhật trước khi bắt đầu. App nghe qua micro bằng bộ nhận dạng giọng nói của điện thoại (ưu tiên chạy ngay trên máy), so với kho hơn 3.100 mẫu câu bác sĩ – bệnh nhân và hiện nghĩa tiếng Việt. Con số (liều thuốc, số ngày) luôn được nhắc kiểm tra lại. Không ghi âm. Có thể lưu buổi khám vào nhật ký.",
+          "Đặt điện thoại lên bàn giữa bạn và bác sĩ. Bác sĩ thấy lời xin phép bằng tiếng Nhật trước khi bắt đầu. App nghe qua micro bằng bộ nhận dạng giọng nói của điện thoại (ưu tiên chạy ngay trên máy), so với kho hơn 3.700 mẫu câu bác sĩ – bệnh nhân và hiện nghĩa tiếng Việt. Con số (liều thuốc, số ngày) luôn được nhắc kiểm tra lại. Không ghi âm. Có thể lưu buổi khám vào nhật ký.",
       },
       {
         key: "scanner",
@@ -162,7 +162,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "Phiên dịch khi khám bệnh hoạt động thế nào?",
         answer:
-          "App nghe bác sĩ qua micro bằng bộ nhận dạng giọng nói của điện thoại, rồi so với kho hơn 3.100 mẫu câu thường gặp khi khám để hiện nghĩa tiếng Việt. Câu không có trong kho sẽ được báo rõ để bạn nhờ bác sĩ nói lại hoặc viết ra giấy. Con số luôn được nhắc kiểm tra lại. Âm thanh không được ghi lại.",
+          "App nghe bác sĩ qua micro bằng bộ nhận dạng giọng nói của điện thoại, rồi so với kho hơn 3.700 mẫu câu thường gặp khi khám để hiện nghĩa tiếng Việt. Câu không có trong kho: app iPhone/Android dịch đúng lời bác sĩ ngay trên máy, không cần mạng sau khi tải gói ngôn ngữ lần đầu, ghi rõ “Dịch máy” và kèm câu dịch ngược để kiểm tra; trên bản web, câu đó được báo rõ để bạn nhờ bác sĩ nói lại hoặc viết ra giấy. Con số luôn được nhắc kiểm tra lại. Âm thanh không được ghi lại.",
       },
       {
         question: "ViCare có thay được phiên dịch viên y tế không?",
@@ -242,7 +242,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
         key: "interpreter",
         title: "Doctor-visit interpreter",
         body:
-          "Lay the phone on the desk between you and the doctor. The doctor first sees a consent request in Japanese. The app listens through the microphone using the phone's own speech recogniser (on-device when available), matches what it hears against over 3,100 doctor–patient sentences and shows the meaning in Vietnamese. Numbers such as doses and days are always flagged for you to double-check. Audio is never recorded. You can save the visit to your diary.",
+          "Lay the phone on the desk between you and the doctor. The doctor first sees a consent request in Japanese. The app listens through the microphone using the phone's own speech recogniser (on-device when available), matches what it hears against over 3,700 doctor–patient sentences and shows the meaning in Vietnamese. Numbers such as doses and days are always flagged for you to double-check. Audio is never recorded. You can save the visit to your diary.",
       },
       {
         key: "scanner",
@@ -369,7 +369,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "How does the doctor-visit interpreter work?",
         answer:
-          "It listens through the microphone with the phone's speech recogniser and matches what it hears against over 3,100 sentences used at clinics to show the Vietnamese meaning. A sentence that is not in the phrase bank is clearly marked so you can ask the doctor to repeat it or write it down. Numbers are always flagged for checking. Audio is never recorded.",
+          "It listens through the microphone with the phone's speech recogniser and matches what it hears against over 3,700 sentences used at clinics to show the Vietnamese meaning. A sentence that is not in the phrase bank is translated on the phone by the iPhone/Android app, offline after a one-time language download, labelled “machine translation” with a back-translation to check; on the web version it is clearly marked so you can ask the doctor to repeat it or write it down. Numbers are always flagged for checking. Audio is never recorded.",
       },
       {
         question: "Does ViCare replace a medical interpreter?",
@@ -448,7 +448,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
         key: "interpreter",
         title: "診察通訳",
         body:
-          "患者さんと医師の間の机にスマートフォンを置いて使います。最初に、医師には日本語で利用の許可をお願いする画面が表示されます。端末の音声認識（可能な限り端末内で処理）で医師の言葉を聞き取り、3,100以上の診察会話の例文と照合してベトナム語の意味を表示します。薬の量や日数などの数字は必ず確認を促します。録音はしません。診察の内容は受診記録に保存できます。",
+          "患者さんと医師の間の机にスマートフォンを置いて使います。最初に、医師には日本語で利用の許可をお願いする画面が表示されます。端末の音声認識（可能な限り端末内で処理）で医師の言葉を聞き取り、3,700以上の診察会話の例文と照合してベトナム語の意味を表示します。薬の量や日数などの数字は必ず確認を促します。録音はしません。診察の内容は受診記録に保存できます。",
       },
       {
         key: "scanner",
@@ -574,7 +574,7 @@ export const VICARE_PAGE_COPY: Record<VicareLocale, VicarePageCopy> = {
       {
         question: "診察通訳はどのように動きますか？",
         answer:
-          "端末の音声認識で医師の言葉を聞き取り、受診でよく使う3,100以上の例文と照合してベトナム語の意味を表示します。例文にない文はその旨をはっきり表示するので、言い直しや筆談をお願いできます。数字は必ず確認を促します。録音はしません。",
+          "端末の音声認識で医師の言葉を聞き取り、受診でよく使う3,700以上の例文と照合してベトナム語の意味を表示します。例文にない文は、iPhone/Androidアプリでは端末内で翻訳し（初回に言語データをダウンロードすればオフライン可、「機械翻訳」と表示し逆翻訳付き）、Web版ではその旨をはっきり表示するので、言い直しや筆談をお願いできます。数字は必ず確認を促します。録音はしません。",
       },
       {
         question: "医療通訳者の代わりになりますか？",
